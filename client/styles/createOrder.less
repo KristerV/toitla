@@ -1,4 +1,4 @@
-@dark-gray: #939598;
+@import "variables";
 
 .background {
 	background-image: url("../images/food/background1.jpg");
@@ -39,7 +39,7 @@
 			display: inline-block;
 			height: 60px;
 			border: solid white 1px;
-			border-radius: 5px;
+			border-radius: @border-radius;
 			padding: 0 20px;
 			margin-right: 20px;
 		}
@@ -52,7 +52,7 @@
 			background: white;
 			color: @dark-gray;
 			border: none;
-			border-right: solid 1px #939598;
+			border-right: solid 1px @dark-gray;
 			box-sizing: border-box;
 			width: 150px;
 			font-size: 16px;
@@ -69,15 +69,7 @@
 
 		input[type="submit"] {
 			height: 63px;
-			background: #50b848;
 			padding: 2px 20px;
-			color: white;
-			display: inline-block;
-			margin: 0;
-			outline: 0;
-			border: none;
-			border-radius: 5px;
-			font-weight: bold;
 		}
 
 		h1 {

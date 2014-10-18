@@ -1,5 +1,5 @@
 template(name="registerForm")
-	.register-form
+	.register-form.form-box
 		h3 {{T 'Register as a chef'}}
 		.messages
 		form(name="register")
@@ -9,5 +9,4 @@ template(name="registerForm")
 
 			label(for="password") {{T 'Password'}}
 			input(name="password" type="password" required="required" pattern=".{8,}" title="8 characters minimum" id="password")
-
 			input(type="submit" value="{{T 'Register'}}")
