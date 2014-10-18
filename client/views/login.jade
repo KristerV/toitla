@@ -1,5 +1,5 @@
 template(name="login")
-	nav
+	nav(class="{{hasBackgroundImage}}")
 		if currentUser
 			a#logout.uppercase {{T "Logout"}}
 			a#myprofile {{T "My Profile"}}

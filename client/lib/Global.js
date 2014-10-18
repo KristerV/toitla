@@ -25,7 +25,10 @@ Global = {
 		$('.error').removeClass('error')
 	},
 	getFormValues: function(formName) {
-		var values = $('form[name="'+formName+'"]').serializeArray()
+		if (formName instanceof jQuery)
+			var values = formName.serializeArray()
+		else
+			var values = $('form[name="'+formName+'"]').serializeArray()
 		var data = {}
 		for (var i = 0; i < values.length; i++) {
 			var a = values[i]

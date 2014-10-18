@@ -17,9 +17,12 @@ Meteor.methods({
 
 
 		var chefs = Meteor.users.find(search).fetch()
+
+		// collect chef ids
 		var chefIds = []
 		for (var i = chefs.length - 1; i >= 0; i--) {
-			chefIds.push(chefs[i]._id)
+			var chef = chefs[i]
+			chefIds.push(chef._id)
 		};
 
 		order = {info: order}
@@ -29,6 +32,12 @@ Meteor.methods({
 
 
 		console.log("Adding order:" + JSON.stringify(order))
-		OrderCollection.insert(order)
+		var orderId = OrderCollection.insert(order)
+
+		// notify chefs
+		for (var i = chefs.length - 1; i >= 0; i--) {
+			var chef = chefs[i]
+			Meteor.call('mailNewOrder', chef._id, orderId)
+		};
 	}
 })
