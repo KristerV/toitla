@@ -15,6 +15,6 @@ Template.login.events({
 		Meteor.logout()
 	},
 	'click #myprofile' : function(e, tmpl) {
-		Global.setOverlay('chefProfile', Meteor.userId())
+		Global.setOverlay('chefProfile', {chefId: Meteor.userId()})
 	},
 })
