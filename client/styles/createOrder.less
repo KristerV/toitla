@@ -1,3 +1,5 @@
+@input-height: 52px;
+
 .background {
 	background-image: url("../images/food/background3.jpg");
 	height: 100%;
@@ -30,15 +32,26 @@
 		color: white;
 		text-align: center;
 
-		input:not([type="submit"]) {
+		input[type="text"] {
 			border-radius: 5px;
-			height: 36px;
+			height: @input-height;
 			box-shadow: none;
 			color: #939598;
+			padding: 0 20px;
 		}
 
 		input[type="submit"] {
-			color: #50b848;
+			line-height: @input-height;
+			background: #50b848;
+			padding: 2px 20px;
+			color: white;
+			display: inline-block;
+			margin: 0;
+			outline: 0;
+			border: none;
+			border-radius: 5px;
+			font-weight: bold;
+			text-transform: uppercase;
 		}
 
 		h1 {
