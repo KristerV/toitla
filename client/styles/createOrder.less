@@ -10,23 +10,46 @@
 		height: 100%;
 	}
 }
+.overlay {
+	opacity: 0.3;
+	&.black {
+		background-color: black;
+	}
+}
 .content {
 	position: absolute;
 	top: 20%;
 	width: 100%;
+
 	.make-order {
 		margin-left: auto;
 		margin-right: auto;
 		color: white;
 		text-align: center;
 
+		input:not([type="submit"]) {
+			border-radius: 5px;
+			height: 36px;
+			box-shadow: none;
+		}
+
 		h1 {
 			text-transform: uppercase;
 			font-size: 72px;
+			margin: 20px;
 		}
+
 		.slogan {
+			padding-bottom: 20px;
 			font-weight: bold;
 			font-size: 16px;
+			margin-left: auto;
+			margin-right: auto;
+			width: 450px;
+		}
+
+		form {
+			padding: 20px;
 		}
 	}
 }
