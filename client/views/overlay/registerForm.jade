@@ -1,2 +1,12 @@
 template(name="registerForm")
-	p Register
+	.register-form
+		h3 {{T 'Register as a chef'}}
+		form(name="register")
+
+			label(for="email") {{T 'E-mail address'}}
+			input(name="email" id="email")
+				
+			label(for="password") {{T 'Password'}}
+			input(name="password" type="password" id="password")
+
+			input(type="submit" value="{{T 'Register'}}")
