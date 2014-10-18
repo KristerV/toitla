@@ -7,10 +7,8 @@ Template.registerForm.events({
 		var email = form.find('input[name="email"]').val()
 
 		var password = form.find('input[name="password"]').val();
-		console.log('submit')
 
 		if (!password || password.length < 8) {
-			console.log('addpasserr')
 		 	Global.addError($('#password'), 'password too short')
 			return
 		}
@@ -38,7 +36,7 @@ Template.registerForm.events({
 			}
 			else {
 				// success
-				Global.closeOverlay()				
+				Global.closeOverlay()
 			}
 		})
 	}
