@@ -5,9 +5,9 @@ template(name="registerForm")
 		form(name="register")
 
 			label(for="email") {{T 'E-mail address'}}
-			input(name="email" id="email")
+			input(type="email" name="email" id="email" required="required")
 
 			label(for="password") {{T 'Password'}}
-			input(name="password" type="password" id="password")
+			input(name="password" type="password" required="required" pattern=".{8,}" title="8 characters minimum" id="password")
 
 			input(type="submit" value="{{T 'Register'}}")
