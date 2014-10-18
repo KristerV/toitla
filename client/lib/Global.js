@@ -1,5 +1,13 @@
 Global = {
-	setOverlay : function(template) {
+	setOverlay : function(template, options) {
+		if (_.isUndefined(template))
+			return false
+
+		if (!_.isUndefined(options)) {
+			if (!_.isUndefined(optins.chefId))
+				Session.set("overlayChefId", chefId)
+		}
+
 		Session.set("overlayContent", template)
 	},
 	closeOverlay : function() {
