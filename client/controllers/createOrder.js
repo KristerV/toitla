@@ -12,6 +12,8 @@ Template.createOrder.events({
 		var time = form.find('input[name="time"]').val()
 		var location = form.find('input[name="location"]').val()
 
+		console.log(Meteor.users.find().fetch());
+
 		var data = {
 			info: {
 				description: description,
