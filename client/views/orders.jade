@@ -1,3 +1,8 @@
 template(name="orders")
 	.orders
-		p lots of orders for Chef
+		each orders
+			.order
+				h1 order
+				p {{info.date}}
+				p {{info.time}}
+				p {{info.description}}
