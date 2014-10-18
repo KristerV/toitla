@@ -4,7 +4,7 @@ template(name="createOrder")
 		.right-half
 	section(class="content")
 		.make-order
-			h1 {{T 'Eat. Sleep. Repeat'}}
+			h1.uppercase {{T 'Eat. Sleep. Repeat'}}
 			.slogan {{T 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.' }}
 			form(name="createOrder")
 				.inputs
@@ -13,4 +13,4 @@ template(name="createOrder")
 					input(type="text" name="time" placeholder="18:00")
 					input(type="text" name="location" placeholder="Tallinn")
 
-				input(type="submit" value="{{T 'Feed me'}}")
+				input(type="submit" value="{{T 'Feed me'}}" class="uppercase")
