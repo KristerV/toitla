@@ -1,4 +1,5 @@
 Meteor.startup(function () {
 });
 
-Meteor.subscribe("demo");
+Meteor.subscribe("order");
+Meteor.subscribe("chef");
