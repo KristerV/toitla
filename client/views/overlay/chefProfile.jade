@@ -2,8 +2,12 @@ template(name="chefProfile")
 	.chef-profile.form-box
 		with chef
 			if isOwner
+				h3 {{T "Your profile"}}
+				p {{T "Your phone number and address are hidden from clients until they confirm an order"}}
+				p {{T "The client can specify the order pickup time by phone"}}
 				form(name="chefProfile")
-					input(type="text" name="name" placeholder="Full Name" value="{{name}}")
+					label {{T "Name"}}
+					input(type="text" name="name" placeholder="{{T 'Full name'}}" value="{{name}}")
 					label {{T "Telephone"}}
 					input(type="text" name="telephone" placeholder="+372 555 55555" value="{{telephone}}")
 					label {{T "City"}}
@@ -12,7 +16,7 @@ template(name="chefProfile")
 					input(type="text" name="street" placeholder="Hollyoaks st." value="{{street}}")
 					label {{T "House nr"}}
 					input(type="text" name="house" placeholder="43" value="{{house}}")
-					textarea(type="text" name="bio" placeholder="Short description about yourself..." value="{{bio}}")
+					textarea(type="text" name="bio" placeholder="{{T 'Short description about yourself...'}}" value="{{bio}}")
 					input(type="submit" value="{{T 'Save'}}")
 			else
 				if name
