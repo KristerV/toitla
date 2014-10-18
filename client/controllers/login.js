@@ -1,7 +1,10 @@
 Template.login.helpers({
 	isPopupOpen : function() {
 		return Session.get("loginOverlay")
-	}
+	},
+	hasBackgroundImage : function(){
+		return Session.get("backgroundImage") ? 'light-text' : '' 
+	} 
 })
 
 Template.login.events({
