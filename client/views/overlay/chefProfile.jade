@@ -1,7 +1,6 @@
 template(name="chefProfile")
 	.chef-profile
 		with chef
-			p {{street}}
 			if isOwner
 				form(name="chefProfile")
 					input(type="text" name="name" placeholder="Full Name" value="{{name}}")
