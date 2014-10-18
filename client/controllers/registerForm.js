@@ -1,22 +1,40 @@
 Template.registerForm.events({
 	'submit form[name="register"]': function(e, tmpl) {
 		e.preventDefault()
+		Global.removeErrors()
 
 		var form = $('form[name="register"]')
 		var email = form.find('input[name="email"]').val()
 
+		var password = form.find('input[name="password"]').val();
+		console.log('submit')
+
+		if (!password || password.length < 8) {
+			console.log('addpasserr')
+		 	Global.addError($('#password'), 'password too short')
+			return
+		}
 
 
 		var user = {
 			username: email,
 			email: email,
-			password: form.find('input[name="password"]').val()
+			password: password
 		}
 
+
 		Accounts.createUser(user, function(e) {
+
 			if (e) {
-				console.log(e);
-				//if ()
+				console.log(e)
+				var r = e.reason.toLowerCase();
+				if (r.indexOf('email') != -1) {
+					$('#email').addClass('error')
+					Global.addError($('#email'), r)
+				}
+				else if (r.indexOf('password') != -1) {
+					Global.addError($('#password'), r)
+				}
 			}
 			else {
 				// success
@@ -26,12 +44,4 @@ Template.registerForm.events({
 	}
 })
 
-Accounts.validateNewUser(function(user) {
-	if (!Global.validateEmail(user.email)) {
-		 throw new Meteor.Error(403, T("email not valid"));
-	}
-	if (!user.password || user.password.length < 8) {
-		 throw new Meteor.Error(403, T("password not long enough"));
-	}
-}) 
 
