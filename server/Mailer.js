@@ -1,21 +1,22 @@
 Mailer = {
 	send: function (to, from, subject, text) {
-		if (_.isUndefined(to) || _.isUndefined(subject) || _.isUndefined(body))
+		if (_.isUndefined(to) || _.isUndefined(subject) || _.isUndefined(text))
 			return false
 
 		var from = !_.isUndefined(from) ? from : 'info@domeen.com'
 		check([to, from, subject, text], [String]);
 
-		// Let other method calls from the same client start running,
-		// without waiting for the email sending to complete.
-		this.unblock();
+		console.log("sending email '" + subject + "' to " + to)
+		console.log(text)
 
+		// TODO send emails!
+		/*
 		Email.send({
 			to: to,
 			from: from,
 			subject: subject,
-			text: body
-		});
+			text: text
+		});*/
 	},
 }
 
@@ -24,18 +25,38 @@ Meteor.methods({
 		var subject = T("Here is you order link")
 		var text = T("Just in case you forgot :)")
 
-		Mailer.send(to, null, subject, text)
+		Mailer.send(to, '', subject, text)
 	},
-	newOrder: function(to, orderId) {
-		var subject = T('New order from') + orderId
-		var text = T('A new order has arrived, check it out')
+	mailNewOrder: function(chefId, orderId) {
 
-		Mailer.send(to, null, subject, text)
+		check(orderId, String)
+		
+		check(chefId, String)
+
+		var order = OrderCollection.findOne(orderId)
+		var chef = Meteor.users.findOne(chefId)
+
+		if (!order || !chef) {
+			console.log("No order or chef provided: ", order, chef)
+			return
+		}
+
+		var email = chef.emails[0].address
+		var desc = order.info.description
+		// TODO replace localhost
+		var link = 'please visit: http://localhost:3000/order/' + chef._id
+
+		var subject = T('New order: ') + desc
+		var text = T('A new order has arrived, check it out:\n\n')
+			+ desc + '\n\n'
+			+ link
+
+		Mailer.send(email, '', subject, text)
 	},
 	offerConfirmed: function(to, orderId) {
 		var subject = T('One of your offers has been confirmed')
 		var text = T('YOU MUST COOK, NOW!')
 
-		Mailer.send(to, null, subject, text)
+		Mailer.send(to, '', subject, text)
 	},
 });
