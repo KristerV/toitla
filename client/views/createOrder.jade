@@ -5,12 +5,12 @@ template(name="createOrder")
 	section(class="content")
 		.make-order
 			h1.uppercase {{T 'Eat. Sleep. Repeat'}}
-			.slogan {{T 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.' }}
+			.slogan {{T 'Lorem ipsum' }}
 			form(name="createOrder")
 				.inputs
-					input(type="text" name="description" placeholder="{{T 'Estonian dinner'}}" class="long")
-					input(type="text" name="date" placeholder="{{ tomorrow }}")
-					input(type="text" name="time" placeholder="18:00")
-					input(type="text" name="location" placeholder="Tallinn")
+					input(type="text" name="date" value="{{ tomorrow }}")
+					input(type="text" name="time" value="18:00")
+					input(type="text" name="location" value="Tallinn")
+					input(type="text" name="description" placeholder="{{T 'what food'}}" class="long")
 
 				input(type="submit" value="{{T 'Feed me'}}" class="uppercase")
