@@ -1,4 +1,4 @@
 Meteor.startup(function () {
 });
 
-Meteor.subscribe("demo")
+Meteor.subscribe("demo");

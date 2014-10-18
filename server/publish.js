@@ -1,3 +1,3 @@
-Meteor.publish("demo", function () {
+Meteor.publish("demo", function() {
   return DemoCollection.find();
 });
