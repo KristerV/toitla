@@ -19,6 +19,5 @@ Template.createOrder.events({
 		}
 
 		OrderCollection.insert(data)
-		console.log(OrderCollection.findOne())
 	}
 })
