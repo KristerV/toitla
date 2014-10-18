@@ -1,11 +1,10 @@
 template(name="chefProfile")
 	.chef-profile
 		with chef
+			p {{street}}
 			if isOwner
 				form(name="chefProfile")
 					input(type="text" name="name" placeholder="Full Name" value="{{name}}")
-					h2 {{T "Email"}}
-					input(type="text" name="email" placeholder="example@email.com" value="{{email}}")
 					h2 {{T "Telephone"}}
 					input(type="text" name="telephone" placeholder="+372 555 55555" value="{{telephone}}")
 					h2 {{T "City"}}
@@ -21,9 +20,6 @@ template(name="chefProfile")
 					h1 {{name}}
 				else
 					h1 Profile is not complete
-				if email
-					h2 {{T "Email"}}
-					p {{email}}
 				if telephone
 					h2 {{T "Telephone"}}
 					p {{telephone}}
