@@ -6,16 +6,17 @@ Mailer = {
 		var from = !_.isUndefined(from) ? from : 'info@domeen.com'
 		check([to, from, subject, text], [String]);
 
-		// Let other method calls from the same client start running,
-		// without waiting for the email sending to complete.
-		this.unblock();
+		console.log("sending email '" + subject + "' to " + to)
+		console.log(text)
 
+		// TODO send emails!
+		/*
 		Email.send({
 			to: to,
 			from: from,
 			subject: subject,
 			text: text
-		});
+		});*/
 	},
 }
 
@@ -43,14 +44,13 @@ Meteor.methods({
 		var email = chef.emails[0].address
 		var desc = order.info.description
 		// TODO replace localhost
-		var link = 'http://localhost:3000/order/' + chef._id
+		var link = 'please visit: http://localhost:3000/order/' + chef._id
 
 		var subject = T('New order: ') + desc
 		var text = T('A new order has arrived, check it out:\n\n')
 			+ desc + '\n\n'
 			+ link
 
-		console.log()
 		Mailer.send(email, '', subject, text)
 	},
 	offerConfirmed: function(to, orderId) {
