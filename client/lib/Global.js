@@ -32,6 +32,13 @@ Global = {
 			data[a.name] = a.value
 		};
 		return data
+	},
+	generateKey : function() {
+		var key = "";
+	    var possible = "abcdefghijklmnopqrstuvwxyz0123456789";
+	    for (var i = 0; i < 40; ++i)
+	    	key += possible.charAt(Math.floor(Math.random() * possible.length));   
+	    return key;
 	}
 }
 

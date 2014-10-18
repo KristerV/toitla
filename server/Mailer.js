@@ -26,7 +26,8 @@ Meteor.methods({
 
 		Mailer.send(to, null, subject, text)
 	},
-	newOrder: function(to, orderId) {
+	mailNewOrder: function(to, orderId) {
+
 		var subject = T('New order from') + orderId
 		var text = T('A new order has arrived, check it out')
 
