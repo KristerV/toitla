@@ -1,10 +1,14 @@
 template(name="createOrder")
-	.make-order
-		h1 Eat. Sleep. Repeat
-		.slogan Paragraaf Paragraaf Paragraaf Paragraaf Paragraaf Paragraaf
-		form(name="createOrder")
-			input(name="description")
-			input(name="date")
-			input(name="time")
-			input(name="location")
-			input(type="submit" value="{{T 'Feed me'}}")
+	section(class="background")
+		.right-half
+
+	section(class="content")
+		.make-order
+			h1 Eat. Sleep. Repeat
+			.slogan Paragraaf Paragraaf Paragraaf Paragraaf Paragraaf Paragraaf
+			form(name="createOrder")
+				input(name="description")
+				input(name="date")
+				input(name="time")
+				input(name="location")
+				input(type="submit" value="{{T 'Feed me'}}")
