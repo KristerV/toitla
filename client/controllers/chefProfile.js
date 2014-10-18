@@ -13,6 +13,11 @@ Template.chefProfile.helpers({
 		if (_.isUndefined(chefId) || _.isUndefined(userId))
 			return false
 
-		return chefId == userId
+		// return chefId == userId
+		return true
 	}
+})
+
+Template.chefProfile.events({
+	// ''
 })

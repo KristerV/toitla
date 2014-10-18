@@ -4,8 +4,9 @@ Global = {
 			return false
 
 		if (!_.isUndefined(options)) {
-			if (!_.isUndefined(optins.chefId))
-				Session.set("overlayChefId", chefId)
+			if (!_.isUndefined(options.chefId)) {
+				Session.set("overlayChefId", options.chefId)
+			}
 		}
 
 		Session.set("overlayContent", template)
