@@ -10,5 +10,11 @@ Template.login.events({
 	},
 	'click #register' : function(e, tmpl) {
 		Global.setOverlay('registerForm')
-	}
+	},
+	'click #logout' : function(e, tmpl) {
+		Meteor.logout()
+	},
+	'click #myprofile' : function(e, tmpl) {
+		Global.setOverlay('chefProfile', Meteor.userId())
+	},
 })

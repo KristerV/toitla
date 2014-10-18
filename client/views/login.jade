@@ -1,7 +1,11 @@
 template(name="login")
 	.login-button
-		a#login {{T "Login"}}
-		a#register {{T "Register as a chef"}}
+		if currentUser
+			a#logout {{T "Logout"}}
+			a#myprofile {{T "My Profile"}}
+		else
+			a#login {{T "Login"}}
+			a#register {{T "Register as a chef"}}
 	
 		
 
