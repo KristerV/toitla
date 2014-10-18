@@ -1,4 +1,4 @@
-@input-height: 52px;
+@dark-gray: #939598;
 
 .background {
 	background-image: url("../images/food/background3.jpg");
@@ -23,7 +23,7 @@
 }
 .content {
 	position: absolute;
-	top: 20%;
+	top: 25%;
 	width: 100%;
 
 	.make-order {
@@ -32,16 +32,39 @@
 		color: white;
 		text-align: center;
 
-		input[type="text"] {
+		.inputs {
+			background-color: white;
+			display: inline-block;
+			height: 60px;
+			border: solid white 1px;
 			border-radius: 5px;
-			height: @input-height;
-			box-shadow: none;
-			color: #939598;
 			padding: 0 20px;
 		}
 
+		input[type="text"] {
+			margin: 10px 0px;
+			height: 40px;
+			padding-left: 20px;
+			box-shadow: none;
+			color: @dark-gray;
+			border: none;
+			border-right: solid 1px #939598;
+			box-sizing: border-box;
+			width: 150px;
+			font-size: 16px;
+			&:focus {
+				outline: 0;
+			}
+			&.long {
+				width: 350px;
+			}
+		}
+		input[type="text"]:nth-last-child(1){
+			border-right: none;
+		}
+
 		input[type="submit"] {
-			line-height: @input-height;
+			height: 63px;
 			background: #50b848;
 			padding: 2px 20px;
 			color: white;

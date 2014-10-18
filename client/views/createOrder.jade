@@ -4,11 +4,13 @@ template(name="createOrder")
 		.right-half
 	section(class="content")
 		.make-order
-			h1 Eat. Sleep. Repeat
-			.slogan Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.
+			h1 {{T 'Eat. Sleep. Repeat'}}
+			.slogan {{T 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.' }}
 			form(name="createOrder")
-				input(type="text" name="description")
-				input(type="text" name="date")
-				input(type="text" name="time")
-				input(type="text" name="location")
+				.inputs
+					input(type="text" name="description" placeholder="{{T 'Estonian dinner'}}" class="long")
+					input(type="text" name="date" placeholder="{{ tomorrow }}")
+					input(type="text" name="time" placeholder="18:00")
+					input(type="text" name="location" placeholder="Tallinn")
+
 				input(type="submit" value="{{T 'Feed me'}}")
