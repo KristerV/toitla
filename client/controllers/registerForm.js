@@ -27,11 +27,13 @@ Template.registerForm.events({
 				console.log(e)
 				var r = e.reason.toLowerCase();
 				if (r.indexOf('email') != -1) {
-					$('#email').addClass('error')
 					Global.addError($('#email'), r)
 				}
 				else if (r.indexOf('password') != -1) {
 					Global.addError($('#password'), r)
+				}
+				else {
+					Global.addError($('#email'), r);
 				}
 			}
 			else {

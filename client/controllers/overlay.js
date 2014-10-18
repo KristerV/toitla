@@ -13,4 +13,11 @@ Template.overlay.events({
 	}
 })
 
-Template.overlay.rendered = function() {}
+Template.overlay.rendered = function() {
+	$(document).keydown(function(e) {
+		if (e.keyCode == 27) { // escape
+			e.preventDefault();
+			Global.closeOverlay();
+		}
+	})
+}
