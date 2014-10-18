@@ -3,7 +3,8 @@ var validateEmail = function(email) {
 	return re.test(email);
 } 
 Accounts.validateNewUser(function(user) {
-	if (!user.emails || !user.emails[0] || !validateEmail(user.emails[0])) {
+
+	if (!user.emails || !user.emails[0] || !validateEmail(user.emails[0].address)) {
 		 throw new Meteor.Error(403, "email not valid");
 	}
 	return true
