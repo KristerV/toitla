@@ -16,6 +16,7 @@ Global = {
 		window.location.hash = ''
 	},
 	addError : function(elem, errorMessage) {
+		Global.removeErrors()
 		var err = $('<span class="error">').text(T(errorMessage))
 			.insertAfter(elem)
 	},
