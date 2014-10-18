@@ -19,5 +19,9 @@ Template.chefProfile.helpers({
 })
 
 Template.chefProfile.events({
-	// ''
+	'submit form[name="chefProfile"]': function(e, tmpl) {
+		e.preventDefault()
+		var values = Global.getFormValues('chefProfile')
+		console.log(values)
+	}
 })

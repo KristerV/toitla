@@ -2,18 +2,20 @@ template(name="chefProfile")
 	.chef-profile
 		with chef
 			if isOwner
-				input(type="text" placeholder="Full Name" value="{{name}}")
-				h2 {{T "Email"}}
-				input(type="text" placeholder="example@email.com" value="{{email}}")
-				h2 {{T "Telephone"}}
-				input(type="text" placeholder="+372 555 55555" value="{{telephone}}")
-				h2 {{T "City"}}
-				input(type="text" placeholder="Tallinn" value="{{city}}")
-				h2 {{T "Street"}}
-				input(type="text" placeholder="Hollyoaks st." value="{{street}}")
-				h2 {{T "House nr"}}
-				input(type="text" placeholder="43" value="{{house}}")
-				textarea(type="text" placeholder="Short description about yourself..." value="{{bio}}")
+				form(name="chefProfile")
+					input(type="text" name="name" placeholder="Full Name" value="{{name}}")
+					h2 {{T "Email"}}
+					input(type="text" name="email" placeholder="example@email.com" value="{{email}}")
+					h2 {{T "Telephone"}}
+					input(type="text" name="telephone" placeholder="+372 555 55555" value="{{telephone}}")
+					h2 {{T "City"}}
+					input(type="text" name="city" placeholder="Tallinn" value="{{city}}")
+					h2 {{T "Street"}}
+					input(type="text" name="street" placeholder="Hollyoaks st." value="{{street}}")
+					h2 {{T "House nr"}}
+					input(type="text" name="house" placeholder="43" value="{{house}}")
+					textarea(type="text" name="bio" placeholder="Short description about yourself..." value="{{bio}}")
+					input(type="submit" value="{{T 'Save'}}")
 			else
 				if name
 					h1 {{name}}

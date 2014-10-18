@@ -22,6 +22,15 @@ Global = {
 	removeErrors : function() {
 		$('span.error').remove()
 		$('.error').removeClass('error')
+	},
+	getFormValues: function(formName) {
+		var values = $('form[name="'+formName+'"]').serializeArray()
+		var data = {}
+		for (var i = 0; i < values.length; i++) {
+			var a = values[i]
+			data[a.name] = a.value
+		};
+		return data
 	}
 }
 
