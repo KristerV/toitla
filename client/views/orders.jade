@@ -16,10 +16,7 @@ template(name="orders")
 						textarea(name="content") {{offerContent}}
 						label(value="price")
 						input(name="price" value="{{offerPrice}}")
-						if statusSent
-							input.green-bg(type="submit" value="{{T 'Waiting for client'}}")
-						else
-							input.grey-bg(type="submit" value="{{T 'Send'}}")
+						input(type="submit" value="{{T 'Send'}}")
 
 				.chat
 					h2 {{T "Chat"}}

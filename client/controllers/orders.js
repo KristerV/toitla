@@ -3,28 +3,19 @@ Template.orders.helpers({
 		return OrderCollection.find()
 	},
 	offerContent: function() {
-		var order = OrderCollection.findOne({_id: this._id, 'offers.chefId': Meteor.userId()})
+		var order = OrderCollection.findOne({_id: this._id})
 		if (_.isUndefined(order) || _.isUndefined(order.offers)) {
 			return false
 		}
 
-		for (var i = 0; i < order.offers.length; i++) {
-			if (order.offers[i].chefId == Meteor.userId()) {
-				return order.offers[i].content
-			}
-		}
-
+		return order.offers[Meteor.userId()].content
 	},
 	offerPrice: function() {
-		var order = OrderCollection.findOne({_id: this._id, 'offers.chefId': Meteor.userId()})
+		var order = OrderCollection.findOne({_id: this._id})
 		if (_.isUndefined(order) || _.isUndefined(order.offers))
 			return false
 
-		for (var i = 0; i < order.offers.length; i++) {
-			if (order.offers[i].chefId == Meteor.userId()) {
-				return order.offers[i].price
-			}
-		}
+		return order.offers[Meteor.userId()].price
 	},
 })
 
@@ -35,11 +26,10 @@ Template.orders.events({
 		var values = Global.getFormValues(form)
 		var orderId = form.attr('id')
 
-		var item = {}
-		item['offers'] = {chefId: Meteor.userId()}
-		OrderCollection.update(orderId, {$pull: item})
+		var data = {offers: {}}
+		data.offers[Meteor.userId()] = values
 
-		values['chefId'] = Meteor.userId()
-		OrderCollection.update(orderId, {$push: {offers: values}})
-	}
+		OrderCollection.update(orderId, {$set: data})
+		console.log(OrderCollection.findOne(orderId))
+	},
 })
