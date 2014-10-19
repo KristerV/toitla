@@ -44,7 +44,7 @@ Meteor.methods({
 		var email = chef.emails[0].address
 		var desc = order.info.description
 		// TODO replace localhost
-		var link = 'please visit: ' + Configuration.site_address + chef._id
+		var link = 'please visit: ' + Configuration.site_address + '/' + chef._id
 
 		var subject = T('New order: ') + desc
 		var text = T('A new order has arrived, check it out:\n\n')
