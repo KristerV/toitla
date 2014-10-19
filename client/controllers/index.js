@@ -2,15 +2,19 @@ Template.index.helpers({
 	layout: function() {
 		var template
 		var orderId = Session.get('orderId')
-		
-		if (!!orderId)               // Is there an order hash
+		var backgroundImage = false
+		if (!!orderId) {              // Is there an order hash
 			template = 'offers'
-		else if (!!Meteor.user())    // Is user chef
+		}
+		else if (!!Meteor.user()) {   // Is user chef
 			template = 'orders'
-		else                         // Else, new user
+		}
+		else {                         // Else, new user
 			template = 'createOrder'
+			backgroundImage = true
+		}
 
-		console.log(template)
+		Session.set('backgroundImage', backgroundImage)
 		return Template[template]
 	}
 })

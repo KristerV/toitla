@@ -16,7 +16,7 @@ template(name="chefProfile")
 					input(type="text" name="street" placeholder="Hollyoaks st." value="{{street}}")
 					label {{T "House nr"}}
 					input(type="text" name="house" placeholder="43" value="{{house}}")
-					textarea(type="text" name="bio" placeholder="{{T 'Short description about yourself...'}}" value="{{bio}}")
+					textarea(name="bio" placeholder="{{T 'Short description about yourself...'}}") {{bio}}
 					input(type="submit" value="{{T 'Save'}}")
 			else
 				if name
