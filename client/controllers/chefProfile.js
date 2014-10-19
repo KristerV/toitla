@@ -23,5 +23,6 @@ Template.chefProfile.events({
 		e.preventDefault()
 		var values = Global.getFormValues('chefProfile')
 		Meteor.users.update(Meteor.userId(), {$set: {profile: values}})
+		Global.closeOverlay()
 	}
 })

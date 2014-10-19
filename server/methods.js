@@ -33,6 +33,7 @@ Meteor.methods({
 
 		console.log("Adding order:" + JSON.stringify(order))
 		var orderId = OrderCollection.insert(order)
+		console.log(orderId)
 
 		// notify chefs
 		for (var i = chefs.length - 1; i >= 0; i--) {

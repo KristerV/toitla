@@ -20,8 +20,7 @@ Template.createOrder.events({
 		}
 
 		Meteor.call('newOrder', order, function(err, orderId) {
-			Session.set('createdOrderId', orderId)
-			Global.setOverlay('orderEmail')	
+			document.location.href = '/order/' + orderId			
 		})
 	}
 })
