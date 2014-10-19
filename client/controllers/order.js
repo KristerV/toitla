@@ -1,22 +1,29 @@
 Template.order.helpers({
 	offerData: function(orderId) {
-		return OfferCollection.findOne({chefId: Meteor.userId(), orderId: orderId})
+		if (Meteor.user()) {
+			var offer = OfferCollection.findOne({chefId: Meteor.userId(), orderId: orderId})
+			if (!offer)
+				return {}
+			return offer
+		} else {
+			return this
+		}
 	},
 	author: function() {
+
 		if (this.author == 'client')
 			return T("Me")
+
 		var user = Meteor.users.findOne(this.author)
-		if (_.isUndefined(user) || _.isUndefined(user.profile))
-			return this.username
+		if (!user || !user.profile || !user.prfile.name) {
+			return user.username
+		}
 
 		return user.profile.name
 	},
 	time: function() {
 		return moment(this.timestamp).format('DD.MM.YYYY HH:mm');
 	},
-	userIsChef: function() {
-		return Meteor.user()
-	}
 })
 
 Template.order.events({

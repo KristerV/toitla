@@ -1,9 +1,10 @@
 Template.offers.helpers({
 	offers: function() {
-		var offer = OfferCollection.findOne({orderId: Session.get("orderId")})
-		console.log(offer)
-		if (!offer)
+		var offers = OfferCollection.find({orderId: Session.get("orderId")})
+		if (!offers)
 			return false
-		return offer
+		return offers
+
+
 	}
 })

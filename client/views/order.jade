@@ -8,7 +8,7 @@ template(name="order")
 				a.cancel-offer {{T "Cancel offer"}}
 			.offer
 				with offerData _id
-					if userIsChef
+					if currentUser
 						form(name="offer" data-offer-id="{{_id}}")
 							h3.uppercase {{T "Your offer"}}
 							textarea(name="content" placeholder="{{T 'A detailed description of the food you want to offer'}}") {{content}}
