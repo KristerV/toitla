@@ -17,7 +17,7 @@ Template.order.helpers({
 		var user = Meteor.users.findOne(this.author)
 		if (!user)
 			return false
-		if (!user.profile || !user.prfile.name) {
+		if (!user.profile || !user.profile.name) {
 			return user.username
 		}
 
@@ -26,6 +26,12 @@ Template.order.helpers({
 	time: function() {
 		return moment(this.timestamp).format('DD.MM.YYYY HH:mm');
 	},
+	authorData: function() {
+		var chefId = this.chefId
+		var chef = Meteor.users.findOne(chefId)
+		console.log(chef)
+		return chef.profile
+	}
 })
 
 Template.order.events({
