@@ -10,6 +10,10 @@ Template.overlay.events({
 	},
 	'click .overlay-content' : function(e) {
 		e.stopPropagation()
+	},
+	'click .overlay-close' : function(e) {
+		e.preventDefault()
+		Global.closeOverlay()
 	}
 })
 
