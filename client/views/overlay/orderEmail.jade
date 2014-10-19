@@ -1,0 +1,14 @@
+template(name="orderEmail")
+	.order-email.form-box
+		h3 {{T 'Email address'}}
+		p {{T 'Not to lose you orders, please give us your e-mail address'}}
+		.messages
+		form(name="orderEmailForm")
+
+			// currently not used
+			with order
+
+				label(for="email") {{T 'E-mail address'}}
+				input(type="email" name="email" id="email" required="required")
+
+				input(type="submit" value="{{T 'Confirm order'}}")
