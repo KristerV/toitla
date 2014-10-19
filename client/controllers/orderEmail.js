@@ -25,3 +25,7 @@ Template.orderEmail.events({
 		document.location.href = '/order/' + id
 	}
 })
+
+Template.orderEmail.rendered = function(){
+	$('.overlay-content').addClass('no-box')
+}
