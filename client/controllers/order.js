@@ -54,7 +54,7 @@ Template.order.helpers({
 		return user.profile.name
 	},
 	time: function() {
-		return moment(this.timestamp)
+		return moment(this.timestamp).format('DD.MM.YYYY HH:mm');
 	},
 	userIsChef: function() {
 		return Meteor.user()

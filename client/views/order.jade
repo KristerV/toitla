@@ -23,9 +23,9 @@ template(name="order")
 		section.chat.form-box.beige
 			h3.uppercase {{T "Client asks"}}
 			each messages
-				h3 {{author}}
-				p {{time}}
-				p {{msg}}
+				.message
+					div.uppercase.gray {{author}} {{time}}
+					p {{msg}}
 			form(name="chat" id="{{_id}}")
 				textarea(name="msg")
 				input(type="submit" value="{{T 'Answer'}}")
