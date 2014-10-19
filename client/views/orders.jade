@@ -1,23 +1,24 @@
 template(name="orders")
-	.orders
-		each orders
-			.order-block
-				a.cancel-offer {{T "Cancel offer"}}
-				.order
-					h2 {{T "Order details"}}
-					p {{info.date}}
-					p {{info.time}}
-					p {{info.location}}
-					p {{info.description}}
-				.offer
-					h2 {{T "Your offer"}}
-					form(name="offer" id="{{_id}}")
-						label(value="offer")
-						textarea(name="content" value="{{offerContent}}")
-						label(value="price")
-						input(name="price" value="{{offerPrice}}")
-						input(type="submit" value="{{T 'Send'}}")
-					if itemExists
-						h3 item exists
-				.chat
-					h2 {{T "Chat"}}
+	section.two-columns
+		.orders
+			each orders
+				.order-block.form-box
+					a.cancel-offer {{T "Cancel offer"}}
+					.order
+						h2 {{T "Order details"}}
+						p {{info.date}}
+						p {{info.time}}
+						p {{info.location}}
+						p {{info.description}}
+					.offer
+						
+						form(name="offer" id="{{_id}}")
+							h3.uppercase {{T "Your offer"}}
+							textarea(name="content" placeholder="{{T 'A detailed description of the food you want to offer'}}") {{offerContent}}
+							footer
+								input(type="text" class="small" name="price" placeholder="{{T 'Price'}}" value="{{offerPrice}}")
+								input(type="submit" value="{{T 'Send offer'}}")
+						if itemExists
+							h3 item exists
+					.chat
+						h2 {{T "Chat"}}
