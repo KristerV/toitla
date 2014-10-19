@@ -1,5 +1,5 @@
 template(name="order")
-	.order-block(id="{{_id}}")
+	.order-block(data-order-id="{{_id}}")
 		section.form-box
 			header
 				.order
@@ -7,25 +7,25 @@ template(name="order")
 					p {{info.date}} {{info.time}} {{info.location}}
 				a.cancel-offer {{T "Cancel offer"}}
 			.offer
-				if userIsChef
-					form(name="offer")
-					
-					form(name="offer" id="{{_id}}")
-						h3.uppercase {{T "Your offer"}}
-						textarea(name="content" placeholder="{{T 'A detailed description of the food you want to offer'}}") {{offerContent}}
-						footer
-							input(type="text" class="small" name="price" placeholder="{{T 'Price'}}" value="{{offerPrice}}")
-							input(type="submit" value="{{T 'Send offer'}}")
-				else
-					h2 {{T "Offer"}}
-					p {{content}}
-					p {{price}}
+				with offerData _id
+					if userIsChef
+						form(name="offer" data-offer-id="{{_id}}")
+							h3.uppercase {{T "Your offer"}}
+							textarea(name="content" placeholder="{{T 'A detailed description of the food you want to offer'}}") {{content}}
+							footer
+								input(type="text" class="small" name="price" placeholder="{{T 'Price'}}" value="{{price}}")
+								input(type="submit" value="{{T 'Send offer'}}")
+					else
+						h2 {{T "Offer"}}
+						p {{content}}
+						p {{price}}
 		section.chat.form-box.beige
 			h3.uppercase {{T "Client asks"}}
-			each messages
-				.message
-					div.uppercase.gray {{author}} {{time}}
-					p {{msg}}
-			form(name="chat" id="{{_id}}")
-				textarea(name="msg")
-				input(type="submit" value="{{T 'Answer'}}")
+			with offerData _id
+				each messages
+					.message
+						div.uppercase.gray {{author}} {{time}}
+						p {{msg}}
+				form(name="chat" data-offer-id="{{_id}}")
+					textarea(name="msg")
+					input(type="submit" value="{{T 'Answer'}}")
