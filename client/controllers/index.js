@@ -22,6 +22,14 @@ Template.index.helpers({
 Template.index.rendered = function() {
 
 	if ('undefined' == typeof Configuration) {
-		alert('Hey, developer! Please create a /lib/configuration.js \n(there is an example also).')
+		alert('Hey, developer! \n\n Yes you, Krister!!\nPlease provide a /lib/configuration.js \n(there is an example also).')
+	}
+	if (Session.get('showLogin')) {
+		if (Meteor.user()) {
+			Session.set('showLogin', false)
+		}
+		else {
+			Global.setOverlay('loginForm')
+		}
 	}
 }
