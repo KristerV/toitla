@@ -5,9 +5,8 @@ Template.clientView.helpers({
 			return false
 		return offers
 	},
-	order: function() {
+	orderData: function() {
 		var order = OrderCollection.findOne(Session.get("orderId"))
-		console.log(order)
 		if (_.isUndefined(order))
 			return {}
 		else

@@ -15,7 +15,9 @@ Template.order.helpers({
 			return T("Me")
 
 		var user = Meteor.users.findOne(this.author)
-		if (!user || !user.profile || !user.prfile.name) {
+		if (!user)
+			return false
+		if (!user.profile || !user.prfile.name) {
 			return user.username
 		}
 
