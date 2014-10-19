@@ -17,5 +17,25 @@
 		background-color: white;
 		border-radius: @border-radius;
 		padding: 20px;
+		position: relative;
 	}
+	.overlay-close {
+		position: absolute;
+		width: 30px;
+		height: 30px;
+		right: -10px;
+		top: -10px;
+		border-radius: 15px;
+		background-color: #444;
+		color: #ddd;
+		text-align: center;
+		font-size: 18px;
+		line-height: 30px;
+		cursor: pointer;
+		&:hover {
+			color: #fff;
+			background-color: #000;
+		}
+	}
+		
 }

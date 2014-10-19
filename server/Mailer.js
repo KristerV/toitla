@@ -44,14 +44,14 @@ Meteor.methods({
 		var email = chef.emails[0].address
 		var desc = order.info.description
 		// TODO replace localhost
-		var link = 'please visit: http://localhost:3000/order/' + chef._id
+		var link = 'please visit: ' + Configuration.site_address + chef._id
 
 		var subject = T('New order: ') + desc
 		var text = T('A new order has arrived, check it out:\n\n')
 			+ desc + '\n\n'
 			+ link
 
-		Mailer.send(email, '', subject, text)
+		Mailer.send(email, Configuration.email, subject, text)
 	},
 	offerConfirmed: function(to, orderId) {
 		var subject = T('One of your offers has been confirmed')
