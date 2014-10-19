@@ -67,6 +67,9 @@ Template.order.events({
 
 		OfferCollection.update(id, {$push: {messages: values}})
 	},
+	'click a.cancel-offer': function(e, tmpl) {
+		OfferCollection.update(this._id, {$set: {cancelled: true}})
+	},
 	'click a.change-offer': function(e, tmpl) {
 		OfferCollection.update(this._id, {$set: {editingOffer: true}})
 	},
