@@ -20,3 +20,10 @@ template(name="orders")
 							h3 item exists
 					.chat
 						h2 {{T "Chat"}}
+						each messages
+							h3 {{author}}
+							p {{time}}
+							p {{msg}}
+						form(name="chat" id="{{_id}}")
+							input(name="msg")
+							input(type="submit" value="{{T 'Saada'}}")

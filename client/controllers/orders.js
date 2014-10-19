@@ -17,6 +17,15 @@ Template.orders.helpers({
 
 		return order.offers[Meteor.userId()].price
 	},
+	messages: function(){
+		var order = OrderCollection.findOne({_id: this._id})
+		if (_.isUndefined(order) || _.isUndefined(order.messages))
+			return false
+		return order.messages
+	},
+	time: function() {
+		return moment(this.timestamp)
+	}
 })
 
 Template.orders.events({
@@ -32,4 +41,12 @@ Template.orders.events({
 		OrderCollection.update(orderId, {$set: data})
 		console.log(OrderCollection.findOne(orderId))
 	},
+	'submit form[name="chat"]': function(e, tmpl) {
+		e.preventDefault()
+		var form = $(e.currentTarget)
+		var values = Global.getFormValues(form)
+		values['author'] = Meteor.userId()
+		values['timestamp'] = TimeSync.serverTime()
+		OrderCollection.update(form.attr('id'), {$push: {messages: values}})
+	}
 })
