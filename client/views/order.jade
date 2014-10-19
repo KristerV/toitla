@@ -8,24 +8,32 @@ template(name="order")
 				a.cancel-offer {{T "Cancel offer"}}
 			.offer
 				with offerData _id
-					if currentUser
-						if editingOffer
-							form(name="offer" data-offer-id="{{_id}}")
-								h3.uppercase {{T "Your offer"}}
-								textarea(name="content" placeholder="{{T 'A detailed description of the food you want to offer'}}") {{content}}
-								footer
-									input(type="text" class="small" name="price" placeholder="{{T 'Price'}}" value="{{price}}")
-									input(type="submit" value="{{T 'Send offer'}}")
+					if offerConfirmed
+
+						h2 {{T "Offer"}}
+						p {{content}}
+						p {{price}}
+						h1 {{T "Order has been confirmed. This means the food will be ready on time and the client will pick it up, unless specified otherwise in the chat"}}
+					else
+						if currentUser
+							if editingOffer
+								form(name="offer" data-offer-id="{{_id}}")
+									h3.uppercase {{T "Your offer"}}
+									textarea(name="content" placeholder="{{T 'A detailed description of the food you want to offer'}}") {{content}}
+									footer
+										input(type="text" class="small" name="price" placeholder="{{T 'Price'}}" value="{{price}}")
+										input(type="submit" value="{{T 'Send offer'}}")
+							else
+								h2 {{T "Offer"}}
+								p {{content}}
+								p {{price}}
+								p Waiting for client feedback
+								a.change-offer {{T "Change offer"}}
 						else
 							h2 {{T "Offer"}}
 							p {{content}}
 							p {{price}}
-							p Waiting for client feedback
-							a.change-offer {{T "Change offer"}}
-					else
-						h2 {{T "Offer"}}
-						p {{content}}
-						p {{price}}
+							a.confirm-offer {{T "Confirm offer"}}
 		section.chat.form-box.beige
 			h3.uppercase {{T "Client asks"}}
 			with offerData _id

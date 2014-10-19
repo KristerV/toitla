@@ -67,5 +67,10 @@ Template.order.events({
 	},
 	'click a.change-offer': function(e, tmpl) {
 		OfferCollection.update(this._id, {$set: {editingOffer: true}})
-	}
+	},
+	'click a.confirm-offer': function(e, tmpl) {
+		var really = confirm(T("Are you sure you want to confirm this offer? You will be expected to pay for and collect this food from the chef, unless specified otherwise."))
+		if (really)
+			OfferCollection.update(this._id, {$set: {editingOffer: false, offerConfirmed: true}})
+	},
 })
