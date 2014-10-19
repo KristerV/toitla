@@ -8,12 +8,15 @@ template(name="order")
 				a.cancel-offer {{T "Cancel offer"}}
 			.offer
 				with offerData _id
+					with authorData
+						h3 {{name}}
+						p {{city}}
 					if offerConfirmed
 
 						h2 {{T "Offer"}}
 						p {{content}}
-						p {{price}}
-						h1 {{T "Order has found a cook"}}
+						p.price {{T "Price"}}  {{price}}
+						h3 {{T "Order has been confirmed. This means the food will be ready on time and the client will pick it up, unless specified otherwise in the chat"}}
 					else
 						if currentUser
 							if editingOffer
@@ -26,16 +29,17 @@ template(name="order")
 							else
 								h2 {{T "Offer"}}
 								p {{content}}
-								p {{price}}
-								p Waiting for client feedback
-								a.change-offer {{T "Change offer"}}
+								p.price {{T "Price"}} {{price}}
+								footer
+									p.feedback {{T "Waiting for client feedback"}}
+									a.change-offer.button {{T "Change offer"}}
 						else
 							h2 {{T "Offer"}}
 							p {{content}}
-							p {{price}}
-							a.confirm-offer {{T "Confirm offer"}}
+							p.price {{T "Price"}}  {{price}}
+							a.confirm-offer.button {{T "Confirm offer"}}
 		section.chat.form-box.beige
-			h3.uppercase {{T "Client asks"}}
+			h3.uppercase {{T "Chat"}}
 			with offerData _id
 				each messages
 					.message

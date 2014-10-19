@@ -4,3 +4,7 @@ Template.chefView.helpers({
 	},
 })
 
+Template.chefView.rendered = function() {
+	if (Meteor.user() && (!Meteor.user().profile || !Meteor.user().profile.name))
+		Global.setOverlay('chefProfile', {chefId: Meteor.userId()})
+}
