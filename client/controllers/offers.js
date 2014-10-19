@@ -4,7 +4,8 @@ Template.offers.helpers({
 		if (!order)
 			return false
 		var offers = []
-		_.each(order.offers, function(obj){
+		_.each(order.offers, function(obj, chefId){
+			obj['chefId'] = chefId
 			offers.push(obj)
 		})
 		return offers

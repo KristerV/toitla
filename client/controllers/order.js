@@ -31,12 +31,22 @@ Template.order.helpers({
 		}
 	},
 	messages: function(){
-		var order = OrderCollection.findOne({_id: this._id})
+		var id
+
+		if (Meteor.user())
+			id = this._id
+		else
+			id = Session.get('orderId')
+
+		var order = OrderCollection.findOne(id)
 		if (_.isUndefined(order) || _.isUndefined(order.messages))
 			return false
+
 		return order.messages
 	},
 	author: function() {
+		if (this.author == 'client')
+			return T("Client")
 		var user = Meteor.users.findOne(this.author)
 		if (_.isUndefined(user) || _.isUndefined(user.profile))
 			return this.username
@@ -67,8 +77,14 @@ Template.order.events({
 		e.preventDefault()
 		var form = $(e.currentTarget)
 		var values = Global.getFormValues(form)
-		values['author'] = Meteor.userId()
+
+		if (Meteor.user())
+			values['author'] = Meteor.userId()
+		else
+			values['author'] = 'client'
+
 		values['timestamp'] = TimeSync.serverTime()
-		OrderCollection.update(form.attr('id'), {$push: {messages: values}})
+		var id = Session.get('orderId') ? Session.get('orderId') : form.parents('.order-block').attr('id')
+		OrderCollection.update(id, {$push: {messages: values}})
 	}
 })
