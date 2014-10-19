@@ -1,6 +1,10 @@
 template(name="orderEmail")
 	.order-email.form-box
-		h1 {{T 'Email address'}}
+		.uppercase.huge 
+			{{T 'Congrats! Your order was received by'}} 
+			span {{ order.chefsNotified.length }}
+
+			{{T 'homecooks in'}} {{ order.info.location }}
 		p {{T 'Not to lose you orders, please give us your e-mail address'}}
 		.messages
 		form(name="orderEmailForm")
