@@ -3,7 +3,7 @@ Template.order.helpers({
 		if (Meteor.user()) {
 			var offer = OfferCollection.findOne({chefId: Meteor.userId(), orderId: orderId})
 			if (!offer)
-				return {}
+				return {editingOffer: true}
 			return offer
 		} else {
 			return this
@@ -35,17 +35,15 @@ Template.order.events({
 		var offer = OfferCollection.findOne({chefId: Meteor.userId(), orderId: orderId})
 
 		if (offer) {
-			console.log(" here 1")
+			values['editingOffer'] = false
 			OfferCollection.update(offer._id, {$set: values})
 		}
 		else {
-			console.log(" here 2")
 			values['chefId'] = Meteor.userId()
 			values['orderId'] = orderId
+			values['editingOffer'] = false
 			OfferCollection.insert(values)
 		}
-
-		console.log(OfferCollection.findOne({chefId: Meteor.userId(), orderId: orderId}))
 	},
 	'submit form[name="chat"]': function(e, tmpl) {
 		e.preventDefault()
@@ -66,5 +64,8 @@ Template.order.events({
 			OfferCollection.update(id, {$set: {messages: []}})
 
 		OfferCollection.update(id, {$push: {messages: values}})
+	},
+	'click a.change-offer': function(e, tmpl) {
+		OfferCollection.update(this._id, {$set: {editingOffer: true}})
 	}
 })

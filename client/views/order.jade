@@ -9,12 +9,19 @@ template(name="order")
 			.offer
 				with offerData _id
 					if currentUser
-						form(name="offer" data-offer-id="{{_id}}")
-							h3.uppercase {{T "Your offer"}}
-							textarea(name="content" placeholder="{{T 'A detailed description of the food you want to offer'}}") {{content}}
-							footer
-								input(type="text" class="small" name="price" placeholder="{{T 'Price'}}" value="{{price}}")
-								input(type="submit" value="{{T 'Send offer'}}")
+						if editingOffer
+							form(name="offer" data-offer-id="{{_id}}")
+								h3.uppercase {{T "Your offer"}}
+								textarea(name="content" placeholder="{{T 'A detailed description of the food you want to offer'}}") {{content}}
+								footer
+									input(type="text" class="small" name="price" placeholder="{{T 'Price'}}" value="{{price}}")
+									input(type="submit" value="{{T 'Send offer'}}")
+						else
+							h2 {{T "Offer"}}
+							p {{content}}
+							p {{price}}
+							p Waiting for client feedback
+							a.change-offer {{T "Change offer"}}
 					else
 						h2 {{T "Offer"}}
 						p {{content}}
