@@ -7,15 +7,15 @@ template(name="chefProfile")
 				p {{T "The client can specify the order pickup time by phone"}}
 				form(name="chefProfile")
 					label {{T "Name"}}
-					input(type="text" name="name" placeholder="{{T 'Full name'}}" value="{{name}}")
+					input(type="text" name="name" placeholder="{{T 'Full name'}}" value="{{name}}" required)
 					label {{T "Telephone"}}
 					input(type="text" name="telephone" placeholder="+372 555 55555" value="{{telephone}}")
 					label {{T "City"}}
-					input(type="text" name="city" placeholder="Tallinn" value="{{city}}")
+					input(type="text" name="city" placeholder="Tallinn" value="{{city}}" required)
 					label {{T "Street"}}
-					input(type="text" name="street" placeholder="Hollyoaks st." value="{{street}}")
+					input(type="text" name="street" placeholder="Hollyoaks st." value="{{street}}" required)
 					label {{T "House nr"}}
-					input(type="text" name="house" placeholder="43" value="{{house}}")
+					input(type="text" name="house" placeholder="43" value="{{house}}" required)
 					textarea(name="bio" placeholder="{{T 'Short description about yourself...'}}") {{bio}}
 					input(type="submit" value="{{T 'Save'}}")
 			else
