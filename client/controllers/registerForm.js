@@ -38,6 +38,7 @@ Template.registerForm.events({
 			}
 			else {
 				// success
+				Session.set('showLogin', null)
 				Global.closeOverlay()
 			}
 		})
