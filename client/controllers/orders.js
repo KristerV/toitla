@@ -4,7 +4,7 @@ Template.orders.helpers({
 	},
 	offerContent: function() {
 		var order = OrderCollection.findOne({_id: this._id})
-		if (_.isUndefined(order) || _.isUndefined(order.offers)) {
+		if (_.isUndefined(order) || _.isUndefined(order.offers) || _.isUndefined(order.offers.content)) {
 			return false
 		}
 
@@ -12,7 +12,7 @@ Template.orders.helpers({
 	},
 	offerPrice: function() {
 		var order = OrderCollection.findOne({_id: this._id})
-		if (_.isUndefined(order) || _.isUndefined(order.offers))
+		if (_.isUndefined(order) || _.isUndefined(order.offers) || _.isUndefined(order.offers.price))
 			return false
 
 		return order.offers[Meteor.userId()].price
