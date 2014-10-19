@@ -22,6 +22,6 @@ Template.index.helpers({
 Template.index.rendered = function() {
 
 	if ('undefined' == typeof Configuration) {
-		alert('Hey, developer! Please create /lib/configuration.js \n(there is an example also).')
+		alert('Hey, developer! Please create a /lib/configuration.js \n(there is an example also).')
 	}
 }
