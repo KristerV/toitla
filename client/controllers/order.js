@@ -1,48 +1,6 @@
 Template.order.helpers({
-	offerContent: function() {
-		var order = OrderCollection.findOne({_id: this._id})
-		if (_.isUndefined(order) || _.isUndefined(order.offers)) {
-			return false
-		}
-
-		// Is chef or normal user?
-		if (Meteor.user()) {
-			if (_.isUndefined(order.offers[Meteor.userId()]))
-				return false
-			return order.offers[Meteor.userId()].content
-		} else {
-			console.log(this)
-			// var chefId = .parents('.order-block').attr('id')
-			// return order.offers[Meteor.userId()].content
-		}
-
-	},
-	offerPrice: function() {
-		var order = OrderCollection.findOne({_id: this._id})
-		if (_.isUndefined(order) || _.isUndefined(order.offers))
-			return false
-
-		// Is chef or normal user?
-		if (Meteor.user()) {
-			if (_.isUndefined(order.offers[Meteor.userId()]))
-				return false
-			return order.offers[Meteor.userId()].price
-		} else {
-		}
-	},
-	messages: function(){
-		var id
-
-		if (Meteor.user())
-			id = this._id
-		else
-			id = Session.get('orderId')
-
-		var order = OrderCollection.findOne(id)
-		if (_.isUndefined(order) || _.isUndefined(order.messages))
-			return false
-
-		return order.messages
+	offerData: function(orderId) {
+		return OfferCollection.findOne({chefId: Meteor.userId(), orderId: orderId})
 	},
 	author: function() {
 		if (this.author == 'client')
@@ -66,17 +24,27 @@ Template.order.events({
 		e.preventDefault()
 		var form = $(e.currentTarget)
 		var values = Global.getFormValues(form)
-		var orderId = form.parents('.order-block').attr('id')
+		var orderId = form.parents('.order-block').data('order-id')
+		var offer = OfferCollection.findOne({chefId: Meteor.userId(), orderId: orderId})
 
-		var data = {}
-		data['offers.'+Meteor.userId()] = values
+		if (offer) {
+			console.log(" here 1")
+			OfferCollection.update(offer._id, {$set: values})
+		}
+		else {
+			console.log(" here 2")
+			values['chefId'] = Meteor.userId()
+			values['orderId'] = orderId
+			OfferCollection.insert(values)
+		}
 
-		OrderCollection.update(orderId, {$set: data})
+		console.log(OfferCollection.findOne({chefId: Meteor.userId(), orderId: orderId}))
 	},
 	'submit form[name="chat"]': function(e, tmpl) {
 		e.preventDefault()
 		var form = $(e.currentTarget)
 		var values = Global.getFormValues(form)
+		form[0].reset()
 
 		if (Meteor.user())
 			values['author'] = Meteor.userId()
@@ -84,7 +52,12 @@ Template.order.events({
 			values['author'] = 'client'
 
 		values['timestamp'] = TimeSync.serverTime()
-		var id = Session.get('orderId') ? Session.get('orderId') : form.parents('.order-block').attr('id')
-		OrderCollection.update(id, {$push: {messages: values}})
+		var id = form.data('offer-id')
+
+		var offer = OfferCollection.findOne(id)
+		if (!offer.messages)
+			OfferCollection.update(id, {$set: {messages: []}})
+
+		OfferCollection.update(id, {$push: {messages: values}})
 	}
 })

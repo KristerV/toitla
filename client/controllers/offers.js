@@ -1,13 +1,9 @@
 Template.offers.helpers({
 	offers: function() {
-		var order = OrderCollection.findOne(Session.get("orderId"))
-		if (!order)
+		var offer = OfferCollection.findOne({orderId: Session.get("orderId")})
+		console.log(offer)
+		if (!offer)
 			return false
-		var offers = []
-		_.each(order.offers, function(obj, chefId){
-			obj['chefId'] = chefId
-			offers.push(obj)
-		})
-		return offers
+		return offer
 	}
 })
