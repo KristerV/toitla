@@ -1,26 +1,27 @@
 template(name="order")
-	.order-block.form-box
-		header						
-			.order
-				h3 {{info.description}}
-				p {{info.date}} {{info.time}} {{info.location}}
-			a.cancel-offer {{T "Cancel offer"}}
-		.offer
-			
-			form(name="offer" id="{{_id}}")
-				h3.uppercase {{T "Your offer"}}
-				textarea(name="content" placeholder="{{T 'A detailed description of the food you want to offer'}}") {{offerContent}}
-				footer
-					input(type="text" class="small" name="price" placeholder="{{T 'Price'}}" value="{{offerPrice}}")
-					input(type="submit" value="{{T 'Send offer'}}")
-			if itemExists
-				h3 item exists
-		.chat
-			h2.uppercase {{T "Client asks"}}
+	.order-block
+		section.form-box
+			header
+				.order
+					h3 {{info.description}}
+					p {{info.date}} {{info.time}} {{info.location}}
+				a.cancel-offer {{T "Cancel offer"}}
+			.offer
+				
+				form(name="offer" id="{{_id}}")
+					h3.uppercase {{T "Your offer"}}
+					textarea(name="content" placeholder="{{T 'A detailed description of the food you want to offer'}}") {{offerContent}}
+					footer
+						input(type="text" class="small" name="price" placeholder="{{T 'Price'}}" value="{{offerPrice}}")
+						input(type="submit" value="{{T 'Send offer'}}")
+				if itemExists
+					h3 item exists
+		section.chat.form-box.beige
+			h3.uppercase {{T "Client asks"}}
 			each messages
 				h3 {{author}}
 				p {{time}}
 				p {{msg}}
 			form(name="chat" id="{{_id}}")
-				input(name="msg")
-				input(type="submit" value="{{T 'Send'}}")
+				textarea(name="msg")
+				input(type="submit" value="{{T 'Answer'}}")

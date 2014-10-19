@@ -5,35 +5,25 @@ input.error {
 }
 
 .form-box {
+	padding: 30px;
 	background-color: white;
-	padding: 20px;
-
+		
+	&.beige {
+		background-color: @lighter-beige;
+	}
 	h3 {
 		font-size: 16px;
 		margin-top: 10px;
 	}
+
 	form {
-		width: 90%;
 		padding-bottom: 20px;
-		input[type="text"],
-		input[type="email"],
-		input[type="password"],
-		textarea {
-			height: 20px;
-			width: 200px;
-			padding: 10px;
-			border: solid @dark-gray 1px;
-			border-radius: @border-radius;
-			display: block;
-			margin: 10px 0px;
-			&.small {
-				width: 100px;
-			}
-		}
 		textarea {
 			width: 100%;
 			height: 100px;
 			padding-right: 0px;
+			resize: none;
+			box-sizing: border-box;
 		}
 		input[type="submit"] {
 			float: right;
