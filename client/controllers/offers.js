@@ -7,7 +7,6 @@ Template.clientView.helpers({
 	},
 	order: function() {
 		var order = OrderCollection.findOne(Session.get("orderId"))
-		console.log(order)
 		if (_.isUndefined(order))
 			return {}
 		else
