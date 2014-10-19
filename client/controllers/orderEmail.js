@@ -1,6 +1,6 @@
 Template.orderEmail.helpers({
 	order: function() {
-		var order = OrderCollection.findOne(Session.get("createdOrderId"))
+		var order = OrderCollection.findOne(Session.get("orderId"))
 
 		if (_.isUndefined(order))
 			return {}
@@ -17,12 +17,9 @@ Template.orderEmail.events({
 			Global.addError($('#email'), 'Please provide an email address')
 			return
 		}
-		var id = Session.get('createdOrderId');
+		var id = Session.get('orderId');
 		OrderCollection.update(id, {$set: {email: values.email}})
-		Session.set('createdOrderId', null)
-
 		Global.closeOverlay()
-		document.location.href = '/order/' + id
 	}
 })
 
