@@ -2,10 +2,6 @@ Template.orders.helpers({
 	orders: function() {
 		return OrderCollection.find()
 	},
-	itemExists: function() {
-		var order = OrderCollection.findOne({_id: this._id, 'offers.chefId': Meteor.userId()})
-		return order
-	},
 	offerContent: function() {
 		var order = OrderCollection.findOne({_id: this._id, 'offers.chefId': Meteor.userId()})
 		if (_.isUndefined(order) || _.isUndefined(order.offers)) {
