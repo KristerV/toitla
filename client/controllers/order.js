@@ -46,7 +46,7 @@ Template.order.helpers({
 	},
 	author: function() {
 		if (this.author == 'client')
-			return T("Client")
+			return T("Me")
 		var user = Meteor.users.findOne(this.author)
 		if (_.isUndefined(user) || _.isUndefined(user.profile))
 			return this.username
