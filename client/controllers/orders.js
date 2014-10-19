@@ -23,6 +23,12 @@ Template.orders.helpers({
 			return false
 		return order.messages
 	},
+	author: function() {
+		var user = Meteor.users.findOne(this.author)
+		if (_.isUndefined(user) || _.isUndefined(user.profile))
+			return this.username
+		return user.profile.name
+	},
 	time: function() {
 		return moment(this.timestamp)
 	}
