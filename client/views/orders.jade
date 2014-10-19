@@ -3,13 +3,11 @@ template(name="orders")
 		.orders
 			each orders
 				.order-block.form-box
-					a.cancel-offer {{T "Cancel offer"}}
-					.order
-						h2 {{T "Order details"}}
-						p {{info.date}}
-						p {{info.time}}
-						p {{info.location}}
-						p {{info.description}}
+					header						
+						.order
+							h3 {{info.description}}
+							p {{info.date}} {{info.time}} {{info.location}}
+						a.cancel-offer {{T "Cancel offer"}}
 					.offer
 						
 						form(name="offer" id="{{_id}}")

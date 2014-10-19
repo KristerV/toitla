@@ -15,12 +15,22 @@
 			margin: 10px;
 			min-width: 40%;
 			flex: 1;
-			.cancel-offer {
-				color: red;
+			header {
+				display: flex;
+				justify-content: space-between;
+				.cancel-offer {
+					width: 120px;
+					color: red;
+				}
+				.order {
+					h3 { margin: 0px; }
+					p { margin-top: 5px; }
+				}
 			}
 			form footer {
 				display: flex;
 				justify-content: space-between;
+				flex-direction: row;
 				input[type="submit"] {
 					height: 50px;
 					margin-top: 5px;
