@@ -1,5 +1,7 @@
 template(name="clientView")
 	section.two-columns
-		.orders
+		h1 {{ order.info.description }}
+		span {{ order.info.date }} {{T 'at'}} {{ order.info.time }} {{ order.info.location }}
+		.offers
 			each offers
 				+order
