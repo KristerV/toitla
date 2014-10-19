@@ -19,7 +19,9 @@ Template.createOrder.events({
 			location: location,
 		}
 
-		Meteor.call('newOrder', order)
-
+		Meteor.call('newOrder', order, function(err, orderId) {
+			Session.set('createdOrderId', orderId)
+			Global.setOverlay('orderEmail')	
+		})
 	}
 })
