@@ -1,18 +1,34 @@
 Template.order.helpers({
 	offerContent: function() {
 		var order = OrderCollection.findOne({_id: this._id})
-		if (_.isUndefined(order) || _.isUndefined(order.offers) || _.isUndefined(order.offers.content)) {
+		if (_.isUndefined(order) || _.isUndefined(order.offers)) {
 			return false
 		}
 
-		return order.offers[Meteor.userId()].content
+		// Is chef or normal user?
+		if (Meteor.user()) {
+			if (_.isUndefined(order.offers[Meteor.userId()]))
+				return false
+			return order.offers[Meteor.userId()].content
+		} else {
+			console.log(this)
+			// var chefId = .parents('.order-block').attr('id')
+			// return order.offers[Meteor.userId()].content
+		}
+
 	},
 	offerPrice: function() {
 		var order = OrderCollection.findOne({_id: this._id})
-		if (_.isUndefined(order) || _.isUndefined(order.offers) || _.isUndefined(order.offers.price))
+		if (_.isUndefined(order) || _.isUndefined(order.offers))
 			return false
 
-		return order.offers[Meteor.userId()].price
+		// Is chef or normal user?
+		if (Meteor.user()) {
+			if (_.isUndefined(order.offers[Meteor.userId()]))
+				return false
+			return order.offers[Meteor.userId()].price
+		} else {
+		}
 	},
 	messages: function(){
 		var order = OrderCollection.findOne({_id: this._id})
@@ -24,10 +40,14 @@ Template.order.helpers({
 		var user = Meteor.users.findOne(this.author)
 		if (_.isUndefined(user) || _.isUndefined(user.profile))
 			return this.username
+
 		return user.profile.name
 	},
 	time: function() {
 		return moment(this.timestamp)
+	},
+	userIsChef: function() {
+		return Meteor.user()
 	}
 })
 
@@ -36,13 +56,12 @@ Template.order.events({
 		e.preventDefault()
 		var form = $(e.currentTarget)
 		var values = Global.getFormValues(form)
-		var orderId = form.attr('id')
+		var orderId = form.parents('.order-block').attr('id')
 
-		var data = {offers: {}}
-		data.offers[Meteor.userId()] = values
+		var data = {}
+		data['offers.'+Meteor.userId()] = values
 
 		OrderCollection.update(orderId, {$set: data})
-		console.log(OrderCollection.findOne(orderId))
 	},
 	'submit form[name="chat"]': function(e, tmpl) {
 		e.preventDefault()

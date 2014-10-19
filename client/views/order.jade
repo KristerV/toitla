@@ -1,20 +1,22 @@
 template(name="order")
-	.order-block.form-box
-		header						
+	.order-block.form-box(id="{{_id}}")
+		header
 			.order
 				h3 {{info.description}}
 				p {{info.date}} {{info.time}} {{info.location}}
 			a.cancel-offer {{T "Cancel offer"}}
 		.offer
-			
-			form(name="offer" id="{{_id}}")
-				h3.uppercase {{T "Your offer"}}
-				textarea(name="content" placeholder="{{T 'A detailed description of the food you want to offer'}}") {{offerContent}}
-				footer
-					input(type="text" class="small" name="price" placeholder="{{T 'Price'}}" value="{{offerPrice}}")
-					input(type="submit" value="{{T 'Send offer'}}")
-			if itemExists
-				h3 item exists
+			if userIsChef
+				form(name="offer")
+					h3.uppercase {{T "Your offer"}}
+					textarea(name="content" placeholder="{{T 'A detailed description of the food you want to offer'}}") {{offerContent}}
+					footer
+						input(type="text" class="small" name="price" placeholder="{{T 'Price'}}" value="{{offerPrice}}")
+						input(type="submit" value="{{T 'Send offer'}}")
+			else
+				h2{{T "Offer"}}
+				p {{content}}
+				p {{price}}
 		.chat
 			h2 {{T "Chat"}}
 			each messages
