@@ -9,14 +9,12 @@ Mailer = {
 		console.log("sending email '" + subject + "' to " + to)
 		console.log(text)
 
-		// TODO send emails!
-		/*
 		Email.send({
 			to: to,
 			from: from,
 			subject: subject,
 			text: text
-		});*/
+		});
 	},
 }
 
