@@ -39,5 +39,7 @@ Meteor.methods({
 			var chef = chefs[i]
 			Meteor.call('mailNewOrder', chef._id, orderId)
 		};
+
+		return orderId
 	}
 })
