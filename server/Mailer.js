@@ -3,7 +3,7 @@ Mailer = {
 		if (_.isUndefined(to) || _.isUndefined(subject) || _.isUndefined(text))
 			return false
 
-		var from = !_.isUndefined(from) ? from : 'info@domeen.com'
+		var from = !_.isUndefined(from) ? from : Configuration.email
 		check([to, from, subject, text], [String]);
 
 		console.log("sending email '" + subject + "' to " + to)
