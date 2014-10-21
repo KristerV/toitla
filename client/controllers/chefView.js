@@ -1,7 +1,32 @@
 Template.chefView.helpers({
 	orders: function() {
-		var now = moment(TimeSync.serverTime()).subtract(1, 'days').format('DD.MM.YYYY')
-		return OrderCollection.find({'info.date': {$gt: now}})
+		var nowDate = moment(TimeSync.serverTime()).format('DD.MM.YYYY')
+		var yesterdayDate = moment(TimeSync.serverTime()).subtract(1, 'days').format('DD.MM.YYYY')
+		var nowTime = moment(TimeSync.serverTime()).format('HH:MM')
+
+		var existsField = {}
+		existsField['offers.$.'+Meteor.userId()] = {$exists: true}
+
+		var offersMade = OfferCollection.find({chefId: Meteor.userId()}).fetch()
+		var ordersWithMyOffers = []
+		for (var i = 0; i < offersMade.length; i++) {
+			ordersWithMyOffers.push(offersMade[i].orderId)
+		};
+
+		var find = OrderCollection.find({
+			$or: [
+				{$and: [
+					{_id: {$in: ordersWithMyOffers}},
+					{'info.date': {$gt: yesterdayDate}}
+				]},
+				{'info.date': {$gt: nowDate}},
+				{$and: [
+					{'info.date': nowDate}, 
+				    {'info.time': {$gt: nowTime}}
+				]},
+			]
+		})
+		return find
 	},
 })
 
