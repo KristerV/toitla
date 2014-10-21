@@ -32,7 +32,24 @@ Template.order.helpers({
 		if (!chef)
 			return false
 		return chef.profile
-	}
+	},
+	isClient: function() {
+		return !Meteor.user()
+	},
+	wonOffer: function() {
+		if (Meteor.user()){ // User is chef
+			var won
+			if (this.price) // must be in "offer" context
+				won = this.offerWonBy
+			else { // must be in "order" context so "offerWonBy" is not directly available
+				var offer = OfferCollection.findOne({chefId: Meteor.userId(), orderId: this._id})
+				var won = offer.offerWonBy
+			}
+			return won == Meteor.userId()
+		} else { // User is client
+			return this.offerWonBy
+		}
+	},
 })
 
 Template.order.events({
@@ -83,6 +100,6 @@ Template.order.events({
 	'click a.confirm-offer': function(e, tmpl) {
 		var really = confirm(T("Are you sure you want to confirm this offer? You will be expected to pay for and collect this food from the chef, unless specified otherwise."))
 		if (really)
-			OfferCollection.update(this._id, {$set: {editingOffer: false, offerConfirmed: true}})
+			OfferCollection.update(this._id, {$set: {editingOffer: false, offerWonBy: this.chefId}})
 	},
 })

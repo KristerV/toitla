@@ -1,5 +1,5 @@
 template(name="order")
-	.order-block(data-order-id="{{_id}}")
+	.order-block(data-order-id="{{_id}}" class="{{#if wonOffer}}green-glow{{/if}}")
 		section.form-box
 			header
 				.order
@@ -11,12 +11,21 @@ template(name="order")
 					with authorData
 						h3 {{name}}
 						p {{city}}
-					if offerConfirmed
+					if offerWonBy
 
 						h2 {{T "Offer"}}
 						p {{content}}
-						p.price {{T "Price"}}  {{price}}
-						h3 {{T "Order has been confirmed. This means the food will be ready on time and the client will pick it up, unless specified otherwise in the chat"}}
+						p.price {{T "Price"}} {{price}}
+						if isClient
+							with authorData
+								h3 {{T "Great! You've found a cook. Here is the cooks specific contact information."}}
+								p {{T "Phone nr"}}: {{telephone}}
+								p {{T "Address"}}: {{city}}, {{street}} {{house}}
+						else
+							if wonOffer
+								h3 {{T "Hooray! You've won a client to cook for! Please make sure you've exchanged the necessary contact information."}}
+							else
+								h3 {{T "Order has been confirmed. This means the food will be ready on time and the client will pick it up, unless specified otherwise in the chat"}}
 					else
 						if currentUser
 							if editingOffer
