@@ -5,6 +5,8 @@ Configuration = {
 
 // Disable hot code push completely
 // You probably want to keep this enabled on your local machine
-Meteor._reload.onMigrate(function(reloadFunction) {
-	return [false]
-});
+if (Meteor.isClient) {
+	Meteor._reload.onMigrate(function(reloadFunction) {
+		return [false]
+	});
+}
