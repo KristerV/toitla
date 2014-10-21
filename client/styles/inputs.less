@@ -16,6 +16,17 @@
 	}
 }
 
+// Non-required fields show as gray
+.form-box.chef-profile input:not(:required),
+.form-box.chef-profile textarea:not(:required) {
+	border-color: @gray;
+}
+.form-box.chef-profile label:not([required="required"]) {
+	color: @gray;
+}
+
+
+// Placeholder styling
 ::-webkit-input-placeholder { color: @gray; }
 ::-moz-placeholder { color: @gray; } /* firefox 19+ */
 :-ms-input-placeholder { color: @gray; } /* ie */

@@ -6,15 +6,15 @@ template(name="chefProfile")
 				p {{T "Your phone number and address are hidden from clients until they confirm an order"}}
 				p {{T "The client can specify the order pickup time by phone"}}
 				form(name="chefProfile")
-					label {{T "Name"}}
+					label(required="required") {{T "Name"}}
 					input(type="text" name="name" value="{{name}}" required)
 					label {{T "Telephone"}}
 					input(type="text" name="telephone" value="{{telephone}}")
-					label {{T "City"}}
+					label(required="required") {{T "City"}}
 					input(type="text" name="city" value="{{city}}" required)
-					label {{T "Street"}}
+					label(required="required") {{T "Street"}}
 					input(type="text" name="street" value="{{street}}" required)
-					label {{T "House nr"}}
+					label(required="required") {{T "House nr"}}
 					input(type="text" class="small" name="house" value="{{house}}" required)
 					textarea(name="bio" placeholder="{{T 'Short description about yourself...'}}") {{bio}}
 					input(type="submit" value="{{T 'Save'}}")
