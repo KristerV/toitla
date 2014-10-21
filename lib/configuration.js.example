@@ -2,3 +2,9 @@ Configuration = {
 	email : 'noreply@toitla.com', // Email address that sends out messages
 	site_address : 'http://toitla.com', // Address that site runs on 
 }
+
+// Disable hot code push completely
+// You probably want to keep this enabled on your local machine
+Meteor._reload.onMigrate(function(reloadFunction) {
+	return [false]
+});
