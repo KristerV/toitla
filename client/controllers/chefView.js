@@ -1,6 +1,7 @@
 Template.chefView.helpers({
 	orders: function() {
-		return OrderCollection.find()
+		var now = moment(TimeSync.serverTime()).subtract(1, 'days').format('DD.MM.YYYY')
+		return OrderCollection.find({'info.date': {$gt: now}})
 	},
 })
 
