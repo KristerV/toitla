@@ -1,9 +1,10 @@
 Template.order.helpers({
 	offerData: function(orderId) {
 		if (Meteor.user()) {
-			var offer = OfferCollection.findOne({chefId: Meteor.userId(), orderId: orderId})
-			if (!offer)
+			var offer = Offer.getChefOfferByOrderId(orderId)
+			if (!offer) {
 				return {editingOffer: true}
+			}
 			return offer
 		} else {
 			return this
@@ -36,13 +37,21 @@ Template.order.helpers({
 	isClient: function() {
 		return !Meteor.user()
 	},
-	wonOffer: function() {
+	offerIsWon: function() {
+		if (this.offerWonBy == Meteor.userId()) {
+			return true
+		} else if (Offer.getWinningOfferByOrderId(this.orderId)) {
+			return true
+		}
+	},
+	userIsWinner: function() {
 		if (Meteor.user()){ // User is chef
 			var won
 			if (this.price) // must be in "offer" context
 				won = this.offerWonBy
 			else { // must be in "order" context so "offerWonBy" is not directly available
-				var offer = OfferCollection.findOne({chefId: Meteor.userId(), orderId: this._id})
+				var offer = Offer.getChefOfferByOrderId(this._id)
+				if (!offer) return false
 				var won = offer.offerWonBy
 			}
 			return won == Meteor.userId()
@@ -50,6 +59,21 @@ Template.order.helpers({
 			return this.offerWonBy
 		}
 	},
+	lostOffer: function() {
+		var order = this
+		if (!!Meteor.user()) { // Is chef
+			var chefsOffer = Offer.getWinningOfferByOrderId(this._id)
+
+			if (!chefsOffer)
+				return false
+
+			var won = chefsOffer.offerWonBy
+			if (typeof won === "string" && won){
+				return won != Meteor.userId()
+			}
+		}
+
+	}
 })
 
 Template.order.events({
@@ -58,7 +82,7 @@ Template.order.events({
 		var form = $(e.currentTarget)
 		var values = Global.getFormValues(form)
 		var orderId = form.parents('.order-block').data('order-id')
-		var offer = OfferCollection.findOne({chefId: Meteor.userId(), orderId: orderId})
+		var offer = Offer.getChefOfferByOrderId(orderId)
 
 		if (offer) {
 			values['editingOffer'] = false
