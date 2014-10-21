@@ -8,8 +8,8 @@ template(name="chefProfile")
 				form(name="chefProfile")
 					label(required="required") {{T "Name"}}
 					input(type="text" name="name" value="{{name}}" required)
-					label {{T "Telephone"}}
-					input(type="text" name="telephone" value="{{telephone}}")
+					label(required="required") {{T "Telephone"}}
+					input(type="text" name="telephone" value="{{telephone}}" required)
 					label(required="required") {{T "City"}}
 					input(type="text" name="city" value="{{city}}" required)
 					label(required="required") {{T "Street"}}
