@@ -29,7 +29,8 @@ Template.order.helpers({
 	authorData: function() {
 		var chefId = this.chefId
 		var chef = Meteor.users.findOne(chefId)
-		console.log(chef)
+		if (!chef)
+			return false
 		return chef.profile
 	}
 })
