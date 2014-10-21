@@ -7,23 +7,37 @@ Template.chefView.helpers({
 		var existsField = {}
 		existsField['offers.$.'+Meteor.userId()] = {$exists: true}
 
-		var offersMade = OfferCollection.find({chefId: Meteor.userId()}).fetch()
+		var offersMade = OfferCollection.find({'chefId' : Meteor.userId()}).fetch()
+
 		var ordersWithMyOffers = []
 		for (var i = 0; i < offersMade.length; i++) {
 			ordersWithMyOffers.push(offersMade[i].orderId)
 		};
 
+		var notCancelledByThisChef = {}
+		notCancelledByThisChef['cancelled_by_' + Meteor.userId()] = {$exists: false}
+
 		var find = OrderCollection.find({
-			$or: [
-				{$and: [
-					{_id: {$in: ordersWithMyOffers}},
-					{'info.date': {$gt: yesterdayDate}}
-				]},
-				{'info.date': {$gt: nowDate}},
-				{$and: [
-					{'info.date': nowDate}, 
-				    {'info.time': {$gt: nowTime}}
-				]},
+			$and: [
+				notCancelledByThisChef,
+				{$or: [
+					// orders with chef offers
+					{$and: [
+						{_id: {$in: ordersWithMyOffers}},
+						{'info.date': {$gt: yesterdayDate}}
+					]},
+					// orders without chef offers
+					{$and : [
+						{_id: {$nin: ordersWithMyOffers}},
+						{$or : [
+							{'info.date': {$gt: nowDate}},
+							{$and: [
+								{'info.date': nowDate}, 
+							    {'info.time': {$gt: nowTime}}
+							]},
+						]}
+					]}
+				]}
 			]
 		})
 		return find

@@ -5,9 +5,14 @@ template(name="order")
 				.order
 					h3 {{info.description}}
 					p {{info.date}} {{info.time}} {{info.location}}
-				a.cancel-offer {{T "Cancel offer"}}
+				if currentUser
+					a.cancel-offer {{T "Reject order"}}
+				else
+					a.cancel-offer {{T "Cancel offer"}}
 			.offer
 				with offerData _id
+					if this.rejected
+						p.rejected {{T 'Offer was rejected by the client'}}
 					with authorData
 						h3 {{name}}
 						p {{city}}

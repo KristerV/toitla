@@ -9,7 +9,7 @@ Offer = {
 		return OfferCollection.find({
 			$and : [
 				{'orderId' : orderId},
-				{'cancelled' : {$exists : false}}
+				{'rejected' : {$exists : false}}
 			]
 		})
 	}

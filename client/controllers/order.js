@@ -116,13 +116,19 @@ Template.order.events({
 		OfferCollection.update(id, {$push: {messages: values}})
 	},
 	'click a.cancel-offer': function(e, tmpl) {
+		// FIXME: this is actually a huge problem:
+		// When this view is used as a chef, this refers to an order,
+		// When the same view is used as a client, this refers to an offer
+		
+		// maybe implement chef logic under a different view/link
 		if (Meteor.user()) {
-			// TODO: chef rejects the offer
-			// maybe implement under a totally different link
+			// chef rejects the order
+			var values = {}
+			values['cancelled_by_' + Meteor.userId()] = true
+			OrderCollection.update(this._id, {$set: values})
 		}
 		else {
-			console.log(this._id)
-			OfferCollection.update(this._id, {$set: {cancelled: true}})			
+			OfferCollection.update(this._id, {$set: {rejected: true}})		
 		}
 	},
 	'click a.change-offer': function(e, tmpl) {
