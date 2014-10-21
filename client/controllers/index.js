@@ -3,13 +3,13 @@ Template.index.helpers({
 		var template
 		var orderId = Session.get('orderId')
 		var backgroundImage = false
-		if (!!Meteor.user()) {   // Is user chef
+		if (!!Meteor.user()) { // User is chef
 			template = 'chefView'
 		}
-		else if (!!orderId) {              // Is there an order hash
+		else if (!!orderId) { // There is an order hash
 			template = 'clientView'
 		}
-		else {                         // Else, new user
+		else { // Anonymous new user
 			template = 'createOrder'
 			backgroundImage = true
 		}
