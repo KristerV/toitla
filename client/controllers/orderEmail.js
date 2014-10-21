@@ -25,4 +25,5 @@ Template.orderEmail.events({
 
 Template.orderEmail.rendered = function(){
 	$('.overlay-content').addClass('no-box')
+	$('#email').focus();
 }

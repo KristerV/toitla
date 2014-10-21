@@ -2,7 +2,7 @@ template(name="clientView")
 	section.two-columns
 		header.offers
 			h1 {{ orderData.info.description }}
-			div {{ orderData.info.date }} {{T 'at'}} {{ orderData.info.time }} {{ orderData.info.location }}
+			div {{ T '{date} at {time} {location}' orderData.info }}
 		.offers
-			each offers
+			each offersForClient
 				+order

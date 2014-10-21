@@ -1,6 +1,7 @@
 Template.clientView.helpers({
-	offers: function() {
-		var offers = OfferCollection.find({orderId: Session.get("orderId"), cancelled: {$exists : false}})
+	offersForClient: function() {
+		var offers = Offer.getOrderOffersForClient(Session.get("orderId"))
+
 		if (!offers)
 			return false
 		return offers

@@ -4,5 +4,13 @@ Offer = {
 	},
 	getWinningOfferByOrderId: function(orderId) {
 		return OfferCollection.findOne({offerWonBy: {$exists: true}, orderId: orderId})
+	},
+	getOrderOffersForClient: function(orderId) {
+		return OfferCollection.find({
+			$and : [
+				{'orderId' : orderId},
+				{'cancelled' : {$exists : false}}
+			]
+		})
 	}
 }
