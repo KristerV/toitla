@@ -1,12 +1,22 @@
+@import "mixins";
+
 nav {
 	&.light-text {
 		color: white;
 	}
 	position: absolute;
-	top: 20px;
-	right: 80px;
-	a {
-		padding-right: 20px;
-		font-weight: bold;
+	width: 100%;
+	height: 40px;
+	top: 2%;
+	.menu {
+		.centered-content();
+		text-align: right;
+		a {
+			&:first-child {
+				padding-right: 20px;
+			}
+			font-weight: bold;
+		}
 	}
+	
 }
