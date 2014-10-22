@@ -1,8 +1,14 @@
 template(name="clientView")
-	section.two-columns
-		header.offers
-			h1 {{ orderData.info.description }}
-			div {{ T '{date} at {time} {location}' orderData.info }}
-		.offers
-			each offersForClient
-				+order
+	if emailIsSet
+		section.two-columns
+			header.offers
+				h1 {{ orderData.info.description }}
+				div {{ T '{date} at {time} {location}' orderData.info }}
+			.offers
+				each offersForClient
+					+order
+	else 
+		.overlay
+			.overlay-content
+				with getOrder
+					+orderEmail
