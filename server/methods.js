@@ -15,7 +15,7 @@ Meteor.methods({
 			search['$or'] = [
 				{'profile.city' : {$exists: false}},
 				{'profile.city' : ''},
-				{'profile.city' : {$regex : location, $options : 'i'}}
+				{'profile.city' : {$regex : '^' + location + '$', $options : 'i'}}
 			]
 		}
 
@@ -26,7 +26,6 @@ Meteor.methods({
 		var chefIds = []
 		for (var i = chefs.length - 1; i >= 0; i--) {
 			var chef = chefs[i]
-			console.log(chef.profile)
 			chefIds.push(chef._id)
 		};
 
