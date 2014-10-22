@@ -5,23 +5,22 @@ Template.clientView.helpers({
 		if (!offers)
 			return false
 		return offers
-	}
-})
-
-Template.clientView.rendered = function() {
-	var checkOrder = function() {
+	},
+	emailIsSet: function() {
 		var order = OrderCollection.findOne(Session.get("orderId"))
 		if (order) {
-			if (!order.email) {
-				Global.setOverlay('orderEmail')
+			if (order.email) {
+				return true
 			}
 		}
-		else {
-			Session.set("orderId", null)
-		}
-		// hack hack hack
-		setTimeout(checkOrder, 1000)
-	}
+		return false
+	},
+	getOrder: function() {
+		var order = OrderCollection.findOne(Session.get("orderId"))
 
-	Meteor.subscribe("order", checkOrder);
-}
+		if (_.isUndefined(order))
+			return {}
+		else
+			return order
+	}
+})
