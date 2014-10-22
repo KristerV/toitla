@@ -11,6 +11,6 @@ template(name="createOrder")
 					input(type="text" name="date" value="{{ tomorrow }}")
 					input(type="text" name="time" value="18:00")
 					input(type="text" name="location" value="Tallinn")
-					input(type="text" name="description" placeholder="{{T 'What food'}}" class="long")
+					input(type="text" name="description" placeholder="{{T 'What food'}}" class="long" required="required")
 
 				input(type="submit" value="{{T 'Order'}}")
