@@ -1,4 +1,5 @@
 @import "variables";
+@import "mixins";
 
 .form-box input[type="text"],
 .form-box input[type="email"],
@@ -8,9 +9,9 @@
 	width: 200px;
 	padding: 10px;
 	border: solid @dark-gray 1px;
-	border-radius: @border-radius;
 	display: block;
 	margin: 10px 0px;
+	.rounder-corners();
 	&.small {
 		width: 100px;
 	}

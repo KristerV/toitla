@@ -1,13 +1,9 @@
 template(name="login")
 	nav(class="{{hasBackgroundImage}}")
-		if currentUser
-			a#logout.uppercase {{T "Logout"}}
-			a#myprofile {{T "My Profile"}}
-		else
-			a#login.uppercase {{T "Login"}}
-			a#register {{T "Register as a chef"}}
-		
-
-		
-		
-			
+		.menu
+			if currentUser
+				a#logout.uppercase {{T "Logout"}}
+				a#myprofile {{T "My Profile"}}
+			else
+				a#login.uppercase {{T "Login"}}
+				a#register {{T "Register as a chef"}}	
