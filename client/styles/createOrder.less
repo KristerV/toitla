@@ -19,47 +19,58 @@
 .content {
 	position: absolute;
 	top: 35%;
+	@media (orientation: landscape) {
+		top: 15%;
+	}
+	@media (max-width: @screen-xs-max) {
+		top: 25%;
+	}
+
 	width: 100%;
 
 	.make-order {
 		margin-left: auto;
 		margin-right: auto;
-		width: 65%;
-		width: 850px;
+		width: 60%;
+		@media (max-width: @screen-xs-max) {
+			width: 90%;
+		}
 		color: white;
 		text-align: center;
 		form {
 			display: flex;
-			justify-content: space-between;
+			justify-content: center;
 		}
 
 		.inputs {
-			background-color: white;
 			display: flex;
-			height: 60px;
-			border: solid white 1px;
-			border-radius: @border-radius;
-			padding: 0 20px;
-			margin: 0 20px 20px 0px;
+			margin-right: 20px;
+			input[type="text"]:first-child {
+				border-radius: 5px 0 0 5px;
+			}
+			input[type="text"]:last-child {
+				border-radius: 0 5px 5px 0;
+			}
 		}
 
 		input[type="text"] {
-			margin: 10px 0px;
-			height: 40px;
-			padding-left: 20px;
+			margin: 0px;
+			line-height: 40px;
+			padding: 10px 20px;
 			box-shadow: none;
 			background: white;
 			color: @dark-gray;
 			border: none;
-			border-right: solid 1px @dark-gray;
+			border-right: solid 1px @gray;
 			box-sizing: border-box;
-			width: 120px;
-			font-size: 16px;
+			font-size: @font-size-large;
+			flex-basis: 0;
+			flex-grow: 1;
 			&:focus {
 				outline: 0;
 			}
 			&.long {
-				width: 350px;
+				flex-grow: 4;
 			}
 		}
 		input[type="text"]:nth-last-child(1){
@@ -67,24 +78,17 @@
 		}
 
 		input[type="submit"] {
-			font-size: 16px;
-			height: 63px;
-			padding: 2px 20px;
-		}
-
-		h1 {
-			text-transform: uppercase;
-			font-size: 72px;
-			margin: 20px;
+			font-size: @font-size-large;
+			height: 100%;
+			padding: 20px 20px;
 		}
 
 		.slogan {
 			padding-bottom: 20px;
 			font-weight: bold;
-			font-size: 16px;
+			font-size: @font-size-large;
 			margin-left: auto;
 			margin-right: auto;
-			width: 450px;
 		}
 
 	}

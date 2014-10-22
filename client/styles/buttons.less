@@ -1,26 +1,26 @@
 @import "variables";
+@import "mixins";
 
 input[type="submit"] {
 	background: @button-green;
-	padding: 10px 20px;
 	color: white;
 	display: inline-block;
 	margin: 0;
 	outline: 0;
 	border: none;
-	border-radius: @border-radius;
 	font-weight: bold;
 	text-transform: uppercase;
 	cursor: pointer;
+	.rounder-corners();
 }
 
 a.button {
 	background: @button-green;
 	padding: 10px 20px;
 	border: none;
-	border-radius: @border-radius;
 	font-weight: bold;
 	text-transform: uppercase;
 	color: white;
 	cursor: pointer;
+	.rounder-corners();
 }

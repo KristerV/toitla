@@ -1,4 +1,6 @@
 @import "variables";
+@import "mixins";
+
 /* Overlay style */
 .overlay {
 	
@@ -15,9 +17,9 @@
 		min-height: 200px;
 		margin: 5% auto;
 		background-color: white;
-		border-radius: @border-radius;
 		padding: 20px;
 		position: relative;
+		.rounder-corners();
 	}
 	.overlay-close {
 		position: absolute;
@@ -25,15 +27,15 @@
 		height: 30px;
 		right: 2px;
 		top: 2px;
-		border-radius: 5px;
-		color: #444;
+		color: @dark-gray;
 		text-align: center;
 		font-size: 18px;
 		line-height: 30px;
 		cursor: pointer;
+		.rounder-corners();
 		&:hover {
-			color: #000;
-			background-color: #ddd;
+			color: black;
+			background-color: @light-gray;
 		}
 	}
 		
