@@ -35,9 +35,9 @@ template(name="order")
 							if editingOffer
 								form(name="offer" data-offer-id="{{_id}}")
 									h3.uppercase {{T "Your offer"}}
-									textarea(name="content" placeholder="{{T 'A detailed description of the food you want to offer'}}") {{content}}
+									textarea(name="content" placeholder="{{T 'A detailed description of the food you want to offer'}}" required) {{content}}
 									footer
-										input(type="text" class="small" name="price" placeholder="{{T 'Price'}}" value="{{price}}")
+										input(type="text" class="small" name="price" placeholder="{{T 'Price'}}" value="{{price}}" required)
 										input(type="submit" value="{{T 'Send offer'}}")
 							else
 								h2 {{T "Offer"}}
