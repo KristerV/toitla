@@ -1,3 +1,24 @@
+Template.orderEmail.helpers({
+	chefCountText: function() {
+		if (!this || !this.chefsNotified)
+			return false
+		console.log(this)
+
+		return T("There are {chefCount} chefs in {city} waiting to take your order.",
+					{
+						chefCount: {
+							str: this.chefsNotified.length,
+							cls: "color-green"
+						},
+						city: {
+							str: this.info.location,
+							cls: "color-green"
+						},
+					}
+				)
+	}
+})
+
 Template.orderEmail.events({
 	'submit form[name="orderEmailForm"]': function(e, tmpl) {
 		e.preventDefault()
