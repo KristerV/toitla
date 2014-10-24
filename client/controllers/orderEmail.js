@@ -2,20 +2,35 @@ Template.orderEmail.helpers({
 	chefCountText: function() {
 		if (!this || !this.chefsNotified)
 			return false
-		console.log(this)
 
-		return T("There are {chefCount} chefs in {city} waiting to take your order.",
-					{
-						chefCount: {
-							str: this.chefsNotified.length,
-							cls: "color-green"
-						},
-						city: {
-							str: this.info.location,
-							cls: "color-green"
-						},
-					}
-				)
+		if (this.chefsNotified.length == 1) {
+			return T("There is {chefCount} chef in {city} waiting to take your order.",
+						{
+							chefCount: {
+								str: this.chefsNotified.length,
+								cls: "color-green"
+							},
+							city: {
+								str: this.info.location,
+								cls: "color-green"
+							},
+						}
+					)
+		} else {
+			return T("There are {chefCount} chefs in {city} waiting to take your order.",
+						{
+							chefCount: {
+								str: this.chefsNotified.length,
+								cls: "color-green"
+							},
+							city: {
+								str: this.info.location,
+								cls: "color-green"
+							},
+						}
+					)
+		}
+
 	}
 })
 
