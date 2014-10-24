@@ -1,8 +1,15 @@
 template(name="clientView")
 	section.two-columns
 		header.offers
-			h1 {{ orderData.info.description }}
-			div {{ T '{date} at {time} {location}' orderData.info }}
+			h1 {{T "Order details"}}
+			p {{ orderData.info.description }}
+			p {{ T '{date} at {time} {location}' orderData.info }}
+			h1 {{T "Chef offers"}}
+			p {{T "Choose an offer you're satisfied with or use the chat to discuss the details."}}
+			p {{T "Chef contact details will be revealed after confirmation"}}
+			p {{T "If you leave this page, offers will be emailed to you."}}
 		.offers
-			each offersForClient
-				+order
+		each offersForClient
+			+order
+		else
+			h3 {{T "Please wait for the chefs to make you an offer"}}
