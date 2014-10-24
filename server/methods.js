@@ -5,7 +5,8 @@ Meteor.methods({
 			description: String,
 			date: String, // TODO should be Date
 			time: Match.Optional(String),
-			location: Match.Optional(String)
+			location: Match.Optional(String),
+			email: String,
 		})
 
 		// find chefs by city

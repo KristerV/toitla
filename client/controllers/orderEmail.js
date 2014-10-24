@@ -1,17 +1,22 @@
 Template.orderEmail.helpers({
+	chefsInArea: function() {
+		return !!Chef.getChefsInAreaCount($('input[name="location"]').val())
+	},
 	chefCountText: function() {
-		if (!this || !this.chefsNotified)
+		if (!this)
 			return false
 
-		if (this.chefsNotified.length == 1) {
+		var location = $('input[name="location"]').val()
+		var chefCount = Chef.getChefsInAreaCount(this._id)
+		if (chefCount == 1) {
 			return T("There is {chefCount} chef in {city} waiting to take your order.",
 						{
 							chefCount: {
-								str: this.chefsNotified.length,
+								str: chefCount,
 								cls: "color-green"
 							},
 							city: {
-								str: this.info.location,
+								str: location,
 								cls: "color-green"
 							},
 						}
@@ -20,11 +25,11 @@ Template.orderEmail.helpers({
 			return T("There are {chefCount} chefs in {city} waiting to take your order.",
 						{
 							chefCount: {
-								str: this.chefsNotified.length,
+								str: chefCount,
 								cls: "color-green"
 							},
 							city: {
-								str: this.info.location,
+								str: location,
 								cls: "color-green"
 							},
 						}
@@ -37,12 +42,28 @@ Template.orderEmail.helpers({
 Template.orderEmail.events({
 	'submit form[name="orderEmailForm"]': function(e, tmpl) {
 		e.preventDefault()
-		var values = Global.getFormValues('orderEmailForm')
-		if (!values.email || !Functions.validateEmail(values.email)) {
+
+		// Validate email
+		var emailForm = Global.getFormValues('orderEmailForm')
+		if (!emailForm.email || !Functions.validateEmail(emailForm.email)) {
 			Global.addError($('#email'), 'Please provide an email address')
 			return
 		}
-		OrderCollection.update(this._id, {$set: {email: values.email}})
+
+		// Gather order data
+		var orderForm = $('form[name="createOrder"]')
+		var order = {
+			description: orderForm.find('input[name="description"]').val(),
+			date: orderForm.find('input[name="date"]').val(),
+			time: orderForm.find('input[name="time"]').val(),
+			location: orderForm.find('input[name="location"]').val(),
+			email: emailForm.email
+		}
+
+		// Save order and notify chefs
+		Meteor.call('newOrder', order, function(err, orderId) {
+			document.location.href = '/order/' + orderId			
+		})
 	}
 })
 

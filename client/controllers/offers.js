@@ -5,11 +5,4 @@ Template.clientView.helpers({
 			return false
 		return offers
 	},
-	orderData: function() {
-		var order = OrderCollection.findOne(Session.get("orderId"))
-		if (_.isUndefined(order))
-			return {}
-		else
-			return order
-	}
 })
