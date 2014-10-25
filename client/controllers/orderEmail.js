@@ -62,7 +62,10 @@ Template.orderEmail.events({
 
 		// Save order and notify chefs
 		Meteor.call('newOrder', order, function(err, orderId) {
-			document.location.href = '/order/' + orderId			
+			if (err)
+				Global.addError('.messages', err)
+			else
+				document.location.href = '/order/' + orderId			
 		})
 	}
 })
