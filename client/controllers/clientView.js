@@ -22,3 +22,7 @@ Template.clientView.helpers({
 			return order
 	}
 })
+
+Template.clientView.rendered = function() {
+	Global.setOverlay('clientInstructionsOverlay')
+}
