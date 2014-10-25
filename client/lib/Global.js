@@ -16,9 +16,10 @@ Global = {
 		window.location.hash = ''
 	},
 	addError : function(elem, errorMessage) {
-		Global.removeErrors()
 		var err = $('<span class="error">').text(T(errorMessage))
 			.insertAfter(elem)
+		err.velocity({ opacity: 0 }, { duration: 10000, display: "none" })
+
 	},
 	removeErrors : function() {
 		$('span.error').remove()
