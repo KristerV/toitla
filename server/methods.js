@@ -40,6 +40,9 @@ Meteor.methods({
 		var orderId = OrderCollection.insert(order)
 		console.log(orderId)
 
+		if (chefIds.length == 0)
+			return 'no-chefs-in-area'
+
 		// notify client
 		Meteor.call('orderLinkToClient', orderId)
 
