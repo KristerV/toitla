@@ -8,7 +8,7 @@ Mailer = {
 
 		console.log("sending email '" + subject + "' to " + to)
 		console.log(text)
-		
+
 		if (process.env.MAILGUN_API_URL) {
 			Meteor.http.post(process.env.MAILGUN_API_URL + '/' + process.env.MAILGUN_DOMAIN + '/messages', 
 				{
@@ -29,6 +29,8 @@ Mailer = {
 					}
 				}
 			)
+		} else {
+			console.log("Error: Email not sent. Mailgun has not been configured.")
 		}
 	},
 }
