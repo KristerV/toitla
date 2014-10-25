@@ -44,7 +44,7 @@ Meteor.methods({
 		var order = OrderCollection.findOne(orderId)
 
 		var link = Configuration.site_address + '/order/' + orderId
-		var subject = T("Link to your order")
+		var subject = T("Link to your order").string
 		var text = T("Thank you for placing an order at toitla.com")
 			+ T("Your order has been sent to home chefs near you and soon someone will make a delicious offer") + '\n\n'
 			+ T("When this happens we will send you an email.") + '\n\n'
@@ -53,6 +53,23 @@ Meteor.methods({
 			+ T("With Kind Regards") + '\n\n'
 			+ "toitla.com"
 			
+		Mailer.send(order.email, Configuration.email, subject, text)
+	},
+	//To: Client
+	//When new offer received, existing changed or new chat message appears
+	orderUpdated: function(orderId) {
+		check(orderId, String)
+		var order = OrderCollection.findOne(orderId)
+
+		var link = Configuration.site_address + '/order/' + orderId
+		var subject = T("You have a message from a chef!").string
+		var text = T("You have a new message at toitla.com. To read it and to respond visit:") + '\n'
+			+ link + '\n\n'
+			+ T("If you need help, please call 58 49 43 40 or email us appi@toitla.com") + '\n'
+			+ T("All feedback rocks are world!") + '\n'
+			+ '\n\n'
+			+ T("With Kind Regards") + '\n'
+			+ T("toitla.com team ;)")
 		Mailer.send(order.email, Configuration.email, subject, text)
 	},
 	/* Chef emails */
@@ -79,7 +96,7 @@ Meteor.methods({
 		// TODO replace localhost
 		var link = Configuration.site_address + '/chef/' + chef._id
 
-		var subject = T('Oven warm hands!') + '' //WTF!? ilma tühja string lisamata ütleb, et subject on objekt mitte string
+		var subject = T('Oven warm hands!').string
 		var text = T("Warm up your oven and make flour up your hands!") + '\n'
 			+ createdAt + " " + T("a new order was created:")+ '\n\n'
 			+ desc + '\n\n'		
@@ -98,7 +115,7 @@ Meteor.methods({
 	//To: Chef
 	//When client has confirmed chef's offer
 	offerConfirmed: function(to, orderId) {
-		var subject = T('One of your offers has been confirmed')
+		var subject = T('One of your offers has been confirmed').string
 		var text = T('YOU MUST COOK, NOW!')
 
 		Mailer.send(to, '', subject, text)
