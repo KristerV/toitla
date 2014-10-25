@@ -40,11 +40,15 @@ Meteor.methods({
 		var orderId = OrderCollection.insert(order)
 		console.log(orderId)
 
+		// notify client
+		Meteor.call('orderLinkToClient', orderId)
+
 		// notify chefs
 		for (var i = chefs.length - 1; i >= 0; i--) {
 			var chef = chefs[i]
 			Meteor.call('mailNewOrder', chef._id, orderId)
 		};
+
 
 		return orderId
 	}
