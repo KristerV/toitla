@@ -9,4 +9,4 @@ template(name="orderEmail")
 		.messages
 		form(name="orderEmailForm")
 			input(type="email" name="email" id="email" required="required" placeholder="{{T 'E-mail address'}}")
-			input(type="submit" value="{{T 'Feed me'}}")
+			input(type="submit" value="{{#if chefsInArea}}{{T 'Feed me'}}{{else}}{{T 'Save'}}{{/if}}")
