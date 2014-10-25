@@ -43,7 +43,7 @@ Meteor.methods({
 		check(orderId, String)
 		var order = OrderCollection.findOne(orderId)
 
-		var link = 'please visit: ' + Configuration.site_address + '/order/' + orderId
+		var link = Configuration.site_address + '/order/' + orderId
 		var subject = T("Link to your order")
 		var text = T("Thank you for placing an order at toitla.com")
 			+ T("Your order has been sent to home chefs near you and soon someone will make a delicious offer") + '\n\n'
@@ -75,11 +75,12 @@ Meteor.methods({
 		var email = chef.emails[0].address
 		var desc = order.info.description
 		// TODO replace localhost
-		var link = 'please visit: ' + Configuration.site_address + '/chef/' + chef._id
+		var link = Configuration.site_address + '/chef/' + chef._id
 
-		var subject = T('New order: ') + desc
-		var text = T('A new order has arrived, check it out:\n\n')
+		var subject = T("New order:") + desc
+		var text = T("A new order has arrived, check it out:") + '\n\n'
 			+ desc + '\n\n'
+			+ T("To get more information and see more orders visit:") + '\n'
 			+ link
 
 		Mailer.send(email, Configuration.email, subject, text)
