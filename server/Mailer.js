@@ -9,12 +9,25 @@ Mailer = {
 		console.log("sending email '" + subject + "' to " + to)
 		console.log(text)
 
-		Email.send({
-			to: to,
-			from: from,
-			subject: subject,
-			text: text
-		});
+		Meteor.http.post(process.env.MAILGUN_API_URL + '/' + process.env.MAILGUN_DOMAIN + '/messages', 
+			{
+				auth:"api:" + process.env.MAILGUN_API_KEY,
+				params: 
+				{
+					"from": from,
+					"to":[to],
+					"subject": subject,
+					"text": text,
+				}
+			},
+			function(error, result) {
+				if(error){
+					console.log("Error: " + error)
+				} else {
+					console.log("Email sent")
+				}
+			}
+		)
 	},
 }
 
