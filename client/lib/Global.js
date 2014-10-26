@@ -3,10 +3,8 @@ Global = {
 		if (_.isUndefined(template))
 			return false
 
-		if (!_.isUndefined(options)) {
-			if (!_.isUndefined(options.chefId)) {
-				Session.set("overlayChefId", options.chefId)
-			}
+		if (!_.isUndefined(options) && typeof options == 'object') {
+			Session.set('overlayOptions', options)
 		}
 
 		Session.set("overlayContent", template)

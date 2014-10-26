@@ -1,0 +1,8 @@
+template(name="confirmOffer")
+	.confirmOffer
+		.uppercase.huge {{T "Confirm your order with your telephone number."}}
+		p {{T 'Your number will only be shared with the chef and no one else.'}}
+		.messages
+		form(name="confirmOffer")
+			input(type="tel" name="telephone" required placeholder="{{T 'Telephone number'}}")
+			input(type="submit" value="{{T 'Confirm offer'}}")

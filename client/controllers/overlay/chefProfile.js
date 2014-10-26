@@ -1,6 +1,6 @@
 Template.chefProfile.helpers({
 	chef: function() {
-		var chef = Meteor.users.findOne(Session.get("overlayChefId"))
+		var chef = Meteor.users.findOne(Session.get("overlayOptions").chefId)
 
 		if (_.isUndefined(chef) || _.isUndefined(chef.profile))
 			return {}
@@ -8,7 +8,7 @@ Template.chefProfile.helpers({
 			return chef.profile
 	},
 	isOwner: function() {
-		var chefId = Session.get('overlayChefId')
+		var chefId = Session.get("overlayOptions").chefId
 		var userId = Meteor.userId()
 
 		if (_.isUndefined(chefId) || _.isUndefined(userId))
