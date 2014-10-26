@@ -63,6 +63,10 @@ Meteor.methods({
 	activityInOrder: function(orderId) {
 		check(orderId, String)
 		var order = OrderCollection.findOne(orderId)
+		if (!order) {
+			console.log("No order provided: ", orderId)
+			return
+		}
 		var email = order.info.email
 		var link = Configuration.site_address + '/order/' + orderId
 		var subject = T("You have a message from a chef!").string
@@ -74,6 +78,18 @@ Meteor.methods({
 			+ T("With Kind Regards") + '\n'
 			+ T("toitla.com team ;)")
 		Mailer.send(email, Configuration.email, subject, text)
+	},
+	//To: Client
+	//When new chat message appears
+	chatActivity: function(offerId) {
+		check(offerId, String)
+		var offer = OfferCollection.findOne(offerId)
+		if (!offer) {
+			console.log("No offer provided: ", offerId)
+			return
+		}
+		var order = OrderCollection.findOne(offer.orderId)
+		Meteor.call('activityInOrder', order._id)
 	},
 	//To: Client
 	//When offer has been confirmed

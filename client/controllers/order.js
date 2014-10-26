@@ -115,6 +115,11 @@ Template.order.events({
 			OfferCollection.update(id, {$set: {messages: []}})
 
 		OfferCollection.update(id, {$push: {messages: values}})
+
+		if (Meteor.user()) {
+			//Send notification to client
+			Meteor.call('chatActivity', id)
+		}
 	},
 	'click a.cancel-offer': function(e, tmpl) {
 		// FIXME: this is actually a huge problem:
