@@ -63,5 +63,5 @@ template(name="order")
 						div.uppercase.gray {{author}} {{time}}
 						p {{msg}}
 				form(name="chat" data-offer-id="{{_id}}")
-					textarea(name="msg")
+					textarea(name="msg" required="required")
 					input(type="submit" value="{{T 'Answer'}}")
