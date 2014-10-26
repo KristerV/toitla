@@ -4,8 +4,8 @@ template(name="login")
 			a#contact {{T "Contact" }}
 			a#how {{T "How to?"}}
 			if currentUser
-				a#logout.uppercase {{T "Logout"}}
 				a#myprofile {{T "My Profile"}}
+				a#logout.uppercase {{T "Logout"}}
 			else
+				a#register {{T "Register as a chef"}}
 				a#login.uppercase {{T "Login"}}
-				a#register {{T "Register as a chef"}}	
