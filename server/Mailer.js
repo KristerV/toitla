@@ -4,7 +4,7 @@ Mailer = {
 			return false
 
 		var from = !_.isUndefined(from) ? from : Configuration.email
-		check([to, from, subject, text], [String]);
+		check([to, from, subject, text], [String])
 
 		console.log("sending email '" + subject + "' to " + to)
 		console.log(text)
@@ -42,7 +42,11 @@ Meteor.methods({
 	orderLinkToClient: function(orderId) {
 		check(orderId, String)
 		var order = OrderCollection.findOne(orderId)
-
+		if (!order) {
+			console.log("No order provided: ", orderId)
+			return
+		}
+		var email = order.info.email
 		var link = Configuration.site_address + '/order/' + orderId
 		var subject = T("Link to your order").string
 		var text = T("Thank you for placing an order at toitla.com")
@@ -51,16 +55,15 @@ Meteor.methods({
 			+ T("You will see the chefs' offers and can communicate them on your order page at: ") + link + '\n\n'
 			+ '\n\n'
 			+ T("With Kind Regards") + '\n\n'
-			+ "toitla.com"
-			
-		Mailer.send(order.email, Configuration.email, subject, text)
+			+ T("toitla.com team ;)")
+		Mailer.send(email, Configuration.email, subject, text)
 	},
 	//To: Client
 	//When new offer received, existing changed or new chat message appears
 	orderUpdated: function(orderId) {
 		check(orderId, String)
 		var order = OrderCollection.findOne(orderId)
-
+		var email = order.info.email
 		var link = Configuration.site_address + '/order/' + orderId
 		var subject = T("You have a message from a chef!").string
 		var text = T("You have a new message at toitla.com. To read it and to respond visit:") + '\n'
@@ -70,7 +73,7 @@ Meteor.methods({
 			+ '\n\n'
 			+ T("With Kind Regards") + '\n'
 			+ T("toitla.com team ;)")
-		Mailer.send(order.email, Configuration.email, subject, text)
+		Mailer.send(email, Configuration.email, subject, text)
 	},
 	//To: Client
 	//When offer has been confirmed
@@ -85,6 +88,7 @@ Meteor.methods({
 		}
 
 		var link = Configuration.site_address + '/order/' + offer.orderId
+		var email = order.info.email
 		var offerDescription = offer.content
 		var offerPrice = offer.price
 		var chefNumber = chef.profile.telephone
@@ -103,9 +107,9 @@ Meteor.methods({
 			+ T("In case you need to cancel the order, call the chef as soon as possible and let him know about it.") + '\n'
 			+ '\n\n'
 			+ T("With Kind Regards") + '\n\n'
-			+ "toitla.com"
+			+ T("toitla.com team ;)")
 			
-		Mailer.send(order.email, Configuration.email, subject, text)
+		Mailer.send(email, Configuration.email, subject, text)
 
 	},
 	/* Chef emails */
@@ -176,7 +180,7 @@ Meteor.methods({
 			+ T("In case you need to cancel the order, call the client as soon as possible and let him know about it.") + '\n'
 			+ '\n\n'
 			+ T("With Kind Regards") + '\n\n'
-			+ "toitla.com"
+			+ T("toitla.com team ;)")
 
 		var email = chef.emails[0].address
 		Mailer.send(email, Configuration.email, subject, text)
@@ -198,7 +202,7 @@ Meteor.methods({
 		var text = T("You have a new message at toitla.com. To read it and to respond visit:") + '\n'
 			+ link + '\n\n'
 			+ T("With Kind Regards") + '\n\n'
-			+ "toitla.com"
+			+ T("toitla.com team ;)")
 			
 		Mailer.send(email, Configuration.email, subject, text)
 	},
