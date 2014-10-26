@@ -7,7 +7,7 @@ template(name="order")
 					p {{info.date}} {{info.time}} {{info.location}}
 				if currentUser
 					if chefHasNotMadeOffer _id
-						a.cancel-offer {{T "Reject order"}}
+						a.cancel-offer(title="{{T 'Reject order'}}") X
 			.offer
 				with offerData _id
 					if this.rejected
@@ -46,11 +46,15 @@ template(name="order")
 								footer
 									p.feedback {{T "Waiting for client feedback"}}
 									a.change-offer.button {{T "Change offer"}}
-						else
+						else					
 							h2 {{T "Offer"}}
 							p {{content}}
-							p.price {{T "Price"}}  {{price}}
-							a.confirm-offer.button {{T "Confirm offer"}}
+							if price
+								p.price {{T "Price"}}  {{price}}
+							if editingOffer
+								p {{T "Offer is being edited by the chef and cannot be confirmed"}}
+							else
+								a.confirm-offer.button {{T "Confirm offer"}}
 		section.chat.form-box.beige
 			h3.uppercase {{T "Chat"}}
 			with offerData _id
