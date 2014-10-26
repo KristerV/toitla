@@ -11,9 +11,10 @@ Template.order.helpers({
 		}
 	},
 	author: function() {
-
-		if (this.author == 'client')
+		if ((!Meteor.user() && this.author == 'client') || (Meteor.user() && this.author != 'client'))
 			return T("Me")
+		if (this.author == 'client')
+			return T("Client")
 
 		var user = Meteor.users.findOne(this.author)
 		if (!user)
