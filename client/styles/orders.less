@@ -1,4 +1,5 @@
 @import "variables";
+@import "mixins";
 
 .two-columns {
 	width: 100%;
@@ -6,19 +7,20 @@
 	top: 50px;
 
 	.orders, .offers {
+		.centered-content();
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
 		margin-left: auto;
 		margin-right: auto;
 		.chat {
-			padding-bottom: 40px;
+			padding-bottom: 10px;
 		}
 
 		.order-block {
 			margin: 10px 20px 20px 10px;
-			max-width: 550px;
-			min-width: 320px;
+			max-width: 49%;
+			min-width: 40%;
 			flex: 1;
 			header {
 				display: flex;

@@ -12,11 +12,8 @@ template(name="order")
 				with offerData _id
 					if this.rejected
 						p.rejected {{T 'Offer was rejected by the client'}}
-					with authorData
-						h3 {{name}}
-						p {{city}}
 					if offerIsWon
-						h2 {{T "Offer"}}
+						h3.uppercase {{T "Offer"}}
 						p {{content}}
 						p.price {{T "Price"}} {{price}}
 						if isClient
@@ -40,14 +37,14 @@ template(name="order")
 										input(type="text" class="small" name="price" placeholder="{{T 'Price'}}" value="{{price}}" required)
 										input(type="submit" value="{{T 'Send offer'}}")
 							else
-								h2 {{T "Offer"}}
+								h3.uppercase {{T "Offer"}}
 								p {{content}}
 								p.price {{T "Price"}} {{price}}
 								footer
 									p.feedback {{T "Waiting for client feedback"}}
 									a.change-offer.button {{T "Change offer"}}
 						else					
-							h2 {{T "Offer"}}
+							h3.uppercase {{T "Offer"}}
 							p {{content}}
 							if price
 								p.price {{T "Price"}}  {{price}}

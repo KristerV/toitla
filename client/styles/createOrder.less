@@ -49,7 +49,7 @@
 
 		.inputs {
 			display: flex;
-			@media (min-width: @screen-xs-max), (orientation: landscape) {
+			@media (min-width: @screen-md-min), (orientation: landscape) {
 				
 				input[type="text"]:first-child {
 					border-radius: 5px 0 0 5px;
@@ -58,10 +58,10 @@
 					border-radius: 0 5px 5px 0;
 				}
 			}
-			@media (min-width: @screen-xs-max) {
+			@media (min-width: @screen-sm-max) {
 				margin-right: 20px;
 			}
-			@media (max-width: @screen-xs) {
+			@media (max-width: @screen-sm) {
 				flex-wrap: wrap;
 				justify-content: center;
 			}
@@ -78,14 +78,14 @@
 			border-right: solid 1px @gray;
 			box-sizing: border-box;
 			font-size: @font-size-large;
-			@media (min-width: @screen-sm), (orientation: landscape){
+			@media (min-width: @screen-sm-min), (orientation: landscape){
 				flex-basis: 0;
 				flex-grow: 1;
 				&.long {
 					flex-grow: 4;
 				}
 			}
-			@media (max-width: @screen-xs-max) and (orientation: portrait){
+			@media (max-width: @screen-sm-max) and (orientation: portrait){
 				margin: 2px 0 2px 2px;
 				border-radius: @border-radius;
 				width: 32%;
@@ -93,7 +93,7 @@
 					width: 100%;
 				}
 			}
-			@media (max-width: @screen-xs-max) {
+			@media (max-width: @screen-sm-max) {
 				padding: 5px;
 			}
 
