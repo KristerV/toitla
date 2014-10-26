@@ -3,3 +3,5 @@ template(name="chefView")
 		.orders
 			each orders
 				+order
+			else
+				h3 {{T "You have no orders yet"}}
