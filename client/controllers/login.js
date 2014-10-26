@@ -20,4 +20,10 @@ Template.login.events({
 	'click #myprofile' : function(e, tmpl) {
 		Global.setOverlay('chefProfile', {chefId: Meteor.userId()})
 	},
+	'click #contact' : function(e, tmpl) {
+		Global.setOverlay('contact')
+	},
+	'click #how' : function(e, tmpl) {
+		Global.setOverlay('howTo')
+	}
 })
