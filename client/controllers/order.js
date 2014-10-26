@@ -38,11 +38,10 @@ Template.order.helpers({
 		return !Meteor.user()
 	},
 	offerIsWon: function() {
-		if (this.offerWonBy == Meteor.userId()) {
+		if (Meteor.user() && this.offerWonBy == Meteor.userId())
 			return true
-		} else if (Offer.getWinningOfferByOrderId(this.orderId)) {
+		else if (Offer.getWinningOfferByOrderId(this.orderId))
 			return true
-		}
 	},
 	userIsWinner: function() {
 		if (Meteor.user()){ // User is chef
