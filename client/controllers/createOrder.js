@@ -1,6 +1,6 @@
 Template.createOrder.helpers({
-	tomorrow: function(){
-		return moment().add('1 day').format('DD.MM.YYYY')
+	initialDate: function(){
+		return moment().add(2, 'days').format('DD.MM.YYYY')
 	}
 })
 Template.createOrder.events({
