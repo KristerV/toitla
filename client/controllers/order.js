@@ -2,7 +2,7 @@ Template.order.helpers({
 	chefHasNotMadeOffer: function(orderId) {
 		if (Meteor.user()) {
 			var offer = Offer.getChefOfferByOrderId(orderId)
-			if (offer)
+			if (offer && !offer.editingOffer)
 				return false
 		}
 		return true
@@ -120,17 +120,21 @@ Template.order.events({
 		var id = form.data('offer-id')
 
 		var offer = OfferCollection.findOne(id)
-		if (!offer.messages)
-			OfferCollection.update(id, {$set: {messages: []}})
-
-		OfferCollection.update(id, {$push: {messages: values}})
-
-		if (Meteor.user()) {
-			//Send notification to client
-			Meteor.call('chatActivity', id)
-		} else {
-			//Send notification to chef
-			Meteor.call('offerChatActivity', id)
+		if (!offer) {
+			offer = {}
+			offer['chefId'] = Meteor.userId()
+			offer['orderId'] = form.parents('.order-block').data('order-id')
+			offer['editingOffer'] = true
+			OfferCollection.insert(offer, function(err, offerId){
+				if (err) {
+					console.log(err)
+				}
+				var offer = OfferCollection.findOne(offerId)
+			    Offer.addChatMessage(offer, values)
+			})
+		}
+		else {
+			Offer.addChatMessage(offer, values)
 		}
 	},
 	'click a.cancel-offer': function(e, tmpl) {
@@ -141,6 +145,11 @@ Template.order.events({
 		// maybe implement chef logic under a different view/link
 		if (Meteor.user()) {
 			// chef cancels the order
+			var offer = Offer.getChefOfferByOrderId(this._id)
+			if (offer) {
+				// TODO: if offer is made, maybe we should notify the client here
+				OfferCollection.remove(offer._id);
+			}
 			var values = {}
 			values['cancelled_by_' + Meteor.userId()] = true
 			OrderCollection.update(this._id, {$set: values})
