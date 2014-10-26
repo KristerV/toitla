@@ -1,4 +1,12 @@
 Template.order.helpers({
+	chefHasNotMadeOffer: function(orderId) {
+		if (Meteor.user()) {
+			var offer = Offer.getChefOfferByOrderId(orderId)
+			if (offer)
+				return false
+		}
+		return true
+	},
 	offerData: function(orderId) {
 		if (Meteor.user()) {
 			var offer = Offer.getChefOfferByOrderId(orderId)
@@ -132,13 +140,14 @@ Template.order.events({
 		
 		// maybe implement chef logic under a different view/link
 		if (Meteor.user()) {
-			// chef rejects the order
+			// chef cancels the order
 			var values = {}
 			values['cancelled_by_' + Meteor.userId()] = true
 			OrderCollection.update(this._id, {$set: values})
 		}
 		else {
-			OfferCollection.update(this._id, {$set: {rejected: true}})		
+			// this will make the offer rejected by the client
+			//OfferCollection.update(this._id, {$set: {rejected: true}})		
 		}
 	},
 	'click a.change-offer': function(e, tmpl) {
