@@ -24,7 +24,6 @@ Template.registerForm.events({
 		Accounts.createUser(user, function(e) {
 
 			if (e) {
-				console.log(e)
 				var r = e.reason.toLowerCase();
 				if (r.indexOf('email') != -1) {
 					Global.addError($('#email'), r)
