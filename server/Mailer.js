@@ -226,4 +226,9 @@ Meteor.methods({
 			
 		Mailer.send(email, Configuration.email, subject, text)
 	},
+	sendConfirmationEmails: function(offerId) {
+		check(offerId, String)
+		Meteor.call('offerConfirmationToChef', offerId)
+		Meteor.call('offerConfirmationToClient', offerId)
+	}
 });

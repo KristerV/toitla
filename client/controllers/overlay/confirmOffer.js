@@ -15,7 +15,9 @@ Template.confirmOffer.events({
 				}
 			})
 			Global.closeOverlay()
+			Meteor.call('sendConfirmationEmails', offer._id)
 		}
+
 
 	}
 })
