@@ -93,6 +93,8 @@ Template.order.events({
 			values['editingOffer'] = false
 			OfferCollection.insert(values)
 		}
+		//Send notification to client
+		Meteor.call('activityInOrder', orderId)
 	},
 	'submit form[name="chat"]': function(e, tmpl) {
 		e.preventDefault()

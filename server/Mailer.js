@@ -60,7 +60,7 @@ Meteor.methods({
 	},
 	//To: Client
 	//When new offer received, existing changed or new chat message appears
-	orderUpdated: function(orderId) {
+	activityInOrder: function(orderId) {
 		check(orderId, String)
 		var order = OrderCollection.findOne(orderId)
 		var email = order.info.email
