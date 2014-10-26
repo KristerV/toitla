@@ -69,7 +69,7 @@ Meteor.methods({
 		}
 		var email = order.info.email
 		var link = Configuration.site_address + '/order/' + orderId
-		var subject = T("You have a message from a chef!").string
+		var subject = T("You have a message concerning order:") + " " + order.info.description
 		var text = T("You have a new message at toitla.com. To read it and to respond visit:") + '\n'
 			+ link + '\n\n'
 			+ T("If you need help, please call 58 49 43 40 or email us appi@toitla.com") + '\n'
@@ -218,7 +218,7 @@ Meteor.methods({
 		}
 		var email = chef.emails[0].address
 		var link = Configuration.site_address + '/chef/' + chef._id
-		var subject = T("You have a message from a client").string
+		var subject = T("You have a message concerning order:") + " " + order.info.description
 		var text = T("You have a new message at toitla.com. To read it and to respond visit") + " " + '\n'
 			+ link + '\n\n'
 			+ T("With Kind Regards") + '\n'
