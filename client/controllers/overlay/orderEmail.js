@@ -57,7 +57,9 @@ Template.orderEmail.events({
 			date: orderForm.find('input[name="date"]').val(),
 			time: orderForm.find('input[name="time"]').val(),
 			location: orderForm.find('input[name="location"]').val(),
-			email: emailForm.email
+			email: emailForm.email,
+			createdAt: moment().format('DD.MM.YYYY HH:mm'),
+			updatedAt: moment().format('DD.MM.YYYY HH:mm')
 		}
 
 		// Save order and notify chefs
