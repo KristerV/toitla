@@ -18,12 +18,13 @@ template(name="order")
 						p.price {{T "Price"}} {{price}}
 						if isClient
 							with authorData
-								h3 {{T "Great! You've found a cook. Here is the cooks specific contact information."}}
+								h3.color-green {{T "Great! You've found a cook. Here is the cooks specific contact information."}}
 								p {{T "Phone nr"}}: {{telephone}}
 								p {{T "Address"}}: {{city}}, {{street}} {{house}}
 						else
 							if userIsWinner
-								h3 {{T "Hooray! You've won a client to cook for! Please make sure you've exchanged the necessary contact information."}}
+								h3.color-green {{T "Hooray! You've won a client to cook for! Here is some extra information of your client"}}
+								p {{T "Telephone nr:"}} {{clientTelephone}}
 							else
 								h3 {{T "Client has confirmed with another chef."}}
 					else
