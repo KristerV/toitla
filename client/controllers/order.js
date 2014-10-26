@@ -119,6 +119,9 @@ Template.order.events({
 		if (Meteor.user()) {
 			//Send notification to client
 			Meteor.call('chatActivity', id)
+		} else {
+			//Send notification to chef
+			Meteor.call('offerChatActivity', id)
 		}
 	},
 	'click a.cancel-offer': function(e, tmpl) {

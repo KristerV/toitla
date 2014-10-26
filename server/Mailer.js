@@ -54,7 +54,7 @@ Meteor.methods({
 			+ T("When this happens we will send you an email.") + '\n\n'
 			+ T("You will see the chefs' offers and can communicate them on your order page at: ") + link + '\n\n'
 			+ '\n\n'
-			+ T("With Kind Regards") + '\n\n'
+			+ T("With Kind Regards") + '\n'
 			+ T("toitla.com team ;)")
 		Mailer.send(email, Configuration.email, subject, text)
 	},
@@ -122,7 +122,7 @@ Meteor.methods({
 			+ T("Make sure you have cash, because you need to pay to the chef on pick-up.") + '\n'
 			+ T("In case you need to cancel the order, call the chef as soon as possible and let him know about it.") + '\n'
 			+ '\n\n'
-			+ T("With Kind Regards") + '\n\n'
+			+ T("With Kind Regards") + '\n'
 			+ T("toitla.com team ;)")
 			
 		Mailer.send(email, Configuration.email, subject, text)
@@ -195,7 +195,7 @@ Meteor.methods({
 			+ T("The client will pay in cash on pick-up.") + '\n'
 			+ T("In case you need to cancel the order, call the client as soon as possible and let him know about it.") + '\n'
 			+ '\n\n'
-			+ T("With Kind Regards") + '\n\n'
+			+ T("With Kind Regards") + '\n'
 			+ T("toitla.com team ;)")
 
 		var email = chef.emails[0].address
@@ -203,11 +203,15 @@ Meteor.methods({
 	},
 	//To: Chef
 	//When new chat activity under chef's active offer
-	offerChatActivity: function(chefId, orderId) {
-		check(orderId, String)
-		check(chefId, String)
-		var order = OrderCollection.findOne(orderId)
-		var chef = Meteor.users.findOne(chefId)
+	offerChatActivity: function(offerId) {
+		check(offerId, String)
+		var offer = OfferCollection.findOne(offerId)
+		if (!offer) {
+			console.log("No offer provided: ", offerId)
+			return
+		}
+		var order = OrderCollection.findOne(offer.orderId)
+		var chef = Meteor.users.findOne(offer.chefId)
 		if (!order || !chef) {
 			console.log("No order or chef provided: ", order, chef)
 			return
@@ -215,9 +219,9 @@ Meteor.methods({
 		var email = chef.emails[0].address
 		var link = Configuration.site_address + '/chef/' + chef._id
 		var subject = T("You have a message from a client").string
-		var text = T("You have a new message at toitla.com. To read it and to respond visit:") + '\n'
+		var text = T("You have a new message at toitla.com. To read it and to respond visit") + " " + '\n'
 			+ link + '\n\n'
-			+ T("With Kind Regards") + '\n\n'
+			+ T("With Kind Regards") + '\n'
 			+ T("toitla.com team ;)")
 			
 		Mailer.send(email, Configuration.email, subject, text)
