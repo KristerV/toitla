@@ -20,24 +20,37 @@ Template.chefView.helpers({
 		var find = OrderCollection.find({
 			$and: [
 				notCancelledByThisChef,
-				{$or: 
+				{
+					$or: 
 					[
 						// orders with chef offers
-						{$and: [
-							{_id: {$in: ordersWithMyOffers}},
-							{'info.date': {$gt: yesterdayDate}}
-						]},
+						{
+							$and: 
+							[
+								{_id: {$in: ordersWithMyOffers}},
+								{'info.date': {$gt: yesterdayDate}}
+							]
+						},
 						// orders without chef offers
-						{$and : [
-							{_id: {$nin: ordersWithMyOffers}},
-							{$or : [
-								{'info.date': {$gt: nowDate}},
-								{$and: [
-									{'info.date': nowDate}, 
-								    {'info.time': {$gt: nowTime}}
-								]},
-							]}
-						]}
+						{
+							$and : 
+							[
+								{_id: {$nin: ordersWithMyOffers}},
+								{
+									$or : 
+									[
+										{'info.date': {$gt: nowDate}},
+										{
+											$and: [
+												{'info.date': nowDate}, 
+											    {'info.time': {$gt: nowTime}}
+											]
+										},
+									]
+								},
+								{offerWonBy: {$exists: false}}
+							]
+						}
 					]
 				}
 			]
