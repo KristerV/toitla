@@ -17,10 +17,13 @@ template(name="order")
 						p {{content}}
 						p.price {{T "Price"}} {{price}}
 						if isClient
-							with authorData
-								h3.color-green {{T "Great! You've found a chef. Here is your chef's contact information."}}
-								p {{T "Phone nr"}}: {{telephone}}
-								p {{T "Address"}}: {{city}}, {{street}} {{house}}
+							if thisOfferIsWinner
+								with authorData
+									h3.color-green {{T "Great! You've found a chef. Here is your chef's contact information."}}
+									p {{T "Phone nr"}}: {{telephone}}
+									p {{T "Address"}}: {{city}}, {{street}} {{house}}
+							else
+								h3 {{T "Another offer has been confirmed, so this one is inactive. You may still chat to the chef though."}}
 						else
 							if userIsWinner
 								h3.color-green {{T "Hooray! You've won a client to cook for! Here is some extra information of your client"}}

@@ -52,6 +52,9 @@ Template.order.helpers({
 		else if (Offer.getWinningOfferByOrderId(this.orderId))
 			return true
 	},
+	thisOfferIsWinner: function() {
+		return this.offerWonBy
+	},
 	userIsWinner: function() {
 		if (Meteor.user()){ // User is chef
 			var won
