@@ -54,7 +54,8 @@ Template.chefView.helpers({
 					]
 				}
 			]
-		})
+		},
+		{sort: {'info.createdAt': -1}})
 		return find
 	},
 })
