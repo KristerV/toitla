@@ -24,5 +24,9 @@ Template.clientView.helpers({
 })
 
 Template.clientView.rendered = function() {
-	Global.setOverlay('clientInstructionsOverlay')
+	Meteor.setTimeout(function(){
+		var order = OrderCollection.findOne(Session.get('orderId'))
+		if (!Meteor.user() && !order.instructionsShown)
+			Global.setOverlay('clientInstructionsOverlay')
+	}, 1000)
 }
