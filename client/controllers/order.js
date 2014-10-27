@@ -103,6 +103,7 @@ Template.order.events({
 			values['chefId'] = Meteor.userId()
 			values['orderId'] = orderId
 			values['editingOffer'] = false
+			values['createdAt'] = TimeSync.serverTime()
 			OfferCollection.insert(values)
 		}
 		//Send notification to client

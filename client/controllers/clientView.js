@@ -1,6 +1,6 @@
 Template.clientView.helpers({
 	offersForClient: function() {
-		var offers = Offer.getOrderOffersForClient(Session.get("orderId"))
+		var offers = Offer.getOrderOffersForClient(Session.get("orderId"), {sort: {createdAt: 1}})
 
 		if (!offers)
 			return false
