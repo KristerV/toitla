@@ -55,7 +55,6 @@ Template.orderEmail.events({
 		var date = orderForm.find('input[name="date"]').val()
 		var time = orderForm.find('input[name="time"]').val()
 		var timestamp = Functions.convertEstonianDateToTimestamp(date, time)
-		console.log(timestamp)
 		var order = {
 			description: orderForm.find('input[name="description"]').val(),
 			location: orderForm.find('input[name="location"]').val(),
