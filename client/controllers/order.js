@@ -36,6 +36,11 @@ Template.order.helpers({
 	time: function() {
 		return moment(this.timestamp).format('DD.MM.YYYY HH:mm');
 	},
+	orderDateTime: function() {
+		if (_.isUndefined(this.info))
+			return false
+		return moment(this.info.timestamp).format('D.M.YYYY HH:mm')
+	},
 	authorData: function() {
 		var chefId = this.chefId
 		var chef = Meteor.users.findOne(chefId)

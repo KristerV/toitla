@@ -1,8 +1,7 @@
 Template.chefView.helpers({
 	orders: function() {
-		var nowDate = moment(TimeSync.serverTime()).format('DD.MM.YYYY')
-		var yesterdayDate = moment(TimeSync.serverTime()).subtract(1, 'days').format('DD.MM.YYYY')
-		var nowTime = moment(TimeSync.serverTime()).format('HH:MM')
+		var nowTimestamp = TimeSync.serverTime()
+		var yesterdayTimestamp = moment(TimeSync.serverTime()).subtract(1, 'days').unix()
 
 		var existsField = {}
 		existsField['offers.$.'+Meteor.userId()] = {$exists: true}
@@ -28,7 +27,7 @@ Template.chefView.helpers({
 							$and: 
 							[
 								{_id: {$in: ordersWithMyOffers}},
-								{'info.date': {$gt: yesterdayDate}}
+								{'info.timestamp': {$gt: yesterdayTimestamp}}
 							]
 						},
 						// orders without chef offers
@@ -36,19 +35,8 @@ Template.chefView.helpers({
 							$and : 
 							[
 								{_id: {$nin: ordersWithMyOffers}},
-								{
-									$or : 
-									[
-										{'info.date': {$gt: nowDate}},
-										{
-											$and: [
-												{'info.date': nowDate}, 
-											    {'info.time': {$gt: nowTime}}
-											]
-										},
-									]
-								},
-								{offerWonBy: {$exists: false}}
+								{'info.timestamp': {$gt: nowTimestamp}},
+								{offerWonBy: {$exists: false}},
 							]
 						}
 					]

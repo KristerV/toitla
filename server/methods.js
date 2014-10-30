@@ -1,14 +1,27 @@
 Meteor.methods({
+	reformatAllDates: function() {
+		var orders = OrderCollection.find().fetch()
+		for (var i = 0; i < orders.length; i++) {
+			var orderId = orders[i]._id
+			var orderDate = orders[i].info.date
+			var orderTime = orders[i].info.time
+			var timestamp = Functions.convertEstonianDateToTimestamp(orderDate, orderTime)
+			OrderCollection.update(orderId, {$set: {'info.timestamp': timestamp}})
+			var createdAt = Functions.convertEstonianDateToTimestamp(orders[i].info.createdAt)
+			var updatedAt = Functions.convertEstonianDateToTimestamp(orders[i].info.updatedAt)
+			OrderCollection.update(orderId, {$set: {'info.createdAt': createdAt}})
+			OrderCollection.update(orderId, {$set: {'info.updatedAt': updatedAt}})
+		};
+	},
 	newOrder : function(order) {
 
 		check(order, {
 			description: String,
-			date: String, // TODO should be Date
-			time: Match.Optional(String),
+			timestamp: Number,
 			location: Match.Optional(String),
 			email: String,
-      createdAt: Match.Optional(String),
-      updatedAt: Match.Optional(String)
+			createdAt: Number,
+			updatedAt: Number
 		})
 
 		// find chefs by city

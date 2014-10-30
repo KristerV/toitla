@@ -4,7 +4,7 @@ template(name="order")
 			header
 				.order
 					h3 {{info.description}}
-					p {{info.date}} {{info.time}} {{info.location}}
+					p {{orderDateTime}} {{info.location}}
 				if currentUser
 					if chefHasNotMadeOffer _id
 						a.cancel-offer(title="{{T 'Reject order'}}") X

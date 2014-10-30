@@ -52,14 +52,17 @@ Template.orderEmail.events({
 
 		// Gather order data
 		var orderForm = $('form[name="createOrder"]')
+		var date = orderForm.find('input[name="date"]').val()
+		var time = orderForm.find('input[name="time"]').val()
+		var timestamp = Functions.convertEstonianDateToTimestamp(date, time)
+		console.log(timestamp)
 		var order = {
 			description: orderForm.find('input[name="description"]').val(),
-			date: orderForm.find('input[name="date"]').val(),
-			time: orderForm.find('input[name="time"]').val(),
 			location: orderForm.find('input[name="location"]').val(),
 			email: emailForm.email,
-			createdAt: moment().format('DD.MM.YYYY HH:mm'),
-			updatedAt: moment().format('DD.MM.YYYY HH:mm')
+			timestamp: timestamp,
+			createdAt: TimeSync.serverTime(),
+			updatedAt: TimeSync.serverTime(),
 		}
 
 		// Save order and notify chefs

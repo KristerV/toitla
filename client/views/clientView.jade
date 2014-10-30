@@ -2,7 +2,7 @@ template(name="clientView")
 	section.two-columns
 		header.offers
 			h1 {{ orderData.info.description }}
-			p {{ T '{date} at {time} {location}' orderData.info }}
+			p {{ T '{timestamp}, {location}' orderData.info }}
 			strong {{T "Chef offers"}}
 			p 
 				| {{T "Choose an offer you're satisfied with or use the chat to discuss the details."}}

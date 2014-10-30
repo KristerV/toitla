@@ -18,8 +18,10 @@ Template.clientView.helpers({
 		var order = OrderCollection.findOne(Session.get("orderId"))
 		if (_.isUndefined(order))
 			return {}
-		else
+		else {
+			order.info['timestamp'] = moment(order.info.timestamp).format('DD.MM.YYYY HH:mm')
 			return order
+		}
 	}
 })
 
