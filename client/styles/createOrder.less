@@ -79,10 +79,11 @@
 			box-sizing: border-box;
 			font-size: @font-size-large;
 			@media (min-width: @screen-sm-min), (orientation: landscape){
-				flex-basis: 0;
+				// flex-basis: 0; // not compatible with IE11
 				flex-grow: 1;
 				&.long {
 					flex-grow: 4;
+					flex-basis: 500px; // also no IE11 support, but at least input usable in IE11
 				}
 			}
 			@media (max-width: @screen-sm-max) and (orientation: portrait){
