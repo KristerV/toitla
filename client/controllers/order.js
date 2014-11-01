@@ -56,11 +56,16 @@ Template.order.helpers({
 	},
 	userIsWinner: function() {
 		var won
-		var offer = Offer.getChefOfferByOrderId(this._id)
-		if (!offer) return false
-		
-		return offer.offerWonBy == Meteor.userId()
+		if (this.price) // must be in "offer" context
+			won = this.offerWonBy
+		else { // must be in "order" context so "offerWonBy" is not directly available
+			var offer = Offer.getChefOfferByOrderId(this._id)
+			if (!offer) return false
+			won = offer.offerWonBy
+		}
+		return won == Meteor.userId()
 	},
+
 	lostOffer: function() {
 		var chefsOffer = Offer.getWinningOfferByOrderId(this._id)
 
