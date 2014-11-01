@@ -5,63 +5,44 @@ template(name="order")
 				.order
 					h3 {{info.description}}
 					p {{orderDateTime}} {{info.location}}
-				if currentUser
-					if chefHasNotMadeOffer _id
-						a.cancel-offer(title="{{T 'Reject order'}}") X
+				if chefHasNotMadeOffer _id
+					a.hide-order(title="{{T 'Reject order'}}") X
 			.offer
 				with offerData _id
 					if this.rejected
 						p.rejected {{T 'Offer was rejected by the client'}}
 					if offerIsWon
 						h3.uppercase {{T "Offer"}}
-						p {{content}}
+						p.newlines {{content}}
 						p.price {{T "Price"}} {{price}}
-						if isClient
-							if thisOfferIsWinner
-								with authorData
-									h3.color-green {{T "Great! You've found a chef. Here is your chef's contact information."}}
-									p {{T "Phone nr"}}: {{telephone}}
-									p {{T "Address"}}: {{city}}, {{street}} {{house}}
-							else
-								h3 {{T "Another offer has been confirmed, so this one is inactive. You may still chat to the chef though."}}
+
+						if userIsWinner
+							h3.color-green {{T "Hooray! You've won a client to cook for! Here is some extra information of your client"}}
+							p {{T "Telephone nr:"}} {{clientTelephone}}
 						else
-							if userIsWinner
-								h3.color-green {{T "Hooray! You've won a client to cook for! Here is some extra information of your client"}}
-								p {{T "Telephone nr:"}} {{clientTelephone}}
-							else
-								h3 {{T "Client has confirmed with another chef."}}
+							h3 {{T "Client has confirmed with another chef."}}
 					else
-						if currentUser
-							if editingOffer
-								form(name="offer" data-offer-id="{{_id}}")
-									h3.uppercase {{T "Your offer"}}
-									textarea(name="content" placeholder="{{T 'A detailed description of the food you want to offer'}}" required) {{content}}
-									footer
-										input(type="text" class="small" name="price" placeholder="{{T 'Price'}}" value="{{price}}" required)
-										input(type="submit" value="{{T 'Send offer'}}")
-							else
-								h3.uppercase {{T "Offer"}}
-								p {{content}}
-								p.price {{T "Price"}} {{price}}
+						if editingOffer
+							form(name="offer" data-offer-id="{{_id}}")
+								h3.uppercase {{T "Your offer"}}
+								textarea(name="content" placeholder="{{T 'A detailed description of the food you want to offer'}}" required) {{content}}
 								footer
-									p.feedback {{T "Waiting for client feedback"}}
-									a.change-offer.button {{T "Change offer"}}
-						else					
+									input(type="text" class="small" name="price" placeholder="{{T 'Price'}}" value="{{price}}" required)
+									input(type="submit" value="{{T 'Send offer'}}")
+						else
 							h3.uppercase {{T "Offer"}}
-							p {{content}}
-							if price
-								p.price {{T "Price"}}  {{price}}
-							if editingOffer
-								p {{T "Offer is being edited by the chef and cannot be confirmed"}}
-							else
-								a.confirm-offer.button {{T "Confirm offer"}}
+							p.newlines {{content}}
+							p.price {{T "Price"}} {{price}}
+							footer
+								p.feedback {{T "Waiting for client feedback"}}
+								a.change-offer.button {{T "Change offer"}}
 		section.chat.form-box.beige
 			h3.uppercase {{T "Chat"}}
 			with offerData _id
 				each messages
 					.message
 						div.uppercase.gray {{author}} {{time}}
-						p {{msg}}
+						p.newlines {{msg}}
 				form(name="chat" data-offer-id="{{_id}}")
 					textarea(name="msg" required="required")
 					input(type="submit" value="{{T 'Answer'}}")

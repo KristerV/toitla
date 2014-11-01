@@ -1,6 +1,10 @@
 @import "variables";
 @import "mixins";
 
+.newlines {
+	white-space: pre;
+}
+
 .two-columns {
 	width: 100%;
 	position: absolute;
@@ -17,7 +21,7 @@
 			padding-bottom: 10px;
 		}
 
-		.order-block {
+		.order-block, .offer-block {
 			margin: 10px 20px 20px 10px;
 			max-width: 49%;
 			min-width: 40%;
@@ -25,7 +29,7 @@
 			header {
 				display: flex;
 				justify-content: space-between;
-				.cancel-offer {
+				.hide-order {
 					color: #444;
 				}
 				.order {

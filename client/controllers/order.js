@@ -1,28 +1,22 @@
 Template.order.helpers({
 	chefHasNotMadeOffer: function(orderId) {
-		if (Meteor.user()) {
-			var offer = Offer.getChefOfferByOrderId(orderId)
-			if (offer && !offer.editingOffer)
-				return false
-		}
+		var offer = Offer.getChefOfferByOrderId(orderId)
+		if (offer && !offer.editingOffer)
+			return false
 		return true
 	},
 	offerData: function(orderId) {
-		if (Meteor.user()) {
-			var offer = Offer.getChefOfferByOrderId(orderId)
-			if (!offer) {
-				return {editingOffer: true}
-			}
-			return offer
-		} else {
-			return this
+		var offer = Offer.getChefOfferByOrderId(orderId)
+		if (!offer) {
+			return {editingOffer: true}
 		}
+		return offer
 	},
 	author: function() {
-		if ((!Meteor.user() && this.author == 'client') || (Meteor.user() && this.author != 'client'))
-			return T("Me")
-		if (this.author == 'client')
+		if ('client' == this.author)
 			return T("Client")
+		else
+			return T("Me")
 
 		var user = Meteor.users.findOne(this.author)
 		if (!user)
@@ -61,34 +55,22 @@ Template.order.helpers({
 		return this.offerWonBy
 	},
 	userIsWinner: function() {
-		if (Meteor.user()){ // User is chef
-			var won
-			if (this.price) // must be in "offer" context
-				won = this.offerWonBy
-			else { // must be in "order" context so "offerWonBy" is not directly available
-				var offer = Offer.getChefOfferByOrderId(this._id)
-				if (!offer) return false
-				var won = offer.offerWonBy
-			}
-			return won == Meteor.userId()
-		} else { // User is client
-			return this.offerWonBy
-		}
+		var won
+		var offer = Offer.getChefOfferByOrderId(this._id)
+		if (!offer) return false
+		
+		return offer.offerWonBy == Meteor.userId()
 	},
 	lostOffer: function() {
-		var order = this
-		if (!!Meteor.user()) { // Is chef
-			var chefsOffer = Offer.getWinningOfferByOrderId(this._id)
+		var chefsOffer = Offer.getWinningOfferByOrderId(this._id)
 
-			if (!chefsOffer)
-				return false
+		if (!chefsOffer)
+			return false
 
-			var won = chefsOffer.offerWonBy
-			if (typeof won === "string" && won){
-				return won != Meteor.userId()
-			}
+		var won = chefsOffer.offerWonBy
+		if (typeof won === "string" && won){
+			return won != Meteor.userId()
 		}
-
 	}
 })
 
@@ -120,16 +102,13 @@ Template.order.events({
 		var values = Global.getFormValues(form)
 		form[0].reset()
 
-		if (Meteor.user())
-			values['author'] = Meteor.userId()
-		else
-			values['author'] = 'client'
-
+		values['author'] = Meteor.userId()		
 		values['timestamp'] = TimeSync.serverTime()
 		var id = form.data('offer-id')
 
 		var offer = OfferCollection.findOne(id)
 		if (!offer) {
+			// create new offer to add chat
 			offer = {}
 			offer['chefId'] = Meteor.userId()
 			offer['orderId'] = form.parents('.order-block').data('order-id')
@@ -146,36 +125,22 @@ Template.order.events({
 			Offer.addChatMessage(offer, values)
 		}
 	},
-	'click a.cancel-offer': function(e, tmpl) {
-		// FIXME: this is actually a huge problem:
-		// When this view is used as a chef, this refers to an order,
-		// When the same view is used as a client, this refers to an offer
-		
-		// maybe implement chef logic under a different view/link
-		if (Meteor.user()) {
-			// chef cancels the order
-			$(e.target).parents('.order-block').slideUp(function() {
-				
-				var offer = Offer.getChefOfferByOrderId(this._id)
-				if (offer) {
-					// TODO: if offer is made, maybe we should notify the client here
-					OfferCollection.remove(offer._id);
-				}
-				var values = {}
-				values['cancelled_by_' + Meteor.userId()] = true
-				OrderCollection.update(this._id, {$set: values})
-				
-			}.bind(this))
-		}
-		else {
-			// this will make the offer rejected by the client
-			//OfferCollection.update(this._id, {$set: {rejected: true}})		
-		}
+	'click a.hide-order': function(e, tmpl) {
+		// chef cancels the order
+		$(e.target).parents('.order-block').slideUp(function() {
+			
+			var offer = Offer.getChefOfferByOrderId(this._id)
+			if (offer) {
+				// TODO: if offer is made, maybe we should notify the client here
+				OfferCollection.remove(offer._id);
+			}
+			var values = {}
+			values['cancelled_by_' + Meteor.userId()] = true
+			OrderCollection.update(this._id, {$set: values})
+			
+		}.bind(this))
 	},
 	'click a.change-offer': function(e, tmpl) {
 		OfferCollection.update(this._id, {$set: {editingOffer: true}})
-	},
-	'click a.confirm-offer': function(e, tmpl) {
-		Global.setOverlay('confirmOffer', this)
-	},
+	}
 })
