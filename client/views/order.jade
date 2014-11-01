@@ -5,10 +5,10 @@ template(name="order")
 				.order
 					h3 {{info.description}}
 					p {{orderDateTime}} {{info.location}}
-				if chefHasNotMadeOffer _id
+				if chefHasNotMadeOffer
 					a.hide-order(title="{{T 'Reject order'}}") X
 			.offer
-				with offerData _id
+				with offerData
 					if this.rejected
 						p.rejected {{T 'Offer was rejected by the client'}}
 					if offerIsWon
@@ -38,7 +38,7 @@ template(name="order")
 								a.change-offer.button {{T "Change offer"}}
 		section.chat.form-box.beige
 			h3.uppercase {{T "Chat"}}
-			with offerData _id
+			with offerData
 				each messages
 					.message
 						div.uppercase.gray {{author}} {{time}}

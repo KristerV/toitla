@@ -20,9 +20,23 @@ Template.offer.helpers({
 			return false
 		return moment(this.info.timestamp).format('D.M.YYYY HH:mm')
 	},
-	authorData: function() {
-		var chefId = this.chefId
-		var chef = Meteor.users.findOne(chefId)
+	chefInfo : function() {
+		var chef = Meteor.users.findOne(this.chefId)
+		if (!chef) {
+			return ''
+		}
+
+		var info = (chef.profile.name ? chef.profile.name : chef.username)
+		if (chef.profile.street) {
+			info += ', ' + chef.profile.street + ' ' + T('str')
+		}
+		if (chef.profile.city) {
+			info += ', ' + chef.profile.city
+		}
+		return info		
+	},
+	chefProfile: function() {
+		var chef = Meteor.users.findOne(this.chefId)
 		if (!chef)
 			return false
 		return chef.profile
@@ -54,4 +68,7 @@ Template.offer.events({
 	'click a.confirm-offer': function(e, tmpl) {
 		Global.setOverlay('confirmOffer', this)
 	},
+	'click a.chef-info': function(e, tmpl) {
+		Global.setOverlay('chefInfo', {chefId: this.chefId})
+	}
 })

@@ -1,12 +1,12 @@
 Template.order.helpers({
-	chefHasNotMadeOffer: function(orderId) {
-		var offer = Offer.getChefOfferByOrderId(orderId)
+	chefHasNotMadeOffer: function() {
+		var offer = Offer.getChefOfferByOrderId(this._id)
 		if (offer && !offer.editingOffer)
 			return false
 		return true
 	},
-	offerData: function(orderId) {
-		var offer = Offer.getChefOfferByOrderId(orderId)
+	offerData: function() {
+		var offer = Offer.getChefOfferByOrderId(this._id)
 		if (!offer) {
 			return {editingOffer: true}
 		}

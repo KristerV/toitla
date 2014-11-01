@@ -4,6 +4,9 @@ template(name="offer")
 			header
 				.order
 					h3 {{info.description}}
+
+					p
+						a.chef-info {{chefInfo}}
 					p {{orderDateTime}} {{info.location}}
 			.offer
 				if this.rejected
@@ -13,7 +16,7 @@ template(name="offer")
 					p.newlines {{content}}
 					p.price {{T "Price"}} {{price}}
 					if thisOfferIsWinner
-						with authorData
+						with chefProfile
 							h3.color-green {{T "Great! You've found a chef. Here is your chef's contact information."}}
 							p {{T "Phone nr"}}: {{telephone}}
 							p {{T "Address"}}: {{city}}, {{street}} {{house}}

@@ -1,0 +1,18 @@
+template(name="chefInfo")
+	.chef-info
+		with chef
+			h1 {{T 'Chef'}}
+				if profile.name
+					| {{profile.name}}
+				else
+					| {{username}}
+			if profile.city
+				p
+					strong {{T "City"}}
+					| {{profile.city}}
+			if profile.street
+				p
+					strong {{T "Street"}}
+					| {{profile.street}}
+			if profile.bio
+				p {{profile.bio}}
