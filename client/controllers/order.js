@@ -154,14 +154,18 @@ Template.order.events({
 		// maybe implement chef logic under a different view/link
 		if (Meteor.user()) {
 			// chef cancels the order
-			var offer = Offer.getChefOfferByOrderId(this._id)
-			if (offer) {
-				// TODO: if offer is made, maybe we should notify the client here
-				OfferCollection.remove(offer._id);
-			}
-			var values = {}
-			values['cancelled_by_' + Meteor.userId()] = true
-			OrderCollection.update(this._id, {$set: values})
+			$(e.target).parents('.order-block').slideUp(function() {
+				
+				var offer = Offer.getChefOfferByOrderId(this._id)
+				if (offer) {
+					// TODO: if offer is made, maybe we should notify the client here
+					OfferCollection.remove(offer._id);
+				}
+				var values = {}
+				values['cancelled_by_' + Meteor.userId()] = true
+				OrderCollection.update(this._id, {$set: values})
+				
+			}.bind(this))
 		}
 		else {
 			// this will make the offer rejected by the client
