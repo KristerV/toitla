@@ -144,7 +144,7 @@ Meteor.methods({
 
 		var email = chef.emails[0].address
 		var desc = order.info.description
-		var createdAt = order.info.createdAt
+		var createdAt = moment(order.info.createdAt).format('DD.MM.YYYY HH:mm')
 		var deadline = moment(order.info.timestamp).format('DD.MM.YYYY HH:mm')
 		var link = Configuration.site_address + '/chef/' + chef._id
 
