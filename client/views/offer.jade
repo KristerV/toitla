@@ -13,7 +13,7 @@ template(name="offer")
 					p.rejected {{T 'Offer was rejected by the client'}}
 				if offerIsWon
 					h3.uppercase {{T "Offer"}}
-					p.newlines {{content}}
+					p {{content}}
 					p.price {{T "Price"}} {{price}}
 					if thisOfferIsWinner
 						with chefProfile
@@ -24,7 +24,7 @@ template(name="offer")
 						h3 {{T "Another offer has been confirmed, so this one is inactive. You may still chat to the chef though."}}
 				else	
 					h3.uppercase {{T "Offer"}}
-					p.newlines {{content}}
+					p {{content}}
 					if price
 						p.price {{T "Price"}}  {{price}}
 					if editingOffer
@@ -36,7 +36,7 @@ template(name="offer")
 			each messages
 				.message
 					div.uppercase.gray {{author}} {{time}}
-					p.newlines {{msg}}
+					p {{msg}}
 			form(name="chat")
 				textarea(name="msg" required="required")
 				input(type="submit" value="{{T 'Answer'}}")

@@ -47,6 +47,12 @@ Template.offer.helpers({
 	},
 	thisOfferIsWinner: function() {
 		return this.offerWonBy
+	},
+	msg: function() {
+		return Functions.formatText(this.msg)
+	},
+	content: function() {
+		return Functions.formatText(this.content)
 	}
 })
 
