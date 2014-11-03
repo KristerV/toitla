@@ -1,7 +1,7 @@
 Template.chefView.helpers({
 	orders: function() {
 		var nowTimestamp = TimeSync.serverTime()
-		var yesterdayTimestamp = moment(TimeSync.serverTime()).subtract(1, 'days').unix()
+		var yesterdayTimestamp = moment(TimeSync.serverTime()).subtract(1, 'days').unix() * 1000
 
 		var existsField = {}
 		existsField['offers.$.'+Meteor.userId()] = {$exists: true}
