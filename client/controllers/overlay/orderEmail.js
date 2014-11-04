@@ -54,12 +54,12 @@ Template.orderEmail.events({
 		var orderForm = $('form[name="createOrder"]')
 		var date = orderForm.find('input[name="date"]').val()
 		var time = orderForm.find('input[name="time"]').val()
-		var timestamp = Functions.convertEstonianDateToTimestamp(date, time)
 		var order = {
+			date: date,
+			time: time,
 			description: orderForm.find('input[name="description"]').val(),
 			location: orderForm.find('input[name="location"]').val(),
 			email: emailForm.email,
-			timestamp: timestamp,
 			createdAt: TimeSync.serverTime(),
 			updatedAt: TimeSync.serverTime(),
 		}

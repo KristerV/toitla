@@ -17,12 +17,18 @@ Meteor.methods({
 
 		check(order, {
 			description: String,
-			timestamp: Number,
+			date: String,
+			time: String,
 			location: Match.Optional(String),
 			email: String,
 			createdAt: Number,
 			updatedAt: Number
 		})
+
+		// Convert date to timestamp
+		order['timestamp'] = Functions.convertEstonianDateToTimestamp(order.date, order.time)
+		delete order.date
+		delete order.time
 
 		// find chefs by city
 		var search = {}
