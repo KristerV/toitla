@@ -6,6 +6,15 @@ Template.createOrder.helpers({
 Template.createOrder.events({
 	'submit form[name="createOrder"]': function(e, tmpl) {
 		e.preventDefault()
-		Global.setOverlay('orderEmail')
+		var allGood = true
+		$('input').each(function(index){
+			if (($(this).val() == '' || _.isUndefined($(this).val())) && allGood) {
+				Global.addError('form[name="createOrder"]', "Please fill out all fields")
+				allGood = false
+			}
+		})
+
+		if (allGood)
+			Global.setOverlay('orderEmail')
 	}
 })
