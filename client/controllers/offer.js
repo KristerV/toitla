@@ -26,11 +26,11 @@ Template.offer.helpers({
 			return ''
 		}
 
-		var info = (chef.profile.name ? chef.profile.name : chef.username)
-		if (chef.profile.street) {
+		var info = (chef.profile && chef.profile.name ? chef.profile.name : chef.username)
+		if (chef.profile && chef.profile.street) {
 			info += ', ' + chef.profile.street + ' ' + T('str')
 		}
-		if (chef.profile.city) {
+		if (chef.profile && chef.profile.city) {
 			info += ', ' + chef.profile.city
 		}
 		return info		
