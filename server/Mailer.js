@@ -69,8 +69,8 @@ Meteor.methods({
 		}
 		var email = order.info.email
 		var link = Configuration.site_address + '/order/' + orderId
-		var subject = T("You have a message concerning order:") + " " + order.info.description
-		var text = T("You have a new message at toitla.com. To read it and to respond visit:") + '\n'
+		var subject = T("Your order has activity")
+		var text = T("You have activity in order '{order}'. To read it and to respond visit:", order.info.description) + '\n'
 			+ link + '\n\n'
 			+ T("If you need help, please call 58 49 43 40 or email us appi@toitla.com") + '\n'
 			+ T("All feedback rocks are world!") + '\n'
@@ -217,8 +217,8 @@ Meteor.methods({
 		}
 		var email = chef.emails[0].address
 		var link = Configuration.site_address + '/chef/' + chef._id
-		var subject = T("You have a message concerning order:") + " " + order.info.description
-		var text = T("You have a new message at toitla.com. To read it and to respond visit") + " " + '\n'
+		var subject = T("You have a new message")
+		var text = T("You have a new message on order {order}. To read it and respond visit:", order.info.description) + " " + '\n'
 			+ link + '\n\n'
 			+ T("With Kind Regards") + '\n'
 			+ T("toitla.com team ;)")
