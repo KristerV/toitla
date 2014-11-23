@@ -16,6 +16,9 @@ Template.index.helpers({
 
 		Session.set('backgroundImage', backgroundImage)
 		return Template[template]
+	},
+	dev_server: function() {
+		return !!Configuration.development_server
 	}
 })
 

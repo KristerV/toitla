@@ -1,6 +1,7 @@
 Configuration = {
 	email : 'noreply@toitla.com', // Email address that sends out messages
 	site_address : 'http://toitla.com', // Address that site runs on 
+	development_server: true, // is this server made for development?
 }
 
 // Disable hot code push completely
