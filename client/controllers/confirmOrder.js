@@ -24,8 +24,10 @@ var setMarker = function(place) {
 var drawCircle = function(circleRadius) {
 	if (circleRadius >= 3) {
 		map.setZoom(12)
-	} else {
+	} else if (circleRadius > 1) {
 		map.setZoom(13)
+	} else {
+		map.setZoom(14)
 	}
 	rangeCircle.setCenter(marker.getPosition())
 	rangeCircle.setRadius(circleRadius*1000)
