@@ -6,6 +6,9 @@ Template.index.helpers({
 		if (!!Meteor.user()) { // User is chef
 			template = 'chefView'
 		}
+		else if (!!Session.get('view')) {
+			template = Session.get('view')
+		}
 		else if (!!orderId) { // There is an order hash
 			template = 'clientView'
 		}
