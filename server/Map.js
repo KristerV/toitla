@@ -7,19 +7,19 @@ Map = {
 	distanceBetweenLatLon: function(location1, location2) {
 		check(location1, {
 			lat: Number,
-			lon: Number,
+			lng: Number,
 			radius: Number // nod used, but can be in data
 		})
 		check(location2, {
 			lat: Number,
-			lon: Number,
+			lng: Number,
 		})
 
 		var R = 6371; // earth radius in km
 		var lat1 = Map.toRad(location1.lat)
 		var lat2 = Map.toRad(location2.lat)
 		var latDiff = Map.toRad(location2.lat-location1.lat)
-		var lonDiff = Map.toRad(location2.lon-location1.lon)
+		var lonDiff = Map.toRad(location2.lng-location1.lng)
 
 		var a = Math.sin(latDiff/2) * Math.sin(latDiff/2) +
 		        Math.cos(lat1) * Math.cos(lat2) *
@@ -28,12 +28,13 @@ Map = {
 
 		var d = R * c;
 
+		console.log(d);
 		return d;
 	},
 	findChefsInRange: function(location) {
 		check(location, {
 			lat: Number,
-			lon: Number,
+			lng: Number,
 			radius: Number
 		})
 
@@ -47,10 +48,10 @@ Map = {
 				var userLocation = user.profile.location
 				if (userLocation.geometry && userLocation.geometry.location) {
 					userLocation = userLocation.geometry.location
-					if (location.radius <= Map.distanceBetweenLatLon(location, {
+					if (location.radius >= Map.distanceBetweenLatLon(location, {
 							// I have no idea why google named these keys like this
 							lat: userLocation.k,
-							lon: userLocation.B
+							lng: userLocation.B
 						})) {
 						result.push(user)
 					}

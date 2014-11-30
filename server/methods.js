@@ -16,7 +16,7 @@ Meteor.methods({
 	countChefsInRange: function(location) {
 		check(location, {
 			lat: Number,
-			lon: Number,
+			lng: Number,
 			radius: Number
 		})
 		return Map.findChefsInRange(location).length

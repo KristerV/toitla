@@ -3,12 +3,17 @@ var map = null;
 var rangeCircle = null;
 var marker = null;
 var tallinn = new google.maps.LatLng(59.437222, 24.745278);
+var currentLocation = {lat: tallinn.lat(), lng: tallinn.lng(), radius: 3};
 
 var setCurrentLocation = function() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
-      geolocation = { lat: position.coords.latitude, lng: position.coords.longitude }
-      map.setCenter(geolocation)
+      $(function() {
+        currentLocation.lat = position.coords.latitude
+        currentLocation.lng = position.coords.longitude
+        map.setCenter(currentLocation)
+        drawCircle()
+      })
     })
   } 
 }
@@ -17,7 +22,11 @@ var setMarker = function(place) {
   map.setZoom(14)
   marker.setPosition(place.geometry.location)
   marker.setVisible(true)
-  drawCircle(getRangeValue())
+  // google uses these keys: B and k - don't know why
+  currentLocation.lat = place.geometry.location.k;
+  currentLocation.lng = place.geometry.location.B;
+  currentLocation.radius = getRangeValue()
+  drawCircle()
 }
 
 var getRangeValue = function() {
@@ -26,17 +35,25 @@ var getRangeValue = function() {
 }
 
 //circleRadius in km
-var drawCircle = function(circleRadius) {
-	if (circleRadius >= 3) {
-		map.setZoom(12)
-	} else if (circleRadius > 1) {
-		map.setZoom(13)
-	} else {
-		map.setZoom(14)
-	}
-	rangeCircle.setCenter(marker.getPosition())
-	rangeCircle.setRadius(circleRadius*1000)
-	rangeCircle.setVisible(true);
+var drawCircle = function() {
+  console.log(currentLocation)
+  Meteor.call('countChefsInRange', currentLocation, function(err, chefCount) {
+    console.log(chefCount)
+    $('#chef-count').text(chefCount);
+  })
+
+  circleRadius = currentLocation.radius;
+
+  if (circleRadius >= 3) {
+    map.setZoom(12)
+  } else if (circleRadius > 1) {
+    map.setZoom(13)
+  } else {
+    map.setZoom(14)
+  }
+  rangeCircle.setCenter(marker.getPosition())
+  rangeCircle.setRadius(circleRadius*1000)
+  rangeCircle.setVisible(true);
 
 }
 
@@ -66,20 +83,17 @@ Template.confirmOrder.rendered = function() {
 
 Template.confirmOrder.events({
 	'focus #maps-autocomplete' : function(e, tmpl) {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        var geolocation = new google.maps.LatLng( 
-            position.coords.latitude, position.coords.longitude);
-        autocomplete.setBounds(new google.maps.LatLngBounds(geolocation,
-            geolocation));
-      });
-    }
+    setCurrentLocation();
   },
   'submit form': function(e) {
   	e.preventDefault();
+
+
   },
   'change input[type="range"]' : function(e) {
   	e.preventDefault()
-		drawCircle(getRangeValue())
+
+    currentLocation.radius = getRangeValue();
+		drawCircle()
   }
 })
