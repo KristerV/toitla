@@ -13,16 +13,24 @@ Meteor.methods({
 			OrderCollection.update(orderId, {$set: {'info.updatedAt': updatedAt}})
 		};
 	},
-	changeEmail : function(userId, email) {
+	findChefsInRange: function() {
+
+	},
+	changeEmail: function(userId, email) {
 
 		check(userId, String)
 		check(email, String)
+
+		if (userId != Meteor.userId()) {
+			console.log('User can only change its own email')
+			return
+		}
 
 		var usersCheck = Meteor.users.find({'emails.address' : email}).fetch();
 
 		if (usersCheck && usersCheck.length) {
 			// found a user with the same email
-			console.log('email already in use')
+			console.log('Email already in use')
 			return
 		}
 
