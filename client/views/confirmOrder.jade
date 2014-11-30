@@ -1,13 +1,13 @@
 template(name="confirmOrder")
-	.confirm-order
-		.row
+	.confirm-order.height-100
+		.row.height-100
 			.col-sm-6
 				h1 Mingi tekst
 				p mingi tekst
 				form(role="form")
 					.form-group
 						label Location
-						input.form-control(type="text")
+						input.form-control#map-autocomplete(type="text")
 					.form-group
 						label seletav tekst
 						input(type="range" min="1" max="5" step="1")
@@ -15,5 +15,5 @@ template(name="confirmOrder")
 						label Email
 						input.form-control(type="text")
 					input.form-control(type="submit")
-			.col-sm-6
-				h1 Kaart
+			.col-sm-6.height-100
+				.confirmation-map.height-100
