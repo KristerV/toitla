@@ -24,6 +24,13 @@ Template.index.helpers({
 
 Template.index.rendered = function() {
 
+	var mapOptions = {
+      center: { lat: -34.397, lng: 150.644},
+      zoom: 8
+    };
+    var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+
 	document.title = T('Homecooks')
 	$('head').append('<meta name="viewport" content="width=device-width, initial-scale=1">')
 
