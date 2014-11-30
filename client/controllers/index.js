@@ -6,6 +6,9 @@ Template.index.helpers({
 		if (!!Meteor.user()) { // User is chef
 			template = 'chefView'
 		}
+		else if (!!Session.get('view')) {
+			template = Session.get('view')
+		}
 		else if (!!orderId) { // There is an order hash
 			template = 'clientView'
 		}
@@ -23,20 +26,8 @@ Template.index.helpers({
 })
 
 Template.index.rendered = function() {
-
-
-
 	document.title = T('Homecooks')
 	$('head').append('<meta name="viewport" content="width=device-width, initial-scale=1">')
-		
-
-	/*
-	var mapOptions = {
-      center: { lat: -34.397, lng: 150.644},
-      zoom: 8
-    };
-    var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-    */
 
 	if ('undefined' == typeof Configuration) {
 		alert('Hey, developer! \n\n Yes you!\nPlease provide a /lib/configuration.js \n(there is an example also).')
