@@ -13,8 +13,13 @@ Meteor.methods({
 			OrderCollection.update(orderId, {$set: {'info.updatedAt': updatedAt}})
 		};
 	},
-	findChefsInRange: function() {
-
+	countChefsInRange: function(location) {
+		check(location, {
+			lat: Number,
+			lon: Number,
+			radius: Number
+		})
+		return Map.findChefsInRange(location).length
 	},
 	changeEmail: function(userId, email) {
 
