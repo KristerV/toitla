@@ -2,23 +2,37 @@ template(name="chefProfile")
 	.chef-profile.form-box
 		with chef
 			if isOwner
-				h3 {{T "Your profile"}}
-				p {{T "Your phone number and address are hidden from clients until they confirm an order"}}
-				p {{T "The client can specify the order pickup time by phone"}}
-				form(name="chefProfile")
-					label(required="required") {{T "Name"}}
-					input(type="text" name="name" value="{{name}}" required)
-					label(required="required") {{T "Telephone"}}
-					input(type="text" name="telephone" value="{{telephone}}" required)
-					label(required="required") {{T "City"}}
-					input(type="text" name="city" value="{{city}}" required)
-					label(required="required") {{T "Street"}}
-					input(type="text" name="street" value="{{street}}" required)
-					label(required="required") {{T "House nr"}}
-					input(type="text" class="small" name="house" value="{{house}}" required)
-					#profile-map
-					textarea(name="bio" placeholder="{{T 'Short description about yourself...'}}") {{bio}}
-					input(type="submit" value="{{T 'Save'}}")
+				.row
+					h3 {{T "Your profile"}}
+					.col-sm-7
+						p {{T "Your phone number and address are hidden from clients until they confirm an order"}}
+						p {{T "The client can specify the order pickup time by phone"}}
+							form(name="chefProfile" role="form")
+								.form-group
+									label(required="required") {{T "Name"}}
+									input.form-control(type="text" name="name" value="{{name}}" required)
+								.form-group
+									label(required="required") {{T "E-mail address"}}
+									input.form-control(type="email" name="email" value="{{email}}" required)
+								.form-group
+									label(required="required") {{T "Telephone"}}
+									input.form-control(type="phone" name="telephone" value="{{telephone}}" required)
+									
+								.form-group.row
+									.col-sm-5
+										label(required="required") {{T "City"}}
+										input.form-control(type="text" name="city" value="{{city}}" required)
+									.col-sm-4
+										label(required="required") {{T "Street"}}
+										input.form-control(type="text" name="street" value="{{street}}" required)
+									.col-sm-3
+										label(required="required") {{T "House nr"}}
+										input.form-control(type="text" class="small" name="house" value="{{house}}" required)
+								.form-group
+									textarea.form-control(name="bio" placeholder="{{T 'Short description about yourself...'}}") {{bio}}
+								input(type="submit" value="{{T 'Save'}}")
+					.col-sm-5
+						#profile-map
 			else
 				if name
 					h1 {{name}}
