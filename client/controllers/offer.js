@@ -55,7 +55,7 @@ Template.offer.helpers({
 	content: function() {
 		return Functions.formatText(this.content)
 	},
-	
+
 	// Toitla v2
 	chefName: function() {
 		var chef = Meteor.users.findOne(this.chefId)
