@@ -1,15 +1,2 @@
 template(name="createOrder")
-	section(class="dimmer black")
-	section(class="background")
-	section(class="content")
-		.make-order
-			h1.uppercase {{T 'Eat. Sleep. Repeat'}}
-			.slogan {{T 'Lorem ipsum' }}
-			form(name="createOrder")
-				.inputs
-					input(type="text" name="date" value="{{ initialDate }}" required)
-					input(type="text" name="time" value="18:00" required)
-					input(type="text" name="location" value="Tallinn" required)
-					input(type="text" name="description" placeholder="{{T 'What food'}}" class="long" required)
-
-				input(type="submit" value="{{T 'Order'}}")
+	p CreateOrder
