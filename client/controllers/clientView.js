@@ -22,6 +22,9 @@ Template.clientView.helpers({
 			order.info['timestamp'] = moment(order.info.timestamp).format('DD.MM.YYYY HH:mm')
 			return order
 		}
+	},
+	chatActive: function() {
+		return Session.get('chatActive')
 	}
 })
 

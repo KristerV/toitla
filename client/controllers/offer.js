@@ -85,5 +85,8 @@ Template.offer.events({
 	},
 	'click a.chef-info': function(e, tmpl) {
 		Global.setOverlay('chefInfo', {chefId: this.chefId})
+	},
+	'click a.offer-chat': function(e, tmpl) {
+		Session.set('chatActive', this._id)
 	}
 })
