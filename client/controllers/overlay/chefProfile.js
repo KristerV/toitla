@@ -7,6 +7,14 @@ Template.chefProfile.helpers({
 		else
 			return chef.profile
 	},
+	email: function() {
+		var chef = Meteor.users.findOne(Session.get("overlayOptions").chefId)
+
+		if (_.isUndefined(chef) || _.isUndefined(chef.emails) || _.isUndefined(chef.emails[0]) || _.isUndefined(chef.emails[0].address))
+			return ''
+		else
+			return chef.emails[0].address
+	},
 	isOwner: function() {
 		var chefId = Session.get("overlayOptions").chefId
 		var userId = Meteor.userId()
@@ -22,39 +30,38 @@ Template.chefProfile.helpers({
 var map = false
 var geocoder = false
 var marker = false
+var locationResult = false
 
-var locationByAddress = function(address) {
-	console.log('loc')
+var lastAddressQuery = '';
+var setLocationByAddress = function(address) {
+	if (lastAddressQuery === address)
+		return
+
 	geocoder.geocode({'address': address}, function(results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
-			map.setCenter(results[0].geometry.location);
 			if (marker) {
 				marker.setMap(null)
 			}
+
+			locationResult = results[0];
+			map.setCenter(locationResult.geometry.location);
+			map.setZoom(14);
 			marker = new google.maps.Marker({
 				map: map,
-				position: results[0].geometry.location
+				position: locationResult.geometry.location
 			});
 		} else {
-			alert("Geocode was not successful for the following reason: " + status);
+			console.log("Geocode was not successful for the following reason: " + status);
 		}
 	});
 }
 var updateMap = function() {
-	// if the profile is not present, do not show the map
-	if (0 == $('form[name=chefProfile]').length) {
-		$('#profile-map').css('height', '0')
+	// when map is not initialized somewhy
+	if (!map)
 		return
-	}
-	$('#profile-map').css('height', '300')
 
 	var values = Global.getFormValues('chefProfile')
 
-	// if city is not set, do not show the map (nor make a query about the location)
-	if (!values.city) {
-		$('#profile-map').css('height', '0')
-		return
-	}
 
 	// find the location by city&street
     var address = values.city;
@@ -65,7 +72,7 @@ var updateMap = function() {
     	}
     	address = street + ', ' + address;
     }
-    locationByAddress(address);
+    setLocationByAddress(address);
 
     /*
 	$.get('http://nominatim.openstreetmap.org/search?format=json&limit=1&city=' +
@@ -111,42 +118,57 @@ var updateMap = function() {
 
 Template.chefProfile.rendered = function() {
 
+	$(function() {
 
-	setTimeout(function() {
-
-		new google.maps.LatLng(37.7699298, -122.4469157);
+		var tallinn = new google.maps.LatLng(59.437222, 24.745278);
 
 		var mapOptions = {
-	      center: { lat: -34.397, lng: 150.644},
-	      zoom: 8
+			center: tallinn,
+			zoom: 10
 	    };
-	    map = new google.maps.Map(document.getElementById('profile-map'), mapOptions);
+	    map = new google.maps.Map($('#profile-map')[0], mapOptions);
 
 	    geocoder = new google.maps.Geocoder();
-		
-	}, 2000)
+		updateMap();
+	})
 	// update map, when dom is ready,
 	// and wait a bit before you do (let meteor load content)..
 	//$(function() {setTimeout(updateMap, 1000)})	
 }
 
+
+var searchKeyTimeout = false
 Template.chefProfile.events({
-	'blur input[name="street"]': function(e, tmpl) {
+	'blur input[name="street"],input[name="city"],input[name="house"]': function(e, tmpl) {
 		updateMap()
+	},
+	'keyup input[name="street"],input[name="city"],input[name="house"]' : function(e, tmpl) {
+		if (searchKeyTimeout)
+			clearTimeout(searchKeyTimeout)
+
+		searchKeyTimeout = setTimeout(updateMap, 1000)
 	},
 	'submit form[name="chefProfile"]': function(e, tmpl) {
 		e.preventDefault()
 		var values = Global.getFormValues('chefProfile')
-		Meteor.users.update(Meteor.userId(), {$set: {profile: values}})
-		Global.closeOverlay()
 
-		$.get('http://nominatim.openstreetmap.org/search?format=json&limit=1&city=' +
-			values.city + '&street=' + values.street + '&country=ee', function(data)
-		{
-			var place = data[0];
-			if (place) {
-				Meteor.users.update(Meteor.userId(), {$set: {'profile.location': place}})
-			}
-		})
+		console.log(locationResult);
+
+		if (!locationResult) {
+			// TODO tell user that we were not able to find its given location
+			return
+		}
+		values.location = locationResult;
+
+		var user = Meteor.user()
+		var oldEmail = user.emails && user.emails[0] ? user.emails[0].address : '';
+
+		if (oldEmail != values.email) {
+			Meteor.call('changeEmail', Meteor.userId(), values.email)
+		}
+		Meteor.users.update(Meteor.userId(), {$set: {
+			profile: values
+		}})
+		Global.closeOverlay()
 	}
 })
