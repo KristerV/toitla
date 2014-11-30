@@ -16,6 +16,7 @@ template(name="chefProfile")
 					input(type="text" name="street" value="{{street}}" required)
 					label(required="required") {{T "House nr"}}
 					input(type="text" class="small" name="house" value="{{house}}" required)
+					#profile-map
 					textarea(name="bio" placeholder="{{T 'Short description about yourself...'}}") {{bio}}
 					input(type="submit" value="{{T 'Save'}}")
 			else
