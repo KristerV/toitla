@@ -17,7 +17,12 @@ var setMarker = function(place) {
   map.setZoom(14)
   marker.setPosition(place.geometry.location)
   marker.setVisible(true)
-  drawCircle(1)
+  drawCircle(getRangeValue())
+}
+
+var getRangeValue = function() {
+	slider = $('.circle-range')
+	return parseInt(slider.val())
 }
 
 //circleRadius in km
@@ -75,7 +80,6 @@ Template.confirmOrder.events({
   },
   'change input[type="range"]' : function(e) {
   	e.preventDefault()
-		var slider = $(e.currentTarget)
-		drawCircle(parseInt(slider.val()))
+		drawCircle(getRangeValue())
   }
 })
