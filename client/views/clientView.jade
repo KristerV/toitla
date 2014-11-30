@@ -1,15 +1,22 @@
 template(name="clientView")
-	section.two-columns
-		header.offers
-			h1 {{ orderData.info.description }}
-			p {{ T '{timestamp}, {location}' orderData.info }}
-			strong {{T "Chef offers"}}
-			p 
-				| {{T "Choose an offer you're satisfied with or use the chat to discuss the details."}}
-				| {{T "Chef contact details will be revealed after confirmation"}}
-				| {{T "If you leave this page, offers will be emailed to you."}}
-		.offers
-			each offersForClient
-				+offer
-			else
-				strong.centered {{T "Please wait for the chefs to make you an offer"}}
+	.clientView
+		.row
+			.col-sm-6
+				.row
+					.col-sm-12
+						h1 Minu tellimus
+				.row
+					.col-sm-12
+						.float-left
+							p Mingi tekst
+							p Kahe realine
+						p.float-right Tühista nupp
+
+				.row
+					.col-sm-12
+						each offersForClient
+							+offer
+						else
+							p Meil on su email..
+			.col-sm-6
+				h1 Map
