@@ -17,14 +17,20 @@ var setMarker = function(place) {
   map.setZoom(14)
   marker.setPosition(place.geometry.location)
   marker.setVisible(true)
-  drawCircle(1000)
+  drawCircle(1)
 }
 
-//circle radius on metres
+//circleRadius in km
 var drawCircle = function(circleRadius) {
+	if (circleRadius >= 3) {
+		map.setZoom(12)
+	} else {
+		map.setZoom(13)
+	}
 	rangeCircle.setCenter(marker.getPosition())
-	rangeCircle.setRadius(circleRadius)
+	rangeCircle.setRadius(circleRadius*1000)
 	rangeCircle.setVisible(true);
+
 }
 
 Template.confirmOrder.rendered = function() {
@@ -68,6 +74,6 @@ Template.confirmOrder.events({
   'change input[type="range"]' : function(e) {
   	e.preventDefault()
 		var slider = $(e.currentTarget)
-		drawCircle(parseInt(slider.val())*1000)
+		drawCircle(parseInt(slider.val()))
   }
 })
