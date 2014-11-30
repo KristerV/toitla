@@ -11,4 +11,9 @@ template(name="navbar")
 				li
 					a(href="#") link
 				li
-					a(href="#") link
+					if currentUser
+						a#myprofile {{T "My Profile"}}
+						//a#logout.uppercase {{T "Logout"}}
+					else
+						a#register {{T "Register as a chef"}}
+						//a#login.uppercase {{T "Login"}}

@@ -13,6 +13,26 @@ Meteor.methods({
 			OrderCollection.update(orderId, {$set: {'info.updatedAt': updatedAt}})
 		};
 	},
+	changeEmail : function(userId, email) {
+
+		check(userId, String)
+		check(email, String)
+
+		var usersCheck = Meteor.users.find({'emails.address' : email}).fetch();
+
+		if (usersCheck && usersCheck.length) {
+			// found a user with the same email
+			console.log('email already in use')
+			return
+		}
+
+		Meteor.users.update(userId, {$set: {
+			emails: [{
+                address: email,
+                verified: false
+            }]
+		}})
+	},
 	newOrder : function(order) {
 
 		check(order, {
