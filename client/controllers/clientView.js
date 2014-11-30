@@ -1,3 +1,6 @@
+var tallinn = new google.maps.LatLng(59.437222, 24.745278);
+var map = null;
+
 Template.clientView.helpers({
 	offersForClient: function() {
 		var offers = Offer.getOrderOffersForClient(Session.get("orderId"), {sort: {createdAt: 1}})
@@ -31,4 +34,10 @@ Template.clientView.rendered = function() {
 		if (!Meteor.user() && !order.instructionsShown)
 			Global.setOverlay('clientInstructionsOverlay')
 	}, 1000)
+  var mapOptions = {
+    //TODO: center should be order location
+    center: tallinn,
+    zoom: 12
+  };
+  map = new google.maps.Map(document.getElementById('offer-map'), mapOptions);
 }

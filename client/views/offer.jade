@@ -1,42 +1,19 @@
 template(name="offer")
 	.offer-block
-		section.form-box
-			header
-				.order
-					h3 {{info.description}}
-
-					p
-						a.chef-info {{chefInfo}}
-					p {{orderDateTime}} {{info.location}}
-			.offer
-				if this.rejected
-					p.rejected {{T 'Offer was rejected by the client'}}
-				if offerIsWon
-					h3.uppercase {{T "Offer"}}
-					p {{content}}
-					p.price {{T "Price"}} {{price}}
-					if thisOfferIsWinner
-						with chefProfile
-							h3.color-green {{T "Great! You've found a chef. Here is your chef's contact information."}}
-							p {{T "Phone nr"}}: {{telephone}}
-							p {{T "Address"}}: {{city}}, {{street}} {{house}}
-					else
-						h3 {{T "Another offer has been confirmed, so this one is inactive. You may still chat to the chef though."}}
-				else	
-					h3.uppercase {{T "Offer"}}
-					p {{content}}
-					if price
-						p.price {{T "Price"}}  {{price}}
+		.row
+			.col-sm-12
+				p.float-left {{chefName}}
+				p.float-right Chef
+				p.float-right Chat
+				p.float-right
 					if editingOffer
-						p {{T "Offer is being edited by the chef and cannot be confirmed"}}
+						p {{T "chef is editing"}}
 					else
-						a.confirm-offer.button {{T "Confirm offer"}}
-		section.chat.form-box.beige
-			h3.uppercase {{T "Chat"}}
-			each messages
-				.message
-					div.uppercase.gray {{author}} {{time}}
-					p {{msg}}
-			form(name="chat")
-				textarea(name="msg" required="required")
-				input(type="submit" value="{{T 'Answer'}}")
+						a {{T "Confirm offer"}}
+		.row
+			.col-sm-12
+				p {{content}}
+		.row
+			.col-sm-12
+				p {{T "Price"}}: {{price}}
+		hr

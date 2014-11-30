@@ -59,11 +59,11 @@ var drawCircle = function() {
 
 Template.confirmOrder.rendered = function() {
  	setCurrentLocation();
-  var defaultOptions = {
+  var mapOptions = {
      center: tallinn,
      zoom: 12
    };
-  map = new google.maps.Map(document.getElementById('confirmation-map'), defaultOptions);
+  map = new google.maps.Map(document.getElementById('confirmation-map'), mapOptions);
   autocomplete = new google.maps.places.Autocomplete((document.getElementById('map-autocomplete')),{ types: ['geocode'] });
   marker = new google.maps.Marker({ map: map, visible: false })
   var circleOptions = {

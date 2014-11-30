@@ -21,6 +21,7 @@ Template.offer.helpers({
 		return moment(this.info.timestamp).format('D.M.YYYY HH:mm')
 	},
 	chefInfo : function() {
+		console.log(this)
 		var chef = Meteor.users.findOne(this.chefId)
 		if (!chef) {
 			return ''
@@ -53,6 +54,14 @@ Template.offer.helpers({
 	},
 	content: function() {
 		return Functions.formatText(this.content)
+	},
+	
+	// Toitla v2
+	chefName: function() {
+		var chef = Meteor.users.findOne(this.chefId)
+		if (!chef)
+			return false
+		return chef.profile.name
 	}
 })
 
