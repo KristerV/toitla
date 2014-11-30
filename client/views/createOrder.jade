@@ -1,21 +1,88 @@
 template(name="createOrder")
-	form(role="form")
-		.container
-			.row
-				.col-sm-12
-					p Söö. Jaga. Korda
-			.row
-				.col-sm-12
-					p Imelised hõrgutised
-			.row
-				.col-sm-6
-					input.form-control(value="1")
-				.col-sm-6
-					input.form-control(value="2")
-			.row
-				.col-sm-12
-					input.form-control.input-lg
-			.row
-				.col-sm-12
-					input.form-control(type="submit")
+	.create-order
 
+		// First page
+		section
+
+			// Form
+			form(role="form")
+				.row
+					.col-sm-12
+						p Söö. Jaga. Korda
+				.row
+					.col-sm-12
+						p Imelised hõrgutised
+				.row
+					.col-sm-6
+						input.form-control(value="1")
+					.col-sm-6
+						input.form-control(value="2")
+				.row
+					.col-sm-12
+						input.form-control.input-lg
+				.row
+					.col-sm-12
+						input.form-control(type="submit")
+			// How to
+			.row
+				.col-sm-3 HowTo1
+				.col-sm-3 HowTo2
+				.col-sm-3 HowTo3
+				.col-sm-3 HowTo4
+
+			// Social
+			.row.social
+				.col-sm-4 Link1
+				.col-sm-4 Link2
+				.col-sm-4 Link3
+
+		// Second page
+		section
+			.row
+				.col-sm-6(style="background-color: rgba(0,111,111,0.2)")
+					h1 Meie lemmikud
+					p Kirjeldus
+					.row
+						.col-sm-3 pilt1
+						.col-sm-3 pilt2
+						.col-sm-3 pilt3
+						.col-sm-3 pilt4
+				.col-sm-6(style="background-color: rgba(122,0,122,0.2)")
+					h1 Suur Pilt
+
+		// Third page
+		section
+			.row
+				.col-sm-6(style="background-color: rgba(133,133,0,0.2)")
+					p.vcenter Kasutaja kogemuse tekst. Kasutaja kogemuse tekst.Kasutaja kogemuse tekst.Kasutaja kogemuse tekst.
+				.col-sm-6(style="background-color: rgba(144,0,0,0.2)")
+					p.vcenter Kasutaja kogemuse tekst. Kasutaja kogemuse tekst.Kasutaja kogemuse tekst.Kasutaja kogemuse tekst.
+
+		// Fourth page
+		section
+			.row
+				// Chef register
+				.col-sm-6(style="background-color: rgba(0,0,155,0.2)")
+					form(role="form")
+						h1 Registreeru kokaks
+						.form-group
+							label(for="name") Name
+							input.form-control#name(type="text")
+						.form-group
+							label(for="email") Email
+							input.form-control#email(type="text")
+						.form-group
+							label(for="password") Password
+							input.form-control#password(type="text")
+						.form-group
+							label(for="repeat-password") Repeat password
+							input.form-control#repeat-password(type="text")
+						.checkbox
+							label
+								input(type="checkbox" value="terms")
+								| I agree to the terms
+						input.form-control(type="submit")
+
+				// Random picture, yea :)
+				.col-sm-6(style="background-color: rgba(0,166,0,0.2)")
+					h1 Random picture :)
