@@ -1,93 +1,88 @@
 template(name="createOrder")
+	.create-order
 
-	// First page
-	section
-		// Background
-		.row
-			// bg 1
-			.col-sm-6(style="background-color:rgba(255,0,0,0.3);height:100%;")
-			// bg 2
-			.col-sm-6(style="background-color:rgba(0,0,255,0.3);height:100%;")
+		// First page
+		section
 
-		// Form
-		form(role="form")
-			.row
-				.col-sm-12
-					p Söö. Jaga. Korda
-			.row
-				.col-sm-12
-					p Imelised hõrgutised
-			.row
-				.col-sm-6
-					input.form-control(value="1")
-				.col-sm-6
-					input.form-control(value="2")
-			.row
-				.col-sm-12
-					input.form-control.input-lg
-			.row
-				.col-sm-12
-					input.form-control(type="submit")
-		// How to
-		.row
-			.col-sm-3 HowTo1
-			.col-sm-3 HowTo2
-			.col-sm-3 HowTo3
-			.col-sm-3 HowTo4
-
-		// Social
-		.row
-			.col-sm-4 Link1
-			.col-sm-4 Link2
-			.col-sm-4 Link3
-
-	// Second page
-	section
-		.row
-			.col-sm-6
-				h1 Meie lemmikud
-				p Kirjeldus
+			// Form
+			form(role="form")
 				.row
-					.col-sm-3 pilt1
-					.col-sm-3 pilt2
-					.col-sm-3 pilt3
-					.col-sm-3 pilt4
-			.col-sm-6
-				h1 Suur Pilt
+					.col-sm-12
+						p Söö. Jaga. Korda
+				.row
+					.col-sm-12
+						p Imelised hõrgutised
+				.row
+					.col-sm-6
+						input.form-control(value="1")
+					.col-sm-6
+						input.form-control(value="2")
+				.row
+					.col-sm-12
+						input.form-control.input-lg
+				.row
+					.col-sm-12
+						input.form-control(type="submit")
+			// How to
+			.row
+				.col-sm-3 HowTo1
+				.col-sm-3 HowTo2
+				.col-sm-3 HowTo3
+				.col-sm-3 HowTo4
 
-	// Third page
-	section
-		.row
-			.col-sm-6
-				h1 Kasutaja kogemused
-			.col-sm-6
-				h1 Kasutaja kogemused
+			// Social
+			.row.social
+				.col-sm-4 Link1
+				.col-sm-4 Link2
+				.col-sm-4 Link3
 
-	// Fourth page
-	section
-		.row
-			// Chef register
-			.col-sm-6
-				form(role="form")
-					h1 Registreeru kokaks
-					.form-group
-						label(for="name") Name
-						input.form-control#name(type="text")
-					.form-group
-						label(for="email") Email
-						input.form-control#email(type="text")
-					.form-group
-						label(for="password") Password
-						input.form-control#password(type="text")
-					.form-group
-						label(for="repeat-password") Repeat password
-						input.form-control#repeat-password(type="text")
-					.checkbox
-						label
-							input(type="checkbox" value="terms")
-							| I agree to the terms
-					input.form-control(type="submit")
+		// Second page
+		section
+			.row
+				.col-sm-6
+					h1 Meie lemmikud
+					p Kirjeldus
+					.row
+						.col-sm-3 pilt1
+						.col-sm-3 pilt2
+						.col-sm-3 pilt3
+						.col-sm-3 pilt4
+				.col-sm-6
+					h1 Suur Pilt
 
-			// Random picture, yea :)
-			.col-sm-6
-				h1 Random picture :)
+		// Third page
+		section
+			.row
+				.col-sm-6
+					p.vcenter Kasutaja kogemuse tekst. Kasutaja kogemuse tekst.Kasutaja kogemuse tekst.Kasutaja kogemuse tekst.
+				.col-sm-6
+					p.vcenter Kasutaja kogemuse tekst. Kasutaja kogemuse tekst.Kasutaja kogemuse tekst.Kasutaja kogemuse tekst.
+
+		// Fourth page
+		section
+			.row
+				// Chef register
+				.col-sm-6
+					form(role="form")
+						h1 Registreeru kokaks
+						.form-group
+							label(for="name") Name
+							input.form-control#name(type="text")
+						.form-group
+							label(for="email") Email
+							input.form-control#email(type="text")
+						.form-group
+							label(for="password") Password
+							input.form-control#password(type="text")
+						.form-group
+							label(for="repeat-password") Repeat password
+							input.form-control#repeat-password(type="text")
+						.checkbox
+							label
+								input(type="checkbox" value="terms")
+								| I agree to the terms
+						input.form-control(type="submit")
+
+				// Random picture, yea :)
+				.col-sm-6
+					h1 Random picture :)

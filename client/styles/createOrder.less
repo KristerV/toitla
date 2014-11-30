@@ -1,0 +1,22 @@
+@import "variables";
+
+.create-order {
+	height: 100%;
+	section {
+		height: @col-height;
+		border: 1px solid black;
+	}
+	section:first-child {
+		form {
+			max-width: 500px;
+			margin: auto;
+		}
+	}
+	section:not(:first-child) > .row > div {
+		height: @col-height;
+	}
+	.social {
+		max-width: 100px;
+		margin: auto;
+	}
+}
