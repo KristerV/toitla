@@ -10,6 +10,10 @@ template(name="confirmOrder")
 						input.form-control(type="text")
 					.form-group
 						label seletav tekst
-						input.order-range(type="hidden")
+						input(type="range" min="1" max="5" step="1")
+					.form-group
+						label Email
+						input.form-control(type="text")
+					input.form-control(type="submit")
 			.col-sm-6
 				h1 Kaart
