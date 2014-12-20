@@ -1,6 +1,6 @@
 template(name="clientView")
-	.clientView
-		.row
+	.clientView.height-100
+		.row.height-100
 			.col-sm-6
 				.row
 					.col-sm-12
@@ -18,7 +18,5 @@ template(name="clientView")
 							+offer
 						else
 							p Meil on su email..
-			.col-sm-6
-				if chatActive
-					+offerChat
-				h1 Map
+			.col-sm-6.height-100
+				#offer-map.height-100
