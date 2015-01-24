@@ -4,7 +4,7 @@ Template.index.helpers({
 })
 
 Template.index.rendered = function() {
-	document.title = T('Homecooks')
+	document.title = T('site_title')
 	console.log(document.title);
 	$('head').append('<meta name="viewport" content="width=device-width, initial-scale=1">')
 
