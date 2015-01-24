@@ -1,8 +1,11 @@
-// OrderCollection = new Meteor.Collection('order');
+OrderCollection = new Meteor.Collection('order');
 
 Orders = {
 	findOne: function(id) {
-		return OrderCollection.findOne(id);
+		if (id)
+			return OrderCollection.findOne(id);
+		else
+			return OrderCollection.findOne();
 	}
 };
 

@@ -1,3 +1,4 @@
+
 OfferCollection.allow({
 	insert: function (userId, doc) {
 		return false

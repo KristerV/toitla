@@ -10,7 +10,7 @@ Package.onUse(function(api) {
 	api.export('Orders');
 	api.export('Offers');
 	api.addFiles(['offers.js', 'orders.js']);
-	//api.addFiles('publish.js', 'server');
+	api.addFiles(['allow.js', 'publish.js'], 'server');
 });
 
 Package.onTest(function(api) {
