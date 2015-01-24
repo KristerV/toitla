@@ -6,7 +6,6 @@
 meteor-platform
 mquandalle:jade
 less
-mizzao:timesync
 audit-argument-checks
 iron:router@1.0.0-pre4
 email

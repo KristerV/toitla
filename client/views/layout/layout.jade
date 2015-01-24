@@ -1,0 +1,11 @@
+template(name="layout")
+	nav.navbar.navbar-inverse
+		div.container
+			div.navbar-header
+				a.navbar-brand(href="#") Toitla
+		.collapse.navbar-collapse
+			+navbar
+	.container
+		+yield
+
+
