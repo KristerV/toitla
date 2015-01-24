@@ -8,7 +8,9 @@ Package.describe({
 Package.onUse(function(api) {
 	api.versionsFrom('1.0');
 	api.use('toitla:database');
-	api.use('servicelocale:googlemaps-api');
+	//api.imply('servicelocale:googlemaps-api');
+	
+	//api.addFiles('gmap.js', 'client');
 	
 	api.addFiles('map-api.js');
 	api.addFiles('map.js', 'server');

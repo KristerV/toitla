@@ -5,19 +5,30 @@ Template.confirm_order.events({
 	}
 });
 
+
 var map = null;
 Template.confirm_order.rendered = function() {
 	
-	$(function() {
-		var tallinn = new google.maps.LatLng(59.437222, 24.745278);
 		
-		var mapOptions = {
-				// TODO: center should be order location
-				center : tallinn,
-				zoom : 12
-		};
-		map = new google.maps.Map(document.getElementById('offer-map'), mapOptions);
+		GoogleMaps.ready('offer-map', function(map) {
+			console.log(map);
+		});
+		/*
 		
-		//map = Map.createMap('offer-map');
-	});
+		setTimeout(function() {
+			
+			
+			
+			var tallinn = new google.maps.LatLng(59.437222, 24.745278);
+			
+			var mapOptions = {
+					// TODO: center should be order location
+					center : tallinn,
+					zoom : 12
+			};
+			map = new google.maps.Map(document.getElementById('offer-map'), mapOptions);
+		}, 1000);*/
+		
+	
+	//map = Map.createMap('offer-map');
 };
