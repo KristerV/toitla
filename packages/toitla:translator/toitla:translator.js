@@ -18,8 +18,10 @@ T = function(keyword, obj) {
 	lang = Session.get('locale')
 
 	// Does translation exist?
+	if (_.isUndefined(Translations[keyword]))
+		throw new Meteor.Error('translation-missing', 'Translation missing: keyword: '+keyword)
 	if (_.isUndefined(Translations[keyword][lang]))
-		throw new Meteor.Error('translation-missing', 'Translation missing: lang: '+lang+', keyword: '+keyword)
+		throw new Meteor.Error('translation-missing-language', 'Translation missing: lang: '+lang+', keyword: '+keyword)
 
 	// Translate
 	translation = Translations[keyword][lang]
