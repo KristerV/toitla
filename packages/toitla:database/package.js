@@ -1,14 +1,14 @@
 Package.describe({
 	name : 'toitla:database',
-	summary : ' /* Fill me in! */ ',
+	summary : 'Methods for manipulating with Toitla\'s database',
 	version : '1.0.0',
 	git : ' /* Fill me in! */ '
 });
 
 Package.onUse(function(api) {
 	api.versionsFrom('1.0');
-	api.export('OrderCollection');
-	api.export('OfferCollection');
+	api.export('Orders');
+	api.export('Offers');
 	api.addFiles('toitla:database.js');
 });
 
