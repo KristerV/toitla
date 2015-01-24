@@ -13,11 +13,15 @@ UI.registerHelper('T', function(keyword, obj) {
 *     For example you can style a variable keyword with a class {obj: {str: 'keyword', cls: 'class-name'}}
 */
 T = function(keyword, obj) {
+	Log.info()
+	return "";
 
 	var translation
 	lang = Session.get('locale')
 
 	// Does translation exist?
+	if (_.isUndefined(keyword))
+		throw new Meteor.Error('translation-keyword-missing', 'Translation keyword not supplied.')
 	if (_.isUndefined(Translations[keyword]))
 		throw new Meteor.Error('translation-missing', 'Translation missing: keyword: '+keyword)
 	if (_.isUndefined(Translations[keyword][lang]))
