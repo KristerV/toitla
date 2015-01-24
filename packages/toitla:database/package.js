@@ -9,7 +9,8 @@ Package.onUse(function(api) {
 	api.versionsFrom('1.0');
 	api.export('Orders');
 	api.export('Offers');
-	api.addFiles('toitla:database.js');
+	api.addFiles(['offers.js', 'orders.js']);
+	//api.addFiles('publish.js', 'server');
 });
 
 Package.onTest(function(api) {
