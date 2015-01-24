@@ -13,24 +13,21 @@ UI.registerHelper('T', function(keyword, obj) {
 *     For example you can style a variable keyword with a class {obj: {str: 'keyword', cls: 'class-name'}}
 */
 T = function(keyword, obj) {
+
+	var translation
 	lang = Session.get('locale')
 
-	var value
-	// English is not translated
-	if (_.isUndefined(lang) || lang == 'en') {
-		value = keyword
-	}
 	// Does keyword and translation exist?
-	else if (_.isUndefined(Translations[keyword])) {
-		value = keyword
+	if (_.isUndefined(Translations[keyword])) {
+		new Meteor.Error('Ideetranslation-missing', 'There is no such keyword in translations: ' + keyword)
 	}
 	else {
-		value = Translations[keyword]
+		translation = Translations[keyword]
 	}
 
 	// replace placeholders, i.e 'Hello, {name}'
 	if (obj) {
-		value = value.replace(/\{([a-zA-Z0-9]+)\}/g, function(match, key) {
+		translation = translation.replace(/\{([a-zA-Z0-9]+)\}/g, function(match, key) {
 			if ('object' == typeof obj) {
 
 				// if key doesn't exist, return original
@@ -56,5 +53,5 @@ T = function(keyword, obj) {
 	}
 
 	// Return translation
-	return Functions.formatText(value)
+	return Functions.formatText(translation)
 }
