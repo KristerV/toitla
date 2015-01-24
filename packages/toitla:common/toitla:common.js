@@ -8,14 +8,30 @@ Common = {
 	},
 	/*
 	* Replaces %s variables in arg1 with arg2, arg3, ...
-	* stringf(arg1, arg2, arg3, ...)
+	* formatString(arg1, arg2, arg3, ...)
 	*/
-	stringf: function() {
-		// var regex = /%(s|d)/g
-		// var string = ["üks","kaks","kolm"].pop()
-		// console.log(string)
+	formatString: function() {
+		arguments = Common.argumentsToArray(arguments)
+		var string = arguments.shift()
 
-		// string.replace(regex, function)
+		string = string.replace(/%(s|d)/g, function(match, key){
+
+			// Arguments length check 1
+			if (_.isEmpty(this))
+				throw new Meteor.Error('formatString-indexOutOfBounds', 'Too few arguments.')
+
+			return this.shift()
+
+		}.bind(arguments))
+
+		// Arguments length check 2
+		if (arguments.length !== 0)
+			throw new Meteor.Error('formatString-tooManyArguments', 'Too few matches or too many arguments.')
+
+		return string
+	},
+	argumentsToArray: function(arguments) {
+		return Array.prototype.slice.call(arguments);
 	}
 };
 
