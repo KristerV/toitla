@@ -1,14 +1,13 @@
 Package.describe({
 	name: 'toitla:translator',
-	summary: ' /* Fill me in! */ ',
+	summary: 'Keyword based translator with key:value logic',
 	version: '1.0.0',
 	git: ' /* Fill me in! */ '
 });
 
 Package.onUse(function(api) {
-	//api.use('nemo64:translator'); // does not work with meteor .9+
 	api.versionsFrom('1.0');
-	api.addFiles('toitla:translator.js');
+	api.addFiles('toitla:translator.js', ['client', 'server']);
 });
 
 Package.onTest(function(api) {
