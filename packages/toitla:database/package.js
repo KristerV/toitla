@@ -7,10 +7,12 @@ Package.describe({
 
 Package.onUse(function(api) {
 	api.versionsFrom('1.0');
+	api.addFiles(['offers/offers-api.js', 'orders/orders-api.js']);	
+	api.addFiles(['offers/offers.js', 'orders/orders.js'], 'server');
+	api.addFiles(['allow.js', 'publish.js'], 'server');
+	
 	api.export('Orders');
 	api.export('Offers');
-	api.addFiles(['offers.js', 'orders.js']);
-	api.addFiles(['allow.js', 'publish.js'], 'server');
 });
 
 Package.onTest(function(api) {

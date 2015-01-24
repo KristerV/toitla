@@ -1,0 +1,1 @@
+OfferCollection = new Meteor.Collection('offer');

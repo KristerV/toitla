@@ -1,12 +1,12 @@
 
 OfferCollection.allow({
 	insert: function (userId, doc) {
-		return false
+		return true;
 	},
 	update: function (userId, doc, fields, modifier) {
-		return false
+		return false;
 	},
 	remove: function (userId, doc) {
-		return false
+		return false;
 	},
 })

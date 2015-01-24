@@ -1,9 +1,15 @@
 Template.index.events({
 	'submit form' : function(e, template) {
 		e.preventDefault();
-		var fields = ClientHelper.getFormValues(e.target);
-		
-		Router.go('create-order', {_id:123});
+		var order = ClientHelper.getFormValues(e.target);
+		Orders.add(order, function(err, orderId) {
+			if (err) {
+				throw new Meteor.Error('order-add-fail', 'Error adding order', err);
+			}
+			else {
+				Router.go('finalize-order', {_id:orderId});
+			}
+		});
 	}
 });
 
@@ -12,7 +18,7 @@ Template.index.rendered = function() {
 	$('head').append('<meta name="viewport" content="width=device-width, initial-scale=1">');
 
 	if ('undefined' == typeof Configuration) {
-		alert('Hey, developer! \n\n Yes you!\nPlease provide a /lib/configuration.js \n(there is an example also).');
+		alert('Hey, Krister! \n\n Yes you!\nPlease provide a /lib/configuration.js \n(there is an example file also).');
 	}
 	
 	Meteor.setTimeout(function(){

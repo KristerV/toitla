@@ -18,7 +18,6 @@ UI.registerHelper('T', function(string, obj) {
 T = function(string, obj) {
 	lang = 'et'
 
-
 	var value
 	// English is not translated
 	if (_.isUndefined(lang) || lang == 'en') {

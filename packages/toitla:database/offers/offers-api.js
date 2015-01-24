@@ -1,4 +1,3 @@
-OfferCollection = new Meteor.Collection('offer');
 // General methods
 Offers = {
 	findOne: function(id) {

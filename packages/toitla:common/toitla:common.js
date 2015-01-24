@@ -20,11 +20,13 @@ Common = {
 };
 
 ClientHelper = {
-	getFormValues : function(formName) {
-		if (formName instanceof jQuery)
-			var values = formName.serializeArray();
-		else
-			var values = $('form[name="' + formName + '"]').serializeArray();
+	getFormValues : function(form) {
+		if ('string' == typeof form) {
+			var values = $('form[name="' + form + '"]').serializeArray();
+		}
+		else {
+			var values = $(form).serializeArray();
+		}
 		var data = {};
 		for (var i = 0; i < values.length; i++) {
 			var a = values[i];
