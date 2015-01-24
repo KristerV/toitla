@@ -11,6 +11,7 @@ blaze-tools@1.0.2
 boilerplate-generator@1.0.2
 callback-hook@1.0.2
 check@1.0.4
+dburles:google-maps@1.0.3
 ddp@1.0.14
 deps@1.0.6
 ejson@1.0.5
@@ -71,6 +72,7 @@ toitla:date@1.0.0
 toitla:locale@1.0.0
 toitla:logging@1.0.0
 toitla:mail@1.0.0
+toitla:map@1.0.0
 toitla:translator@1.0.0
 tracker@1.0.5
 ui@1.0.5

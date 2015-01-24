@@ -1,4 +1,4 @@
-Map = {
+MapCalculations = {
 	toRad: function(a) {
 		check(a, Number);
 		return a * Math.PI / 180;
@@ -36,29 +36,29 @@ Map = {
 			lat: Number,
 			lng: Number,
 			radius: Number
-		})
+		});
 
-		var users = Meteor.users.find().fetch()
+		var chefs = Chefs.getAll();
 
-		var result = []
-		for (var i = 0, l = users.length; i < l; ++i) {
-			var user = users[i]
+		var result = [];
+		for (var i = 0, l = chefs.length; i < l; ++i) {
+			var chef = chefs[i];
 
-			if (user.profile && user.profile.location) {
-				var userLocation = user.profile.location
-				if (userLocation.geometry && userLocation.geometry.location) {
-					userLocation = userLocation.geometry.location
+			if (chef.profile && chef.profile.location) {
+				var chefLocation = chef.profile.location;
+				if (chefLocation.geometry && chefLocation.geometry.location) {
+					chefLocation = chefLocation.geometry.location;
 					if (location.radius >= Map.distanceBetweenLatLon(location, {
 							// I have no idea why google named these keys like this
-							lat: userLocation.k,
-							lng: userLocation.B
+							lat: chefLocation.k,
+							lng: chefLocation.B
 						})) {
-						result.push(user)
+						result.push(chef);
 					}
 				}
 			}
 		}
 
-		return result
-	}
-}
+		return result;
+	},
+};

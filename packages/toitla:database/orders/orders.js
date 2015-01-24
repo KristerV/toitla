@@ -16,7 +16,7 @@ Meteor.methods({
 		return OrderCollection.insert(order);		
 	
 	},
-	'orders.finalize' : function(orderId, order) {
+	'orders.confirm' : function(orderId, order) {
 		check(id, String);
 		check(order, {
 			location: Match.Optional(String),

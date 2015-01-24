@@ -11,6 +11,7 @@ Package.onUse(function(api) {
 	api.imply('toitla:logging');
 	api.imply('toitla:locale');
 	api.imply('toitla:mail');
+	api.imply('toitla:map');
 	api.imply('toitla:database');
 	api.use('spacebars');
 	api.versionsFrom('1.0');

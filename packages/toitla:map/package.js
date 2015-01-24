@@ -1,14 +1,21 @@
 Package.describe({
 	name: 'toitla:map',
-	summary: ' /* Fill me in! */ ',
+	summary: 'Map functions and components for Toitla',
 	version: '1.0.0',
 	git: ' /* Fill me in! */ '
 });
 
 Package.onUse(function(api) {
-	api.imply('servicelocale:googlemaps-api');
 	api.versionsFrom('1.0');
-	api.addFiles('toitla:map.js');
+	api.use('toitla:database');
+	//api.imply('servicelocale:googlemaps-api');
+	
+	//api.addFiles('gmap.js', 'client');
+	
+	api.addFiles('map-api.js');
+	api.addFiles('map.js', 'server');
+	
+	api.export('Map');
 });
 
 Package.onTest(function(api) {
