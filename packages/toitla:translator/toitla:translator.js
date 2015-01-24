@@ -17,41 +17,37 @@ T = function(keyword, obj) {
 	var translation
 	lang = Session.get('locale')
 
-	// Does keyword and translation exist?
-	if (_.isUndefined(Translations[keyword])) {
-		new Meteor.Error('Ideetranslation-missing', 'There is no such keyword in translations: ' + keyword)
-	}
-	else {
-		translation = Translations[keyword]
-	}
+	// Does translation exist?
+	if (_.isUndefined(Translations[keyword][lang]))
+		throw new Meteor.Error('translation-missing', 'Translation missing: lang: '+lang+', keyword: '+keyword)
 
-	// replace placeholders, i.e 'Hello, {name}'
-	if (obj) {
-		translation = translation.replace(/\{([a-zA-Z0-9]+)\}/g, function(match, key) {
-			if ('object' == typeof obj) {
+	// Translate
+	translation = Translations[keyword][lang]
 
-				// if key doesn't exist, return original
-				if (!obj[key])
-					return match
+	// replace placeholders, i.i. "Hello, {name}"
+	var regex = /\{([a-zA-Z0-9]+)\}/g
+	if (translation.match(regex)) {
 
-				// replace placeholder
-				else if ('keyword' == typeof obj[key])
-	    			return obj[key]
+		// Basic error detection
+		if (!obj)
+			throw new Meteor.Error("translator-obj-missing")
+		else if (typeof obj != 'object')
+			throw new Meteor.Error("translator-obj-error")
 
-	    		// Or take into account extra options
-	    		else if ('object' == typeof obj[key]) { // want to style this thing
-	    			var str = obj[key]['str']
-	    			var cls = obj[key]['cls']
-	    			return '<span class="' + cls + '">' + str + '</span>'
-				}
-			}
-			else if ('keyword' == typeof obj) {
-				// if given value is keyword, use the value itself
-				return obj
-			}
-	    })
+		// Replace
+		translation = translation.replace(regex, function(match, key) {
+
+			// Basic error detection
+			if (!obj[key])
+				throw new Meteor.Error('translator-no-matching-key', 'Missing key: '+key)
+			else if (typeof obj[key] != 'string')
+				throw new Meteor.Error('translator-matching-key-error', 'Error key: '+key)
+
+			// Return replacement
+			return obj[key]
+		})
 	}
 
 	// Return translation
-	return Functions.formatText(translation)
+	return Common.safestring(translation)
 }

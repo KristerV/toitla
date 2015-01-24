@@ -9,6 +9,7 @@ Package.onUse(function(api) {
 	api.versionsFrom('1.0');
 	api.use('ui');
 	api.addFiles('toitla:translator.js', ['client', 'server']);
+	api.export('T')
 });
 
 Package.onTest(function(api) {

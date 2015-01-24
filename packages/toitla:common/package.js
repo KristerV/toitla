@@ -12,8 +12,10 @@ Package.onUse(function(api) {
 	api.imply('toitla:locale');
 	api.imply('toitla:mail');
 	api.imply('toitla:database');
+	api.use('spacebars');
 	api.versionsFrom('1.0');
 	api.addFiles('toitla:common.js');
+	api.export('Common', ['client', 'server'])
 });
 
 Package.onTest(function(api) {
