@@ -1,0 +1,16 @@
+template(name="confirmOrder")
+	.starter-template
+		.row
+			.col-sm-6
+				h1 {{T 'confirm_order'}}
+				form(name="order")
+					div Address
+						input#map-autocomplete(type="text" name="address")
+					div Range
+						input(type="range" name="range" id="range" value="3" min="1" max="10")
+					div Email
+						input(type="text" name="email")
+					div
+						input(type="submit" value="{{T 'confirm_order'}}")
+			.col-sm-6.order-map
+				+googleMap(name="order-map" options=mapOptions)
