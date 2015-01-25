@@ -1,39 +1,58 @@
+// TODO variables in template
+// TODO HTML in template
+// TODO Log everything
+// TODO Mail-send in server
+// TODO Write tests
+
 Tmail = {
-	send: function(to, subject, body, lang) {
+	send: function(to, subject, body) {
 		check(to, String)
 		check(subject, String)
 		check(body, String)
-		check(lang, String)
-		console.log("`````````Tmail.send´´´´´´´´´´´")
-		console.log(to)
-		console.log(subject)
-		console.log(body)
-		console.log("´ ´                        ` `")
+		Meteor.call('Mail-send', to, subject, body)
 
 	},
-	sendBulk: function(to, subject, body, lang) {
+	sendBulk: function(to, subject, body) {
 		check(to, [String])
 		check(subject, String)
 		check(body, String)
-		check(lang, String)
 
 		_.each(to, function(value, key, list) {
-			Tmail.send(value, this.subject, this.body, this.lang)
-		}, {subject: subject, body: body, lang: lang})
+			Tmail.send(value, this.subject, this.body)
+		}, {subject: subject, body: body})
 
 	},
-	sendTemplate: function(to, template, variables, lang) {
+	sendTemplate: function(to, lang, template, variables) {
 		check(to, String)
-		check(template, String)
-		check(variables, Object)
 		check(lang, String)
+		check(template, String)
+		check(variables, Match.Optional(Object))
+
+		var tmpl = Tmail.getTemplate(template, lang)
+
+		Tmail.send(to, tmpl.subject, tmpl.body)
 
 	},
-	sendBulkTemplate: function(to, template, variables, lang) {
+	sendBulkTemplate: function(to, lang, template, variables) {
 		check(to, [String])
-		check(template, String)
-		check(variables, Object)
 		check(lang, String)
+		check(template, String)
+		check(variables, Match.Optional(Object))
+
+		var tmpl = Tmail.getTemplate(template, lang)
+
+		_.each(to, function(value, key, list) {
+			Tmail.send(value, tmpl.subject, tmpl.body)
+		}, {lang: lang, template: template, variables: variables})
 
 	},
+	getTemplate: function(template, lang) {
+		if (!TmailTemplates)
+			throw new Meteor.Error('Tmail-no-templates-file')
+		else if (!TmailTemplates[template])
+			throw new Meteor.Error('Tmail-missing-template', 'template: ' + template)
+		else if (!TmailTemplates[template][lang])
+			throw new Meteor.Error('Tmail-missing-lang', 'template:'+template+', lang:'+lang)
+		return TmailTemplates[template][lang]
+	}
 }

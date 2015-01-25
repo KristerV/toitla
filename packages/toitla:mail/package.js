@@ -11,6 +11,7 @@ Package.onUse(function(api) {
 	api.versionsFrom('1.0');
 	api.export('Tmail')
 	api.addFiles('toitla:mail.js');
+	api.addFiles('server.js', 'server');
 });
 
 Package.onTest(function(api) {
