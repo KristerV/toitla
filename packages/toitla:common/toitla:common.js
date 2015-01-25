@@ -12,6 +12,9 @@ Common = {
 	*/
 	formatString: function() {
 
+		if (arguments.length <= 0 || !arguments[0])
+			return ''
+
 		// Change arguments into normal array
 		arguments = Common.argumentsToArray(arguments)
 

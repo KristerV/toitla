@@ -1,11 +1,14 @@
 Log = {
 	info: function(file, message) {
+		arguments = Common.argumentsToArray(arguments)
 		Log.write('info', arguments)
 	},
 	warning: function(file, message) {
+		arguments = Common.argumentsToArray(arguments)
 		Log.write('warning', arguments)
 	},
 	error: function(file, message) {
+		arguments = Common.argumentsToArray(arguments)
 		Log.write('error', arguments)
 	},
 	/*
@@ -16,6 +19,9 @@ Log = {
 	*/
 	write: function(level) {
 
+		// Fix arguments into real array
+		arguments = Common.argumentsToArray(arguments)
+
 		// First value is level
 		arguments.shift()
 
@@ -23,8 +29,6 @@ Log = {
 		if (arguments.length == 1 && typeof arguments[0] == 'object')
 			arguments = arguments[0]
 
-		// Fix arguments into real array
-		arguments = Common.argumentsToArray(arguments)
 
 		// Replace variabls in message
 		var file = arguments.shift()
