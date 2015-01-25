@@ -8,7 +8,7 @@ Meteor.methods({
 		// Allow both string and object to be inserted
 		var data = _.isObject(message) ? message : {message: message}
 		data['level'] = level
-		data['date'] = new Date().getTime()
+		data['date'] = new Date()
 
 		LogCollection.insert(data)
 	},
