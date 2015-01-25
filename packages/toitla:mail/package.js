@@ -9,6 +9,7 @@ Package.onUse(function(api) {
 	api.use('email');
 	api.use('toitla:logging');
 	api.versionsFrom('1.0');
+	api.export('Tmail')
 	api.addFiles('toitla:mail.js');
 });
 
