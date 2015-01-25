@@ -14,6 +14,8 @@ Common = {
 
 		if (arguments.length <= 0 || !arguments[0])
 			return ''
+		else if (arguments.length == 1)
+			return arguments[0]
 
 		// Change arguments into normal array
 		arguments = Common.argumentsToArray(arguments)
