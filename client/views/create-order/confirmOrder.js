@@ -11,6 +11,13 @@ var rangeCircle = null;
 var map = null;
 
 Template.confirmOrder.helpers({
+	confirmOrder : function() {
+		var order = Session.get('confirmOrder');
+		if (!order) {
+			return { range: 3 };
+		}
+		return order;
+	},
 	mapOptions : function() {
 		if (GoogleMaps.loaded()) {			
 			var tallinn = new google.maps.LatLng(59.437222, 24.745278);
@@ -60,12 +67,81 @@ Template.confirmOrder.events({
 	'submit form' : function(e, template) {
 		e.preventDefault();
 		var fields = ClientHelper.getFormValues(e.target);
+		Session.set('confirmOrder', fields);
+		
+		var order = Session.get('order');
+		if (orderOkay(order)) {
+			
+			order.deadline = order.date + ' ' + order.time;
+			delete order.date;
+			delete order.time;
+			
+			order.location = {
+				lat: marker.getPosition().lat(),
+				lng: marker.getPosition().lng()
+			};
+			if (!fields.address) {
+				showError('Address not set');
+				return;
+			}
+			if (!fields.email) {
+				showError('Email not set');
+				return;
+			}
+			order.address = fields.address;
+			order.radius = getRangeValue();
+			order.email = fields.email;
+			
+			var orderId = Session.get('orderId');
+			
+			Orders.confirm(orderId, order, function(err) {
+				if (err) {
+					showError(err);
+				}
+				else {
+					
+				}
+			});
+		}
+		else {
+			showError('Order has data missing');
+			setTimeout(function()  {
+				Router.go('index');
+			}, 2000);
+		}
 	},
 	'change input#range' : function(e) {
-		e.preventDefault()
+		e.preventDefault();
 		drawCircle();
 	}
 });
+
+var errorTimeout = false;
+var showError = function(error) {
+	if (errorTimeout) {
+		clearTimeout(errorTimeout);
+		errorTimeout = false;
+	}
+	var e = $('.error');
+	e.text(error);
+	e.slideDown();
+	errorTimeout = setTimeout(function() {
+		e.slideUp();
+	}, 5000);
+};
+
+// Check that order has all fields filled
+var orderOkay = function(order) {
+	if (!order)
+		return false;
+	if (!order.date)
+		return false;
+	if (!order.time)
+		return false;
+	if (!order.description)
+		return false;	
+	return true;
+};
 
 var getRangeValue = function() {
 	try {
@@ -81,7 +157,6 @@ var getRangeValue = function() {
 }
 
 var setMarker = function(lat, lng) {
-	console.log(lat, lng);
 	var loc = new google.maps.LatLng(lat, lng);
 	map.setCenter(loc);
 	marker.setPosition(loc);
@@ -98,7 +173,6 @@ var drawCircle = function() {
 	*/
 
 	var circleRadius = getRangeValue();
-	console.log(circleRadius);
 	
 	if (circleRadius < 2) {
 		map.setZoom(14)

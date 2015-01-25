@@ -1,3 +1,12 @@
+Template.index.helpers({
+	order : function() {
+		var order = Session.get('order');
+		if (!order)
+			return {};
+		return order;
+	}
+});
+
 Template.index.events({
 	'submit form' : function(e, template) {
 		e.preventDefault();
@@ -7,6 +16,7 @@ Template.index.events({
 				throw new Meteor.Error('order-add-fail', 'Error adding order', err);
 			}
 			else {
+				Session.set('order', order);
 				Router.go('confirmOrder', {_id:orderId});
 			}
 		});

@@ -2,8 +2,9 @@ template(name="index")
 	.starter-template
 		h1 Tere from index!
 		p.lead Tahan süüa:
-		form(name="order")
-			input(type="text" name="description")
-			input(type="text" name="date")
-			input(type="text" name="time")
-			input(type="submit" value="{{T 'place_order'}}") 
+		with order
+			form(name="order")
+				input(type="text" required name="description" value="{{description}}" placeholder="what you want to eat")
+				input(type="text" required name="date" value="{{date}}" placeholder="date")
+				input(type="text" required name="time" value="{{time}}" placeholder="time")
+				input(type="submit" value="{{T 'place_order'}}") 
