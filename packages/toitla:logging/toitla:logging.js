@@ -1,21 +1,27 @@
 Log = {
 	info: function(message) {
-		if (arguments.length == 1 && !_.isArray(message))
-			Log.log('info', message)
-		else
-			Log.log('info', Common.argumentsToArray(arguments)) // string has variables
+
+		// Identify string with variables
+		if (arguments.length > 1 && _.isArray(message))
+			message = Common.argumentsToArray(arguments)
+
+		Log.log('info', message)
 	},
 	warning: function(message) {
-		if (arguments.length == 1 && !_.isArray(message))
-			Log.log('warning', message)
-		else
-			Log.log('warning', Common.argumentsToArray(arguments)) // string has variables
+
+		// Identify string with variables
+		if (arguments.length > 1 && _.isArray(message))
+			message = Common.argumentsToArray(arguments)
+
+		Log.log('warning', message)
 	},
 	error: function(message) {
-		if (arguments.length == 1 && !_.isArray(message))
-			Log.log('error', message)
-		else
-			Log.log('error', Common.argumentsToArray(arguments)) // string has variables
+
+		// Identify string with variables
+		if (arguments.length > 1 && _.isArray(message))
+			message = Common.argumentsToArray(arguments)
+
+		Log.log('error', message)
 	},
 	log: function(level, message) {
 		console.log(message)
