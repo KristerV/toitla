@@ -1,4 +1,4 @@
-template(name="confirm_order")
+template(name="confirmOrder")
 	.starter-template
 		.row
 			.col-sm-6
@@ -7,5 +7,5 @@ template(name="confirm_order")
 				form(name="order")
 					input(type="text" name="order")
 					input(type="submit" value="{{T 'confirm_order'}}")
-			.col-sm-6
-				#order-map
+			.col-sm-6.order-map
+				+googleMap(name="order-map" options=mapOptions)

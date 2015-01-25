@@ -7,7 +7,7 @@ Template.index.events({
 				throw new Meteor.Error('order-add-fail', 'Error adding order', err);
 			}
 			else {
-				Router.go('confirm_order', {_id:orderId});
+				Router.go('confirmOrder', {_id:orderId});
 			}
 		});
 	}
