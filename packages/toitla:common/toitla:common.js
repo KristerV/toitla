@@ -11,11 +11,17 @@ Common = {
 	* formatString(arg1, arg2, arg3, ...)
 	*/
 	formatString: function() {
+		console.log(arguments)
 
 		if (arguments.length <= 0 || !arguments[0])
 			return ''
-		else if (arguments.length == 1)
-			return arguments[0]
+
+		if (arguments.length == 1) {
+			if (typeof arguments[0] == 'string')
+				return arguments[0] // String is good to return
+			else if (typeof arguments[0] == 'object')
+				arguments = arguments[0] // Array needs replacing of variables
+		}
 
 		// Change arguments into normal array
 		arguments = Common.argumentsToArray(arguments)
@@ -24,23 +30,26 @@ Common = {
 		var string = arguments.shift()
 
 		// If arg* are given in array
-		if (arguments.length === 1 && typeof arguments[0] == 'object')
+		if (arguments.length === 1 && typeof arguments[0] == 'object') {
 			arguments = arguments[0]
+		}
 
 		// Replace placeholders
 		string = string.replace(/%(s|d)/g, function(match, key){
 
 			// Are all placeholders covered?
-			if (_.isEmpty(this))
+			if (_.isEmpty(this)) {
 				throw new Meteor.Error('formatString-indexOutOfBounds', 'Too few arguments.')
+			}
 
 			return this.shift()
 
 		}.bind(arguments))
 
 		// Are all arguments used?
-		if (arguments.length !== 0)
+		if (arguments.length !== 0) {
 			throw new Meteor.Error('formatString-tooManyArguments', 'Too few matches or too many arguments.')
+		}
 
 		return string
 	},

@@ -9,8 +9,6 @@ Package.onUse(function(api) {
 	api.versionsFrom('1.0');
 	api.addFiles(['offers/offers-api.js', 'orders/orders-api.js']);	
 	api.addFiles(['offers/offers.js', 'orders/orders.js'], 'server');
-	api.addFiles('log/log-api.js', ['client','server']);
-	api.addFiles('log/log.js', ['client','server']);
 	api.addFiles(['allow.js', 'publish.js'], 'server');
 	
 	api.export('Orders');
