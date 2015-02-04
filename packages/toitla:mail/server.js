@@ -42,7 +42,7 @@ Meteor.methods({
 		} else {
 			Log.error({
 				type: 'email',
-				message: 'Mailgun not defined',
+				message: 'Mailgun environment variables not configured.',
 			})
 		}
 	}
