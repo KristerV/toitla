@@ -28,7 +28,6 @@ MapCalculations = {
 
 		var d = R * c;
 
-		console.log(d);
 		return d;
 	},
 	findChefsInRange: function(location) {

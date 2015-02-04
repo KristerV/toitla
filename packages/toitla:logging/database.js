@@ -11,5 +11,6 @@ Meteor.methods({
 		data['date'] = new Date()
 
 		LogCollection.insert(data)
+
 	},
 })

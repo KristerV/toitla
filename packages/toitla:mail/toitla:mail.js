@@ -1,4 +1,4 @@
-// TODO variables in template
+// TODO replace variables in template
 // TODO HTML in template
 // TODO Log everything
 // TODO Mail-send in server
@@ -6,16 +6,12 @@
 
 Tmail = {
 	send: function(to, subject, body) {
-		check(to, String)
-		check(subject, String)
-		check(body, String)
+		check([to, subject, body], Match.OneOf(String, [String]))
 		Meteor.call('Mail-send', to, subject, body)
 
 	},
 	sendBulk: function(to, subject, body) {
-		check(to, [String])
-		check(subject, String)
-		check(body, String)
+		check([to, subject, body], Match.OneOf(String, [String]))
 
 		_.each(to, function(value, key, list) {
 			Tmail.send(value, this.subject, this.body)
@@ -23,9 +19,7 @@ Tmail = {
 
 	},
 	sendTemplate: function(to, lang, template, variables) {
-		check(to, String)
-		check(lang, String)
-		check(template, String)
+		check([to, lang, template], Match.OneOf(String, [String]))
 		check(variables, Match.Optional(Object))
 
 		var tmpl = Tmail.getTemplate(template, lang)
@@ -34,9 +28,7 @@ Tmail = {
 
 	},
 	sendBulkTemplate: function(to, lang, template, variables) {
-		check(to, [String])
-		check(lang, String)
-		check(template, String)
+		check([to, lang, template], Match.OneOf(String, [String]))
 		check(variables, Match.Optional(Object))
 
 		var tmpl = Tmail.getTemplate(template, lang)

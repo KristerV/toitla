@@ -22,15 +22,16 @@ Log = {
 			message = Common.argumentsToArray(arguments)
 
 		Log.log('error', message)
+		var simpleMessage = _.isObject(message) ? message.message : message
+		throw new Meteor.Error('Error', simpleMessage)
 	},
 	log: function(level, message) {
-		check(message, Match.OneOf(String, [String]))
+		check(message, Match.OneOf(String, [String], Object))
 		if (typeof message == 'string') {
 			Meteor.call('saveToLog', level, message)
 		}
 		else if (_.isArray(message)) {
 			message = Common.formatString(message)
-			console.log(message)
 			Meteor.call('saveToLog', level, message)
 		}
 		else if (_.isObject(message)) {

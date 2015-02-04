@@ -11,7 +11,6 @@ Common = {
 	* formatString(arg1, arg2, arg3, ...)
 	*/
 	formatString: function() {
-		console.log(arguments)
 
 		if (arguments.length <= 0 || !arguments[0])
 			return ''

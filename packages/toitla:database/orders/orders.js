@@ -51,7 +51,7 @@ Meteor.methods({
 		order['chefsNotified'] = chefIds
 	
 	
-		console.log("Adding order:" + JSON.stringify(order))
+		Log.info("Adding order:" + JSON.stringify(order))
 		OrderCollection.update(orderId, order)
 	
 		if (chefIds.length == 0)
