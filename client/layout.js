@@ -6,6 +6,7 @@ window.Scroller = {
 	scrollPanels: [],
 	scrollingInAction: false,
 	findPanels: function() {
+		Scroller.scrollPanels = []
 		$(Scroller.panelSelector).each(function(i){
 			Scroller.scrollPanels.push($(this).offset().left)
 		})
@@ -101,5 +102,10 @@ $(window)
 		Scroller.saveScroll()
 	})
 	.on("scrollstop", function() {
+		Scroller.doScroll()
+	})
+	.resize(function(){
+		console.log("resize")
+		Scroller.findPanels()
 		Scroller.doScroll()
 	})
