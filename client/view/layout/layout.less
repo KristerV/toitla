@@ -64,9 +64,21 @@ table, td, tr {
 .switcher {
 	width: 100%;
 	height: 100%;
-	& > div {
-		// opacity: 0;
+	.switcher-content {
+		position: absolute;
+		width: 100% - @menu-bar-width;
+		.invisible
 	}
+}
+
+.visible {
+	display: inline-block !important;
+	opacity: 100% !important;
+}
+
+.invisible {
+	display: none;
+	opacity: 0%;
 }
 
 @media all and (min-width: 1000px) {

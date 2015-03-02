@@ -3,8 +3,12 @@ template(name="layout")
 		tr.layout-row
 			td.panel.layout-left
 				.switcher
-					+login
-					+postNew
+					.switcher-content(class="{{visible content='userProfileEdit'}}")
+						+userProfileEdit
+					.switcher-content(class="{{visible content='login'}}")
+						+login
+					.switcher-content(class="{{visible content='postNew'}}")
+						+postNew
 			td.panel.layout-center
 				table.menubar-wrapper
 					tr.menubar-row
@@ -19,6 +23,9 @@ template(name="layout")
 							+sideMenu
 						td.menubar-content-col
 							.switcher
-								+chefView
-								+postDetails
-								+postComments
+								.switcher-content(class="{{visible content='userProfileView'}}")
+									+userProfileView
+								.switcher-content(class="{{visible content='postDetails'}}")
+									+postDetails
+								.switcher-content(class="{{visible content='postComments'}}")
+									+postComments

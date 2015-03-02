@@ -1,7 +1,7 @@
 
 // All Sessions used
-Session.setDefault('panel-left', 'postNew')
-Session.setDefault('panel-right', 'postDetails')
+Session.setDefault('panel-left', null)
+Session.setDefault('panel-right', null)
 Session.setDefault('menubar-width', 'auto')
 
 // On boot

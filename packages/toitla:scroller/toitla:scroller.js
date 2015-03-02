@@ -60,7 +60,7 @@ Scroller = {
 	},
 	doScroll: function() {
 
-		if (this.scrollingInAction !== false)
+		if (this.scrollingInAction === true)
 			return false
 
 		var length = this.scrollHistory.length
@@ -109,6 +109,8 @@ Scroller = {
 		}
 	},
 	goToPanel: function(nr) {
+		if (this.scrollingInAction === true)
+			return false
 		var coordinates = this.scrollPanels[nr]
 		this.animateScroll(coordinates)
 	}
