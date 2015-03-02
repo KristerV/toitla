@@ -1,10 +1,14 @@
-@side: 80%;
-@lwidth: (2 *  @side) + 100%;
-@lcenter: 10000 / @lwidth;
-@lside: (100 - @lcenter) / 2;
+@import "style";
+
+@left: 100% - @menu-bar-width;
+@right: 100%;
+@layout-width: (@right +  @left) + 100%;
+@layout-center: 10000 / @layout-width;
+@layout-left: (100% * @left) / @layout-width;
+@layout-right: (100% * @right) / @layout-width;
 
 .layout-wrapper {
-	width: @lwidth;
+	width: @layout-width;
 	border-collapse: collapse;
 	height: 100%;
 	.layout {
@@ -18,11 +22,14 @@
 			margin: 0;
 		}
 		.layout-center {
-			width: @lcenter;
+			width: @layout-center;
 			background-color: rgba(0,0,100,0.3);
 		}
-		.layout-left, .layout-right {
-			width: @lside;
+		.layout-left {
+			width: @layout-left;
+		}
+		.layout-right {
+			width: @layout-right;
 		}
 
 	}
