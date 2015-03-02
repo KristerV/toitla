@@ -3,3 +3,9 @@ Template.menuItem.helpers({
 		return Session.get('menubar-width')
 	}
 })
+
+Template.menuItem.events({
+	'click .menuItem': function(e, tmpl) {
+		e.stopPropagation()
+	}
+})

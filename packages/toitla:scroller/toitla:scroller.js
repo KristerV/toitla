@@ -108,4 +108,8 @@ Scroller = {
 				this.scrollHistory.shift()
 		}
 	},
+	goToPanel: function(nr) {
+		var coordinates = this.scrollPanels[nr]
+		this.animateScroll(coordinates)
+	}
 }
