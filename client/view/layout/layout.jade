@@ -1,0 +1,24 @@
+template(name="layout")
+	table.layout-wrapper
+		tr.layout-row
+			td.panel.layout-left
+				.switcher
+					+login
+					+postNew
+			td.panel.layout-center
+				table.menubar-wrapper
+					tr.menubar-row
+						td.menubar-col
+							+mainMenu
+						td.menubar-content-col
+							+feed
+			td.panel.layout-right
+				table.menubar-wrapper
+					tr.menubar-row
+						td.menubar-col
+							+sideMenu
+						td.menubar-content-col
+							.switcher
+								+chefView
+								+postDetails
+								+postComments
