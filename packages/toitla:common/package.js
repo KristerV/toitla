@@ -13,6 +13,7 @@ Package.onUse(function(api) {
 	api.imply('toitla:mail');
 	api.imply('toitla:map');
 	api.imply('toitla:database');
+	api.imply('toitla:scroller');
 	api.use('spacebars');
 	api.versionsFrom('1.0');
 	api.addFiles('toitla:common.js');
