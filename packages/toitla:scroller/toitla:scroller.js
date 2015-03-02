@@ -5,12 +5,19 @@ The Scroller package depends on scrollStop.js - it is not found on atmosphere.
 */
 
 Scroller = {
+
+	// Settings
+	minScroll: 3,
+
+	// Variables
 	parentSelector: 'body',
 	panelSelector: '.panel',
 	scrollHistory: [],
 	scrollTimer: null,
 	scrollPanels: [],
 	scrollingInAction: false,
+
+	// Methods
 	findPanels: function() {
 		this.scrollPanels = []
 		var _this = this
@@ -58,7 +65,7 @@ Scroller = {
 
 		var length = this.scrollHistory.length
 		var currentScroll = this.scrollHistory.pop()
-		if (length > 4) {
+		if (length > this.minScroll) {
 			var history = this.scrollHistory.slice(-11, -2) // drop useless
 
 			// find speed
@@ -84,11 +91,15 @@ Scroller = {
 	},
 	animateScroll: function(destination){
 		this.scrollingInAction = true
-		$('body').animate({scrollLeft: destination}, function(){
-			Meteor.setTimeout(function(){
-				this.scrollingInAction = false
-			}.bind(this),300)
-		}.bind(this))
+		$('body').velocity("scroll", {
+			axis: "x",
+			offset: destination,
+			complete: function (elem) {
+				Meteor.setTimeout(function(){
+					this.scrollingInAction = false
+				}.bind(this),300)
+			}.bind(this),
+		})
 	},
 	saveScroll: function(){
 		if (this.scrollingInAction === false) {
