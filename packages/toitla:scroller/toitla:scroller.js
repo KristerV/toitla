@@ -108,8 +108,8 @@ Scroller = {
 				this.scrollHistory.shift()
 		}
 	},
-	goToPanel: function(nr) {
-		if (this.scrollingInAction === true)
+	goToPanel: function(nr, override) {
+		if (this.scrollingInAction === true && override !== true)
 			return false
 		var coordinates = this.scrollPanels[nr]
 		this.animateScroll(coordinates)
