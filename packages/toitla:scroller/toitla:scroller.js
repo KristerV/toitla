@@ -65,17 +65,23 @@ Scroller = {
 
 		var length = this.scrollHistory.length
 		var currentScroll = this.scrollHistory.pop()
-		if (length > this.minScroll) {
-			var history = this.scrollHistory.slice(-11, -2) // drop useless
+		if (true || length > this.minScroll) {
+			
+			var history = this.scrollHistory
+			if (this.scrollHistory.length > 6)
+				history = history.slice(-11, -2) // drop useless
 
 			// find speed
 			var direction = 0
 			var average = 0
 			var count = 0
+			console.log(history)
 			_.each(history, function(item){
+				console.log(item)
 				average += item
 				count += 1
 			})
+			console.log(average)
 			average = average / count
 			direction = currentScroll - average
 
