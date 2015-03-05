@@ -17,6 +17,11 @@
 			background-repeat: no-repeat;
 			background-position: center; 
 		}
+		.full-text {
+			position: absolute;
+			top: @post-image-height * 0.3;
+			width: 100%;
+		}
 	}
 	.description {
 		height: 100% - @post-image-height - 10%;
@@ -24,4 +29,10 @@
 	}
 	.submit {
 	}
+}
+
+.spinner {
+	position: absolute;
+	top: @post-image-height * 0.6;
+	left: 50%;
 }
