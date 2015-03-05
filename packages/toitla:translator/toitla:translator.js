@@ -15,7 +15,7 @@ UI.registerHelper('T', function(keyword, obj) {
 T = function(keyword, obj) {
 
 	var translation
-	lang = Session.get('locale')
+	lang = Session.get('locale') ? Session.get('locale') : 'en'
 
 	// Does translation exist?
 	if (_.isUndefined(keyword))

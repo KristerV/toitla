@@ -1,2 +1,7 @@
 template(name="postNew")
-	p postNew
+	.form.postNew
+		.photo.center
+			label.full-photo Insert image
+				input.full-photo(type="file" accept="image/*" id="fileselect" style="opacity:0")
+		textarea.description(placeholder="Description...")
+		button.submit.center.block {{T "save"}}
