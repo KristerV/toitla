@@ -17,3 +17,5 @@ mizzao:timesync
 dburles:google-maps
 velocityjs:velocityjs
 sacha:spin
+cfs:standard-packages
+cfs:gridfs

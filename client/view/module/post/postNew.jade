@@ -1,7 +1,12 @@
 template(name="postNew")
 	.form.postNew
 		.photo.center
-			label.full-photo Insert image
-				input.full-photo(type="file" accept="image/*" id="fileselect" style="opacity:0")
+			with image
+				label.full-photo(style="background-image:url({{this.url store='original'}})")
+					input.full-photo(type="file" accept="image/*" id="fileselect" style="opacity:0")
+			else
+
+				label.full-photo Please insert image
+					input.full-photo(type="file" accept="image/*" id="fileselect" style="opacity:0")
 		textarea.description(placeholder="Description...")
 		button.submit.center.block {{T "save"}}
