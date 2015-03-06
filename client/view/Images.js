@@ -4,6 +4,10 @@ Images = {
 	},
 	getUrl: function(id) {
 		var imgObj = this.getOne(id)
-		return imgObj ? imgObj.url() : null
+		url = imgObj ? imgObj.url() : null
+
+		// Remove token, it for some reason creates confusion
+		var cleanUrl = url.split('?')[0]
+		return cleanUrl
 	}
 }
