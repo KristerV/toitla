@@ -1,4 +1,4 @@
-Images.allow({
+ImagesCollection.allow({
 	insert: function(userId, doc) {
 		return true
 	},

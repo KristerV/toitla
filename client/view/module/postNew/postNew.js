@@ -1,10 +1,10 @@
 Template.postNew.helpers({
 	image: function() {
-		var post = PostsCollection.findOne(Session.get('upload-post-id'))
+		var post = Posts.getOne(Session.get('upload-post-id'))
 		if (!post)
 			return false
 
-		var img = Images.findOne(post.imageId)
+		var img = Images.getOne(post.imageId)
 		if (!img)
 			return false
 
@@ -22,7 +22,7 @@ Template.postNew.helpers({
 Template.postNew.events({
 	'change #fileselect': function(e, tmpl) {
 		FS.Utility.eachFile(e, function(file) {
-			Images.insert(file, function (err, fileObj) {
+			ImagesCollection.insert(file, function (err, fileObj) {
 				PostsCollection.update(Session.get('upload-post-id'), 
 					{$set: {imageId: fileObj._id}})
 			});

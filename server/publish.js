@@ -1,5 +1,5 @@
 Meteor.publish("images", function () {
-	return Images.find();
+	return ImagesCollection.find();
 })
 
 Meteor.publish("posts", function () {
