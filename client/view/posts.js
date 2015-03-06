@@ -9,6 +9,9 @@ Posts = {
 	getAll: function() {
 		return PostsCollection.find()
 	},
+	getFeed: function() {
+		return PostsCollection.find({imageId: {$exists: 1}, description: {$exists: 1}})
+	},
 	getOne: function(id) {
 		return PostsCollection.findOne(id)
 	},

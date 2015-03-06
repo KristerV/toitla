@@ -1,5 +1,9 @@
 Template.post.helpers({
-	imageUrl: function() {
-		return Images.getUrl(this.imageId)
+	image: function() {
+		var image = Images.getOne(this.imageId)
+		if (image && image.isUploaded())
+			return "background-image:url("+image.url()+")"
+		else
+			return "display:none"
 	}
 })

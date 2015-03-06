@@ -8,6 +8,8 @@ Images = {
 			return null
 
 		url = imgObj.url()
+		if (!url)
+			return null
 
 		// Remove token, it for some reason creates confusion
 		// Token format: image/link.png?token=xxxx
