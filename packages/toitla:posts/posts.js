@@ -1,7 +1,8 @@
 Posts = {
 	createNew: function() {
 		var postId = PostsCollection.insert({
-			author: Meteor.userId()
+			author: Meteor.userId(),
+			created: new Date()
 		})
 		$('.postNew .description').val('')
 		Session.set('upload-post-id', postId)
@@ -13,7 +14,7 @@ Posts = {
 		return PostsCollection.find().fetch()
 	},
 	getFeed: function() {
-		return PostsCollection.find({imageId: {$exists: 1}, description: {$exists: 1}})
+		return PostsCollection.find({imageId: {$exists: 1}, description: {$exists: 1}},{sort: {created: -1}})
 	},
 	getOne: function(id) {
 		return PostsCollection.findOne(id)
