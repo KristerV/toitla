@@ -1,31 +1,24 @@
 template(name="layout")
-	table.layout-wrapper
-		tr.layout-row
-			td.panel.layout-left
-				.switcher
-					.switcher-content(class="{{visible content='userProfileEdit'}}")
-						+userProfileEdit
-					.switcher-content(class="{{visible content='login'}}")
-						+login
-					.switcher-content(class="{{visible content='postNew'}}")
-						+postNew
-			td.panel.layout-center
-				table.menubar-wrapper
-					tr.menubar-row
-						td.menubar-col
-							+mainMenu
-						td.menubar-content-col
-							+feed
-			td.panel.layout-right
-				table.menubar-wrapper
-					tr.menubar-row
-						td.menubar-col
-							+sideMenu
-						td.menubar-content-col
-							.switcher
-								.switcher-content(class="{{visible content='userProfileView'}}")
-									+userProfileView
-								.switcher-content(class="{{visible content='postDetails'}}")
-									+postDetails
-								.switcher-content(class="{{visible content='postComments'}}")
-									+postComments
+	.panel.layout-left
+		.content-bar
+			.switcher-content(class="{{visible content='userProfileEdit'}}")
+				+userProfileEdit
+			.switcher-content(class="{{visible content='login'}}")
+				+login
+			.switcher-content(class="{{visible content='postNew'}}")
+				+postNew
+	.panel.layout-center
+		.menu-bar
+			+mainMenu
+		.content-bar
+			+feed
+	.panel.layout-right
+		.menu-bar
+			+sideMenu
+		.content-bar
+			.switcher-content(class="{{visible content='userProfileView'}}")
+				+userProfileView
+			.switcher-content(class="{{visible content='postDetails'}}")
+				+postDetails
+			.switcher-content(class="{{visible content='postComments'}}")
+				+postComments

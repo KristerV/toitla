@@ -14,13 +14,12 @@ Template.layout.rendered = function() {
 
 $(window)
 	.scroll(function(){
-		Scroller.saveScroll()
+		// Scroller.saveScroll()
 	})
 	.on("scrollstop", function() {
-		Scroller.doScroll()
+		// Scroller.doScroll()
 	})
 	.resize(function(){
-		console.log("resize")
 		Scroller.findPanels()
-		Scroller.doScroll()
+		// Scroller.doScroll()
 	})

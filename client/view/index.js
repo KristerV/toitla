@@ -13,5 +13,5 @@ Meteor.startup(function(){
 // On window resize
 window.onresize = function(event) {
     Client.getMenubarWidth()
-    Scroller.goToPanel(1, true)
+    // Scroller.goToPanel(1, true)
 }

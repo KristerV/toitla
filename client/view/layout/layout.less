@@ -14,14 +14,56 @@
 
 html {
 	background-color: #333;
+	overflow: hidden;
 }
 
-table, td, tr {
-	border-collapse: collapse;
+.panel {
+	position: absolute;
+	top: 0;
+	height: 100%;
+}
+
+.panel.layout-left {
+	left: 0;
+	width: 80%;
+	height: 100%;
+}
+.panel.layout-center {
+	left: 80%;
+	width: 100%;
+	height: 100%;
+}
+.panel.layout-right {
+	left: 180%;
+	width: 100%;
+	height: 100%;
+}
+
+.menu-bar {
 	padding: 0;
+	margin: 0;
+	position: relative;
+	display: inline-block;
+	width: 20%;
+	height: 100%;
 }
 
-.layout-wrapper {
+.content-bar {
+	padding: 0;
+	margin: 0;
+	position: relative;
+	display: inline-block;
+	width: 77%;
+	height: 100%;
+	overflow: auto;
+	overflow-x: hidden; 
+}
+
+.layout-left .content-bar {
+	width: 100%;
+}
+
+/*.layout-wrapper {
 	margin: 0 auto;
 	width: @layout-width;
 	height: 100%;
@@ -65,31 +107,7 @@ table, td, tr {
 	}
 }
 
-.switcher {
-	width: 100%;
-	height: 100%;
-	.switcher-content {
-		-webkit-transition: opacity 0.2s ease-out;
-		-moz-transition: opacity 0.2s ease-out;
-		-o-transition: opacity 0.2s ease-out;
-		transition: opacity 0.2s ease-out;
 
-		position: absolute;
-		width: 100% - @menu-bar-width;
-		height: 100%;
-		.invisible
-	}
-}
-
-.visible {
-	z-index: 1 !important;
-	opacity: 1 !important;
-}
-
-.invisible {
-	z-index: 0;
-	opacity: 0;
-}
 
 @media all and (min-width: 1000px) {
 	.layout-wrapper {
@@ -101,4 +119,26 @@ table, td, tr {
 			width: @layout-right - @menu-bar-width + 1.3%; // +1.3% is to help line up, not sure why it doesn't without
 		}
 	}
+}*/
+
+.switcher-content {
+	-webkit-transition: opacity 0.2s ease-out;
+	-moz-transition: opacity 0.2s ease-out;
+	-o-transition: opacity 0.2s ease-out;
+	transition: opacity 0.2s ease-out;
+
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	.invisible
+}
+
+.visible {
+	z-index: 1 !important;
+	opacity: 1 !important;
+}
+
+.invisible {
+	z-index: 0;
+	opacity: 0;
 }
