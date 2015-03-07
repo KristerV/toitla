@@ -28,7 +28,7 @@ Images = {
 	insert: function(file, postId) {
 		ImagesCollection.insert(file, function (err, fileObj) {
 			if (!err) {
-				PostsCollection.update(PostId,
+				PostsCollection.update(postId,
 					{$set: {imageId: fileObj._id}})
 			} else {
 				console.log("INSERT ERROR:")
