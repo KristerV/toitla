@@ -19,3 +19,4 @@ velocityjs:velocityjs
 sacha:spin
 cfs:standard-packages
 cfs:gridfs
+cfs:graphicsmagick

@@ -15,6 +15,7 @@ cfs:collection@0.5.3
 cfs:collection-filters@0.2.3
 cfs:data-man@0.0.4
 cfs:file@0.1.15
+cfs:graphicsmagick@0.0.18
 cfs:gridfs@0.0.27
 cfs:http-methods@0.0.27
 cfs:http-publish@0.0.13
@@ -84,10 +85,12 @@ templating@1.0.11
 toitla:common@1.0.0
 toitla:database@1.0.0
 toitla:date@1.0.0
+toitla:images@0.0.1
 toitla:locale@1.0.0
 toitla:logging@1.0.0
 toitla:mail@1.0.0
 toitla:map@1.0.0
+toitla:posts@0.0.1
 toitla:scroller@0.0.1
 toitla:translator@1.0.0
 tracker@1.0.5

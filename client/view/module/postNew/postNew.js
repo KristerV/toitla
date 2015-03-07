@@ -22,10 +22,7 @@ Template.postNew.helpers({
 Template.postNew.events({
 	'change #fileselect': function(e, tmpl) {
 		FS.Utility.eachFile(e, function(file) {
-			ImagesCollection.insert(file, function (err, fileObj) {
-				PostsCollection.update(Session.get('upload-post-id'), 
-					{$set: {imageId: fileObj._id}})
-			});
+			Images.insert(file, Session.get('upload-post-id'))
 		});
 	},
 	'click button.submit': function(e, tmpl) {

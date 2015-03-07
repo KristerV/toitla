@@ -14,6 +14,8 @@ Package.onUse(function(api) {
 	api.imply('toitla:map');
 	api.imply('toitla:database');
 	api.imply('toitla:scroller');
+	api.imply('toitla:posts');
+	api.imply('toitla:images');
 	api.use('spacebars');
 	api.versionsFrom('1.0');
 	api.addFiles('toitla:common.js');
