@@ -1,11 +1,6 @@
 @import "../../settings";
 
-@left: 100% - @menu-bar-width;
-@right: 100%;
-@layout-width: (@right +  @left) + 100%;
-@layout-center: 10000 / @layout-width;
-@layout-left: (100% * @left) / @layout-width;
-@layout-right: (100% * @right) / @layout-width;
+@panel-left-fullscreen: @panel-width-fullscreen * 0.8;
 
 /* for testing*/
 * {
@@ -25,16 +20,16 @@ html {
 
 .panel.layout-left {
 	left: 0;
-	width: 80%;
+	width: 100% - @menu-bar-width;
 	height: 100%;
 }
 .panel.layout-center {
-	left: 80%;
+	left: 100% - @menu-bar-width;
 	width: 100%;
 	height: 100%;
 }
 .panel.layout-right {
-	left: 180%;
+	left: 200% - @menu-bar-width;
 	width: 100%;
 	height: 100%;
 }
@@ -44,7 +39,7 @@ html {
 	margin: 0;
 	position: relative;
 	display: inline-block;
-	width: 20%;
+	width: @menu-bar-width;
 	height: 100%;
 }
 
@@ -53,7 +48,7 @@ html {
 	margin: 0;
 	position: relative;
 	display: inline-block;
-	width: 77%;
+	width: 100% - @menu-bar-width - 3%;
 	height: 100%;
 	overflow: auto;
 	overflow-x: hidden; 
@@ -62,64 +57,6 @@ html {
 .layout-left .content-bar {
 	width: 100%;
 }
-
-/*.layout-wrapper {
-	margin: 0 auto;
-	width: @layout-width;
-	height: 100%;
-	.layout-row {
-		width: 100%;
-		height: 100%;
-		> div {
-			height: 100%;
-			padding: 0;
-			margin: 0;
-		}
-		.layout-center {
-			width: @layout-center;
-		}
-		.layout-left {
-			width: @layout-left;
-		}
-		.layout-right {
-			width: @layout-right;
-		}
-
-	}
-}
-
-.menubar-wrapper {
-	width: 100%;
-	height: 100%;
-
-	.menubar-row {
-		width: 100%;
-		height: 100%;
-
-		.menubar-col {
-			height: 100%;
-			width: @menu-bar-width;
-		}
-
-		.menubar-content-col {
-			height: 100%;
-		}
-	}
-}
-
-
-
-@media all and (min-width: 1000px) {
-	.layout-wrapper {
-		width: 100%;
-		max-width: 1000px;
-	}
-	.switcher {
-		.switcher-content {
-			width: @layout-right - @menu-bar-width + 1.3%; // +1.3% is to help line up, not sure why it doesn't without
-		}
-	}
-}*/
 
 .switcher-content {
 	-webkit-transition: opacity 0.2s ease-out;
@@ -141,4 +78,24 @@ html {
 .invisible {
 	z-index: 0;
 	opacity: 0;
+}
+
+@media all and (min-width: 950px) {
+	// The idea is to center the panel with <left>
+	// then negative margin to put it in place
+	.panel.layout-left {
+		width: @panel-left-fullscreen;
+		left: 50%;
+		margin-left: -(@panel-left-fullscreen + (@panel-width-fullscreen / 2));
+	}
+	.panel.layout-center {
+		width: @panel-width-fullscreen;
+		left: 50%;
+		margin-left: -@panel-width-fullscreen / 2;
+	}
+	.panel.layout-right {
+		width: @panel-width-fullscreen;
+		left: 50%;
+		margin-left: @panel-width-fullscreen / 2;
+	}
 }

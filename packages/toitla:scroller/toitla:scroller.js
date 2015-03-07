@@ -93,7 +93,6 @@ Scroller = {
 		this.scrollHistory = []
 	},
 	animateScroll: function(destination){
-		console.log("animateScroll")
 		this.scrollingInAction = true
 		$('body').velocity("scroll", {
 			axis: "x",
