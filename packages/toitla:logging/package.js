@@ -9,6 +9,7 @@ Package.onUse(function(api) {
   api.versionsFrom('1.0');
   api.addFiles('toitla:logging.js');
   api.addFiles('database.js');
+  api.addFiles('server.js');
   api.export('Log')
 });
 

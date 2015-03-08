@@ -37,5 +37,8 @@ Log = {
 		else if (_.isObject(message)) {
 			Meteor.call('saveToLog', level, message)
 		}
+	},
+	server: function(string) {
+		Meteor.call('printLog', string)
 	}
 }
