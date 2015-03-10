@@ -13,6 +13,8 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.0.3.2');
   api.addFiles('posts.js');
+  api.addFiles('collection.js');
+  api.addFiles('allow.js');
   api.export('Posts')
 });
 

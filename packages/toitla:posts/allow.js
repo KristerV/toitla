@@ -1,12 +1,11 @@
-
-OfferCollection.allow({
+PostsCollection.allow({
 	insert: function (userId, doc) {
-		return true;
+		return true
 	},
 	update: function (userId, doc, fields, modifier) {
-		return false;
+		return true
 	},
 	remove: function (userId, doc) {
-		return false;
+		return true
 	},
-})
+});

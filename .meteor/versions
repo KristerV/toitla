@@ -83,7 +83,6 @@ spacebars-compiler@1.0.4
 srp@1.0.2
 templating@1.0.11
 toitla:common@1.0.0
-toitla:database@1.0.0
 toitla:date@1.0.0
 toitla:images@0.0.1
 toitla:locale@1.0.0

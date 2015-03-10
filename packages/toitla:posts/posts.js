@@ -25,5 +25,8 @@ Posts = {
 			if (!post.imageId || !post.description) // TODO don't delete editing
 				PostsCollection.remove(post._id)
 		})
+	},
+	update: function(find, change) {
+		PostsCollection.update(find, change)
 	}
 }

@@ -11,7 +11,7 @@ Template.postNew.helpers({
 		return img
 	},
 	description: function() {
-		var post = PostsCollection.findOne(Session.get('upload-post-id'))
+		var post = Posts.getOne(Session.get('upload-post-id'))
 		if (!post)
 			return false
 
@@ -26,7 +26,7 @@ Template.postNew.events({
 	'click button.submit': function(e, tmpl) {
 		var description = $('.postNew .description').val()
 		var postId = Session.get('upload-post-id')
-		PostsCollection.update(postId, {$set: {description: description}})
+		Posts.update(postId, {$set: {description: description}})
 		Scroller.goToPanel(1)
 		Posts.createNew()
 	}

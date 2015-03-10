@@ -21,3 +21,12 @@ ImagesCollection = new FS.Collection("images", {
 
 FS.HTTP.setBaseUrl('uploads');
 FS.debug = false;
+
+
+if (Meteor.isClient) {
+	Meteor.subscribe('images')
+} else if (Meteor.isServer) {
+	Meteor.publish("images", function () {
+		return ImagesCollection.find();
+	})
+}
