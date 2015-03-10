@@ -3,6 +3,24 @@ homefood
 
 Kodukokkade repo
 
+Kuidas koodi Live viimine käib?
+-----------------------------
+
+```
+ssh root@178.62.237.194
+cd /srv/homefood_live
+git pull
+cd /srv/deploy_homefood_live/
+mup deploy
+```
+
+Kuidas dev serverit kasutada?
+-----------------------------
+
+Browseriga saad ligi aadressilt http://toitla.com:4000.
+
+Koodi saad uuendada samuti nagu live serveri puhul, aga asenda 'live' sõnaga 'dev'.
+
 Kuidas backuppe teha?
 ---------------------
 
