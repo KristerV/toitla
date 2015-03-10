@@ -12,8 +12,14 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.0.3.2');
+  api.use('cfs:graphicsmagick')
+  api.use('cfs:gridfs@=0.0.27')
+  api.use('cfs:standard-packages')
   api.addFiles('images.js');
-  api.addFiles('server.js');
+  api.addFiles('collection.js');
+  api.addFiles('server.js', 'server');
+  api.addFiles('allow.js', 'server');
+  api.addFiles('publish.js', 'server');
   api.export('Images')
 });
 

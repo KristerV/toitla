@@ -42,5 +42,11 @@ Images = {
 			if (!img.isUploaded())
 				ImagesCollection.remove(img._id)
 		})
+	},
+	addImages: function(e) {
+		FS.Utility.eachFile(e, function(file) {
+			Images.insert(file, Session.get('upload-post-id'))
+		});
 	}
 }
+

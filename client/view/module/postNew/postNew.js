@@ -21,9 +21,7 @@ Template.postNew.helpers({
 
 Template.postNew.events({
 	'change #fileselect': function(e, tmpl) {
-		FS.Utility.eachFile(e, function(file) {
-			Images.insert(file, Session.get('upload-post-id'))
-		});
+		Images.addImages(e)
 	},
 	'click button.submit': function(e, tmpl) {
 		var description = $('.postNew .description').val()

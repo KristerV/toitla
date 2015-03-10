@@ -13,3 +13,4 @@ Meteor.methods({
 		})
 	}
 })
+
