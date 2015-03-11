@@ -5,8 +5,9 @@ template(name="layout")
 				+userProfileEdit
 			.switcher-content(class="{{visible content='login'}}")
 				+login
-			.switcher-content(class="{{visible content='postNew'}}")
-				+postNew
+			if currentUser
+				.switcher-content(class="{{visible content='postNew'}}")
+					+postNew
 	.panel.layout-center
 		.menu-bar
 			+mainMenu
