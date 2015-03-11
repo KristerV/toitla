@@ -17,12 +17,12 @@ Template.sideMenu.helpers({
 
 Template.mainMenu.events({
 	'click .menu': function(e, tmpl) {
-		Scroller.goToPanel(1)
+		Panel.center()
 	}
 })
 
 Template.sideMenu.events({
 	'click .menu': function(e, tmpl) {
-		Scroller.goToPanel(1)
+		Panel.center()
 	}
 })

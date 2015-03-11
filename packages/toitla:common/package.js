@@ -13,8 +13,10 @@ Package.onUse(function(api) {
 	api.imply('toitla:mail');
 	api.imply('toitla:map');
 	api.imply('toitla:scroller');
+	api.imply('toitla:panel');
 	api.imply('toitla:posts');
 	api.imply('toitla:images');
+	api.imply('toitla:account');
 	api.use('spacebars');
 	api.versionsFrom('1.0');
 	api.addFiles('toitla:common.js');

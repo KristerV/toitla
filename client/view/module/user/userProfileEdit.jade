@@ -1,2 +1,6 @@
 template(name="userProfileEdit")
-	p userProfileEdit
+	.center
+		with currentUser.profile
+			img(src="{{picture}}")
+			p Logged in as: {{name}}
+		.btn.logout Logout

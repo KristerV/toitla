@@ -11,11 +11,10 @@ iron:router@1.0.0-pre4
 email
 http
 #percolate:velocityjs
-accounts-password 
 toitla:common
 mizzao:timesync
 dburles:google-maps
 velocityjs:velocityjs
 sacha:spin
 msavin:mongol
-accounts-facebook
+fastclick

@@ -27,8 +27,8 @@ Template.postNew.events({
 		var description = $('.postNew .description').val()
 		var postId = Session.get('upload-post-id')
 		Posts.update(postId, {$set: {description: description}})
-		Scroller.goToPanel(1)
 		Posts.createNew()
+		Panel.center()
 	}
 })
 

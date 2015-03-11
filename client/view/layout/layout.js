@@ -9,7 +9,7 @@ Template.layout.helpers({
 
 Template.layout.rendered = function() {
 	Scroller.findPanels()
-	Scroller.animateScroll(Scroller.scrollPanels[1])
+	Panel.center()
 }
 
 $(window)
@@ -21,5 +21,5 @@ $(window)
 	})
 	.resize(function(){
 		Scroller.findPanels()
-		// Scroller.doScroll()
+		Client.getMenubarWidth()
 	})
