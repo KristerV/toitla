@@ -4,7 +4,7 @@ template(name="postNew")
 			with image
 				if this.isUploaded
 					if this.hasStored "500"
-						label.full-photo(style="background-image:url({{this.url store='500'}})")
+						label.full-photo(style="background-image:url({{imageUrl}})")
 							input.full-photo(type="file" accept="image/*" id="fileselect" style="opacity:0")
 					else
 						p.full-text Resizing...

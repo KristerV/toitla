@@ -5,19 +5,23 @@ Images = {
 	fetchAll: function() {
 		return ImagesCollection.find().fetch()
 	},
-	getUrl: function(id) {
+	getUrl: function(id, store) {
 		var imgObj = this.getOne(id)
 		if (!imgObj)
 			return null
 
-		url = imgObj.url()
+		if (store)
+			url = imgObj.url({store: store})
+		else
+			url = imgObj.url()
 		if (!url)
 			return null
 
 		// Remove token, it for some reason creates confusion
 		// Token format: image/link.png?token=xxxx
 		var cleanUrl = url.split('?')[0]
-		return cleanUrl
+
+		return cleanUrl.replace(' ', '%20')
 	},
 	updateStores: function() {
 		Meteor.call('updateStores')

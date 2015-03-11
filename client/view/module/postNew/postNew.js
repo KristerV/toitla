@@ -10,6 +10,9 @@ Template.postNew.helpers({
 
 		return img
 	},
+	imageUrl: function() {
+		return Images.getUrl(this._id, '500')
+	},
 	description: function() {
 		var post = Posts.getOne(Session.get('upload-post-id'))
 		if (!post)
