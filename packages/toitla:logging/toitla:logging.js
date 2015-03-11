@@ -3,7 +3,7 @@ Log = {
 
 		// Identify string with variables
 		if (arguments.length > 1)
-			message = Common.argumentsToArray(arguments)
+			message = Global.argumentsToArray(arguments)
 
 		Log.log('info', message)
 	},
@@ -11,7 +11,7 @@ Log = {
 
 		// Identify string with variables
 		if (arguments.length > 1)
-			message = Common.argumentsToArray(arguments)
+			message = Global.argumentsToArray(arguments)
 
 		Log.log('warning', message)
 	},
@@ -19,7 +19,7 @@ Log = {
 
 		// Identify string with variables
 		if (arguments.length > 1)
-			message = Common.argumentsToArray(arguments)
+			message = Global.argumentsToArray(arguments)
 
 		Log.log('error', message)
 		var simpleMessage = _.isObject(message) ? message.message : message
@@ -31,7 +31,7 @@ Log = {
 			Meteor.call('saveToLog', level, message)
 		}
 		else if (_.isArray(message)) {
-			message = Common.formatString(message)
+			message = Global.formatString(message)
 			Meteor.call('saveToLog', level, message)
 		}
 		else if (_.isObject(message)) {

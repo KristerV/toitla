@@ -92,6 +92,7 @@ templating@1.0.11
 toitla:account@1.0.0
 toitla:common@1.0.0
 toitla:date@1.0.0
+toitla:global@0.0.1
 toitla:images@0.0.1
 toitla:locale@1.0.0
 toitla:logging@1.0.0

@@ -9,6 +9,7 @@ Package.onUse(function(api) {
 	api.imply('mquandalle:jade');
 	api.imply('less');
 	api.imply('toitla:logging');
+	api.imply('toitla:global');
 	api.imply('toitla:locale');
 	api.imply('toitla:mail');
 	api.imply('toitla:map');
@@ -20,8 +21,6 @@ Package.onUse(function(api) {
 	api.use('spacebars');
 	api.versionsFrom('1.0');
 	api.addFiles('toitla:common.js');
-	api.export('Common', ['client', 'server']);
-	api.export('ClientHelper', 'client');
 });
 
 Package.onTest(function(api) {

@@ -7,7 +7,7 @@ Package.describe({
 
 Package.onUse(function(api) {
 	api.versionsFrom('1.0')
-	api.use(['accounts-password','accounts-facebook'])
+	api.use(['accounts-password','accounts-facebook', 'toitla:global'])
 	api.use(['mquandalle:jade', 'less', 'templating'], 'client')
 	api.use(['service-configuration'], 'server')
 	api.addFiles('user.js')

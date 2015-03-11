@@ -53,5 +53,5 @@ T = function(keyword, obj) {
 	}
 
 	// Return translation
-	return Common.safeString(translation)
+	return Global.safeString(translation)
 }
