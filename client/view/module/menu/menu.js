@@ -5,6 +5,9 @@ Template.mainMenu.rendered = function() {
 Template.mainMenu.helpers({
 	menubarWidth: function(){
 		return Session.get('menubar-width')
+	},
+	profileImage: function() {
+		return Meteor.user().profile.picture
 	}
 })
 
