@@ -22,4 +22,5 @@ $(window)
 	.resize(function(){
 		Scroller.findPanels()
 		Client.getMenubarWidth()
+		Client.getMinithumbWidth()
 	})

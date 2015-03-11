@@ -10,5 +10,12 @@ Template.post.helpers({
 	},
 	author: function() {
 		return User.getProfile(this.author)
+	},
+	thumbWidth: function() {
+		return Session.get('mini-thumb-width')
 	}
 })
+
+Template.post.rendered = function() {
+	Client.getMinithumbWidth()
+}

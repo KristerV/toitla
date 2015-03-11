@@ -1,6 +1,6 @@
 template(name="post")
 	.post(id="{{_id}}" style="{{image}}")
 		with author
-			img.mini-thumb(src="{{picture}}")
+			img.mini-thumb(src="{{picture}}" style="height:{{thumbWidth}}")
 			p {{name}}
 		p {{description}}
