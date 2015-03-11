@@ -8,5 +8,8 @@ Session.setDefault('upload-post-id', null)
 
 // On boot
 Meteor.startup(function(){
-	
+	if (document.URL.indexOf('www.toitla.com') > -1) {
+		var newLink = document.URL.replace('www.toitla.com', 'toitla.com')
+		window.location.replace(newLink)
+	}
 })
