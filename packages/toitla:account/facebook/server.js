@@ -7,6 +7,7 @@ Meteor.startup(function(){
 	
 	if (Configuration.development_server == 'localhost') { // local development key
 
+		console.log("Configure facebook option 1")
 		ServiceConfiguration.configurations.insert({
 			service: 'facebook',
 			appId: '1803235633235085',
@@ -15,6 +16,7 @@ Meteor.startup(function(){
 
 	} else if (Configuration.development_server == 'toitla.com:4000') { // toitla:4000 development key
 
+		console.log("Configure facebook option 2")
 		ServiceConfiguration.configurations.insert({
 			service: 'facebook',
 			appId: '1803326889892626',
@@ -23,6 +25,7 @@ Meteor.startup(function(){
 
 	} else { // toitla.com live key
 
+		console.log("Configure facebook option 3")
 		ServiceConfiguration.configurations.insert({
 			service: 'facebook',
 			appId: '1798689160356399',
