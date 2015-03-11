@@ -5,7 +5,7 @@ ServiceConfiguration.configurations.remove({
 
 Meteor.startup(function(){
 	
-	if (Global.isDev()) { // development key
+	if (Configuration.development_server == 'localhost') { // local development key
 
 		ServiceConfiguration.configurations.insert({
 			service: 'facebook',
@@ -13,7 +13,15 @@ Meteor.startup(function(){
 			secret: '77550b19cf0b3bce933ab5e15aa2a196'
 		})
 
-	} else { // toitla.com key
+	} else if (Configuration.development_server == 'toitla.com:4000') { // toitla:4000 development key
+
+		ServiceConfiguration.configurations.insert({
+			service: 'facebook',
+			appId: '1803326889892626',
+			secret: '69a3f5c317744edd785cf94e6dfd0328'
+		})
+
+	} else { // toitla.com live key
 
 		ServiceConfiguration.configurations.insert({
 			service: 'facebook',

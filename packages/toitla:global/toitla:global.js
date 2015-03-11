@@ -70,6 +70,6 @@ Global = {
 		return data
 	},
 	isDev: function() {
-		return Configuration.development_server
+		return !!Configuration.development_server
 	}
 }
