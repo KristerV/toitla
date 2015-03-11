@@ -1,11 +1,11 @@
 PostsCollection.allow({
 	insert: function (userId, doc) {
-		return true
+		return !!userId
 	},
 	update: function (userId, doc, fields, modifier) {
-		return true
+		return !!userId && userId == doc.author
 	},
 	remove: function (userId, doc) {
-		return true
+		return false
 	},
 });
