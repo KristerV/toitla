@@ -21,7 +21,7 @@ Images = {
 		// Token format: image/link.png?token=xxxx
 		var cleanUrl = url.split('?')[0]
 
-		return cleanUrl.replace(' ', '%20')
+		return cleanUrl.replace(/ /g, '%20')
 	},
 	updateStores: function() {
 		Meteor.call('updateStores')
