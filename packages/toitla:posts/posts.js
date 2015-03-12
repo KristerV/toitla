@@ -17,7 +17,10 @@ Posts = {
 		return PostsCollection.find({imageId: {$exists: 1}, description: {$exists: 1}},{sort: {created: -1}})
 	},
 	getOne: function(id) {
-		return PostsCollection.findOne(id)
+		if (id)
+			return PostsCollection.findOne(id)
+		else
+			return PostsCollection.findOne()
 	},
 	clearEmpty: function() {
 		var posts = Posts.fetchAll()
