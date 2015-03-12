@@ -16,5 +16,5 @@ template(name="postNew")
 				p.full-text Click to insert image
 				label.full-photo
 					input.full-photo(type="file" accept="image/*" id="fileselect" style="opacity:0")
-		textarea.description(placeholder="Description...") {{description}}
+		textarea.description(placeholder="{{T 'postNew_description_placeholder'}}") {{description}}
 		button.submit {{T "save"}}
