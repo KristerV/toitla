@@ -53,5 +53,5 @@ T = function(keyword, obj) {
 	}
 
 	// Return translation
-	return Global.safeString(translation).toString()
+	return Global.safeString(translation)
 }
