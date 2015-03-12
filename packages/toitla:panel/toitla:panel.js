@@ -1,8 +1,8 @@
 Panel = {
 	left: function(content) {
-		if (content) {
+		if (content)
 			Session.set('panel-left', content)
-		}
+		Session.set('panel-right', null)
 		
 		Scroller.goToPanel(0)
 	},
@@ -20,6 +20,7 @@ Panel = {
 			Session.set('panel-right', content)
 		if (postId)
 			Session.set('panel-right-post', postId)
+		Session.set('panel-left', null)
 
 		Scroller.goToPanel(2)
 	},
