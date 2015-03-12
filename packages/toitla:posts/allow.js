@@ -3,6 +3,15 @@ PostsCollection.allow({
 		return !!userId
 	},
 	update: function (userId, doc, fields, modifier) {
+		console.log('------------------')
+		console.log(userId)
+		console.log('------------------')
+		console.log(doc)
+		console.log('------------------')
+		console.log(fields)
+		console.log('------------------')
+		console.log(modifier)
+		console.log('==================')
 
 		// Only logged in users
 		if (!userId)
@@ -13,7 +22,6 @@ PostsCollection.allow({
 				&& modifier.$pull 
 				&& modifier.$pull.likes 
 				&& modifier.$pull.likes == userId) {
-			console.log("like 1")
 			return true
 		}
 
@@ -22,13 +30,11 @@ PostsCollection.allow({
 				&& modifier.$push 
 				&& modifier.$push.likes 
 				&& modifier.$push.likes == userId) {
-			console.log("like 2")
 			return true
 		}
 
 		// If owner
 		if (userId == doc.author) {
-			console.log("like 3")
 			return true
 		}
 
