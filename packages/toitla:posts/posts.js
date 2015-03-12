@@ -2,7 +2,8 @@ Posts = {
 	createNew: function() {
 		var postId = PostsCollection.insert({
 			author: Meteor.userId(),
-			created: new Date()
+			created: new Date(),
+			likes: []
 		})
 		$('.postNew .description').val('')
 		Session.set('upload-post-id', postId)
@@ -31,5 +32,19 @@ Posts = {
 	},
 	update: function(find, change) {
 		PostsCollection.update(find, change)
+	},
+	like: function(postId, userId) {
+		var post = PostsCollection.findOne(postId)
+
+		if (!post.likes) {
+			PostsCollection.update(postId, {$set: {likes: [userId]}})
+			return true
+		}
+
+		if (_.contains(post.likes, userId))
+			PostsCollection.update(postId, {$pull: {likes: userId}})
+		else
+			PostsCollection.update(postId, {$push: {likes: userId}})
+
 	}
 }

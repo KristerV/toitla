@@ -15,5 +15,23 @@ Template.post.helpers({
 		var size = Session.get('menubar-width')
 		size = parseInt(size) * 0.6
 		return size + 'px'
+	},
+	like: function() {
+		if (!this.likes)
+			return false
+
+		return _.contains(this.likes, Meteor.userId())
+	},
+	likesCount: function() {
+		if (!this.likes)
+			return ""
+		var count = this.likes.length
+
+		if (count == 0)
+			return ""
+		else if (count == 1)
+			return "1 like"
+		else
+			return count + " likes"
 	}
 })
