@@ -5,9 +5,10 @@ template(name="post")
 			p.no-top.font-small {{name}}
 		.align-bottom
 			p.description {{description}}
-			if like
-				+icon(icon="icons/white-heart.svg" iconClass="icon-small" text="like" textClass="font-small")
-			else
-				+icon(icon="icons/white-heart-empty.svg" iconClass="icon-small" text="like" textClass="font-small")
+			if currentUser
+				if like
+					+icon(icon="icons/white-heart.svg" iconClass="icon-small" text="like" textClass="font-small")
+				else
+					+icon(icon="icons/white-heart-empty.svg" iconClass="icon-small" text="like" textClass="font-small")
 			+icon(icon="icons/white-share.svg" iconClass="icon-small" text="share" textClass="font-small")
 			+icon(text=likesCount textClass="font-small" wrapperClass="float-right icon-height")
