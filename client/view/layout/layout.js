@@ -4,6 +4,9 @@ Template.layout.helpers({
 			return "visible"
 		else if (Session.equals('panel-right', obj.hash.content))
 			return "visible"
+	},
+	rightPanelActive: function() {
+		return Session.get('panel-right')
 	}
 })
 

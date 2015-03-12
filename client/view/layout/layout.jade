@@ -16,7 +16,8 @@ template(name="layout")
 			+feed
 	.panel.layout-right
 		.menu-bar
-			+sideMenu
+			if rightPanelActive
+				+sideMenu
 		.content-bar#scrollbar-c
 			.veil
 			.switcher-content(class="{{visible content='userProfileView'}}")
