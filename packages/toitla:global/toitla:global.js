@@ -86,5 +86,17 @@ Global = {
 		return str
 
 
+	},
+	getUrl: function() {
+		var url = Configuration.site_address
+		if (url.substr(-1) != '/')
+			url += '/'
+		return url
+	},
+	getUrlNoSlash: function() {
+		var url = Configuration.site_address
+		if (url.substr(-1) == '/')
+			url = url.slice(0,url.length-1)
+		return url
 	}
 }

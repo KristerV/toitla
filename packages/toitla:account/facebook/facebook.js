@@ -3,7 +3,7 @@ Facebook = {
 		var post = Posts.getOne(postId)
 		var imageUrl = Images.getUrlByPost(postId, true)
 		var description = Global.shortenString(post.description, 999)
-		var link = Configuration.url() + 'post/' + postId
+		var link = Global.getUrl() + 'post/' + postId
 		FB.ui({
 			method: 'feed',
 			link: link,
