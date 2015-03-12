@@ -9,7 +9,13 @@ Template.layout.helpers({
 
 Template.layout.rendered = function() {
 	Scroller.findPanels()
-	Panel.center()
+
+	// User came here with /post/:id link
+	if (Session.get('panel-right-post'))
+		Panel.right('postDetails')
+	// Default to main panel
+	else
+		Panel.center()
 }
 
 $(window)

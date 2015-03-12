@@ -15,10 +15,11 @@ Panel = {
 		Session.set('panel-right', null)
 		Scroller.goToPanel(1)
 	},
-	right: function(content) {
-		if (content) {
+	right: function(content, postId) {
+		if (content)
 			Session.set('panel-right', content)
-		}
+		if (postId)
+			Session.set('panel-right-post', postId)
 
 		Scroller.goToPanel(2)
 	},
