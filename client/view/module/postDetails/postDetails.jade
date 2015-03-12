@@ -1,0 +1,7 @@
+template(name="postDetails")
+	.postDetails
+		with post
+			img.shadow(src="{{image}}")
+			p {{T "chef"}}: {{author}}
+			p.font-small {{created}}
+			p {{description}}
