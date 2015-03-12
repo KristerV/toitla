@@ -39,6 +39,7 @@ Template.post.helpers({
 Template.post.events({
 	'click .post': function(e) {
 		var postId = $(e.currentTarget).attr('id')
-		Panel.right('postDetails', postId)
+		Router.go('/post/'+postId)
+		// Panel.right('postDetails', postId)
 	}
 })
