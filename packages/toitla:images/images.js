@@ -6,23 +6,38 @@ Images = {
 		return ImagesCollection.find().fetch()
 	},
 	getUrl: function(id, store, full) {
+		console.log("here 1")
 		var imgObj = this.getOne(id)
-		if (!imgObj)
+		console.log("here 2")
+		if (!imgObj) {
+			console.log("here 3")
 			return null
+		}
 
-		if (store)
+		if (store) {
+			console.log("here 4")
 			url = imgObj.url({store: store})
-		else
+		}
+		else {
+			console.log("here 5")
 			url = imgObj.url()
-		if (!url)
+		}
+		if (!url) {
+			console.log("here 6")
 			return null
+		}
+		console.log("here 7")
 
 		// Remove token, it for some reason creates confusion
 		// Token format: image/link.png?token=xxxx
 		var cleanUrl = url.split('?')[0]
+		console.log("here 8")
 
-		if (full)
+		if (full) {
+			console.log("here 9")
 			cleanUrl = Configuration.urlNoSlash() + cleanUrl
+		}
+		console.log("here 10")
 
 		return cleanUrl.replace(/ /g, '%20')
 	},
