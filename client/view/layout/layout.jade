@@ -1,6 +1,7 @@
 template(name="layout")
 	.panel.layout-left
 		.content-bar
+			.veil
 			.switcher-content(class="{{visible content='userProfileEdit'}}")
 				+userProfileEdit
 			.switcher-content(class="{{visible content='login'}}")
@@ -17,6 +18,7 @@ template(name="layout")
 		.menu-bar
 			+sideMenu
 		.content-bar
+			.veil
 			.switcher-content(class="{{visible content='userProfileView'}}")
 				+userProfileView
 			.switcher-content(class="{{visible content='postDetails'}}")
