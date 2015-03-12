@@ -35,3 +35,10 @@ Template.post.helpers({
 			return count + " likes"
 	}
 })
+
+Template.post.events({
+	'click .post': function(e) {
+		var postId = $(e.currentTarget).attr('id')
+		Panel.right('postDetails', postId)
+	}
+})
