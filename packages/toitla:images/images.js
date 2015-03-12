@@ -5,7 +5,7 @@ Images = {
 	fetchAll: function() {
 		return ImagesCollection.find().fetch()
 	},
-	getUrl: function(id, store) {
+	getUrl: function(id, store, full) {
 		var imgObj = this.getOne(id)
 		if (!imgObj)
 			return null
@@ -21,7 +21,15 @@ Images = {
 		// Token format: image/link.png?token=xxxx
 		var cleanUrl = url.split('?')[0]
 
+		if (full)
+			cleanUrl = Configuration.urlNoSlash() + cleanUrl
+
 		return cleanUrl.replace(/ /g, '%20')
+	},
+	getUrlByPost: function(postId, full) {
+		var post = Posts.getOne(postId)
+		var imageId = post.imageId
+		return this.getUrl(imageId, null, full)
 	},
 	updateStores: function() {
 		Meteor.call('updateStores')

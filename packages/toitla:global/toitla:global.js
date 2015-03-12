@@ -71,5 +71,20 @@ Global = {
 	},
 	isDev: function() {
 		return !!Configuration.development_server
+	},
+	shortenString: function(str, goal) {
+		if (!str || !goal)
+			return false
+
+		if (str.length > goal) {
+			str = str.slice(0, goal)
+			var a = str.lastIndexOf(".")
+			var b = str.lastIndexOf("?")
+			var ab = a < b ? b : a
+			str = str.slice(0, ab+1)
+		}
+		return str
+
+
 	}
 }
