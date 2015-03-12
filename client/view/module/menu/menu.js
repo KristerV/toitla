@@ -15,6 +15,13 @@ Template.mainMenu.helpers({
 Template.sideMenu.helpers({
 	menubarWidth: function(){
 		return Session.get('menubar-width')
+	},
+	chefImage: function() {
+		console.log("-----------------")
+		var postId = Session.get('panel-right-post')
+		var post = Posts.getOne(postId)
+		console.log(User.getProfile(post.author).picture)
+		return User.getProfile(post.author).picture
 	}
 })
 

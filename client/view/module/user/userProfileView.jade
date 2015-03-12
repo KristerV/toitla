@@ -1,2 +1,5 @@
 template(name="userProfileView")
-	p userProfileView
+	.userProfileView
+		with profile
+			img(src="{{picture}}")
+			p {{name}}
