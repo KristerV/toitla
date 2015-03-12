@@ -7,7 +7,6 @@ Panel = {
 		Scroller.goToPanel(0)
 	},
 	center: function(content) {
-		console.log("panel-center")
 		if (content) {
 			Session.set('panel-center', content)
 		}
@@ -18,13 +17,13 @@ Panel = {
 		Router.go('/')
 	},
 	right: function(content, postId) {
-		console.log("panel-right")
 		if (content)
 			Session.set('panel-right', content)
 		if (postId)
 			Session.set('panel-right-post', postId)
 		Session.set('panel-left', null)
 
+		// If no content, just set postId to Session
 		if (content)
 			Scroller.goToPanel(2)
 	},

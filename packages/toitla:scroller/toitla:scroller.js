@@ -112,9 +112,7 @@ Scroller = {
 		}
 	},
 	goToPanel: function(nr, override) {
-		console.log("Scroll")
 		if (this.scrollingInAction === true && override !== true) {
-			console.log("scroll STOP")
 			return false
 		}
 		var coordinates = this.scrollPanels[nr]

@@ -23,6 +23,7 @@ Template.sideMenu.helpers({
 			return false
 		var user = User.getProfile(post.author)
 		if (!user)
+			return false
 		return user.picture
 	}
 })
