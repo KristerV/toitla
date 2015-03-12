@@ -11,8 +11,12 @@
 
 textarea {
 	border: none;
-	padding: 0;
+	padding: 0.5em;
+	box-sizing: border-box;
 	background-color: transparent;
+	&:focus {
+		outline: none !important;
+	}
 }
 
 .mini-thumb {
@@ -23,6 +27,11 @@ textarea {
 .no-top {
 	margin-top: 0;
 	padding-top: 0;
+}
+
+.no-bottom {
+	margin-bottom: 0;
+	padding-bottom: 0;
 }
 
 .float-left {
@@ -40,4 +49,9 @@ textarea {
 .shadow-small {
 	-webkit-box-shadow: 0 4px 5px -1px rgba(0,0,0,0.5);
 	box-shadow: 0 4px 5px -1px rgba(0,0,0,0.5);
+}
+
+.icon-small {
+	width: 24px;
+	height: 24px;
 }

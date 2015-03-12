@@ -5,6 +5,5 @@ template(name="post")
 			p.no-top.font-small {{name}}
 		.align-bottom
 			p.description {{description}}
-			p.float-left.font-small like
-			p.float-left.font-small share
-			p.float-right.font-small comments
+			+icon(icon="icons/white-heart.svg" iconClass="icon-small" text="like" textClass="font-small")
+			+icon(icon="icons/white-share.svg" iconClass="icon-small" text="share" textClass="font-small")

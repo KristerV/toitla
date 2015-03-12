@@ -1,8 +1,8 @@
 template(name="mainMenu")
 	.menu
 		if currentUser
-			+menuItem(panel="left" content="userProfileEdit" icon=profileImage)
+			+menuItem(panel="left" content="userProfileEdit" icon=profileImage contentClass="cover")
 			.align-bottom(style="width:{{menubarWidth}}")
-				+menuItem(panel="left" content="postNew")
+				+menuItem(panel="left" content="postNew" icon="/icons/white-camera.svg")
 		else
-			+menuItem(panel="left" content="login")
+			+menuItem(panel="left" content="login" icon="/icons/white-toitla.svg")

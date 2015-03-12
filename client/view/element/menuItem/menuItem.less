@@ -1,4 +1,5 @@
 @import "../../../settings";
+@import "../../elements";
 
 .menuItem {
 	cursor: pointer;
@@ -9,8 +10,12 @@
 		left: (100% - @thumb-width) / 2;
 		width: @thumb-width;
 		height: @thumb-width;
-		background-color: rgb(150,150,150);
 		background-position: center;
+		background-size: contain;
+		background-repeat: no-repeat;
+	}
+	.cover {
 		background-size: cover;
+		.shadow-small;
 	}
 }
