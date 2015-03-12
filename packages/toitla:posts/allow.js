@@ -12,19 +12,25 @@ PostsCollection.allow({
 		if (modifier
 				&& modifier.$pull 
 				&& modifier.$pull.likes 
-				&& modifier.$pull.likes == userId)
+				&& modifier.$pull.likes == userId) {
+			console.log("like 1")
 			return true
+		}
 
 		// If pushing her own 'like'
 		if (modifier
 				&& modifier.$push 
 				&& modifier.$push.likes 
-				&& modifier.$push.likes == userId)
+				&& modifier.$push.likes == userId) {
+			console.log("like 2")
 			return true
+		}
 
 		// If owner
-		if (userId == doc.author)
+		if (userId == doc.author) {
+			console.log("like 3")
 			return true
+		}
 
 		return false
 	},
