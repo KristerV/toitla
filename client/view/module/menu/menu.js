@@ -19,13 +19,13 @@ Template.sideMenu.helpers({
 })
 
 Template.mainMenu.events({
-	'click .menu': function(e, tmpl) {
+	'touchstart .menu, click .menu': function(e, tmpl) {
 		Panel.center()
 	}
 })
 
 Template.sideMenu.events({
-	'click .menu': function(e, tmpl) {
+	'touchstart .menu, click .menu': function(e, tmpl) {
 		Panel.center()
 	}
 })

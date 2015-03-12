@@ -5,7 +5,7 @@ Template.menuItem.helpers({
 })
 
 Template.menuItem.events({
-	'click .menuItem': function(e, tmpl) {
+	'touchstart .menuItem, click .menuItem': function(e, tmpl) {
 		e.stopPropagation()
 
 		var panel = this.panel
