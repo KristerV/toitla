@@ -1,4 +1,4 @@
-@post-padding: 5%;
+@post-padding: 7%;
 
 .post {
 	margin-top: 1em;
@@ -11,8 +11,6 @@
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
-	-webkit-box-shadow: 0 10px 10px -5px rgba(0,0,0,0.5);
-	box-shadow: 0 10px 10px -5px rgba(0,0,0,0.5);
 	position: relative;
 	.description {
 		overflow: hidden;
@@ -25,7 +23,7 @@
 	}
 	.align-bottom {
 		position: absolute;
-		bottom: 0;
+		bottom: @post-padding;
 		width: 100% - (@post-padding * 2);
 	}
 }

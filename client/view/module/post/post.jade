@@ -1,5 +1,5 @@
 template(name="post")
-	.post(id="{{_id}}" style="{{image}}")
+	.post.shadow(id="{{_id}}" style="{{image}}")
 		with author
 			img.mini-thumb(src="{{picture}}" style="height:{{thumbSize}};width:{{thumbSize}}")
 			p.no-top.font-small {{name}}
