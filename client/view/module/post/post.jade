@@ -2,5 +2,9 @@ template(name="post")
 	.post(id="{{_id}}" style="{{image}}")
 		with author
 			img.mini-thumb(src="{{picture}}" style="height:{{thumbSize}};width:{{thumbSize}}")
-			p {{name}}
-		p {{description}}
+			p.no-top.font-small {{name}}
+		.align-bottom
+			p.description {{description}}
+			p.float-left.font-small like
+			p.float-left.font-small share
+			p.float-right.font-small comments
