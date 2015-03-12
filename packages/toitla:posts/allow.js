@@ -3,19 +3,18 @@ PostsCollection.allow({
 		return !!userId
 	},
 	update: function (userId, doc, fields, modifier) {
-		console.log('------------------')
-		console.log(userId)
-		console.log('------------------')
-		console.log(doc)
-		console.log('------------------')
-		console.log(fields)
-		console.log('------------------')
-		console.log(modifier)
-		console.log('==================')
 
 		// Only logged in users
 		if (!userId)
 			return false
+
+		// If setting the first like
+		if (!doc.likes
+		    && modifier 
+		    && modifier.$set
+		    && modifier.$set.likes
+		    && modifier.$set.likes.length == 1)
+		    return true
 
 		// If pulling her own 'like'
 		if (modifier
