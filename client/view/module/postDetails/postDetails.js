@@ -6,7 +6,12 @@ Template.postDetails.helpers({
 		return Images.getUrl(this.imageId)
 	},
 	author: function() {
-		return User.getProfile(this.author).name
+		if (!this || !this.author)
+			return null
+		var user = User.getProfile(this.author)
+		if (!user)
+			return null
+		return user.name
 	},
 	description: function() {
 		return Global.safeString(this.description)

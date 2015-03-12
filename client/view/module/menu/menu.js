@@ -19,9 +19,11 @@ Template.sideMenu.helpers({
 	chefImage: function() {
 		var postId = Session.get('panel-right-post')
 		var post = Posts.getOne(postId)
-		if (!post)
+		if (!post || !post.author)
 			return false
-		return User.getProfile(post.author).picture
+		var user = User.getProfile(post.author)
+		if (!user)
+		return user.picture
 	}
 })
 
