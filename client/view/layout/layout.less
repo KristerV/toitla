@@ -1,7 +1,5 @@
 @import "../../settings";
 
-@panel-left: @panel-width * 0.3;
-
 html {
 	overflow: hidden;
 }
@@ -14,17 +12,17 @@ html {
 
 .panel.layout-left {
 	left: 0;
-	width: @panel-left;
+	width: @panel-left-width;
 	height: 100%;
 }
 .panel.layout-center {
-	left: @panel-left;
+	left: @panel-left-width;
 	width: 100%;
 	height: 100%;
 }
 .panel.layout-right {
-	left: @panel-left + @panel-width;
-	width: @panel-left + @menu-bar-width;
+	left: @panel-left-width + @panel-width;
+	width: @panel-left-width + @menu-bar-width;
 	height: 100%;
 }
 
@@ -34,7 +32,6 @@ html {
 	position: relative;
 	display: inline-block;
 	width: @menu-bar-width;
-	max-width: 150px;
 	height: 100%;
 }
 
@@ -86,21 +83,19 @@ html {
 }
 
 @media all and (min-width: 1000px) {
-	// The idea is to center the panel with <left>
-	// then negative margin to put it in place
-	/*.panel.layout-left {
-		width: @panel-left;
-		left: 50%;
-		margin-left: -(@panel-left + (@panel-width / 2));
+	.menu-bar {
+		width: @menu-bar-width * 0.5;
 	}
-	.panel.layout-center {
-		width: @panel-width;
-		left: 50%;
-		margin-left: -@panel-width / 2;
+	.content-bar {
+		width: 97% - (@menu-bar-width * 0.5);
 	}
 	.panel.layout-right {
-		width: @panel-width;
-		left: 50%;
-		margin-left: @panel-width / 2;
-	}*/
+		width: @panel-left-width + (@menu-bar-width * 0.5);
+		.menu-bar {
+			width: (@menu-bar-width * 0.5) * 100% / (@panel-left-width + (@menu-bar-width * 0.5));
+		}
+		.content-bar {
+			width: 97% - (@menu-bar-width * 0.5) * 100% / (@panel-left-width + (@menu-bar-width * 0.5));
+		}
+	}
 }

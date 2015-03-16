@@ -2,7 +2,7 @@ Client = {
 
 	// some elements are sized accoring to menubar width
 	getMenubarWidth: function() {
-		var width = $('.menu-bar').width()
+		var width = $('.menuItem').width()
 		Session.set('menubar-width', width+'px')
 	}
 }
