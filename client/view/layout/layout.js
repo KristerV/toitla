@@ -28,11 +28,12 @@ Template.layout.rendered = function() {
 	Scroller.findPanels()
 
 	// User came here with /post/:id link
-	if (Session.get('panel-right-post'))
-		Panel.right('postDetails')
+	if (Session.get('panel-right-post')) {
+		Panel.right('postDetails', {sudden: true})
+	}
 	// Default to main panel
 	else
-		Panel.center()
+		Panel.center(null, {sudden: true})
 }
 
 $(window)

@@ -104,6 +104,9 @@ Scroller = {
 			}.bind(this),
 		})
 	},
+	scrollSuddenly: function(destination) {
+		window.scrollTo(destination, 0)
+	},
 	saveScroll: function(){
 		if (this.scrollingInAction === false) {
 			this.scrollHistory.push($(this.parentSelector).scrollLeft())
@@ -111,8 +114,8 @@ Scroller = {
 				this.scrollHistory.shift()
 		}
 	},
-	goToPanel: function(nr, override) {
-		if (this.scrollingInAction === true && override !== true) {
+	goToPanel: function(nr, options) {
+		if (this.scrollingInAction === true && options && options.override !== true) {
 			return false
 		}
 
@@ -126,6 +129,10 @@ Scroller = {
 		// Mobile layout: panel is window size, this.scrollPanels[2] is correct
 		else
 			coordinates = this.scrollPanels[nr]
-		this.animateScroll(coordinates)
+
+		if (options && options.sudden)
+			this.scrollSuddenly(coordinates)
+		else
+			this.animateScroll(coordinates)
 	}
 }

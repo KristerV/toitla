@@ -1,31 +1,32 @@
 Panel = {
-	left: function(content) {
+	left: function(content, options) {
 		if (content)
 			Session.set('panel-left', content)
 		Session.set('panel-right', null)
 		
-		Scroller.goToPanel(0)
+		Scroller.goToPanel(0, options)
 	},
-	center: function(content) {
+	center: function(content, options) {
 		if (content) {
 			Session.set('panel-center', content)
 		}
 
 		Session.set('panel-left', null)
 		Session.set('panel-right', null)
-		Scroller.goToPanel(1)
+		Scroller.goToPanel(1, options)
 		Router.go('/')
 	},
-	right: function(content, postId) {
+	right: function(content, options) {
 		if (content)
 			Session.set('panel-right', content)
-		if (postId)
-			Session.set('panel-right-post', postId)
+		if (options.postId)
+			Session.set('panel-right-post', options.postId)
 		Session.set('panel-left', null)
 
 		// If no content, just set postId to Session
-		if (content)
-			Scroller.goToPanel(2)
+		if (content) {
+			Scroller.goToPanel(2, options)
+		}
 	},
 	go: function(panel, content) {
 		if (panel == 'left')
