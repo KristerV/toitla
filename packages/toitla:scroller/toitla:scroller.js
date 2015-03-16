@@ -115,7 +115,17 @@ Scroller = {
 		if (this.scrollingInAction === true && override !== true) {
 			return false
 		}
-		var coordinates = this.scrollPanels[nr]
+
+		var coordinates
+
+		// PC layout: this.scrollPanels[2] can't be reached. In this
+		// case just scroll as far as possible. It keeps the scroll smooth.
+		if (nr == 2 && $('.panel.layout-right').width() != $(window).width())
+			coordinates = $(document).width() - $(window).width()
+
+		// Mobile layout: panel is window size, this.scrollPanels[2] is correct
+		else
+			coordinates = this.scrollPanels[nr]
 		this.animateScroll(coordinates)
 	}
 }
