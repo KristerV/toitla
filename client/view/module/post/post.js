@@ -33,8 +33,12 @@ Template.post.helpers({
 
 Template.post.events({
 	'click .post': function(e) {
-		var postId = $(e.currentTarget).attr('id')
-		Router.go('/post/'+postId)
-		// Panel.right('postDetails', postId)
+
+		// If the main feed is not transparent
+		if ($(e.target).parents('.content-bar.transparent').length == 0) {
+			var postId = $(e.currentTarget).attr('id')
+			Router.go('/post/'+postId)
+			e.stopPropagation()
+		}
 	}
 })

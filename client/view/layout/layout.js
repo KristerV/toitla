@@ -7,6 +7,20 @@ Template.layout.helpers({
 	},
 	rightPanelActive: function() {
 		return Session.get('panel-right')
+	},
+	transparent: function() {
+		if (Session.get('panel-left'))
+			return "transparent"
+		else if (Session.get('panel-right'))
+			return "transparent"
+	}
+})
+
+Template.layout.events({
+	'click .transparent': function(e) {
+		
+		// post.js has already checked, that the feed is transparent
+		Panel.center()
 	}
 })
 

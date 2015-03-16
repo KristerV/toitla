@@ -1,4 +1,5 @@
 @import "../../settings";
+@import "../elements";
 
 html {
 	overflow: hidden;
@@ -36,6 +37,7 @@ html {
 }
 
 .content-bar {
+	.animate-opacity;
 	padding: 0;
 	margin: 0;
 	position: relative;
@@ -52,10 +54,7 @@ html {
 }
 
 .switcher-content {
-	-webkit-transition: opacity 0.2s ease-out;
-	-moz-transition: opacity 0.2s ease-out;
-	-o-transition: opacity 0.2s ease-out;
-	transition: opacity 0.2s ease-out;
+	.animate-opacity;
 
 	position: absolute;
 	width: 100%;

@@ -1,6 +1,6 @@
 template(name="layout")
 	.panel.layout-left
-		.content-bar#scrollbar-b
+		.content-bar
 			.veil
 			.switcher-content(class="{{visible content='userProfileEdit'}}")
 				+userProfileEdit
@@ -12,13 +12,13 @@ template(name="layout")
 	.panel.layout-center
 		.menu-bar
 			+mainMenu
-		.content-bar#scrollbar-a
+		.content-bar(class="{{transparent}}")
 			+feed
 	.panel.layout-right
 		.menu-bar
 			if rightPanelActive
 				+sideMenu
-		.content-bar#scrollbar-c
+		.content-bar
 			.veil
 			.switcher-content(class="{{visible content='userProfileView'}}")
 				+userProfileView
