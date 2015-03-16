@@ -82,13 +82,21 @@ html {
 }
 
 @media all and (min-width: 1000px) {
+	@panel-left-width: @panel-width * 0.3;
 	.menu-bar {
 		width: @menu-bar-width * 0.5;
 	}
 	.content-bar {
 		width: 97% - (@menu-bar-width * 0.5);
 	}
+	.panel.layout-left {
+		width: @panel-left-width;
+	}
+	.panel.layout-center {
+		left: @panel-left-width;
+	}
 	.panel.layout-right {
+		left: @panel-left-width + @panel-width;
 		width: @panel-left-width + (@menu-bar-width * 0.5);
 		.menu-bar {
 			width: (@menu-bar-width * 0.5) * 100% / (@panel-left-width + (@menu-bar-width * 0.5));
