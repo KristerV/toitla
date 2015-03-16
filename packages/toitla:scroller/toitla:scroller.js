@@ -115,9 +115,10 @@ Scroller = {
 		}
 	},
 	goToPanel: function(nr, options) {
-		if (this.scrollingInAction === true && options && options.override !== true) {
+		// Don't use this, otherwise clicking too fast causes transparent feed but no scroll
+		/*if (this.scrollingInAction === true && options && options.override !== true) {
 			return false
-		}
+		}*/
 
 		var coordinates
 
