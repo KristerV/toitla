@@ -1,5 +1,6 @@
 template(name="feed")
-	+titlePage
+	if notCurrentUser
+		+titlePage
 	.feed
 		each posts
 			+post

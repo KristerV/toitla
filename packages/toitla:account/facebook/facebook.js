@@ -18,7 +18,7 @@ Facebook = {
 			if (err) {
 				throw new Meteor.Error(err);
 			} else {
-				Panel.left('userProfileEdit')
+				Panel.center()
 			}
 		})
 	}

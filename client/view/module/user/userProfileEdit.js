@@ -4,7 +4,7 @@ Template.userProfileEdit.events({
 			if (err)
 				throw new Meteor.Error(err)
 			else
-				Panel.left('login')
+				Panel.center()
 		})
 	}
 })

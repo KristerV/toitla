@@ -28,3 +28,8 @@ $(window)
 		Scroller.findPanels()
 		Client.getMenubarWidth()
 	})
+
+// Template helpers
+Template.registerHelper('notCurrentUser', function(){
+	return !Meteor.user()
+})

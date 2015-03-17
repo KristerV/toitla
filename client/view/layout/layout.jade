@@ -1,5 +1,6 @@
 template(name="layout")
-	.titlePageBackground.animate-opacity-slow(class="{{backInvisible}}")
+	if notCurrentUser
+		.titlePageBackground.animate-opacity-slow(class="{{backInvisible}}")
 	.panel.layout-left
 		.content-bar
 			.veil

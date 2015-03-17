@@ -15,9 +15,7 @@ Template.layout.helpers({
 			return "transparent"
 	},
 	backInvisible: function() {
-		var scroll = Session.get('panel-center-scroll')
-		var hideHeight = $(window).height() * 0.2
-		return scroll > hideHeight ? 'opacity-none' : ''
+		return Client.titlepageVisible() ? '' : 'opacity-none'
 	}
 })
 
