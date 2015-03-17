@@ -11,7 +11,7 @@ Client = {
 	},
 	titlepageVisible: function() {
 		var scroll = Session.get('panel-center-scroll')
-		var hideHeight = $(window).height() * 0.2
+		var hideHeight = $(window).height() * 0.5
 		return scroll < hideHeight
 	}
 }
