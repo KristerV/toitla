@@ -34,16 +34,10 @@ Template.layout.rendered = function() {
 	// Default to main panel
 	else
 		Panel.center(null, {sudden: true})
+
+	// Hide titlePage when scrolled down
+	$('.layout-center .content-bar').scroll(function(){
+		Client.toggleTitlePage()
+	})
 }
 
-$(window)
-	.scroll(function(){
-		// Scroller.saveScroll()
-	})
-	.on("scrollstop", function() {
-		// Scroller.doScroll()
-	})
-	.resize(function(){
-		Scroller.findPanels()
-		Client.getMenubarWidth()
-	})

@@ -13,6 +13,7 @@ Panel = {
 
 		Session.set('panel-left', null)
 		Session.set('panel-right', null)
+		Session.set('panel-right-post', null)
 		Scroller.goToPanel(1, options)
 		Router.go('/')
 	},

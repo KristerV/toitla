@@ -1,4 +1,5 @@
 template(name="layout")
+	+titlePage
 	.panel.layout-left
 		.content-bar
 			.veil
@@ -12,7 +13,8 @@ template(name="layout")
 	.panel.layout-center
 		.menu-bar
 			+mainMenu
-		.content-bar(class="{{transparent}}")
+		.content-bar(class="{{transparent}}" id="scrollme")
+			.title-filler
 			+feed
 	.panel.layout-right
 		.menu-bar
