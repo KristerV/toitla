@@ -12,9 +12,10 @@ template(name="layout")
 				.switcher-content(class="{{visible content='postNew'}}")
 					+postNew
 	.panel.layout-center
-		.menu-bar
-			+mainMenu
-		.content-bar(class="{{transparent}}")
+		if currentUser
+			.menu-bar
+				+mainMenu
+		.content-bar(class="{{transparent}}" style="{{panelCenterStyle}}")
 			+feed
 	.panel.layout-right
 		.menu-bar

@@ -16,6 +16,12 @@ Template.layout.helpers({
 	},
 	backInvisible: function() {
 		return Client.titlepageVisible() ? '' : 'opacity-none'
+	},
+	panelCenterStyle: function() {
+		if (!Meteor.user()) {
+			// var menuWidth = $('.menu-bar').width()
+			return 'width: 100%;'
+		}
 	}
 })
 
