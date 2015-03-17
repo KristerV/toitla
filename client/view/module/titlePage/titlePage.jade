@@ -1,3 +1,7 @@
 template(name="titlePage")
 	.titlePage.animate-opacity-slow(class="{{invisible}}")
-		p yYou
+		.content
+			+toitla
+			h1 {{T "title_page_title"}}
+			p {{T "title_page_text"}}
+			+loginFacebook

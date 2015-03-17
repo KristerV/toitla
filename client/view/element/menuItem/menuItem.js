@@ -13,6 +13,11 @@ Template.menuItem.events({
 		if (!panel || !content)
 			throw new Meteor.Error('menuItem doesn\'t have the necessary arguments. Check sideMenu.jade or mainMenu.jade.')
 
+		if (content == 'login') {
+			Scroller.scrollTop('.layout-center .content-bar')
+			return true
+		}
+
 		Panel.go(panel, content)
 		
 	}

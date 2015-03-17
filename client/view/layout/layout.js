@@ -13,6 +13,11 @@ Template.layout.helpers({
 			return "transparent"
 		else if (Session.get('panel-right'))
 			return "transparent"
+	},
+	backInvisible: function() {
+		var scroll = Session.get('panel-center-scroll')
+		var hideHeight = $(window).height() * 0.2
+		return scroll > hideHeight ? 'opacity-none' : ''
 	}
 })
 

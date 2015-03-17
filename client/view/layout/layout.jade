@@ -1,5 +1,5 @@
 template(name="layout")
-	+titlePage
+	.titlePageBackground.animate-opacity-slow(class="{{backInvisible}}")
 	.panel.layout-left
 		.content-bar
 			.veil
@@ -13,8 +13,7 @@ template(name="layout")
 	.panel.layout-center
 		.menu-bar
 			+mainMenu
-		.content-bar(class="{{transparent}}" id="scrollme")
-			.title-filler
+		.content-bar(class="{{transparent}}")
 			+feed
 	.panel.layout-right
 		.menu-bar

@@ -92,6 +92,11 @@ Scroller = {
 		}
 		this.scrollHistory = []
 	},
+	scrollTop: function(selector) {
+
+		// Couldn't get fucking velocity to do it
+		$(selector).animate({'scrollTop': 0}, 400)
+	},
 	animateScroll: function(destination){
 		this.scrollingInAction = true
 		$('body').velocity("scroll", {
