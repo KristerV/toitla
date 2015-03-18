@@ -1,8 +1,11 @@
 template(name="post")
 	.post.shadow(id="{{_id}}" style="{{image}}")
 		with author
-			img.mini-thumb(src="{{picture}}")
+			.mini-thumb(style="background-image:url({{picture}});height:{{thumbHeight}}")
 			p.no-top.font-small {{name}}
+		else
+			.mini-thumb(style="height:{{thumbHeight}}")
+			p.no-top.font-small -
 		.align-bottom
 			p.description {{description}}
 			if currentUser

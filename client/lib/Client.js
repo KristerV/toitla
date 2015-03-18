@@ -5,6 +5,10 @@ Client = {
 		var width = $('.menuItem').width()
 		Session.set('menubar-width', width+'px')
 	},
+	getPostThumbWidth: function() {
+		var width = $('.post').width()
+		Session.set('minithumb-width', width*0.2+'px') // 0.2 tied to post.less .mini-thumb {width: 20%}
+	},
 	toggleTitlePage: function() {
 		var scroll = $('.layout-center .content-bar').scrollTop()
 		Session.set('panel-center-scroll', scroll)

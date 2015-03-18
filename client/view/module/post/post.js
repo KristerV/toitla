@@ -28,6 +28,9 @@ Template.post.helpers({
 			return "1 like"
 		else
 			return count + " likes"
+	},
+	thumbHeight: function() {
+		return Session.get('minithumb-width')
 	}
 })
 
@@ -42,3 +45,7 @@ Template.post.events({
 		}
 	}
 })
+
+Template.post.rendered = function() {
+	Client.getPostThumbWidth()
+}

@@ -30,9 +30,10 @@
 		width: 100% - (@post-padding * 2);
 	}
 	.mini-thumb {
-		max-width: 20%;
-		width: auto;
-		height: auto;
+		width: 20%; // value tied to Client.js getPostThumbWidth
+		height: 20%;
+		background-size: cover;
+		background-position: center;
 	}
 }
 
