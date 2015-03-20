@@ -20,7 +20,7 @@ Panel = {
 	right: function(content, options) {
 		if (content)
 			Session.set('panel-right', content)
-		if (options.postId)
+		if (options && options.postId)
 			Session.set('panel-right-post', options.postId)
 		Session.set('panel-left', null)
 

@@ -7,7 +7,7 @@ Template.mainMenu.helpers({
 		return Session.get('menubar-width')
 	},
 	profileImage: function() {
-		return Meteor.user().profile.picture
+		return Client.getAvatar(Meteor.userId())
 	}
 })
 
@@ -21,10 +21,7 @@ Template.sideMenu.helpers({
 		var post = Posts.getOne(postId)
 		if (!post || !post.author)
 			return false
-		var user = User.getProfile(post.author)
-		if (!user)
-			return false
-		return user.picture
+		return Client.getAvatar(post.author)
 	}
 })
 

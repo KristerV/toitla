@@ -43,4 +43,12 @@ Client = {
 	hash: function() {
 		return Math.random().toString(36).substr(2, 8);
 	},
+	getAvatar: function(userId) {
+		var user = Meteor.users.findOne(userId)
+		console.log(user)
+		if (!user || !user.profile || !user.profile.picture)
+			return '/icons/white-user.svg'
+
+		return user.profile.picture
+	}
 }
