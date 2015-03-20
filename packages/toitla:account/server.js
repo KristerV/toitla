@@ -54,7 +54,7 @@ Accounts.validateLoginAttempt(function(attempt) {
 			var email = args.user ? args.user.email : args.email
 			var usersWithEmail = User.findUserByEmail(email)
 			
-			if (usersWithEmail)
+			if (usersWithEmail && (!usersWithEmail.services || !usersWithEmail.services.password))
 				throw new Meteor.Error(T("error_nopassword").toString())
 		}
 
