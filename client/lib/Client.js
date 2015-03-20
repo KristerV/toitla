@@ -17,5 +17,30 @@ Client = {
 		var scroll = Session.get('panel-center-scroll')
 		var hideHeight = $(window).height() * 0.5
 		return scroll < hideHeight
-	}
+	},
+	setLoginForm: function(form) {
+		if (Session.get('login-form') == form)
+			return false
+		else {
+			Session.set('login-form', form)
+			return true
+		}
+	},
+	error: function(afterElement, message) {
+
+		// Render error template
+		var id = this.hash()
+		Blaze.renderWithData(
+				Template.error, 
+				{message: message, _id: id}, 
+				$(afterElement).get(0))
+
+		// Fade the error out
+		Meteor.setTimeout(function(){
+			$('#'+id).velocity("fadeOut", {duration: 1500})
+		}, 5000)
+	},
+	hash: function() {
+		return Math.random().toString(36).substr(2, 8);
+	},
 }
