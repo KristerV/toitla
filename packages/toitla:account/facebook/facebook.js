@@ -16,11 +16,8 @@ Facebook = {
 	login: function() {
 		Meteor.loginWithFacebook({}, function(err){
 			console.log(err)
-			if (err && err.error != 100) {
-				throw new Meteor.Error(err);
-			} else if (err && err.error == 100) {
-				// FB account probably got merged into existing account, try logging in again
-				this.login()
+			if (err) {
+				throw new Meteor.Error(err)
 			} else {
 				Panel.center()
 			}
