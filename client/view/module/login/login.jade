@@ -4,14 +4,11 @@ template(name="login")
 		.error-placeholder
 		p.label email
 		input(placeholder="example@mail.com" type="email" id="email")
-		br
 		p.label password
 		input(placeholder="{{T '8_chars'}}" type="password" id="password")
-		br
 		.opacity-none.animate-opacity(style="{{#if isForm 'register'}}opacity: 1{{/if}}")
 			p.label repeat password
 			input(placeholder="{{T '8_chars'}}" type="password" id="password2")
-			br
 		input.btn.btn-login(type="{{btnType 'login'}}" class="{{btnClass 'login'}}" value="Login")
 		input.btn.btn-register(type="{{btnType 'register'}}" class="{{btnClass 'register'}}" value="Register")
 	+loginFacebook
