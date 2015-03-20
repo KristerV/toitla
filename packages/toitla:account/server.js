@@ -1,6 +1,4 @@
 Accounts.onCreateUser(function(options, user) {
-	console.log(options)
-	console.log(user)
 
 	// Attempting to create user with password
 	if (user.services.hasOwnProperty('password')) {
@@ -42,25 +40,27 @@ Accounts.onCreateUser(function(options, user) {
 })
 
 Accounts.validateLoginAttempt(function(attempt) {
-	if (attempt.type == 'password') {
 
-		// User exists already
-		if (attempt.allowed)
-			return true
-		else {
-
-			// Does email exist with facebook service?
-			var args = attempt.methodArguments[0]
-			var email = args.user ? args.user.email : args.email
-			var usersWithEmail = User.findUserByEmail(email)
-			
-			if (usersWithEmail && (!usersWithEmail.services || !usersWithEmail.services.password))
-				throw new Meteor.Error(T("error_nopassword").toString())
-		}
-
-	} else if (attempt.type == 'facebook' && attempt.allowed) {
+	if (attempt.allowed)
 		return true
+
+	if (attempt.type == 'password' && !attempt.allowed) {
+
+		// Does email exist with facebook service?
+		var args = attempt.methodArguments[0]
+		var email = args.user ? args.user.email : args.email
+		var usersWithEmail = User.findUserByEmail(email)
+		
+		if (usersWithEmail && (!usersWithEmail.services || !usersWithEmail.services.password))
+			throw new Meteor.Error(T("error_nopassword").toString())
+
 	}
+});
+
+Accounts.onLoginFailure(function(a){
+	console.log("--------------")
+	console.log("LOGIN FAILED")
+	console.log(a)
 })
 /*
 { type: 'password',
