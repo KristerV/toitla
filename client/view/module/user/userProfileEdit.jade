@@ -3,4 +3,6 @@ template(name="userProfileEdit")
 		with currentUser.profile
 			img(src="{{picture}}")
 			p Logged in as: {{name}}
+		+map(name="userProf" type="edit-user-location")
+		
 		.btn.logout Logout

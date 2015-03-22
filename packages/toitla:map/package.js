@@ -7,12 +7,12 @@ Package.describe({
 
 Package.onUse(function(api) {
 	api.versionsFrom('1.0');
-	api.imply('dburles:google-maps');
-	
-	//api.addFiles('gmap.js', 'client');
+	api.use(['mquandalle:jade', 'less', 'templating'], 'client')
+	api.use('dburles:google-maps');	
+	api.addFiles(['view/map.jade', 'view/map.less', 'view/map.js'], 'client');
 	
 	api.addFiles('map-api.js');
-	api.addFiles('map.js', 'server');
+	api.addFiles('MapCalculations.js', 'server');
 	
 	api.export('Map');
 });
