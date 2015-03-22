@@ -2,7 +2,7 @@ template(name="post")
 	.post.shadow(id="{{_id}}" style="{{image}}")
 		with author
 			.mini-thumb(style="background-image:url({{picture}});height:{{thumbHeight}}")
-			p.no-top.font-small {{name}}
+			p.no-top.font-small {{#if name}}{{name}}{{else}}-{{/if}}
 		else
 			.mini-thumb(style="height:{{thumbHeight}}")
 			p.no-top.font-small -
