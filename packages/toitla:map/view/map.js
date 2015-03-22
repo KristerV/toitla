@@ -28,6 +28,11 @@ var placeChangedFunction = function(type) {
 			if (place.geometry && place.geometry.location) {
 				var location = place.geometry.location;
 				setMarker(location.lat(), location.lng());
+				User.updateCurrentUserLocation({
+					lat: location.lat(),
+					lng: location.lng(),
+					address: place.formatted_address
+				});
 			}
 		};
 	}
@@ -42,12 +47,27 @@ Template.map.helpers({
 		if (GoogleMaps.loaded()) {
 			var tallinn = new google.maps.LatLng(59.437222, 24.745278);
 			
+			var initialCenter = tallinn;
+			var initialAddress = '';
+			
+			var user = Meteor.user();
+			if (user.profile && user.profile.location) {
+				initialCenter = new google.maps.LatLng(user.profile.location.lat, user.profile.location.lng);
+				initialAddress = user.profile.location.address;
+			}
+			
+			
 			GoogleMaps.ready(this.name, function(m) {
 				map = m.instance;
 				
 				marker = new google.maps.Marker({ map: map, visible: false });
 				
 				if (isAutocompleteShown(this.type)) {
+					if (initialAddress) {
+						$('.map-autocomplete').val(initialAddress);
+						marker.setPosition(initialCenter);
+						marker.setVisible(true);
+					}
 					var autocomplete = new google.maps.places.Autocomplete($('.map-autocomplete')[0], {
 						types : [ 'geocode' ],
 					});
@@ -55,10 +75,18 @@ Template.map.helpers({
 					var changeFunction = placeChangedFunction(this.type);
 					
 					// fixing selection when enter is pressed
-					$('.map-autocomplete').on('keyup', function(e) {
+					$('.map-autocomplete').on('keypress', function(e) {
 						if (e.which == 13) {
-							var firstResult = $('.pac-item:first').children();
-							if (firstResult.length > 2) {
+							setTimeout(function() {
+								var firstResult = $('.pac-item-selected');
+								if (!firstResult.length) {
+									firstResult = $('.pac-item:first');
+								}
+								firstResult = firstResult.children();
+								if (firstResult.length < 3) {
+									return;
+								}
+								
 								var placeName = firstResult[1].textContent;
 								var placeAddress = firstResult[2].textContent;
 								var address = placeName + ', ' + placeAddress;
@@ -71,7 +99,7 @@ Template.map.helpers({
 										})();
 									}
 								});
-							}
+							}.bind(this), 200);
 						}
 					});
 					google.maps.event.addListener(autocomplete, 'place_changed', changeFunction);
@@ -80,7 +108,7 @@ Template.map.helpers({
 			
 			// Map initialization options
 			return {
-				center : new google.maps.LatLng(tallinn.lat(), tallinn.lng()),
+				center : initialCenter,
 				zoom : 12
 			};
 		}

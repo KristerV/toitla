@@ -8,7 +8,8 @@ Package.describe({
 Package.onUse(function(api) {
 	api.versionsFrom('1.0');
 	api.use(['mquandalle:jade', 'less', 'templating'], 'client')
-	api.use('dburles:google-maps');	
+	api.use('dburles:google-maps');
+	api.imply('toitla:account');
 	api.addFiles(['view/map.jade', 'view/map.less', 'view/map.js'], 'client');
 	
 	api.addFiles('map-api.js');

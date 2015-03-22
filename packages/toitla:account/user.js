@@ -57,6 +57,16 @@ User = {
 				{emails: {$elemMatch: {address: email}}}, // user.email
 			]}
 		)
+	},
+	updateCurrentUserLocation: function(location) {
+		check(location, {
+			lat: Number,
+			lng: Number,
+			address: String,
+		});
+		Meteor.users.update(Meteor.userId(), {
+			$set: {'profile.location': location}
+		});		
 	}
 };
 
