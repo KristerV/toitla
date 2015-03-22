@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- The icon can be used freely in both personal and commercial projects with no attribution required, but always appreciated. 
+You may NOT sub-license, resell, rent, redistribute or otherwise transfer the icon without express written permission from iconmonstr.com -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   x="0px"
+   y="0px"
+   width="333.48801"
+   height="411.99936"
+   viewBox="0 0 333.48801 411.99936"
+   enable-background="new 0 0 512 512"
+   xml:space="preserve"
+   id="svg2"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="black-euro.svg"><metadata
+     id="metadata9"><rdf:RDF><cc:Work
+         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+     id="defs7" /><sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="640"
+     inkscape:window-height="480"
+     id="namedview5"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="0.4609375"
+     inkscape:cx="166.744"
+     inkscape:cy="205.99951"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2" /><path
+     id="currency-euro-icon"
+     d="m 316.827,85.095849 16.661,-68.652 c -152.994,-48.867 -251.302,16.1 -277.582,129.885001 l -35.611,0 -7.955,41.445 37.265,0 c -0.775,9.718 -1.159,19.532 -0.94,29.358 l -40.46,0 -8.205,41.445 53.313,0 c 24.893,118.996 151.238,187.104 275.416,136.541 l -19.126,-69.82 c -66.99,28.207 -134.71,8.282 -153.78,-66.721 l 130.27,0 7.975,-41.445 -143.908,0 c -0.396,-9.852 -0.234,-20.216 0.296,-29.358 l 148.622,0 7.935,-41.445 -150.433,0 C 176.987,67.675849 239.259,60.784849 316.827,85.095849 Z"
+     inkscape:connector-curvature="0" /></svg>
