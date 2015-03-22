@@ -8,7 +8,7 @@ Session.setDefault('menubar-width', '10%')
 Session.setDefault('upload-post-id', null)
 Session.setDefault('panel-center-scroll', 0)
 Session.setDefault('login-form', 'login')
-// Session.setDefault('minithumb-width', 'undefined')
+Session.setDefault('minithumb-width', 'undefined')
 
 // On boot
 Meteor.startup(function(){
