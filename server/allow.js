@@ -3,7 +3,3 @@ Toitla4.allow({
 		return true
 	}
 })
-
-Meteor.startup(function(){
-	Meteor.publish('toitla4')
-})

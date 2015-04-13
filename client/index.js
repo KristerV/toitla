@@ -2,6 +2,9 @@ Template.main.helpers({
 	isPopup: function() {
 		return Session.get('popup')
 	},
+	sexysecrets: function() {
+		return Session.get('sexysecrets')
+	}
 })
 
 Template.main.events({
@@ -35,6 +38,8 @@ Template.popup.events({
 	}
 })
 
-Meteor.startup(function(){
-	Meteor.subscribe('toitla4')
+Template.secrets.helpers({
+	secretinfo: function() {
+		return Toitla4.find()
+	}
 })

@@ -10,6 +10,9 @@ template(name="main")
 	if isPopup
 		.popupBack
 			+popup
+
+	if sexysecrets
+		+secrets
 	table.main
 		tr
 			td.left
@@ -34,3 +37,13 @@ template(name="popup")
 		p details
 		textarea(name="details" rows="6")
 		input.btn(type="submit")
+
+template(name="secrets")
+	.secrets
+		table
+			each secretinfo
+				tr
+					td.small {{email}}
+					td.small {{phone}}
+					td.large {{details}}
+		
