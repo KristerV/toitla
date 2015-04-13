@@ -36,6 +36,8 @@ Template.popup.events({
 		var phone = $('input[name="phone"]').val()
 		var details = $('textarea[name="details"]').val()
 		Toitla4.insert({role: role, email: email, phone: phone, details: details})
+		Session.set('popup', null)
+		alert("Form submitted, thank you!")
 	}
 })
 
