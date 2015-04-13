@@ -31,10 +31,11 @@ Template.popup.helpers({
 Template.popup.events({
 	'submit form': function(e) {
 		e.preventDefault()
+		var role = Session.get('popup')
 		var email = $('input[name="email"]').val()
 		var phone = $('input[name="phone"]').val()
 		var details = $('textarea[name="details"]').val()
-		Toitla4.insert({email: email, phone: phone, details: details})
+		Toitla4.insert({role: role, email: email, phone: phone, details: details})
 	}
 })
 
