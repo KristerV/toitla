@@ -1,0 +1,36 @@
+head
+	title Toitla
+body
+	.logo
+		img.toitla(src="/icons/white-toitla.svg")
+		h2 better food on your table
+	+main
+	
+template(name="main")
+	if isPopup
+		.popupBack
+			+popup
+	table.main
+		tr
+			td.left
+				h2 Need better food at your event? Cooks are waiting.
+				.btn.order 
+					p Order now!
+			td.right
+				h2 Love cooking? Orders are waiting.
+				.btn.chef
+					p Join now!
+
+template(name="popup")
+	form(name="email")
+		if chef
+			p Send us your email, phone number with your speciality and we'll be in touch.
+		else
+			p Tell us the what when and where of your event.
+		p email
+		input(name="email")
+		p phone nr
+		input(name="phone")
+		p details
+		textarea(name="details" rows="6")
+		input.btn(type="submit")
