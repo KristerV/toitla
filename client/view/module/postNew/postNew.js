@@ -1,18 +1,4 @@
 Template.postNew.helpers({
-	image: function() {
-		var post = Posts.getOne(Session.get('upload-post-id'))
-		if (!post)
-			return false
-
-		var img = Images.getOne(post.imageId)
-		if (!img)
-			return false
-
-		return img
-	},
-	imageUrl: function() {
-		return Images.getUrl(this._id, '500')
-	},
 	description: function() {
 		var post = Posts.getOne(Session.get('upload-post-id'))
 		if (!post)
@@ -23,9 +9,6 @@ Template.postNew.helpers({
 })
 
 Template.postNew.events({
-	'change #fileselect': function(e, tmpl) {
-		Images.addImages(e)
-	},
 	'click button.submit': function(e, tmpl) {
 		var description = $('.postNew .description').val()
 		var postId = Session.get('upload-post-id')

@@ -1,0 +1,17 @@
+template(name="uploadImage")
+	.uploadImage
+		with image
+			if this.isUploaded
+				if hasStored
+					label.full-photo(style="background-image:url({{imageUrl}})")
+						input.full-photo(type="file" accept="image/*" id="fileselect" style="opacity:0")
+				else
+					p.full-text {{T "resizing"}}
+					+spinner
+			else
+				p.full-text {{T "uploading"}}
+				+spinner
+		else
+			p.full-text {{T "insert_image"}}
+			label.full-photo
+				input.full-photo(type="file" accept="image/*" id="fileselect" style="opacity:0")

@@ -1,0 +1,25 @@
+@import (reference) url('/client/view/elements.less');
+
+.uploadImage {
+	.center;
+	.shadow;
+	width: 100%;
+	height: @post-image-height;
+	background-color: rgb(150,150,150);
+	.full-photo {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: @post-image-height;
+		
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center; 
+	}
+	.full-text {
+		position: absolute;
+		top: @post-image-height * 0.3;
+		width: 100%;
+	}
+}

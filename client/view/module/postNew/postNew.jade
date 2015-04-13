@@ -1,20 +1,5 @@
 template(name="postNew")
 	.form.postNew
-		.photo.center
-			with image
-				if this.isUploaded
-					if this.hasStored "500"
-						label.full-photo(style="background-image:url({{imageUrl}})")
-							input.full-photo(type="file" accept="image/*" id="fileselect" style="opacity:0")
-					else
-						p.full-text {{T "resizing"}}
-						+spinner
-				else
-					p.full-text {{T "uploading"}}
-					+spinner
-			else
-				p.full-text {{T "insert_image"}}
-				label.full-photo
-					input.full-photo(type="file" accept="image/*" id="fileselect" style="opacity:0")
+		+uploadImage(view="newPost" size="500")
 		textarea.description(placeholder="{{T 'postNew_description_placeholder'}}") {{description}}
 		button.submit {{T "save"}}
