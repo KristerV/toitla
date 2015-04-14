@@ -5,8 +5,8 @@ body
 		img.toitla(src="/icons/white-toitla.svg")
 	+main
 	.bottom
-		a.facebook(href="https://www.facebook.com/toitlacom" target="_blank") facebook
-		a.blog(href="http://blog.toitla.com/" target="_blank") blog
+		a.facebook(href="https://www.facebook.com/toitlacom" target="_blank") Facebook
+		a.blog(href="http://blog.toitla.com/" target="_blank") Blog
 	
 template(name="main")
 	if isPopup
@@ -20,11 +20,11 @@ template(name="main")
 			td.left
 				h2 Need better food at your event? Cooks are waiting.
 				.btn.order 
-					p Order now!
+					p <strong>Order now</strong>
 			td.right
-				h2 Love cooking? Orders are waiting.
+				h2 Love cooking? <br> Orders are waiting.
 				.btn.chef
-					p Join now!
+					p <strong>Join now</strong>
 
 template(name="popup")
 	form(name="email")
