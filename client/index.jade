@@ -18,25 +18,25 @@ template(name="main")
 	table.main
 		tr
 			td.left
-				h2 Need better food at your event? Cooks are waiting.
+				h2 Soovid paremat toitu oma üritusele? Meie toitu Sa poest ei leia!
 				.btn.order 
-					p <strong>Order now</strong>
+					p <strong>Telli!</strong>
 			td.right
-				h2 Love cooking? <br> Orders are waiting.
+				h2 Meeldib kokata? <br> Tee algus esimeste tellimustega!
 				.btn.chef
-					p <strong>Join now</strong>
+					p <strong>Liitu!</strong>
 
 template(name="popup")
 	form(name="email")
 		if chef
-			p Send us your email, phone number with your speciality and we'll be in touch.
+			p Saada meile oma kontaktid ja kirjuta natuke endas. Me võtame Sinuga ühendust.
 		else
-			p Tell us the what when and where of your event.
-		p email
+			p Kirjuta meile millal, kus, kui paljudele inimestele ja mida laual näha soovid.
+		p E-post
 		input(name="email")
-		p phone nr
+		p Telefon
 		input(name="phone")
-		p details
+		p Endast
 		textarea(name="details" rows="6")
 		input.btn(type="submit")
 
