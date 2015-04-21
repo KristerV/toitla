@@ -11,7 +11,14 @@ Tmail = {
 
 	},
 	sendBulk: function(to, subject, body) {
-		check([to, subject, body], Match.OneOf(String, [String]))
+		console.log(to)
+		console.log(typeof to)
+		console.log(subject)
+		console.log(typeof subject)
+		console.log(body)
+		console.log(typeof body)
+		check([to, subject, body], Match.Any)
+		console.log("PASS")
 
 		_.each(to, function(value, key, list) {
 			Tmail.send(value, this.subject, this.body)
