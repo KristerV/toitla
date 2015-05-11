@@ -1,7 +1,7 @@
 Events = [
 	{
 		title: "GoingGlobal module 2",
-		subtitle: "60 people, 2 days",
+		subtitle: "60 inimest, 2 päeva",
 		images: [
 			"/images/events/GoigGlobalM2/HeiliSandwichCake.jpg",
 			"/images/events/GoigGlobalM2/HeiliSandwichCake2.jpg",
@@ -28,7 +28,7 @@ Events = [
 	},
 	{
 		title: "Engage Estonia",
-		subtitle: "100 people one day event",
+		subtitle: "100 inimest, üks päev",
 		images: [
 			"/images/events/EngageEstonia/_MG_4022.jpg",
 			"/images/events/EngageEstonia/_MG_4025.jpg",
