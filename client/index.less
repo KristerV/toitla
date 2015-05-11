@@ -12,6 +12,10 @@ body {
 	background-image: url("/images/background-seamless.jpg");
 }
 
+.bottom-margin {
+	height: 100px;
+}
+
 table.main {
 	height: 80%;
 	border-collapse: collapse;
@@ -58,6 +62,15 @@ table.main {
 h1, h2, h3 {
 	color: white;
 	font-family: "GH";
+}
+
+h1 {
+	padding-top: 3em;
+	padding-bottom: 1em;
+}
+h2 {
+	padding: 1em;
+	padding-bottom: 2em;
 }
 
 p {
@@ -166,6 +179,10 @@ h1, h2, h3, p {
 
 .gallery {
 	line-height: 0;
+	.images {
+		max-width: 900px;
+		margin: 0 auto;
+	}
 	.image {
 		display: inline-block;
 		height: 300px;
@@ -175,17 +192,8 @@ h1, h2, h3, p {
 		background-size: cover;
 		background-position: center;
 	}
-	h1 {
-		padding-top: 3em;
-		padding-bottom: 1em;
-	}
-	h2 {
-		padding: 1em;
-		padding-bottom: 2em;
-	}
 	.huge {
 		font-size: 4em;
 		padding: 1.2em;
 	}
-	padding-bottom: 3em;
 }

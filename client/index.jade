@@ -9,6 +9,7 @@ body
 		a.blog(href="http://blog.toitla.com/" target="_blank") Blog
 	h1 About
 	p.mauto Oleme punt tegusaid StartUppijaid ja tegeleme kodukokkade turule toomisega. Liiga palju on neid osavaid kodus tegutsevaid kokkasid, kelle imelised hõrgutised on avalikkuse eest peitu jäänud. Hetkel katame lauda alates viiest inimesest, ehk siis sünnipäevadest kuni suurte üritusteni. Oleme edukalt serveerinud saja inimesega üritusi.
+	.bottom-margin
 
 template(name="main")
 	if isPopup
@@ -33,9 +34,10 @@ template(name="main")
 			each events
 				h1 {{title}}
 				h2 {{subtitle}}
-				each images
-					a(href="{{this}}" data-lightbox="images")
-						.image(style="background-image:url({{this}})")
+				.images
+					each images
+						a(href="{{this}}" data-lightbox="images")
+							.image(style="background-image:url({{this}})")
 
 template(name="popup")
 	form(name="email")
