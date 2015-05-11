@@ -8,7 +8,9 @@ html, body, table {
 	padding: 0;
 	margin: 0;
 }
+
 table.main {
+	height: 80%;
 	border-collapse: collapse;
 	td {
 		width: 50%;
@@ -129,9 +131,9 @@ form {
 }
 
 .bottom {
-	background-color: rgba(0,0,0,0.9);
+	// background-color: rgba(0,0,0,0.9);
 	position: absolute;
-	bottom: 0;
+	bottom: 20%;
 	width: 100%;
 	p {
 		display: inline-block;
@@ -152,4 +154,30 @@ a {
 
 h1, h2, h3, p {
 	text-shadow: 0px 2px 3px rgba(0,0,0,0.3);
+}
+
+.gallery {
+	line-height: 0;
+	.image {
+		display: inline-block;
+		height: 300px;
+		width: 300px;
+		padding: 0;
+		margin: 0;
+		background-size: cover;
+		background-position: center;
+	}
+	background-image: url("/images/background-seamless.jpg");
+	h1 {
+		padding-top: 3em;
+		padding-bottom: 1em;
+	}
+	h2 {
+		padding: 1em;
+		padding-bottom: 2em;
+	}
+	.huge {
+		font-size: 4em;
+		padding: 1.2em;
+	}
 }

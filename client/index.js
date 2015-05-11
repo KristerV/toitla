@@ -4,7 +4,10 @@ Template.main.helpers({
 	},
 	sexysecrets: function() {
 		return Session.get('sexysecrets')
-	}
+	},
+	events: function() {
+		return Events
+	},
 })
 
 Template.main.events({

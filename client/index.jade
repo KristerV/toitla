@@ -27,6 +27,13 @@ template(name="main")
 					.btn.chef
 						p <strong>Liitu!</strong>
 		.gallery
+			h1.huge Past Events
+			each events
+				h1 {{title}}
+				h2 {{subtitle}}
+				each images
+					a(href="{{this}}" data-lightbox="images")
+						.image(style="background-image:url({{this}})")
 
 template(name="popup")
 	form(name="email")
