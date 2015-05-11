@@ -15,16 +15,18 @@ template(name="main")
 
 	if sexysecrets
 		+secrets
-	table.main
-		tr
-			td.left
-				h2 Soovid paremat toitu oma üritusele? Meie toitu Sa poest ei leia!
-				.btn.order 
-					p <strong>Telli!</strong>
-			td.right
-				h2 Meeldib kokata? <br> Tee algus esimeste tellimustega!
-				.btn.chef
-					p <strong>Liitu!</strong>
+	else
+		table.main
+			tr
+				td.left
+					h2 Soovid paremat toitu oma üritusele? Meie toitu Sa poest ei leia!
+					.btn.order 
+						p <strong>Telli!</strong>
+				td.right
+					h2 Meeldib kokata? <br> Tee algus esimeste tellimustega!
+					.btn.chef
+						p <strong>Liitu!</strong>
+		.gallery
 
 template(name="popup")
 	form(name="email")
