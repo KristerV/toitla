@@ -12,7 +12,7 @@ Package.onUse(function(api) {
 	api.imply('toitla:global');
 	api.imply('toitla:locale');
 	api.imply('toitla:mail');
-	api.imply('toitla:map');
+	// api.imply('toitla:map');
 	api.imply('toitla:scroller');
 	api.imply('toitla:panel');
 	api.imply('toitla:posts');
