@@ -4,55 +4,60 @@ head
 body
 	.logo
 		img.toitla(src="/icons/white-toitla.svg")
-	+main
-	.bottom
-		a.facebook(href="https://www.facebook.com/toitlacom" target="_blank") Facebook
-		a.blog(href="http://blog.toitla.com/" target="_blank") Blog
-	h1 Meist
-	p.tekst Oleme punt tegusaid StartUppijaid ja tegeleme kodukokkade turule toomisega. Liiga palju on neid osavaid kodus tegutsevaid kokkasid, kelle imelised hõrgutised on avalikkuse eest peitu jäänud. Hetkel katame lauda viiele ja rohkem, ehk siis sünnipäevadest ja koosolekutest kuni suurte üritusteni. Oleme edukalt serveerinud sadat inimest terveks päevaks.
-	.bottom-margin
-
-template(name="main")
 	if isPopup
-		.popupBack
-			+popup
-
+		+popup
 	if sexysecrets
 		+secrets
 	else
-		table.main
-			tr
-				td.left
-					h2 Soovid paremat toitu oma üritusele? Meie toitu Sa poest ei leia!
-					.btn.order 
-						p <strong>Telli!</strong>
-				td.right
-					h2 Meeldib kokata? <br> Tee algus esimeste tellimustega!
-					.btn.chef
-						p <strong>Liitu!</strong>
-		.gallery
-			h1.huge Edukad üritused
-			each events
-				h1 {{title}}
-				h2 {{subtitle}}
-				.images
-					each images
-						a(href="{{this}}" data-lightbox="images")
-							.image(style="background-image:url({{this}})")
+		+main
+		+meist
+		+gallery
+	.bottom-margin
+
+template(name="meist")
+	h1.huge Meist
+	p.tekst Oleme punt tegusaid StartUppijaid ja tegeleme kodukokkade turule toomisega. Liiga palju on neid osavaid kodus tegutsevaid kokkasid, kelle imelised hõrgutised on avalikkuse eest peitu jäänud. Hetkel katame lauda viiele ja rohkem, ehk siis sünnipäevadest ja koosolekutest kuni suurte üritusteni. Oleme edukalt serveerinud sadat inimest terveks päevaks.
+
+template(name="main")
+	table.main
+		tr
+			td.left
+				h2 Soovid paremat toitu oma üritusele? Meie toitu Sa poest ei leia!
+				.btn.order 
+					p <strong>Telli!</strong>
+			td.right
+				h2 Meeldib kokata? <br> Tee algus esimeste tellimustega!
+				.btn.chef
+					p <strong>Liitu!</strong>
+	.bottom
+		a.facebook(href="https://www.facebook.com/toitlacom" target="_blank") Facebook
+		a.blog(href="http://blog.toitla.com/" target="_blank") Blog
+
+template(name="gallery")
+	.gallery
+		h1.huge Edukad üritused
+		each events
+			h1 {{title}}
+			h2 {{subtitle}}
+			.images
+				each images
+					a(href="{{this}}" data-lightbox="images")
+						.image(style="background-image:url({{this}})")
 
 template(name="popup")
-	form(name="email")
-		if chef
-			p Saada meile oma kontaktid ja kirjuta natuke endast. Me võtame Sinuga ühendust.
-		else
-			p Kirjuta meile millal, kus, kui paljudele inimestele ja mida laual näha soovid.
-		p E-post
-		input(name="email")
-		p Telefon
-		input(name="phone")
-		p Kirjuta meile
-		textarea(name="details" rows="6")
-		input.btn(type="submit")
+	.popupBack
+		form(name="email")
+			if chef
+				p Saada meile oma kontaktid ja kirjuta natuke endast. Me võtame Sinuga ühendust.
+			else
+				p Kirjuta meile millal, kus, kui paljudele inimestele ja mida laual näha soovid.
+			p E-post
+			input(name="email")
+			p Telefon
+			input(name="phone")
+			p Kirjuta meile
+			textarea(name="details" rows="6")
+			input.btn(type="submit")
 
 template(name="secrets")
 	.secrets

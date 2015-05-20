@@ -79,7 +79,6 @@ toitla:global@0.0.1
 toitla:locale@1.0.0
 toitla:logging@1.0.0
 toitla:mail@1.0.0
-toitla:map@1.0.0
 toitla:panel@0.0.1
 toitla:posts@0.0.1
 toitla:scroller@0.0.1

@@ -1,12 +1,9 @@
-Template.main.helpers({
+Template.body.helpers({
 	isPopup: function() {
 		return Session.get('popup')
 	},
 	sexysecrets: function() {
 		return Session.get('sexysecrets')
-	},
-	events: function() {
-		return Events
 	},
 })
 
@@ -23,6 +20,12 @@ Template.main.events({
 	'click .popupBack': function(e) {
 		Session.set('popup', null)
 	}
+})
+
+Template.gallery.helpers({
+	events: function() {
+		return Events
+	},
 })
 
 Template.popup.helpers({
