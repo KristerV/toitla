@@ -46,7 +46,7 @@ Template.popup.events({
 		var body = Global.safeString(details).toString()
 		var subject = role == 'chef' ? "New chef registered" : "New order"
 		subject = subject + ": " + email  + ", " +  phone
-		Tmail.sendBulk(['conv.emgl63rqd4o1z5@fleep.io'], subject, body)
+		Tmail.sendBulk(['conv.1190dj6xuz7oly@fleep.io'], subject, body)
 		Meteor.setTimeout(function(){
 			alert("Form submitted, thank you!")
 		},500)
