@@ -43,9 +43,9 @@ Template.popup.events({
 		var details = $('textarea[name="details"]').val()
 		Toitla4.insert({role: role, email: email, phone: phone, details: details})
 		Session.set('popup', null)
-		var body = Global.safeString(details).toString()
+		var body = "Kontakt: " + email  + ", " +  phone + "\n\n" + Global.safeString(details).toString()
 		var subject = role == 'chef' ? "New chef registered" : "New order"
-		subject = subject + ": " + email  + ", " +  phone
+		subject = subject
 		Tmail.sendBulk(['conv.1190dj6xuz7oly@fleep.io'], subject, body)
 		Meteor.setTimeout(function(){
 			alert("Form submitted, thank you!")
