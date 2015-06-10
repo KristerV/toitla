@@ -1,0 +1,32 @@
+Mitu einet
+S, M, XL
+Catering
+Soolane, magus, suupisted lihaga, suupisted kalaga, vegan suupisted, vegetarian suupisted. (või oletame?)
+(laktoosi, gluteeni, paleo)
+Lisainfo
+[Hind]
+
+Ülevaade nimekirjana
+
+Koka profiil toitudega mida oskab, min-max inimeste arv
+
+Tagasiside vorm (nii tagasiside kui ka kinnitused)
+Pakkumise vorm
+
+Koka vaates tellimuse tükk
+
+Tellimus ise
+	staatus (mõõdikuga)
+	Vastutaja
+	Tellimuse praegused detailid
+	Jaotused
+	log + pinnid (ainult pinnitud ja 3 kõige uuemat)
+	email/mailchimp otse logisse (nii sisse kui ka välja)
+	Actions
+		send to chef
+		send to client - feedback
+		send to client - offer
+		Kinnita (läheb käiku)
+		unlock (tahan muuta)
+		Tühista tellimus
+		Arhiveeri
