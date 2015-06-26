@@ -48,7 +48,7 @@ Template.popup.events({
 		subject = subject
 		Tmail.sendBulk(['conv.1190dj6xuz7oly@fleep.io'], subject, body)
 		Meteor.setTimeout(function(){
-			alert("Form submitted, thank you!")
+			alert("Täname tellimuse eest! Vastame hiljemalt kahe päeva jooksul. Vajadusel saad meiega kontakti: appi@toitla.com või 5385 2331.")
 		},500)
 	}
 })
