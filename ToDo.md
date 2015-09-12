@@ -1,6 +1,4 @@
 <!-- Immediate -->
-* lightbox
-* back nupp pealehele tellimusest
 * Vorm ümber ehitada vastavalt uuele hinnasüsteemile
 * email kokale, email uus tellimus
 * koka regamise vorm
