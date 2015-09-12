@@ -1,8 +1,10 @@
 <!-- Immediate -->
-* Pealeht
+* lightbox
+* back nupp pealehele tellimusest
 * Vorm ümber ehitada vastavalt uuele hinnasüsteemile
 * email kokale, email uus tellimus
-* back nupp pealehele tellimusest
+* koka regamise vorm
+* layouti parandada sõbralikumaks
 
 <!-- Important -->
 * Tracking
