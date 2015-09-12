@@ -1,4 +1,5 @@
 # Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
 #
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
@@ -6,15 +7,22 @@
 meteor-platform
 mquandalle:jade
 less
-audit-argument-checks
-iron:router@1.0.0-pre4
-email
-http
-#percolate:velocityjs
-toitla:common
-mizzao:timesync
-dburles:google-maps
-velocityjs:velocityjs
-sacha:spin
 msavin:mongol
-fastclick
+alanning:roles
+momentjs:moment
+raix:handlebar-helpers
+juliancwirko:s-alert
+juliancwirko:s-alert-bouncyflip
+255kb:meteor-status
+reactive-var
+meteorhacks:flow-router
+react
+meteorhacks:flow-layout
+kadira:react-layout
+izzilab:material-ui
+accounts-password
+mizzao:timesync
+dburles:mongo-collection-instances
+mizzao:user-status
+lepozepo:reactive-publish
+raix:push

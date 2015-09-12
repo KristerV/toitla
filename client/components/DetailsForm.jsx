@@ -1,0 +1,247 @@
+var {
+    Paper,
+    DropDownMenu,
+    Checkbox,
+    DatePicker,
+    TimePicker,
+    TextField,
+    RaisedButton,
+} = MUI;
+
+DetailsForm = React.createClass({
+
+    getInitialState() {
+        return {
+            isFormValid: false
+        }
+    },
+
+    handlePeopleCountChange(e) {
+        var val = parseInt(e.target.value)
+        if (val && val < Settings.minimum_people_count) {
+            this.setState({'details.peopleCount': "Teenindame vaid gruppe alates "+Settings.minimum_people_count+" inimest."})
+        } else {
+            this.setState({'details.peopleCount': null})
+        }
+    },
+
+    handleTextFieldChange(e) {
+        this.props.order.handleTextFieldChange(e)
+        this.props.order.calculatePrice()
+    },
+
+    handleFromDateChange(nill, date) {
+        this.props.order.updateField('details.fromDate', date)
+        this.props.order.calculatePrice()
+    },
+
+    handleFromTimeChange(nill, date) {
+        this.props.order.updateField('details.fromTime', date)
+        this.props.order.calculatePrice()
+    },
+
+    handleToDateChange(nill, date) {
+        this.props.order.updateField('details.toDate', date)
+        this.props.order.calculatePrice()
+    },
+
+    handleToTimeChange(nill, date) {
+        this.props.order.updateField('details.toTime', date)
+        this.props.order.calculatePrice()
+    },
+
+    handleChangeCheckbox(e, checked) {
+        this.props.order.handleChangeCheckbox(e, checked)
+        this.props.order.calculatePrice()
+    },
+
+    handleSubmit: function(e) {
+        e.preventDefault()
+        this.props.order.submitForm(this)
+    },
+
+    getDateFormat: function(date) {
+        if (!date) return null
+        return moment(date).format('D. MMMM')
+    },
+
+    getTimeFormat: function(date) {
+        if (!date) {
+            date = new Date();
+            date.setHours(0,0,0,0);
+        }
+        return moment(date).format('H:mm')
+    },
+
+    render() {
+        var order = this.props.order
+        var userId = Meteor.userId()
+        var disabledDetails = !order.allowedEdit(userId, 'details')
+        var disabledContact = !order.allowedEdit(userId, 'contact')
+
+        // Delay between today and possible to order
+        var minimumDate = moment().add(Settings.minimum_days_notice, 'days').toDate()
+
+        // Submit button
+        if (!order.submitted) {
+            var submitButton = <RaisedButton
+                disabled={disabledDetails}
+                type="submit"
+                label="Esita tellimus"
+                primary={true}/>
+
+            var price =
+                <div className="floatingPrice">
+                    <div className="wrapper">
+                        <p>Kokku</p>
+                        <h1>{order.details.calculatedPrice}€</h1>
+                    </div>
+                </div>
+        } else {
+            var priceLabel = "Hind (orig: "+order.details.originalPrice+"/ kalk: "+order.details.calculatedPrice+")"
+            var price =
+                <TextField
+                    disabled={disabledDetails}
+                    floatingLabelText={priceLabel}
+                    name="details.customPrice"
+                    onChange={this.handleTextFieldChange}
+                    value={order.details.customPrice}/>
+        }
+
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <Paper className="padding margin">
+                    <TextField
+                        disabled={disabledDetails}
+                        floatingLabelText="Inimeste arv"
+                        name="details.peopleCount"
+                        onChange={this.handleTextFieldChange}
+                        onBlur={this.handlePeopleCountChange}
+                        value={order.details.peopleCount}
+                        errorText={this.state['details.peopleCount']} />
+                    <TextField
+                        disabled={disabledDetails}
+                        floatingLabelText="Kohvi-/suupistepauside arv"
+                        name="details.mealCount"
+                        onChange={this.handleTextFieldChange}
+                        value={order.details.mealCount}
+                        errorText={this.state['details.mealCount']} />
+                    <TextField
+                        disabled={disabledDetails}
+                        floatingLabelText="Asukoht"
+                        name="details.location"
+                        onChange={this.handleTextFieldChange}
+                        value={order.details.location}
+                        errorText={this.state['details.location']} />
+                    {price}
+                </Paper>
+                <Paper className="padding margin">
+                    <DatePicker
+                        disabled={disabledDetails}
+                        floatingLabelText="Algus kuupäev"
+                        minDate={minimumDate}
+                        onChange={this.handleFromDateChange}
+                        defaultDate={order.details.fromDate}
+                        formatDate={this.getDateFormat}
+                        errorText={this.state['details.fromDate']} />
+                    <TimePicker
+                        disabled={disabledDetails}
+                        floatingLabelText="Algus kellaaeg"
+                        format="24hr"
+                        onChange={this.handleFromTimeChange}
+                        value={this.getTimeFormat(order.details.fromTime)}
+                        errorText={this.state['details.fromTime']} />
+                    <DatePicker
+                        disabled={disabledDetails}
+                        floatingLabelText="Lõpu kuupäev"
+                        minDate={order.details.fromDate}
+                        onChange={this.handleToDateChange}
+                        defaultDate={order.details.toDate || order.details.fromDate}
+                        formatDate={this.getDateFormat}/>
+                    <TimePicker
+                        disabled={disabledDetails}
+                        floatingLabelText="Lõpu kellaaeg"
+                        format="24hr"
+                        onChange={this.handleToTimeChange}
+                        value={this.getTimeFormat(order.details.toTime)}
+                        errorText={this.state['details.toTime']} />
+                </Paper>
+                <Paper className="padding margin">
+                    <Checkbox
+                        disabled={disabledDetails}
+                        label="Catering, ehk teenindaja + kohv/tee"
+                        name="details.catering"
+                        onCheck={this.handleChangeCheckbox}
+                        defaultChecked={order.details.catering} />
+                    <Checkbox
+                        disabled={disabledDetails}
+                        label="Laud on kaetud ürituse alguseks"
+                        name="details.tableSetAtStart"
+                        onCheck={this.handleChangeCheckbox}
+                        defaultChecked={order.details.tableSetAtStart} />
+                    <Checkbox
+                        disabled={disabledDetails}
+                        label="Ekstra toekas lõuna"
+                        name="details.heavyLunch"
+                        onCheck={this.handleChangeCheckbox}
+                        defaultChecked={order.details.heavyLunch} />
+                    <Checkbox
+                        disabled={disabledDetails}
+                        label="Magus ürituse lõpus"
+                        name="details.dessertAtEnd"
+                        onCheck={this.handleChangeCheckbox}
+                        defaultChecked={order.details.dessertAtEnd} />
+                </Paper>
+                <Paper className="padding margin">
+                    <TextField
+                        disabled={disabledDetails}
+                        className="full-width"
+                        floatingLabelText="Allergiad"
+                        name="details.allergies"
+                        onChange={this.handleTextFieldChange}
+                        value={order.details.allergies}/>
+                    <TextField
+                        disabled={disabledDetails}
+                        className="full-width"
+                        floatingLabelText="Lisainfo"
+                        rows={4}
+                        multiLine={true}
+                        name="details.clientNotes"
+                        onChange={this.handleTextFieldChange}
+                        value={order.details.clientNotes}/>
+                </Paper>
+                <Paper className="padding margin">
+                    <TextField
+                        disabled={disabledContact}
+                        floatingLabelText="Organisatsioon"
+                        name="contact.organization"
+                        onChange={this.handleTextFieldChange}
+                        value={order.contact.organization}
+                        errorText={this.state['contact.organization']} />
+                    <TextField
+                        disabled={disabledContact}
+                        floatingLabelText="Kontakti nimi"
+                        name="contact.name"
+                        onChange={this.handleTextFieldChange}
+                        value={order.contact.name}
+                        errorText={this.state['contact.name']} />
+                    <TextField
+                        disabled={disabledContact}
+                        floatingLabelText="Telefoni number"
+                        name="contact.number"
+                        onChange={this.handleTextFieldChange}
+                        value={order.contact.number}
+                        errorText={this.state['contact.number']} />
+                    <TextField
+                        disabled={disabledContact}
+                        floatingLabelText="E-mail"
+                        name="contact.email"
+                        onChange={this.handleTextFieldChange}
+                        value={order.contact.email}
+                        errorText={this.state['contact.email']} />
+                </Paper>
+                {submitButton}
+            </form>
+        );
+    }
+})
