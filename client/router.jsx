@@ -43,16 +43,6 @@ FlowRouter.route('/login/', {
 	}
 });
 
-FlowRouter.route('/telli/', {
-	action: function(params) {
-		var orderId = Order.createOrder(function(err, result){
-			if (err)
-				sAlert.error(err)
-			FlowRouter.go("/tellimus/"+result)
-		})
-	}
-});
-
 FlowRouter.route('/tellimus/:orderId', {
 	action: function(params) {
 		if (!Meteor.userId())

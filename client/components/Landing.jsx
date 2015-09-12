@@ -19,7 +19,11 @@ Landing = React.createClass({
 			this.refs.orderSentDialog.show()
 	},
 	goNewOrder() {
-		FlowRouter.go('/telli')
+    Order.createOrder(function(err, result){
+			if (err)
+				sAlert.error(err)
+			FlowRouter.go("/tellimus/"+result)
+		})
 	},
 	goLogin() {
 		FlowRouter.go('/login')
