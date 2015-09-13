@@ -134,6 +134,7 @@ DetailsForm = React.createClass({
                         minDate={minimumDate}
                         onChange={this.handleFromDateChange}
                         defaultDate={order.details.fromDate}
+                        autoOk={true}
                         formatDate={this.getDateFormat}
                         errorText={this.state['details.fromDate']} />
                     <TimePicker
@@ -146,7 +147,7 @@ DetailsForm = React.createClass({
                     {price}
                 </Paper>
                 <Paper className="padding margin">
-                    <RadioButtonGroup name="details.serviceType" onChange={this.handleRadioChange} valueSelected={order.details.serviceType || 'heavy'}>
+                    <RadioButtonGroup name="details.serviceType" onChange={this.handleRadioChange} valueSelected={order.details.serviceType}>
                             <RadioButton
                             value="light"
                             label="Lõuna (kerged suupisted)"
@@ -160,6 +161,10 @@ DetailsForm = React.createClass({
                             label="Catering (teenindaja + kohv/tee)"
                             style={{marginBottom:16}}/>
                     </RadioButtonGroup>
+                    {(() => {
+                        if (this.state['details.serviceType'])
+                            return <p className="warning-text">Palun vali teenuse tüüp</p>
+                    })()}
                     {(() => {
                         if (order.details.serviceType === 'catering') {
                             return <div>

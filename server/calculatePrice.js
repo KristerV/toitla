@@ -15,9 +15,7 @@ Meteor.methods({
         var details = order.details
         var peopleCount = details.peopleCount
         var mealCount = details.mealCount
-        var serviceType = details.serviceType
-        console.log("serviceType:", serviceType);
-
+        var serviceType = details.serviceType || 'heavy'
 
         // Calculate
         var price = 0
