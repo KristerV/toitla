@@ -61,6 +61,7 @@ OrderForm = React.createClass({
 
         var order = this.data.order
 
+        // Style
         if (order.status && Order.allowedEdit(Meteor.userId(), 'status'))
             var statusForm = <StatusForm {...this.props} order={order}/>
         if (order.details)
@@ -70,9 +71,13 @@ OrderForm = React.createClass({
 
         return (
             <div>
-                {statusForm}
-                {detailsForm}
-                {suborders}
+                <div className={order.submitted ? "layout-left" : "layout-order"}>
+                    {statusForm}
+                    {detailsForm}
+                </div>
+                <div className="layout-right">
+                    {suborders}
+                </div>
             </div>
         )
     }

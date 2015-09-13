@@ -189,7 +189,7 @@ SuborderItem = React.createClass({
 
         // Render
         return(
-            <div>
+            <div className="suborder">
                 <Dialog
     				title="Saada kokale"
     				ref="sendToChefDialog"

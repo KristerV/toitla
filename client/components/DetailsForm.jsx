@@ -87,6 +87,7 @@ DetailsForm = React.createClass({
         // Submit button
         if (!order.submitted) {
             var submitButton = <RaisedButton
+                style={{display: 'block', margin: 'auto', width: '150px;'}}
                 disabled={disabledDetails}
                 type="submit"
                 label="Esita tellimus"
@@ -112,7 +113,7 @@ DetailsForm = React.createClass({
 
         return (
             <form onSubmit={this.handleSubmit}>
-                <Paper className="padding margin">
+                <Paper className="padding margin paper-initial-order">
                     <TextField
                         disabled={disabledDetails}
                         floatingLabelText="Inimeste arv"
@@ -145,6 +146,36 @@ DetailsForm = React.createClass({
                         value={this.getTimeFormat(order.details.fromTime)}
                         errorText={this.state['details.fromTime']} />
                     {price}
+                </Paper>
+                <Paper className="padding margin paper-initial-order">
+                    <TextField
+                        disabled={disabledContact}
+                        floatingLabelText="Organisatsioon"
+                        name="contact.organization"
+                        onChange={this.handleTextFieldChange}
+                        value={order.contact.organization}
+                        errorText={this.state['contact.organization']} />
+                    <TextField
+                        disabled={disabledContact}
+                        floatingLabelText="Kontakti nimi"
+                        name="contact.name"
+                        onChange={this.handleTextFieldChange}
+                        value={order.contact.name}
+                        errorText={this.state['contact.name']} />
+                    <TextField
+                        disabled={disabledContact}
+                        floatingLabelText="Telefoni number"
+                        name="contact.number"
+                        onChange={this.handleTextFieldChange}
+                        value={order.contact.number}
+                        errorText={this.state['contact.number']} />
+                    <TextField
+                        disabled={disabledContact}
+                        floatingLabelText="E-mail"
+                        name="contact.email"
+                        onChange={this.handleTextFieldChange}
+                        value={order.contact.email}
+                        errorText={this.state['contact.email']} />
                 </Paper>
                 <Paper className="padding margin">
                     <RadioButtonGroup name="details.serviceType" onChange={this.handleRadioChange} valueSelected={order.details.serviceType}>
@@ -197,36 +228,6 @@ DetailsForm = React.createClass({
                         name="details.clientNotes"
                         onChange={this.handleTextFieldChange}
                         value={order.details.clientNotes}/>
-                </Paper>
-                <Paper className="padding margin">
-                    <TextField
-                        disabled={disabledContact}
-                        floatingLabelText="Organisatsioon"
-                        name="contact.organization"
-                        onChange={this.handleTextFieldChange}
-                        value={order.contact.organization}
-                        errorText={this.state['contact.organization']} />
-                    <TextField
-                        disabled={disabledContact}
-                        floatingLabelText="Kontakti nimi"
-                        name="contact.name"
-                        onChange={this.handleTextFieldChange}
-                        value={order.contact.name}
-                        errorText={this.state['contact.name']} />
-                    <TextField
-                        disabled={disabledContact}
-                        floatingLabelText="Telefoni number"
-                        name="contact.number"
-                        onChange={this.handleTextFieldChange}
-                        value={order.contact.number}
-                        errorText={this.state['contact.number']} />
-                    <TextField
-                        disabled={disabledContact}
-                        floatingLabelText="E-mail"
-                        name="contact.email"
-                        onChange={this.handleTextFieldChange}
-                        value={order.contact.email}
-                        errorText={this.state['contact.email']} />
                 </Paper>
                 {submitButton}
             </form>

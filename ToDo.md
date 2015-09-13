@@ -1,8 +1,6 @@
 <!-- Immediate -->
-* Kuupäeva "OK" bugi
 * email kokale, email uus tellimus
 * koka regamise vorm
-* layouti parandada sõbralikumaks
 
 <!-- Important -->
 * Tracking

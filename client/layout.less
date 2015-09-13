@@ -1,0 +1,27 @@
+.layout {
+    display: inline-block;
+}
+.layout-left {
+    .layout;
+    width: 350px;
+}
+.layout-right {
+    .layout;
+    width: calc(~"100% - 350px");
+    vertical-align: top;
+}
+.suborder {
+    width: 350px;
+    display: inline-block;
+}
+.layout-order {
+    min-width: 350px;
+    max-width: 900px;
+    margin: auto;
+    .paper-initial-order {
+        text-align: center;
+        min-width: 350px;
+        width: calc(~"50% - 32px");
+        display: inline-block;
+    }
+}
