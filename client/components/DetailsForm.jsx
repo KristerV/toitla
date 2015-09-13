@@ -145,7 +145,6 @@ DetailsForm = React.createClass({
                         onChange={this.handleFromTimeChange}
                         value={this.getTimeFormat(order.details.fromTime)}
                         errorText={this.state['details.fromTime']} />
-                    {price}
                 </Paper>
                 <Paper className="padding margin paper-initial-order">
                     <TextField
@@ -177,7 +176,7 @@ DetailsForm = React.createClass({
                         value={order.contact.email}
                         errorText={this.state['contact.email']} />
                 </Paper>
-                <Paper className="padding margin">
+                <Paper className="padding margin relative">
                     <RadioButtonGroup name="details.serviceType" onChange={this.handleRadioChange} valueSelected={order.details.serviceType}>
                             <RadioButton
                             value="light"
@@ -210,6 +209,7 @@ DetailsForm = React.createClass({
                             </div>
                         }
                     })()}
+                    {price}
                 </Paper>
                 <Paper className="padding margin">
                     <TextField
