@@ -87,7 +87,7 @@ DetailsForm = React.createClass({
         // Submit button
         if (!order.submitted) {
             var submitButton = <RaisedButton
-                style={{display: 'block', margin: 'auto', width: '150px;'}}
+                style={{display: 'block', margin: 'auto', width: '150px'}}
                 disabled={disabledDetails}
                 type="submit"
                 label="Esita tellimus"
