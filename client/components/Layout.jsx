@@ -40,7 +40,7 @@ Layout = React.createClass({
     },
 
     goNewOrder(e) {
-        FlowRouter.go("/telli")
+        Order.createOrder()
     },
 
     render() {
