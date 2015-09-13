@@ -2,6 +2,7 @@ var {
   Paper,
   DropDownMenu,
   Checkbox,
+  RaisedButton,
 } = MUI;
 
 StatusForm = React.createClass({
@@ -19,6 +20,10 @@ StatusForm = React.createClass({
                     menuItems={this.props.selectPhases}
                     onChange={this.updatePhase}
                     selectedIndex={Settings.getPhaseIndex(order.status.phase)}/>
+                <RaisedButton
+                    label="Kustuta tellimus"
+                    secondary={true}
+                    onClick={order.delete.bind(order)}/>
             </Paper>
         );
     }
