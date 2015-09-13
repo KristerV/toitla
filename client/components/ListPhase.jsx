@@ -59,10 +59,9 @@ ListPhase = React.createClass({
                 <List subheader={label} subheaderStyle={subheaderStyle}>
                     {array.map(function(item){
                         if (item.details) { // is order
-                            var toDate = item.details.toDate || item.details.fromDate
                             var title = item.contact.organization
                             var subtitle1 = item.details.customPrice
-                            var subtitle2 = moment(toDate).add(item.details.toTime).format("D.MM")
+                            var subtitle2 = ''
                         } else { // is suborder
                             var title = item.orderDescription
                             var subtitle1 = item.price

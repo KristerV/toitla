@@ -6,6 +6,8 @@ var {
     TimePicker,
     TextField,
     RaisedButton,
+    RadioButton,
+    RadioButtonGroup,
 } = MUI;
 
 DetailsForm = React.createClass({
@@ -40,11 +42,6 @@ DetailsForm = React.createClass({
         this.props.order.calculatePrice()
     },
 
-    handleToDateChange(nill, date) {
-        this.props.order.updateField('details.toDate', date)
-        this.props.order.calculatePrice()
-    },
-
     handleToTimeChange(nill, date) {
         this.props.order.updateField('details.toTime', date)
         this.props.order.calculatePrice()
@@ -52,6 +49,11 @@ DetailsForm = React.createClass({
 
     handleChangeCheckbox(e, checked) {
         this.props.order.handleChangeCheckbox(e, checked)
+        this.props.order.calculatePrice()
+    },
+
+    handleRadioChange(e, selected) {
+        this.props.order.handleRadioChange(e, selected)
         this.props.order.calculatePrice()
     },
 
@@ -121,24 +123,14 @@ DetailsForm = React.createClass({
                         errorText={this.state['details.peopleCount']} />
                     <TextField
                         disabled={disabledDetails}
-                        floatingLabelText="Kohvi-/suupistepauside arv"
-                        name="details.mealCount"
-                        onChange={this.handleTextFieldChange}
-                        value={order.details.mealCount}
-                        errorText={this.state['details.mealCount']} />
-                    <TextField
-                        disabled={disabledDetails}
                         floatingLabelText="Asukoht"
                         name="details.location"
                         onChange={this.handleTextFieldChange}
                         value={order.details.location}
                         errorText={this.state['details.location']} />
-                    {price}
-                </Paper>
-                <Paper className="padding margin">
                     <DatePicker
                         disabled={disabledDetails}
-                        floatingLabelText="Algus kuupäev"
+                        floatingLabelText="Kuupäev"
                         minDate={minimumDate}
                         onChange={this.handleFromDateChange}
                         defaultDate={order.details.fromDate}
@@ -146,51 +138,42 @@ DetailsForm = React.createClass({
                         errorText={this.state['details.fromDate']} />
                     <TimePicker
                         disabled={disabledDetails}
-                        floatingLabelText="Algus kellaaeg"
+                        floatingLabelText="Kellaaeg"
                         format="24hr"
                         onChange={this.handleFromTimeChange}
                         value={this.getTimeFormat(order.details.fromTime)}
                         errorText={this.state['details.fromTime']} />
-                    <DatePicker
-                        disabled={disabledDetails}
-                        floatingLabelText="Lõpu kuupäev"
-                        minDate={order.details.fromDate}
-                        onChange={this.handleToDateChange}
-                        defaultDate={order.details.toDate || order.details.fromDate}
-                        formatDate={this.getDateFormat}/>
-                    <TimePicker
-                        disabled={disabledDetails}
-                        floatingLabelText="Lõpu kellaaeg"
-                        format="24hr"
-                        onChange={this.handleToTimeChange}
-                        value={this.getTimeFormat(order.details.toTime)}
-                        errorText={this.state['details.toTime']} />
+                    {price}
                 </Paper>
                 <Paper className="padding margin">
-                    <Checkbox
-                        disabled={disabledDetails}
-                        label="Catering, ehk teenindaja + kohv/tee"
-                        name="details.catering"
-                        onCheck={this.handleChangeCheckbox}
-                        defaultChecked={order.details.catering} />
-                    <Checkbox
-                        disabled={disabledDetails}
-                        label="Laud on kaetud ürituse alguseks"
-                        name="details.tableSetAtStart"
-                        onCheck={this.handleChangeCheckbox}
-                        defaultChecked={order.details.tableSetAtStart} />
-                    <Checkbox
-                        disabled={disabledDetails}
-                        label="Ekstra toekas lõuna"
-                        name="details.heavyLunch"
-                        onCheck={this.handleChangeCheckbox}
-                        defaultChecked={order.details.heavyLunch} />
-                    <Checkbox
-                        disabled={disabledDetails}
-                        label="Magus ürituse lõpus"
-                        name="details.dessertAtEnd"
-                        onCheck={this.handleChangeCheckbox}
-                        defaultChecked={order.details.dessertAtEnd} />
+                    <RadioButtonGroup name="details.serviceType" onChange={this.handleRadioChange} valueSelected={order.details.serviceType || 'heavy'}>
+                            <RadioButton
+                            value="light"
+                            label="Lõuna (kerged suupisted)"
+                            style={{marginBottom:16}} />
+                            <RadioButton
+                            value="heavy"
+                            label="Pidusöök (toekamad suupisted)"
+                            style={{marginBottom:16}}/>
+                            <RadioButton
+                            value="catering"
+                            label="Catering (teenindaja + kohv/tee)"
+                            style={{marginBottom:16}}/>
+                    </RadioButtonGroup>
+                    {(() => {
+                        if (order.details.serviceType === 'catering') {
+                            return <div>
+                                <TextField
+                                    disabled={disabledDetails}
+                                    floatingLabelText="Kohvi-/suupistepauside arv"
+                                    name="details.mealCount"
+                                    onChange={this.handleTextFieldChange}
+                                    value={order.details.mealCount}
+                                    errorText={this.state['details.mealCount']} />
+                                <br/><sub>Palun märgi kohvipauside soovitud kellaajad "Lisainfo" sektsiooni.</sub>
+                            </div>
+                        }
+                    })()}
                 </Paper>
                 <Paper className="padding margin">
                     <TextField
