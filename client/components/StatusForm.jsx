@@ -22,7 +22,6 @@ StatusForm = React.createClass({
                     selectedIndex={Settings.getPhaseIndex(order.status.phase)}/>
                 <RaisedButton
                     label="Kustuta tellimus"
-                    secondary={true}
                     onClick={order.delete.bind(order)}/>
             </Paper>
         );
