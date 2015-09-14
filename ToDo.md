@@ -4,15 +4,15 @@
 
 <!-- Important -->
 * Tracking
-* sünnipäevalaua orienteeritud - catering on üks linnuke, hind kaob ära
-* grid system
 * kokale saates muutub status phase ise 'kokad pakuvad'
-* Tellimuse esitades ei suuna kohe indexile vaid näitab kirja ja alles siis.
 * notificationile klikk võiks minna otse tellimuse sisse
 * koka overview on segane. Parem oleks [uus, ootab kinnitust, kinnitatud, tehtud]
 * manageriks saab lisada admin
 * back lõpuks läheks äpist välja
 * kokkadele statistikat
+
+<!-- Menüü -->
+* kokal menüü - pealkiri / koostisosad / rating / tagid
 
 
 # ROLES
@@ -44,13 +44,7 @@
 	Tagasiside TELLIJA
 		rating
 		tekst
-	Feed KOKK TELLIJA MANAGER
-		message
-		pinned (show pinnitud ja 3 kõige uuemat)
-		createdAt
-		createdBy
 	Järgmise tegevuse kuupäev ja kirjeldus
-	Pakenditele järgi mindud
 	Actions
 		send to client - offer (arvega)
 		send to client - feedback -->
