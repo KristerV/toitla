@@ -72,9 +72,9 @@ LoginForm = React.createClass({
         }
     },
 
-    handleTabChange(i, tab) {
+    handleTabChange(i, tab, c) {
         this.setState({
-            formType: tab.props.name,
+            formType: c.props.name,
         })
         this.resetErrors()
     },
