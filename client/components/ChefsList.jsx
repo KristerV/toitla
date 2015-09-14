@@ -10,7 +10,12 @@ ChefsList = React.createClass({
     getMeteorData() {
         var subscription = Meteor.subscribe("allUserData")
         return {
-            users: Meteor.users.find({'profile.name': {$exists: 1}, 'roles': 'chef'}).fetch(),
+            users: Meteor.users.find({
+                'profile.name': {$exists: true},
+                'roles': 'chef',
+                'profile.companyCode': {$ne: null, $ne: ''},
+                'profile.vet': true,
+            }).fetch(),
             // subsReady: subscription.ready()
         }
     },
@@ -27,6 +32,8 @@ ChefsList = React.createClass({
         var suborder = this.props.suborder
         return(<List>
             {chefs.map(function(chef){
+                console.log(chef.profile);
+
                 var statusClass = 'status-'+chef.getStatus()
                 var statusDot = <span style={{"font-size":"2em", "vertical-align": "middle"}} className={statusClass}>•</span>
                 var result = suborder.chefs[chef._id] ? suborder.chefs[chef._id].result : ''

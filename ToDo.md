@@ -1,6 +1,6 @@
 <!-- Immediate -->
 * email kokale, email uus tellimus
-* koka regamise vorm
+* Täiendavad tekstid
 
 <!-- Important -->
 * Tracking
@@ -30,10 +30,10 @@
 # 	telefon
 # 	vet
 # 	billing
-* ettevõtte nimetus
-* Köögi aadress
-* Koduleht
-* "Olen teavitanud Vet ametit oma koduköögist"
+# 	ettevõtte nimetus
+# 	Köögi aadress
+# 	Koduleht
+# 	"Olen teavitanud Vet ametit oma koduköögist"
 	<!-- kaart asukohaga -->
   <!--
   pilt

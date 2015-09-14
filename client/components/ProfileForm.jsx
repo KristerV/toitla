@@ -52,7 +52,7 @@ ProfileForm = React.createClass({
         if (user.emails && user.emails[0] && user.emails[0].address)
             var email = user.emails[0].address
         user.emails = user.emails || {}
-        return(<Paper className="margin padding">
+        return(<Paper className="margin padding layout-left">
             <RaisedButton
                 label="Logi välja"
                 onClick={this.logout}/>
@@ -72,16 +72,27 @@ ProfileForm = React.createClass({
                 onChange={user.handleTextFieldChange.bind(user)}
                 name="profile.tel"
                 value={user.profile.tel}/>
+            <TextField
+                floatingLabelText="Koduleht"
+                onChange={user.handleTextFieldChange.bind(user)}
+                name="profile.homepage"
+                value={user.profile.homepage}/>
+            <TextField
+                floatingLabelText="Ettevõtte nimi"
+                onChange={user.handleTextFieldChange.bind(user)}
+                name="profile.companyName"
+                value={user.profile.companyName}/>
+            <TextField
+                floatingLabelText="Ettevõtte registrikood"
+                onChange={user.handleTextFieldChange.bind(user)}
+                name="profile.companyCode"
+                value={user.profile.companyCode}/>
             <Checkbox
-                label="Olen oma kodukokkamise tegevuse kooskõlastanud Veterinaar- ja Toiduametiga"
+                label="Olen teavitanud Veterinaar- ja Toiduametit oma koduköögist."
                 onCheck={user.handleCheckboxChange.bind(user)}
                 name="profile.vet"
                 defaultChecked={user.profile.vet}/>
-            <Checkbox
-                label="Mul on arve esitamise võimalus"
-                onCheck={user.handleCheckboxChange.bind(user)}
-                name="profile.billing"
-                defaultChecked={user.profile.billing}/>
+            <sub>Ilma etteovõtte või Vet-ametiga kooskõlastamiseta me kahjuks koostööd teha ei saa. Need protsessid ei ole aga üldse keerulised. Õpetuse kallal veel nokitseme, aga võta ühendust info@toitla.com ja me juhendame su mõnusalt läbi.</sub>
         </Paper>)
     }
 })
