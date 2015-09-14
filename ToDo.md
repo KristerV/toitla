@@ -3,13 +3,13 @@
 * Täiendavad tekstid
 
 <!-- next -->
-* notificationile klikk võiks minna otse tellimuse sisse
-* koka overview on segane. Parem oleks [uus, ootab kinnitust, kinnitatud, tehtud]
-* back lõpuks läheks äpist välja
+* kokal menüü - pealkiri / koostisosad / tagid
 
 <!-- BACKLOG ---
+* koka overview on segane. Parem oleks [uus, ootab kinnitust, kinnitatud, tehtud] või üldse otse suborderiteni?
+* back lõpuks läheks äpist välja
+* notificationile klikk võiks minna otse tellimuse sisse
 * manageriks saab lisada admin
-* kokal menüü - pealkiri / koostisosad / rating / tagid
 * Tracking
 * kokkadele statistikat
 * Arve saatmise süsteem (erply API, GWA arendajalt küsida)
