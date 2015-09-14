@@ -3,8 +3,6 @@
 * Täiendavad tekstid
 
 <!-- next -->
-* receivedAt, seenAt, repliedAt
-* kokale saates muutub status phase ise 'kokad pakuvad'
 * notificationile klikk võiks minna otse tellimuse sisse
 * koka overview on segane. Parem oleks [uus, ootab kinnitust, kinnitatud, tehtud]
 * back lõpuks läheks äpist välja
