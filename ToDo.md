@@ -13,6 +13,9 @@
 
 <!-- Menüü -->
 * kokal menüü - pealkiri / koostisosad / rating / tagid
+* Arve saatmise süsteem (erply API, GWA arendajalt küsida)
+	* kliendile arve
+	* kokalt toitlale arve
 
 
 # ROLES
@@ -27,6 +30,10 @@
 # 	telefon
 # 	vet
 # 	billing
+* ettevõtte nimetus
+* Köögi aadress
+* Koduleht
+* "Olen teavitanud Vet ametit oma koduköögist"
 	<!-- kaart asukohaga -->
   <!--
   pilt
