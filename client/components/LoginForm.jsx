@@ -70,7 +70,17 @@ LoginForm = React.createClass({
                 }
             }.bind(this))
         } else if (formType == "login") {
-            Meteor.loginWithPassword(s.email, s.password, function(err){
+            var error = false
+            if (!/^[^@]+@[^@]+\.[^@]+$/.test(s.email)) {
+                this.setState({emailError: "Kindel, et see on su e-mail?"})
+                error = true
+            }
+            if (!s.password) {
+                this.setState({passwordError: "Ilma selleta ikka ei saa"})
+                error = true
+            }
+            if (error) return
+            Meteor.loginWithPassword(s.email.toLowerCase(), s.password, function(err){
                 if (err) {
                     if (err.reason == "User not found")
                         this.setState({emailError: "Kasutajat ei leitud"})
