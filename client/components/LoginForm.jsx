@@ -125,7 +125,7 @@ LoginForm = React.createClass({
             primary={true}/>
 
         return(
-            <Paper className="margin padding">
+            <Paper className="margin padding layout-login">
                 <form onSubmit={this.handleSubmit}>
                     <Tabs onChange={this.handleTabChange}>
                         <Tab label="Logi sisse" name="login">
