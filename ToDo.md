@@ -1,21 +1,23 @@
-<!-- Immediate -->
+<!-- now -->
 * email kokale, email uus tellimus
 * Täiendavad tekstid
 
-<!-- Important -->
-* Tracking
+<!-- next -->
+* receivedAt, seenAt, repliedAt
 * kokale saates muutub status phase ise 'kokad pakuvad'
 * notificationile klikk võiks minna otse tellimuse sisse
 * koka overview on segane. Parem oleks [uus, ootab kinnitust, kinnitatud, tehtud]
-* manageriks saab lisada admin
 * back lõpuks läheks äpist välja
-* kokkadele statistikat
 
-<!-- Menüü -->
+<!-- BACKLOG ---
+* manageriks saab lisada admin
 * kokal menüü - pealkiri / koostisosad / rating / tagid
+* Tracking
+* kokkadele statistikat
 * Arve saatmise süsteem (erply API, GWA arendajalt küsida)
 	* kliendile arve
 	* kokalt toitlale arve
+------------------>
 
 
 # ROLES

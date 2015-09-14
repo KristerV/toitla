@@ -20,11 +20,13 @@ LoginForm = React.createClass({
     },
 
     handleEmailChange(e) {
-        this.setState({email: e.target.value})
+        this.setState({email: e.target.value.toLowerCase()})
+        this.setState({emailError: null})
     },
 
     handlePasswordChange(e) {
         this.setState({password: e.target.value})
+        this.setState({passwordError: null})
     },
 
     handlePasswordRepeatChange(e) {
@@ -42,10 +44,21 @@ LoginForm = React.createClass({
         var s = this.state
         var formType = this.state.formType
         if (formType == "register") {
+            var error = false
             if (s.password !== s.passwordRepeat) {
                 this.setState({passwordRepeatError: "Paroolid ei kattu"})
-                return false
+                error = true
             }
+            if (!/^[^@]+@[^@]+\.[^@]+$/.test(s.email)) {
+                this.setState({emailError: "See ei ole väga emaili moodi"})
+                error = true
+            }
+            if (!s.password || s.password.length < 6) {
+                this.setState({passwordError: "Parool võiks olla vähemalt 6 tähemärki pikk"})
+                error = true
+            }
+            if (error) return
+
             Accounts.createUser({email: s.email, password: s.password}, function(err){
                 if (err) {
                     if (err.reason == 'Email already exists.')
@@ -73,6 +86,7 @@ LoginForm = React.createClass({
     },
 
     handleTabChange(i, tab, c) {
+        if (!c) return
         this.setState({
             formType: c.props.name,
         })
