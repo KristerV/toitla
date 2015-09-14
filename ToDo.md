@@ -1,5 +1,5 @@
 <!-- now -->
-* email kokale, email uus tellimus
+* Email: kokale, fleepi
 * Täiendavad tekstid
 
 <!-- next -->

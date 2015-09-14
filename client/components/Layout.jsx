@@ -44,7 +44,7 @@ Layout = React.createClass({
     },
 
     render() {
-        return <div><AppBar
+        return <div className="h100"><AppBar
             iconElementLeft={
                 <div>
                     <RaisedButton
