@@ -154,10 +154,6 @@ Meil on veel pikk iduettevõtlusteekond käia, kuid lubame, et juba täna üllat
             <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep23.JPG)"}}>
             </div>
           </a>
-          <a href="/images/events/Fleep/fleep24.JPG" data-lightbox="images">
-            <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep24.JPG)"}}>
-            </div>
-          </a>
           <a href="/images/events/Fleep/fleep25.JPG" data-lightbox="images">
             <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep25.JPG)"}}>
             </div>
