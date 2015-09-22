@@ -37,20 +37,20 @@ Landing = React.createClass({
 				ref="orderSentDialog"
 				actions={actions}
 				onDismiss={this.closeDialog}>
-				Võtame teiega mõne päeva jooksul ühendust. Kiireloomuliste küsimustega võite pöörduda meie poole e-mailiga appi@toitla.com või telefoniga 5385 2331.
+				Täpsustavate küsimuste korral võtame Sinuga ise ühendust. Meiega saad kontakti appi@toitla.com või +3725216686.
 			</Dialog>
       <div className="logo"><img className="toitla" src="/icons/white-toitla.svg"/>
       </div>
       <table className="main">
         <tr>
           <td className="left">
-            <h2>Soovid paremat toitu oma üritusele? Meie toitu Sa poest ei leia! </h2>
+            <h2>Toome kodused suupisted, küpsetised ja näpu-lõunad Sinu üritusele</h2>
             <div onClick={this.goNewOrder} className="btn order">
               <p><strong>Telli</strong> </p>
             </div>
           </td>
           <td className="right">
-            <h2>Meeldib kokata? <br/> Tee algus esimeste tellimustega! </h2>
+            <h2>Soovid pakkuda oma suupisteid või küpsetisi?</h2>
             <div onClick={this.goLogin} className="btn chef">
               <p><strong>Liitu</strong> </p>
             </div>
@@ -61,7 +61,10 @@ Landing = React.createClass({
         <a className="facebook" href="https://www.facebook.com/toitlacom" target="_blank">Facebook</a>
       </div>
       <h1 className="huge">Meist</h1>
-      <p className="tekst">Oleme punt tegusaid StartUppijaid ja tegeleme kodukokkade turule toomisega. Liiga palju on neid osavaid kodus tegutsevaid kokkasid, kelle imelised hõrgutised on avalikkuse eest peitu jäänud. Hetkel katame lauda viiele ja rohkem, ehk siis sünnipäevadest ja koosolekutest kuni suurte üritusteni. Oleme edukalt serveerinud sadat inimest terveks päevaks.</p>
+      <p className="tekst">Meil sai suurköökide suupistetest villand. Otsustasime turule tuua väiksed, kuid suure südamega tegijad. Toitla ühendab endas kirglikke kodukokkasid, kohalikke pisipagareid, kodukohvikuid ja teisi iseseisvaid tegijad. Teeme Sulle isikupärased suupisted, kodused küpsetised ja eripärased näpu-lõunad imelihtsalt kättesaadavaks. 
+Meil on veel pikk iduettevõtlusteekond käia, kuid lubame, et juba täna üllatame Sind üle ootuste positiivselt (ja kui ei üllata, siis me tahame sellest teada!). Kui Sul on häid mõtteid meie tegevuse osas või tahad kaasa lüüa, siis võta meiega ühendust.</p>
+      <h1 className="huge">Pakume</h1>
+      <p className="tekst">Kui plaanid mõne ürituse kohvipausi või lõunat, sünnipäeva sõprade seltsis, tähtpäeva tööl või lihtsalt erilisemat hetke mõne seltskonnaga, siis meil saad just Sulle sobivad soolased ja magusad suupisted. Meie kokad kasutavad naturaalset ja värsket toorainet, tööstuslikke lisaaineid lisamata. Võimalusel eelistatakse kodumaist tootjat või ka oma enda koduaia saadusi. Pöörame erilist tähelepanu toitumise erivajadustele ja allergiatele. Meie jaoks kõige olulisem on tagada toidu kvaliteet. Toidud valmistatakse vaid konkreetsele üritusele vahetult enne üritust. Vajadusel pakume juurde värskelt röstitud ning kohapeal valmistatud kohvi, naturaalset teed ja maitsestatud kraanivett. Tegutseme Tallinnas ja suupisteid pakume gruppidele alates 15 inimesest.</p>
       <div className="gallery">
         <h1 className="huge">Edukad üritused</h1>
         <h1>GoingGlobal module 2</h1>
