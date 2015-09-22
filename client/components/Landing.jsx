@@ -61,12 +61,116 @@ Landing = React.createClass({
         <a className="facebook" href="https://www.facebook.com/toitlacom" target="_blank">Facebook</a>
       </div>
       <h1 className="huge">Meist</h1>
-      <p className="tekst">Meil sai suurköökide suupistetest villand. Otsustasime turule tuua väiksed, kuid suure südamega tegijad. Toitla ühendab endas kirglikke kodukokkasid, kohalikke pisipagareid, kodukohvikuid ja teisi iseseisvaid tegijad. Teeme Sulle isikupärased suupisted, kodused küpsetised ja eripärased näpu-lõunad imelihtsalt kättesaadavaks. 
+      <p className="tekst">Meil sai suurköökide suupistetest villand. Otsustasime turule tuua väiksed, kuid suure südamega tegijad. Toitla ühendab endas kirglikke kodukokkasid, kohalikke pisipagareid, kodukohvikuid ja teisi iseseisvaid tegijad. Teeme Sulle isikupärased suupisted, kodused küpsetised ja eripärased näpu-lõunad imelihtsalt kättesaadavaks.
 Meil on veel pikk iduettevõtlusteekond käia, kuid lubame, et juba täna üllatame Sind üle ootuste positiivselt (ja kui ei üllata, siis me tahame sellest teada!). Kui Sul on häid mõtteid meie tegevuse osas või tahad kaasa lüüa, siis võta meiega ühendust.</p>
       <h1 className="huge">Pakume</h1>
       <p className="tekst">Kui plaanid mõne ürituse kohvipausi või lõunat, sünnipäeva sõprade seltsis, tähtpäeva tööl või lihtsalt erilisemat hetke mõne seltskonnaga, siis meil saad just Sulle sobivad soolased ja magusad suupisted. Meie kokad kasutavad naturaalset ja värsket toorainet, tööstuslikke lisaaineid lisamata. Võimalusel eelistatakse kodumaist tootjat või ka oma enda koduaia saadusi. Pöörame erilist tähelepanu toitumise erivajadustele ja allergiatele. Meie jaoks kõige olulisem on tagada toidu kvaliteet. Toidud valmistatakse vaid konkreetsele üritusele vahetult enne üritust. Vajadusel pakume juurde värskelt röstitud ning kohapeal valmistatud kohvi, naturaalset teed ja maitsestatud kraanivett. Tegutseme Tallinnas ja suupisteid pakume gruppidele alates 15 inimesest.</p>
       <div className="gallery">
         <h1 className="huge">Edukad üritused</h1>
+        <h1>Fleep kliendiüritus</h1>
+        <h2>100 inimest, üks päev</h2>
+        <div className="images">
+          <a href="/images/events/Fleep/fleep5.JPG" data-lightbox="images">
+            <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep5.JPG)"}}>
+            </div>
+          </a>
+          <a href="/images/events/Fleep/fleep6.JPG" data-lightbox="images">
+            <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep6.JPG)"}}>
+            </div>
+          </a>
+          <a href="/images/events/Fleep/fleep7.JPG" data-lightbox="images">
+            <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep7.JPG)"}}>
+            </div>
+          </a>
+          <a href="/images/events/Fleep/fleep8.JPG" data-lightbox="images">
+            <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep8.JPG)"}}>
+            </div>
+          </a>
+          <a href="/images/events/Fleep/fleep9.JPG" data-lightbox="images">
+            <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep9.JPG)"}}>
+            </div>
+          </a>
+          <a href="/images/events/Fleep/fleep3.JPG" data-lightbox="images">
+            <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep3.JPG)"}}>
+            </div>
+          </a>
+          <a href="/images/events/Fleep/fleep1.JPG" data-lightbox="images">
+            <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep1.JPG)"}}>
+            </div>
+          </a>
+          <a href="/images/events/Fleep/fleep10.JPG" data-lightbox="images">
+            <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep10.JPG)"}}>
+            </div>
+          </a>
+          <a href="/images/events/Fleep/fleep2.JPG" data-lightbox="images">
+            <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep2.JPG)"}}>
+            </div>
+          </a>
+          <a href="/images/events/Fleep/fleep11.JPG" data-lightbox="images">
+            <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep11.JPG)"}}>
+            </div>
+          </a>
+          <a href="/images/events/Fleep/fleep12.JPG" data-lightbox="images">
+            <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep12.JPG)"}}>
+            </div>
+          </a>
+          <a href="/images/events/Fleep/fleep13.JPG" data-lightbox="images">
+            <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep13.JPG)"}}>
+            </div>
+          </a>
+          <a href="/images/events/Fleep/fleep14.JPG" data-lightbox="images">
+            <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep14.JPG)"}}>
+            </div>
+          </a>
+          <a href="/images/events/Fleep/fleep15.JPG" data-lightbox="images">
+            <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep15.JPG)"}}>
+            </div>
+          </a>
+          <a href="/images/events/Fleep/fleep16.JPG" data-lightbox="images">
+            <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep16.JPG)"}}>
+            </div>
+          </a>
+          <a href="/images/events/Fleep/fleep17.JPG" data-lightbox="images">
+            <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep17.JPG)"}}>
+            </div>
+          </a>
+          <a href="/images/events/Fleep/fleep18.JPG" data-lightbox="images">
+            <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep18.JPG)"}}>
+            </div>
+          </a>
+          <a href="/images/events/Fleep/fleep19.JPG" data-lightbox="images">
+            <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep19.JPG)"}}>
+            </div>
+          </a>
+          <a href="/images/events/Fleep/fleep21.JPG" data-lightbox="images">
+            <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep21.JPG)"}}>
+            </div>
+          </a>
+          <a href="/images/events/Fleep/fleep22.JPG" data-lightbox="images">
+            <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep22.JPG)"}}>
+            </div>
+          </a>
+          <a href="/images/events/Fleep/fleep23.JPG" data-lightbox="images">
+            <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep23.JPG)"}}>
+            </div>
+          </a>
+          <a href="/images/events/Fleep/fleep24.JPG" data-lightbox="images">
+            <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep24.JPG)"}}>
+            </div>
+          </a>
+          <a href="/images/events/Fleep/fleep25.JPG" data-lightbox="images">
+            <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep25.JPG)"}}>
+            </div>
+          </a>
+          <a href="/images/events/Fleep/fleep26.JPG" data-lightbox="images">
+            <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep26.JPG)"}}>
+            </div>
+          </a>
+          <a href="/images/events/Fleep/fleep27.JPG" data-lightbox="images">
+            <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep27.JPG)"}}>
+            </div>
+          </a>
+        </div>
         <h1>GoingGlobal module 2</h1>
         <h2>60 inimest, 2 päeva</h2>
         <div className="images">
