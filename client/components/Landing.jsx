@@ -66,7 +66,7 @@ Meil on veel pikk iduettevõtlusteekond käia, kuid lubame, et juba täna üllat
       <h1 className="huge">Pakume</h1>
       <p className="tekst">Kui plaanid mõne ürituse kohvipausi või lõunat, sünnipäeva sõprade seltsis, tähtpäeva tööl või lihtsalt erilisemat hetke mõne seltskonnaga, siis meil saad just Sulle sobivad soolased ja magusad suupisted. Meie kokad kasutavad naturaalset ja värsket toorainet, tööstuslikke lisaaineid lisamata. Võimalusel eelistatakse kodumaist tootjat või ka oma enda koduaia saadusi. Pöörame erilist tähelepanu toitumise erivajadustele ja allergiatele. Meie jaoks kõige olulisem on tagada toidu kvaliteet. Toidud valmistatakse vaid konkreetsele üritusele vahetult enne üritust. Vajadusel pakume juurde värskelt röstitud ning kohapeal valmistatud kohvi, naturaalset teed ja maitsestatud kraanivett. Tegutseme Tallinnas ja suupisteid pakume gruppidele alates 15 inimesest.</p>
       <div className="gallery">
-        <h1 className="huge">Edukad üritused</h1>
+        <h1 className="huge2">Oleme kostitanud üle 1000 inimese ja pakkunud enam kui 4100 suupistet.</h1>
         <h1>Fleep kliendiüritus</h1>
         <h2>100 inimest, üks päev</h2>
         <div className="images">
