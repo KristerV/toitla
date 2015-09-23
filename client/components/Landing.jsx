@@ -61,7 +61,7 @@ Landing = React.createClass({
         <a className="facebook" href="https://www.facebook.com/toitlacom" target="_blank">Facebook</a>
       </div>
       <h1 className="huge2">Kontakt</h1>
-      <p className="tekst">appi@toitla.com</p>
+      <p className="tekst">food@toitla.com</p>
       <p className="tekst">+372 521 6686</p>
       <p className="tekst">Orase 4a, Tallinn, Estonia</p>
       <h1 className="huge">Meist</h1>
