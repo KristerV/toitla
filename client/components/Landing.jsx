@@ -60,6 +60,10 @@ Landing = React.createClass({
       <div className="bottom">
         <a className="facebook" href="https://www.facebook.com/toitlacom" target="_blank">Facebook</a>
       </div>
+      <h1 className="huge2">Kontakt</h1>
+      <p className="tekst">appi@toitla.com</p>
+      <p className="tekst">+372 521 6686</p>
+      <p className="tekst">Orase 4a, Tallinn, Estonia</p>
       <h1 className="huge">Meist</h1>
       <p className="tekst">Meil sai suurköökide suupistetest villand. Otsustasime turule tuua väiksed, kuid suure südamega tegijad. Toitla ühendab endas kirglikke kodukokkasid, kohalikke pisipagareid, kodukohvikuid ja teisi iseseisvaid tegijad. Teeme Sulle isikupärased suupisted, kodused küpsetised ja eripärased näpu-lõunad imelihtsalt kättesaadavaks.
 Meil on veel pikk iduettevõtlusteekond käia, kuid lubame, et juba täna üllatame Sind üle ootuste positiivselt (ja kui ei üllata, siis me tahame sellest teada!). Kui Sul on häid mõtteid meie tegevuse osas või tahad kaasa lüüa, siis võta meiega ühendust.</p>
@@ -331,6 +335,7 @@ Meil on veel pikk iduettevõtlusteekond käia, kuid lubame, et juba täna üllat
         </div>
       </div>
       <div className="bottom-margin">
+      <p>tere</p>
       </div>
 		</div>
 		        )
