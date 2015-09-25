@@ -60,11 +60,11 @@ ListPhase = React.createClass({
                     {array.map(function(item){
                         if (item.details) { // is order
                             var title = item.contact.organization
-                            var subtitle1 = item.details.customPrice
+                            var subtitle1 = item.details.customPrice || item.details.calculatedPrice
                             var subtitle2 = ''
                         } else { // is suborder
                             var title = item.orderDescription
-                            var subtitle1 = item.price || item.details.calculatedPrice
+                            var subtitle1 = item.price
                             var subtitle2 = item.dueDate
                         }
 
