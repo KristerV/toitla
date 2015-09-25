@@ -64,7 +64,7 @@ ListPhase = React.createClass({
                             var subtitle2 = ''
                         } else { // is suborder
                             var title = item.orderDescription
-                            var subtitle1 = item.price
+                            var subtitle1 = item.price || item.calculatedPrice
                             var subtitle2 = item.dueDate
                         }
 
