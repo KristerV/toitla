@@ -216,6 +216,13 @@ DetailsForm = React.createClass({
                     <TextField
                         disabled={disabledDetails}
                         className="full-width"
+                        floatingLabelText="Mis üritusega on tegemist?"
+                        name="details.eventDescription"
+                        onChange={this.handleTextFieldChange}
+                        value={order.details.eventDescription}/>
+                    <TextField
+                        disabled={disabledDetails}
+                        className="full-width"
                         floatingLabelText="Allergiad"
                         name="details.allergies"
                         onChange={this.handleTextFieldChange}
