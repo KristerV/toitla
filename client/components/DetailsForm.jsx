@@ -92,7 +92,7 @@ DetailsForm = React.createClass({
                 type="submit"
                 label="Esita tellimus"
                 primary={true}/>
-
+          if (order.contact.email && order.details.serviceType) {
             var price =
                 <div className="floatingPrice">
                     <div className="wrapper">
@@ -100,6 +100,7 @@ DetailsForm = React.createClass({
                         <h1>{order.details.calculatedPrice}€</h1>
                     </div>
                 </div>
+          }
         } else {
             var priceLabel = "Hind (orig: "+order.details.originalPrice+"/ kalk: "+order.details.calculatedPrice+")"
             var price =
