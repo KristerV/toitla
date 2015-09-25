@@ -1,5 +1,5 @@
-Meteor.methods({
-  sendEmail: function(from, to, subject, html) { 
+Email = {
+  send: function(from, to, subject, html) {
       HTTP.post('https://mandrillapp.com/api/1.0/messages/send.json',
         {
           "data": {
@@ -27,4 +27,4 @@ Meteor.methods({
       )
 
   }
-});
+}
