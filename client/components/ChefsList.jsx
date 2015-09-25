@@ -11,7 +11,7 @@ ChefsList = React.createClass({
         var subscription = Meteor.subscribe("allUserData")
         return {
             users: Meteor.users.find({
-                'profile.name': {$exists: true},
+                'profile.name': {$exists: true, $ne: ''},
                 'roles': 'chef',
                 'profile.companyCode': {$ne: null, $ne: ''},
                 'profile.vet': true,
