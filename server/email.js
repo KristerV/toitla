@@ -25,6 +25,20 @@ Email = {
           }
         }
       )
-
   }
 }
+
+Meteor.methods({
+  sendEmail:function(from, to, subject, html){
+    check(from, String)
+    check(to, String)
+    check(subject, String)
+    check(html, String)
+    if (Roles.userIsInRole(this.userId, 'manager')) {
+      Email.send(from, to, subject, html)
+    } else {
+      throw new Meteor.Error("You're not allowed to send email")
+    }
+
+  }
+});
