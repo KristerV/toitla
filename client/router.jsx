@@ -30,6 +30,7 @@ FlowRouter.route('/ylevaade', {
 
 FlowRouter.route('/profiil', {
 	triggersEnter: [loginRequired, startIdleMonitor],
+	name: 'profile',
 	action: function(params) {
 		ReactLayout.render(Layout, {
 			content: <ProfileForm/>
