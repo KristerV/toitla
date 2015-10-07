@@ -25,6 +25,11 @@ FlowRouter.route('/ylevaade', {
 		ReactLayout.render(Layout, {
 			content: <Overview/>
 		});
+		Meteor.setTimeout(function(){
+			if (!Meteor.user().profile || !Meteor.user().profile.name) {
+				sAlert.info('Palun täida oma profiil ära, siis saame sulle tellimusi saata.', {timeout: 10000})
+			}
+		}, 2000);
 	}
 });
 
