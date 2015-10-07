@@ -43,6 +43,13 @@ FlowRouter.route('/profiil', {
 	}
 });
 
+FlowRouter.route('/menuitem', {
+	name: 'menuitem',
+	action: function(params) {
+		ReactLayout.render(MenuItemsContainer, {menuitemId: 'fAAYb4sD6GwpNyqzE'});
+	}
+});
+
 FlowRouter.route('/login/', {
 	action: function(params) {
 		ReactLayout.render(LoginForm)

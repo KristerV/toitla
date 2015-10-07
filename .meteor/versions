@@ -16,6 +16,7 @@ callback-hook@1.0.3
 check@1.0.5
 coffeescript@1.0.6
 cosmos:browserify@0.5.1
+dburles:collection-helpers@1.0.3
 dburles:mongo-collection-instances@0.3.4
 ddp@1.1.0
 deps@1.0.7
@@ -83,9 +84,11 @@ spacebars@1.0.6
 spacebars-compiler@1.0.6
 srp@1.0.3
 templating@1.1.1
+tmeasday:publish-counts@0.7.2
 tracker@1.0.7
 ui@1.0.6
 underscore@1.0.3
 url@1.0.4
 webapp@1.2.0
 webapp-hashing@1.0.3
+zodiase:mdl@1.0.5
