@@ -1,9 +1,8 @@
 <!-- now -->
-* Email: kokale, fleepi
-* Täiendavad tekstid
-
-<!-- next -->
-* kokal menüü - pealkiri / koostisosad / tagid
+* menüü kliendile
+* menüü kokale - pealkiri / koostisosad / tagid
+* käsitsi majandamise võimalus
+* arve saatmine
 
 <!-- BACKLOG ---
 * koka overview on segane. Parem oleks [uus, ootab kinnitust, kinnitatud, tehtud] või üldse otse suborderiteni?
