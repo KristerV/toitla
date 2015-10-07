@@ -10,7 +10,7 @@ MenuItemsContainer = React.createClass({
         var menuitems
 
         if (this.props.menuitemId) {
-            subscription = Meteor.subscribe("menuitems", {menuitemId: this.props.menuitemId})
+            subscription = Meteor.subscribe("menuitems", {_id: this.props.menuitemId})
             menuitems = MenuItems.find(this.props.menuitemId)
         } else if (this.props.orderId) {
             subscription = Meteor.subscribe("menuitems", {orderId: this.props.orderId})

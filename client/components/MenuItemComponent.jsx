@@ -8,7 +8,7 @@ MenuItemComponent = React.createClass({
 
         // Render
         return(<div>
-            {this.props.data ? this.props.data._id : 'noID'}
+            item
         </div>)
     }
 })
