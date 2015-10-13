@@ -1,4 +1,4 @@
-MenuItemComponent = React.createClass({
+FoodThumbnail = React.createClass({
 
     getInitialState() {
         return {}
@@ -8,7 +8,6 @@ MenuItemComponent = React.createClass({
 
         // Render
         return(<div>
-            item
         </div>)
     }
 })

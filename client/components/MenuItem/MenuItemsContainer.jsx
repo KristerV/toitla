@@ -31,21 +31,22 @@ MenuItemsContainer = React.createClass({
 
     render() {
         var list = []
-
         var menuitems = this.data.menuitems
         var itemcount = this.data.itemcount
         var subsReady = this.data.subsReady
 
+        // Push component
         menuitems.forEach(item => {
-            list.push(<MenuItemComponent key={item._id} data={item}/>)
+            list.push(<MenuItemComponent key={item._id} menuItemKey={item._id} menuitem={item}/>)
         })
 
-        for (var i = list.length; i < itemcount; i++) {
-            list.push(<MenuItemComponent key={'loadingItem'+i}/>)
+        // Preloader: push empty component based on count
+        for (var i = list.length; i < itemcount+1; i++) {
+            list.push(<MenuItemComponent key={'loadingItem'+i} menuItemKey={'loadingItem'+i}/>)
         }
 
         // Render
-        return(<div>
+        return(<div className="MenuItemContainer">
             {list}
         </div>)
     }
