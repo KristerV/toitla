@@ -8,6 +8,8 @@ Meteor.methods({
     scrape: function(sourceLink){
         if (!sourceLink)
             throw new Meteor.Error("Can't scrape empty link")
+        if (!this.userId)
+            throw new Meteor.Error("Authorized zone")
         xray(sourceLink, ['a[title="Veebilehe kontaktandmed"]@href'])(Meteor.bindEnvironment(function(error, obj){
             console.log("INITIAL FETCH DONE");
             if (error)
@@ -32,6 +34,8 @@ Meteor.methods({
         }))
     },
     clearScraper: function() {
+        if (!this.userId)
+            throw new Meteor.Error("Authorized zone")
         Scrapes.remove({})
     }
 });

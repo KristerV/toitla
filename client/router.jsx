@@ -57,6 +57,7 @@ FlowRouter.route('/login/', {
 });
 
 FlowRouter.route('/scraper/', {
+	triggersEnter: [loginRequired],
 	action: function(params) {
 		ReactLayout.render(Scraper)
 	}

@@ -20,14 +20,11 @@ Scraper = React.createClass({
 
     scrape: function(e){
         e.preventDefault()
-        console.log(e);
-        console.log("Start scrape");
         var link = $('input[name=scraper]').val()
         Meteor.call('scrape', link)
         $('input[name=scraper]').val("")
     },
     clear: function(){
-        console.log("Clear");
         Meteor.call('clearScraper')
     },
 
@@ -46,7 +43,7 @@ Scraper = React.createClass({
             </tr>)
         })
         return(<div>
-            <div className="mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 padding margin">Sisesta neti.ee link ja saa kontaktid kätte. <b style={{color: "red"}}>NB! Kätte saamine võtab aega ja iga päring koormab serverit</b>, seega ole ettevaatlik.
+            <div className="mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 padding margin">Sisesta neti.ee link ja saa kontaktid kätte. <b style={{color: "red"}}>NB! Kätte saamine võtab aega ja iga päring koormab serverit</b>, seega ole ettevaatlik. (samas esimene peaks 20sek max võtma)
                 <br/>
                 <form onSubmit={this.scrape} className="inblock">
                     <input name="scraper" className="margin mdl-textfield__input inblock" placeholder="neti.ee link" type="text" style={{width: "200px"}}/>
