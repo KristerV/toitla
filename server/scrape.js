@@ -31,8 +31,8 @@ var scrapeList = function(list){
     x(link, {
         name: 'meta[name="description"]@content',
         address: '.fc-bi-address-value',
-        telephone: '.fc-bi-contact-value',
-        email: '.fc-bi-contacts-field:nth-child(5) .fc-bi-contact-value',
+        telephone: '.fc-bi-contact-name:contains("Telefon") + .fc-bi-contact-value',
+        email: '.fc-bi-contact-name:contains("E-post") + .fc-bi-contact-value',
         website: '.fc-bi-urls-field a@href',
     })(Meteor.bindEnvironment(function(error, result){
         if (error)
