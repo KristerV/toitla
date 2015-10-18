@@ -56,6 +56,12 @@ FlowRouter.route('/login/', {
 	}
 });
 
+FlowRouter.route('/scraper/', {
+	action: function(params) {
+		ReactLayout.render(Scraper)
+	}
+});
+
 FlowRouter.route('/tellimus/:orderId', {
 	action: function(params) {
 		if (!Meteor.userId())
