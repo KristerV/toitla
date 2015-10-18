@@ -38,7 +38,7 @@ var scrapeList = function(list){
         if (error)
             console.log("ERROR:", error);
         console.log("INSERT:", result);
-        if (result.address.indexOf("allinn") > -1) {
+        if (result.address.indexOf("allinn") > -1 && result.email) {
             Scrapes.insert(result)
         }
         if (list.length > 0) {
