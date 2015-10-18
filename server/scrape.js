@@ -38,7 +38,9 @@ var scrapeList = function(list){
         if (error)
             console.log("ERROR:", error);
         console.log("INSERT:", result);
-        Scrapes.insert(result)
+        if (result.address.indexOf("allinn") > -1) {
+            Scrapes.insert(result)
+        }
         if (list.length > 0) {
             scrapeList(list)
         }
