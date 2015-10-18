@@ -14,23 +14,7 @@ Meteor.methods({
             console.log("INITIAL FETCH DONE");
             if (error)
                 console.log("ERROR: ", error);
-            obj.forEach(Meteor.bindEnvironment(function(link, i){
-                Meteor.setTimeout(Meteor.bindEnvironment(function(){
-                    console.log("GO TO: " + link);
-                    var x = XRAY().driver(phantom())
-                    x(link, {
-                        name: 'meta[name="description"]@content',
-                        address: '.fc-bi-address-value',
-                        telephone: '.fc-bi-contact-value',
-                        email: '.fc-bi-contacts-field:nth-child(5) .fc-bi-contact-value',
-                        website: '.fc-bi-urls-field a@href',
-                    })(Meteor.bindEnvironment(function(error, result){
-                        console.log("ERROR:", error);
-                        console.log("INSERT:", result);
-                        Scrapes.insert(result)
-                    }))
-                }),2000 * i)
-            }))
+            scrapeList(obj)
         }))
     },
     clearScraper: function() {
@@ -39,3 +23,24 @@ Meteor.methods({
         Scrapes.remove({})
     }
 });
+
+var scrapeList = function(list){
+    var link = list.shift()
+    console.log("GO TO: " + link);
+    var x = XRAY().driver(phantom())
+    x(link, {
+        name: 'meta[name="description"]@content',
+        address: '.fc-bi-address-value',
+        telephone: '.fc-bi-contact-value',
+        email: '.fc-bi-contacts-field:nth-child(5) .fc-bi-contact-value',
+        website: '.fc-bi-urls-field a@href',
+    })(Meteor.bindEnvironment(function(error, result){
+        if (error)
+            console.log("ERROR:", error);
+        console.log("INSERT:", result);
+        Scrapes.insert(result)
+        if (list.length > 0) {
+            scrapeList(list)
+        }
+    }))
+}
