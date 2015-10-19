@@ -37,6 +37,10 @@ MenuItemDetails = React.createClass({
         // Render
         // colors are the last of each palette, from:
         // https://www.google.com/design/spec/style/color.html#color-color-palette
-        return(<section className="padding">{content}</section>)
+        return(
+            <section className="padding details">
+                {content}
+            </section>
+        )
     }
 })

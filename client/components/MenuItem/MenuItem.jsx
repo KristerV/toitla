@@ -17,6 +17,14 @@ MenuItem = React.createClass({
         var placeholder = !item
         var editMode = placeholder ? false : !item.published
         var menuitemKey = this.props.menuitemKey
+        var contents = []
+
+        if (item.inorder) {
+            contents.push(<MenuItemClient className="mdl-card--border" menuitem={item}/>)
+            contents.push(<MenuItemChef className="mdl-card--border" menuitem={item}/>)
+        } else {
+            contents.push(<MenuItemChefTemplate className="mdl-card--border"/>)
+        }
 
         // Render
         return(
@@ -24,9 +32,7 @@ MenuItem = React.createClass({
             <CornerMenu menuitem={item} menuitemKey={menuitemKey}/>
             <FoodThumbnail menuitem={item}/>
             <MenuItemDetails className="mdl-card--border" menuitem={item}/>
-            <MenuItemClient className="mdl-card--border" menuitem={item}/>
-            <MenuItemChef className="mdl-card--border" menuitem={item}/>
-            <MenuItemChefTemplate className="mdl-card--border"/>
+            {contents}
         </div>)
     }
 })
