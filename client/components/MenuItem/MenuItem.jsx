@@ -21,13 +21,15 @@ MenuItem = React.createClass({
         // Render
         return(
         <form onSubmit={this.publish} onBlur={this.updateField} name="MenuItemForm"
-                className="MenuItem margin padding mdl-shadow--2dp">
+                className="MenuItem margin mdl-shadow--2dp">
             <CornerMenu menuItem={item} menuItemKey={menuItemKey}/>
             <FoodThumbnail menuItem={item}/>
             <MenuItemDetails className="mdl-card--border" menuItem={item}/>
             <MenuItemClient className="mdl-card--border" menuItem={item}/>
             <MenuItemChef className="mdl-card--border" menuItem={item}/>
-            <input className="w100 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" value="Avalikusta toit"/>
+            <section className="padding">
+                <input className="w100 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" value="Avalikusta toit"/>
+            </section>
         </form>)
     }
 })

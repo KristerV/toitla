@@ -10,7 +10,7 @@ MenuItemDetails = React.createClass({
         // colors are the last of each palette, from:
         // https://www.google.com/design/spec/style/color.html#color-color-palette
         return(
-        <section>
+        <section className="padding">
             <p>Laura Telliskivi</p>
             <TextInput label="Toidu nimetus" value="Iduvõileib kukeseentega"/>
             <TextInput label="Koostisosad" rows="1"/>
