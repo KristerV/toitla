@@ -36,7 +36,11 @@ Layout = React.createClass({
     },
 
     goProfile(e) {
-        FlowRouter.go("/profiil")
+        FlowRouter.go("profile", {userId: Meteor.userId()})
+    },
+
+    goMenu(e) {
+        FlowRouter.go("menu", {userId: Meteor.userId()})
     },
 
     goNewOrder(e) {
@@ -60,9 +64,12 @@ Layout = React.createClass({
                         primary={true}
                         onClick={this.goNewOrder}/>
                 </div>}
-            iconElementRight={<FlatButton
-                label="Profiil"
-                onClick={this.goProfile}/>} />
+            iconElementRight={<div>
+                <button className="mdl-button mdl-js-button text-white"
+                    onClick={this.goMenu}>Minu menüü</button>
+                <button className="mdl-button mdl-js-button text-white"
+                    onClick={this.goProfile}>Profiil</button>
+            </div> } />
         {this.props.content}</div>
         // return(<Toolbar>
         //     <ToolbarGroup float="left">

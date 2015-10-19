@@ -23,7 +23,7 @@ ProfileForm = React.createClass({
     mixins: [ReactMeteorData],
     getMeteorData() {
         return {
-            user: Meteor.user(),
+            user: Meteor.users.findOne(this.props.userId),
         }
     },
 
@@ -52,7 +52,9 @@ ProfileForm = React.createClass({
         if (user.emails && user.emails[0] && user.emails[0].address)
             var email = user.emails[0].address
         user.emails = user.emails || {}
-        return(<Paper className="margin padding layout-left">
+        return(
+        <div>
+        <Paper className="margin padding layout-left inline">
             <RaisedButton
                 label="Logi välja"
                 onClick={this.logout}/>
@@ -93,6 +95,7 @@ ProfileForm = React.createClass({
                 name="profile.vet"
                 defaultChecked={user.profile.vet}/>
             <sub>Ilma etteovõtte või Vet-ametiga kooskõlastamiseta me kahjuks koostööd teha ei saa. Need protsessid ei ole aga üldse keerulised. Õpetuse kallal veel nokitseme, aga võta ühendust info@toitla.com ja me juhendame su mõnusalt läbi.</sub>
-        </Paper>)
+        </Paper>
+    </div>)
     }
 })

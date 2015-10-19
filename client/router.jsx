@@ -33,12 +33,21 @@ FlowRouter.route('/ylevaade', {
 	}
 });
 
-FlowRouter.route('/profiil', {
+FlowRouter.route('/profiil/:userId', {
 	triggersEnter: [loginRequired, startIdleMonitor],
 	name: 'profile',
 	action: function(params) {
 		ReactLayout.render(Layout, {
-			content: <ProfileForm/>
+			content: <ProfileForm userId={params.userId}/>
+		});
+	}
+});
+
+FlowRouter.route('/menuu/:userId', {
+	name: 'menu',
+	action: function(params) {
+		ReactLayout.render(MenuItemsContainer, {
+			chefId: params.userId,
 		});
 	}
 });
