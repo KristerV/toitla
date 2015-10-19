@@ -12,6 +12,7 @@ MenuItemsContainer = React.createClass({
         if (this.props.chefId) {
             subscription = Meteor.subscribe("menuitem_templates")
             menuitems = MenuItemTemplates.find({chefId: this.props.chefId}).fetch()
+            console.log(menuitems);
         }
 
         // if (this.props.menuitemId) {
@@ -46,12 +47,12 @@ MenuItemsContainer = React.createClass({
 
         // Push component
         menuitems.forEach(item => {
-            list.push(<MenuItem key={item._id} menuItemKey={item._id} menuitem={item}/>)
+            list.push(<MenuItem key={item._id} menuitemKey={item._id} menuitem={item}/>)
         })
 
         // Preloader: push empty component based on count
         for (var i = list.length; i < itemcount; i++) {
-            list.push(<MenuItem key={'loadingItem'+i} menuItemKey={'loadingItem'+i}/>)
+            list.push(<MenuItem key={'loadingItem'+i} menuitemKey={'loadingItem'+i}/>)
         }
 
         // Render

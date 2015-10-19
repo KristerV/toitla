@@ -7,8 +7,8 @@ var {
 
 StatusForm = React.createClass({
 
-    updatePhase(e, selectedIndex, menuItem) {
-        this.props.order.updatePhase(menuItem.value)
+    updatePhase(e, selectedIndex, menuitem) {
+        this.props.order.updatePhase(menuitem.value)
     },
 
     render() {
@@ -17,7 +17,7 @@ StatusForm = React.createClass({
         return (
             <Paper className="margin padding">
                 <DropDownMenu
-                    menuItems={this.props.selectPhases}
+                    menuitems={this.props.selectPhases}
                     onChange={this.updatePhase}
                     selectedIndex={Settings.getPhaseIndex(order.status.phase)}/>
                 <RaisedButton

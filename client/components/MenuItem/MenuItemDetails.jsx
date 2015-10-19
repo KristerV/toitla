@@ -5,13 +5,14 @@ MenuItemDetails = React.createClass({
     },
 
     render() {
+        var menuitem = this.props.menuitem || {}
+        // var user = Meteor.users.findOne(menuitem.chefId)
 
         // Render
         // colors are the last of each palette, from:
         // https://www.google.com/design/spec/style/color.html#color-color-palette
         return(
         <section className="padding">
-            <p>Laura Telliskivi</p>
             <TextInput label="Toidu nimetus" value="Iduvõileib kukeseentega"/>
             <TextInput label="Koostisosad" rows="1"/>
             <Tag label="lihavaba" active={true} color="#64DD17"/>

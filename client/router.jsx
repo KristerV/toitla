@@ -46,8 +46,8 @@ FlowRouter.route('/profiil/:userId', {
 FlowRouter.route('/menuu/:userId', {
 	name: 'menu',
 	action: function(params) {
-		ReactLayout.render(MenuItemsContainer, {
-			chefId: params.userId,
+		ReactLayout.render(Layout, {
+			content: <MenuItemsContainer chefId={params.userId}/>
 		});
 	}
 });

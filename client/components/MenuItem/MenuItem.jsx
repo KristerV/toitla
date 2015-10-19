@@ -16,17 +16,17 @@ MenuItem = React.createClass({
         var item = this.props.menuitem
         var placeholder = !item
         var editMode = placeholder ? false : !item.published
-        var menuItemKey = this.props.menuItemKey
+        var menuitemKey = this.props.menuitemKey
 
         // Render
         return(
         <form onSubmit={this.publish} onBlur={this.updateField} name="MenuItemForm"
                 className="MenuItem margin mdl-shadow--2dp inline">
-            <CornerMenu menuItem={item} menuItemKey={menuItemKey}/>
-            <FoodThumbnail menuItem={item}/>
-            <MenuItemDetails className="mdl-card--border" menuItem={item}/>
-            <MenuItemClient className="mdl-card--border" menuItem={item}/>
-            <MenuItemChef className="mdl-card--border" menuItem={item}/>
+            <CornerMenu menuitem={item} menuitemKey={menuitemKey}/>
+            <FoodThumbnail menuitem={item}/>
+            <MenuItemDetails className="mdl-card--border" menuitem={item}/>
+            <MenuItemClient className="mdl-card--border" menuitem={item}/>
+            <MenuItemChef className="mdl-card--border" menuitem={item}/>
             <section className="padding">
                 <input className="w100 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" value="Avalikusta toit"/>
             </section>
@@ -36,8 +36,8 @@ MenuItem = React.createClass({
 /*
 
 <CornerMenu/> // edit, unpublish, delete
-<FoodThumbnail menuItem={item}/> // add, remove
-<MenuItemDetails className="mdl-card--border" menuItem={item}/> // text, tags
-<MenuItemClient className="mdl-card--border" menuItem={item}/> // next, rating, comment
-<MenuItemChef className="mdl-card--border" menuItem={item}/> // accept, decline, archive
+<FoodThumbnail menuitem={item}/> // add, remove
+<MenuItemDetails className="mdl-card--border" menuitem={item}/> // text, tags
+<MenuItemClient className="mdl-card--border" menuitem={item}/> // next, rating, comment
+<MenuItemChef className="mdl-card--border" menuitem={item}/> // accept, decline, archive
 */

@@ -6,18 +6,18 @@ CornerMenu = React.createClass({
 
     render() {
 
-        var item = this.props.menuItem || {}
-        var menuItemKey = this.props.menuItemKey
+        var item = this.props.menuitem || {}
+        var menuitemKey = this.props.menuitemKey
 
         // Render
         return(
         <div className="mdl-container__menu">
-            <button id={"cornerMenuIcon-"+menuItemKey} className="mdl-button mdl-js-button mdl-button--icon">
+            <button id={"cornerMenuIcon-"+menuitemKey} className="mdl-button mdl-js-button mdl-button--icon">
                 <i className="material-icons">more_vert</i>
             </button>
 
             <ul className="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
-                htmlFor={"cornerMenuIcon-"+menuItemKey}>
+                htmlFor={"cornerMenuIcon-"+menuitemKey}>
                 {this.getOptionsList()}
             </ul>
         </div>)
@@ -25,7 +25,7 @@ CornerMenu = React.createClass({
 
     getOptionsList() {
         var optionsList = []
-        if (this.props.menuItem && this.props.menuItem.published) {
+        if (this.props.menuitem && this.props.menuitem.published) {
             optionsList.push(<li key={1} className="mdl-menu__item">eemalda avalikkusest</li>)
         } else {
             optionsList.push(<li key={2} className="mdl-menu__item">muuda</li>)
