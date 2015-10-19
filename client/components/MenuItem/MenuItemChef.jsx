@@ -13,8 +13,8 @@ MenuItemChef = React.createClass({
             <h2 className="fright" style={{marginTop: "10px"}}>50€</h2>
             <p style={{color: "red"}} className="clear"><b>Allergiad:</b> karulauk, pesto, maasikas</p>
             <div className="mdl-grid">
-                <button className="mdl-cell mdl-cell--6-col mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">ei</button>
-                <button className="mdl-cell mdl-cell--6-col mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">jah</button>
+                <button className="mdl-cell mdl-cell--6-col mdl-button mdl-js-button mdl-button--raised">Ei soovi</button>
+                <button className="mdl-cell mdl-cell--6-col mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Teen ära</button>
             </div>
             <h4 style={{textAlign: "center"}}>Tellimus on vastu võetud.</h4>
             <p className="light-text"><i>Kui nüüd soovid ära öelda, pead Toitla meeskonnaga ühendust võtma: appi@toitla.com või 5216686.</i></p>

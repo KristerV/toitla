@@ -57,7 +57,7 @@ MenuItemsContainer = React.createClass({
         // Render
         return(<div className="MenuItemContainer">
             {list}
-            <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onClick={this.newMenuItemTemplate}>Lisa uus toit</button>
+            <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" onClick={this.newMenuItemTemplate}>Lisa uus toit</button>
         </div>)
     }
 })

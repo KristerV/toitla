@@ -16,7 +16,7 @@ CornerMenu = React.createClass({
                 <i className="material-icons">more_vert</i>
             </button>
 
-            <ul className="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+            <ul className="mdl-menu mdl-menu--bottom-right mdl-js-menu"
                 htmlFor={"cornerMenuIcon-"+menuitemKey}>
                 {this.getOptionsList()}
             </ul>
@@ -30,6 +30,7 @@ CornerMenu = React.createClass({
         } else {
             optionsList.push(<li key={2} className="mdl-menu__item">muuda</li>)
             optionsList.push(<li key={3} className="mdl-menu__item">kustuta</li>)
+            optionsList.push(<li key={4} className="mdl-menu__item">eemalda tellimusest</li>)
         }
         return optionsList
     },
