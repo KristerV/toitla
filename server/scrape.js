@@ -24,7 +24,7 @@ Meteor.methods({
     }
 });
 
-var xray2 = XRAY().driver(phantom())
+var xray2 = XRAY().driver(phantom()).delay(2000, 10000)
 var scrapeList = function(list) {
     var link = list.shift()
     console.log("GO TO: " + link);
