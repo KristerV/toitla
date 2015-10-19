@@ -17,8 +17,7 @@ Tag = React.createClass({
 
         // Render
         return(
-        <button className={"mdl-button mdl-js-button"}
-        style={style}>
+        <button className="mdl-button mdl-js-button" style={style}>
             {label}
         </button>)
     }
