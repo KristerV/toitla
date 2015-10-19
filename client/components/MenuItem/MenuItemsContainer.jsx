@@ -34,8 +34,8 @@ MenuItemsContainer = React.createClass({
         }
     },
 
-    newMenuItemTemplate() {
-        Meteor.call('newMenuItemTemplate', this.props.chefId)
+    newMenuitemTemplate() {
+        Meteor.call('newMenuitemTemplate', this.props.chefId)
     },
 
     render() {
@@ -51,13 +51,13 @@ MenuItemsContainer = React.createClass({
 
         // Preloader: push empty component based on count
         for (var i = list.length; i < itemcount; i++) {
-            list.push(<MenuItem key={'loadingItem'+i} menuitemKey={'loadingItem'+i}/>)
+            list.push(<MenuItem key={'loadingItem'+i} menuitemKey={'loadingItem'+i} menuitem={{item}}/>)
         }
 
         // Render
         return(<div className="MenuItemContainer">
             {list}
-            <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" onClick={this.newMenuItemTemplate}>Lisa uus toit</button>
+            <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" onClick={this.newMenuitemTemplate}>Lisa uus toit</button>
         </div>)
     }
 })

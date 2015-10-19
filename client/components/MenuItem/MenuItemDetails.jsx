@@ -4,10 +4,17 @@ MenuItemDetails = React.createClass({
         return {}
     },
 
-    switchTag(a, b, c) {
-        var tag = $(a.target).attr('name')
+    switchTag(e) {
+        var tag = $(e.target).attr('name')
         var itemId = this.props.menuitem._id
-        Meteor.call('switchTag', itemId, tag)
+        Meteor.call('switchMenuitemTag', itemId, tag)
+    },
+
+    updateText(e) {
+        var fieldName = $(e.target).attr('name')
+        var fieldValue = $(e.target).val()
+        var itemId = this.props.menuitem._id
+        Meteor.call('updateMenuitemText', itemId, fieldName, fieldValue)
     },
 
     render() {
@@ -17,8 +24,17 @@ MenuItemDetails = React.createClass({
             var user = Meteor.users.findOne(menuitem.chefId)
             content = <div>
                 <p>{user.profile.name}</p>
-                <TextInput label="Toidu nimetus" value="Iduvõileib kukeseentega"/>
-                <TextInput label="Koostisosad" rows="1"/>
+                <TextInput
+                    label="Toidu nimetus"
+                    value={menuitem.title}
+                    name="title"
+                    onBlur={this.updateText}/>
+                <TextInput
+                    label="Koostisosad"
+                    value={menuitem.ingredients}
+                    rows="1"
+                    name="ingredients"
+                    onBlur={this.updateText}/>
                 <Tag label="lihavaba"
                     active={_.contains(menuitem.tags, "meatfree")}
                     name="meatfree"
