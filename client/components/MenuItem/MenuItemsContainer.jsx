@@ -11,8 +11,7 @@ MenuItemsContainer = React.createClass({
 
         if (this.props.chefId) {
             subscription = Meteor.subscribe("menuitem_templates")
-            menuitems = MenuItemTemplates.find({chefId: this.props.chefId}).fetch()
-            console.log(menuitems);
+            menuitems = MenuItemTemplates.find({chefId: this.props.chefId})
         }
 
         // if (this.props.menuitemId) {
@@ -31,7 +30,7 @@ MenuItemsContainer = React.createClass({
         return {
             itemcount: Counts.get('MenuItemTemplatesCount'),
             subsReady: subscription.ready(),
-            menuitems: menuitems,
+            menuitems: menuitems.fetch(),
         }
     },
 
