@@ -24,11 +24,11 @@ Meteor.methods({
     }
 });
 
-var scrapeList = function(list){
+var xray2 = XRAY().driver(phantom())
+var scrapeList = function(list) {
     var link = list.shift()
     console.log("GO TO: " + link);
-    var x = XRAY().driver(phantom())
-    x(link, {
+    xray2(link, {
         name: 'meta[name="description"]@content',
         address: '.fc-bi-address-value',
         telephone: '.fc-bi-contact-name:contains("Telefon") + .fc-bi-contact-value',
