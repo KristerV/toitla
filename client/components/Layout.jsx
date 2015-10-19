@@ -1,15 +1,16 @@
-var ThemeManager = new MUI.Styles.ThemeManager();
 injectTapEventPlugin()
 
 var {
     FlatButton,
     AppBar,
-    RaisedButton
+    RaisedButton,
+    Styles,
 } = MUI;
+var { ThemeManager, LightRawTheme } = Styles;
 
 Layout = React.createClass({
     childContextTypes: { muiTheme: React.PropTypes.object, },
-    getChildContext() { return { muiTheme: ThemeManager.getCurrentTheme(), } },
+    getChildContext() { return { muiTheme: ThemeManager.getMuiTheme(LightRawTheme), } },
 
     getInitialState() {
         return {}

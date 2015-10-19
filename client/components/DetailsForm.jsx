@@ -8,6 +8,7 @@ var {
     RaisedButton,
     RadioButton,
     RadioButtonGroup,
+    Styles,
 } = MUI;
 
 DetailsForm = React.createClass({

@@ -1,9 +1,10 @@
-var ThemeManager = new MUI.Styles.ThemeManager();
 injectTapEventPlugin()
 
 var {
-    RaisedButton
+    RaisedButton,
+    Styles
 } = MUI;
+var { ThemeManager, LightRawTheme } = Styles;
 
 OrderForm = React.createClass({
 
@@ -13,7 +14,7 @@ OrderForm = React.createClass({
 
     getChildContext() {
         return {
-            muiTheme: ThemeManager.getCurrentTheme(),
+            muiTheme: ThemeManager.getMuiTheme(LightRawTheme),
         }
     },
 

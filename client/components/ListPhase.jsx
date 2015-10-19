@@ -1,4 +1,3 @@
-var ThemeManager = new MUI.Styles.ThemeManager();
 injectTapEventPlugin()
 
 var {
@@ -7,12 +6,14 @@ var {
     RaisedButton,
     List,
     ListItem,
-    ListDivider
+    ListDivider,
+    Styles,
 } = MUI;
+var { ThemeManager, LightRawTheme } = Styles;
 
 ListPhase = React.createClass({
     childContextTypes: { muiTheme: React.PropTypes.object, },
-    getChildContext() { return { muiTheme: ThemeManager.getCurrentTheme(), } },
+    getChildContext() { return { muiTheme: ThemeManager.getMuiTheme(LightRawTheme), } },
 
     getInitialState() {
         return {

@@ -1,4 +1,3 @@
-var ThemeManager = new MUI.Styles.ThemeManager();
 injectTapEventPlugin()
 
 var {
@@ -9,7 +8,9 @@ var {
     Dialog,
     List,
     ListItem,
+    Styles,
 } = MUI;
+var { ThemeManager, LightRawTheme } = Styles;
 
 SuborderItem = React.createClass({
 
@@ -23,7 +24,7 @@ SuborderItem = React.createClass({
 
     getChildContext() {
         return {
-            muiTheme: ThemeManager.getCurrentTheme(),
+            muiTheme: ThemeManager.getMuiTheme(LightRawTheme),
         }
     },
 

@@ -1,4 +1,3 @@
-var ThemeManager = new MUI.Styles.ThemeManager();
 injectTapEventPlugin()
 
 var {
@@ -7,11 +6,13 @@ var {
     RaisedButton,
     Tabs,
     Tab,
+    Styles,
 } = MUI;
+var { ThemeManager, LightRawTheme } = Styles;
 
 LoginForm = React.createClass({
     childContextTypes: { muiTheme: React.PropTypes.object, },
-    getChildContext() { return { muiTheme: ThemeManager.getCurrentTheme(), } },
+    getChildContext() { return { muiTheme: ThemeManager.getMuiTheme(LightRawTheme), } },
 
     getInitialState() {
         return {

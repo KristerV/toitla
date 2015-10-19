@@ -1,4 +1,3 @@
-var ThemeManager = new MUI.Styles.ThemeManager();
 injectTapEventPlugin()
 
 var {
@@ -6,11 +5,13 @@ var {
     TextField,
     RaisedButton,
     Checkbox,
+    Styles,
 } = MUI;
+var { ThemeManager, LightRawTheme } = Styles;
 
 ProfileForm = React.createClass({
     childContextTypes: { muiTheme: React.PropTypes.object, },
-    getChildContext() { return { muiTheme: ThemeManager.getCurrentTheme(), } },
+    getChildContext() { return { muiTheme: ThemeManager.getMuiTheme(LightRawTheme), } },
 
     getInitialState() {
         return {}

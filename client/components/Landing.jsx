@@ -1,8 +1,9 @@
-var ThemeManager = new MUI.Styles.ThemeManager();
 injectTapEventPlugin()
 var {
-    Dialog
+    Dialog,
+    Styles,
 } = MUI;
+var { ThemeManager, LightRawTheme } = Styles;
 
 Landing = React.createClass({
 	childContextTypes: {
@@ -11,7 +12,7 @@ Landing = React.createClass({
 
     getChildContext() {
         return {
-            muiTheme: ThemeManager.getCurrentTheme(),
+            muiTheme: ThemeManager.getMuiTheme(LightRawTheme),
         }
     },
 	componentDidMount() {

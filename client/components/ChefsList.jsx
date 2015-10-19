@@ -2,6 +2,7 @@
 var {
     List,
     ListItem,
+    Styles,
 } = MUI;
 
 ChefsList = React.createClass({

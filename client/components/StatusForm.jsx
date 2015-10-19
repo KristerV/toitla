@@ -3,6 +3,7 @@ var {
   DropDownMenu,
   Checkbox,
   RaisedButton,
+  Styles,
 } = MUI;
 
 StatusForm = React.createClass({
