@@ -1,4 +1,4 @@
-MenuItemComponent = React.createClass({
+MenuItem = React.createClass({
 
     getInitialState() {
         return {}
@@ -21,7 +21,7 @@ MenuItemComponent = React.createClass({
         // Render
         return(
         <form onSubmit={this.publish} onBlur={this.updateField} name="MenuItemForm"
-                className="MenuItemComponent margin padding mdl-shadow--2dp">
+                className="MenuItem margin padding mdl-shadow--2dp">
             <CornerMenu menuItem={item} menuItemKey={menuItemKey}/>
             <FoodThumbnail menuItem={item}/>
             <MenuItemDetails className="mdl-card--border" menuItem={item}/>
