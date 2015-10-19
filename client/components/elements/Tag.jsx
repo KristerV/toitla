@@ -8,6 +8,8 @@ Tag = React.createClass({
         var active = this.props.active
         var label = this.props.label
         var color = this.props.color
+        var name = this.props.name
+        var onClick = this.props.onClick
 
         if (active) {
             var style = {color: color, fontWeight: 'bold'}
@@ -17,7 +19,7 @@ Tag = React.createClass({
 
         // Render
         return(
-        <button className="mdl-button mdl-js-button" style={style}>
+        <button className="mdl-button mdl-js-button" style={style} onClick={onClick} name={name}>
             {label}
         </button>)
     }

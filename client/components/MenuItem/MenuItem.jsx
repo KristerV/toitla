@@ -20,10 +20,10 @@ MenuItem = React.createClass({
         var contents = []
 
         if (item.inorder) {
-            contents.push(<MenuItemClient className="mdl-card--border" menuitem={item}/>)
-            contents.push(<MenuItemChef className="mdl-card--border" menuitem={item}/>)
+            contents.push(<MenuItemClient key={1} className="mdl-card--border" menuitem={item}/>)
+            contents.push(<MenuItemChef key={2} className="mdl-card--border" menuitem={item}/>)
         } else {
-            contents.push(<MenuItemChefTemplate className="mdl-card--border"/>)
+            contents.push(<MenuItemChefTemplate key={3} className="mdl-card--border"/>)
         }
 
         // Render
