@@ -9,7 +9,8 @@ MenuItemDetails = React.createClass({
         // Render
         // colors are the last of each palette, from:
         // https://www.google.com/design/spec/style/color.html#color-color-palette
-        return(<div>
+        return(
+        <section>
             <p>Laura Telliskivi</p>
             <TextInput label="Toidu nimetus" value="Iduvõileib kukeseentega"/>
             <TextInput label="Koostisosad" rows="1"/>
@@ -18,6 +19,6 @@ MenuItemDetails = React.createClass({
             <Tag label="toor" active={true} color="#00BFA5"/>
             <Tag label="gluteenivaba" active={false} color="#0091EA"/>
             <Tag label="laktoosivaba" active={true} color="#2962FF"/>
-        </div>)
+        </section>)
     }
 })

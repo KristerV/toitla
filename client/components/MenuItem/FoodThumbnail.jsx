@@ -7,7 +7,8 @@ FoodThumbnail = React.createClass({
     render() {
 
         // Render
-        return(<div>
-        </div>)
+        return(
+        <section>
+        </section>)
     }
 })
