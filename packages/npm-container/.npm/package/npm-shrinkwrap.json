@@ -563,17 +563,6 @@
                     },
                     "jsonify": {
                       "version": "0.0.0"
-                    },
-                    "weak": {
-                      "version": "1.0.0",
-                      "dependencies": {
-                        "bindings": {
-                          "version": "1.2.1"
-                        },
-                        "nan": {
-                          "version": "2.1.0"
-                        }
-                      }
                     }
                   }
                 },

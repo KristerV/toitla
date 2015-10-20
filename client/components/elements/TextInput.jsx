@@ -2,11 +2,15 @@
 TextInput = React.createClass({
 
     getInitialState() {
-        return {}
+        return {
+            textareaHeight: this.props.rows * 12,
+        }
     },
 
-    updateTextareaHeight(e) {
-
+    componentDidMount() {
+        // auto resize textarea
+        if (this.refs.textarea)
+            $(this.refs.textarea.getDOMNode()).textareaAutoSize()
     },
 
     render() {
@@ -30,6 +34,7 @@ TextInput = React.createClass({
                         pattern={this.props.pattern}
                         id={id}
                         key={3}
+                        ref="textarea"
                         defaultValue={this.props.value}
                         rows={this.props.rows}
                         onBlur={this.props.onBlur}
