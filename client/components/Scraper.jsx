@@ -56,7 +56,7 @@ Scraper = React.createClass({
                 </form>
                 <button className="mdl-button mdl-js-button" value="clear" onClick={this.clear}>Clear data</button>
             </div>
-            <div className="mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 padding margin">Kõik tabelis olevad emailid copy-paste sõbralikult: {emails}</div>
+            <div className="mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 padding margin"><b>Kõik hea copy friendly</b>: {emails}</div>
             <table className="mdl-data-table mdl-shadow--2dp margin">
                 {data}
             </table>
