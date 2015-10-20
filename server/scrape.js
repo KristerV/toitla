@@ -76,8 +76,8 @@ var scrapeForLinks = function(link) {
         if (error)
             console.log("ERROR: ", error);
 
+        // Insert links into queue
         var data
-        console.log(obj.length);
         for (var i = 0; i < obj.length; i++) {
             data = {
                 link: obj[i],
@@ -87,6 +87,21 @@ var scrapeForLinks = function(link) {
                 secSort: i,
             }
             Scrapes.insert(data)
+        }
+
+        // Pagination links
+        if (obj.length > 1) {
+            if (link.indexOf('api') > -1) {
+                var newLink = link.replace('?b=2&t=1', '?b=3&t=1').replace('?b=1&t=1', '?b=2&t=1')
+            } else {
+                var newLink = link.replace('cgi-bin', 'api')+'?b=1&t=1'
+            }
+            Scrapes.insert({
+                type: 'links',
+                link: newLink,
+                status: 'waiting',
+                dateAdded: new Date(),
+            })
         }
         Scrapes.update({link: link}, {$set: {status: 'done'}})
         ScrapingActive = false
