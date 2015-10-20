@@ -28,7 +28,7 @@ Meteor.methods({
 });
 
 var scrapeNext = function() {
-    var next = Scrapes.findOne({status: 'waiting'})
+    var next = Scrapes.findOne({status: 'waiting'}, {sort: {dateAdded: 1, secSort: 1}})
     if (ScrapingActive) {
         return
     }
@@ -82,6 +82,7 @@ var scrapeForLinks = function(link) {
                 status: 'waiting',
                 type: 'content',
                 dateAdded: new Date(),
+                secSort: i,
             }
             Scrapes.insert(data)
         }

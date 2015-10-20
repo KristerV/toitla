@@ -13,7 +13,7 @@ Scraper = React.createClass({
     getMeteorData() {
         var subscription = Meteor.subscribe("scrapes")
         return {
-            scrapes: Scrapes.find({}, {sort: {dateAdded: 1}}).fetch(),
+            scrapes: Scrapes.find({}, {sort: {dateAdded: 1, secSort: 1}}).fetch(),
             subsReady: subscription.ready()
         }
     },
