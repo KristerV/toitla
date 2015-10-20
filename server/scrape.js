@@ -1,8 +1,8 @@
 var phantom = Meteor.npmRequire('x-ray-phantom')
 var XRAY = Meteor.npmRequire('x-ray')
-var xray = XRAY().driver(phantom())
+var xray = XRAY().driver(phantom()).delay(300)
 var weak = Meteor.npmRequire('weak')
-
+var ScrapingActive = false
 
 Meteor.methods({
     scrape: function(sourceLink){
@@ -10,12 +10,15 @@ Meteor.methods({
             throw new Meteor.Error("Can't scrape empty link")
         if (!this.userId)
             throw new Meteor.Error("Authorized zone")
-        xray(sourceLink, ['a[title="Veebilehe kontaktandmed"]@href'])(Meteor.bindEnvironment(function(error, obj){
-            console.log("INITIAL FETCH DONE");
-            if (error)
-                console.log("ERROR: ", error);
-            scrapeList(obj)
-        }))
+        if (!Scrapes.findOne({link: sourceLink})) {
+            Scrapes.insert({
+                type: 'links',
+                link: sourceLink,
+                status: 'waiting',
+                dateAdded: new Date(),
+            })
+            scrapeNext()
+        }
     },
     clearScraper: function() {
         if (!this.userId)
@@ -24,11 +27,28 @@ Meteor.methods({
     }
 });
 
-var xray2 = XRAY().driver(phantom()).delay(2000, 10000)
-var scrapeList = function(list) {
-    var link = list.shift()
+var scrapeNext = function() {
+    var next = Scrapes.findOne({status: 'waiting'})
+    if (ScrapingActive) {
+        return
+    }
+    if (!next) {
+        ScrapingActive = false
+        return
+    }
+    ScrapingActive = true
+    var link = next.link
+    console.log(" ");
     console.log("GO TO: " + link);
-    xray2(link, {
+    if (next.type === 'links') {
+        scrapeForLinks(link)
+    } else if (next.type === 'content') {
+        scrapeNextContent(link)
+    }
+}
+
+var scrapeNextContent = function(link) {
+    xray(link, {
         name: 'meta[name="description"]@content',
         address: '.fc-bi-address-value',
         telephone: '.fc-bi-contact-name:contains("Telefon") + .fc-bi-contact-value',
@@ -37,12 +57,38 @@ var scrapeList = function(list) {
     })(Meteor.bindEnvironment(function(error, result){
         if (error)
             console.log("ERROR:", error);
-        console.log("INSERT:", result);
         if (result.address.indexOf("allinn") > -1 && result.email) {
-            Scrapes.insert(result)
+            result.status = 'done'
+        } else {
+            result.status = 'ditched'
         }
-        if (list.length > 0) {
-            scrapeList(list)
-        }
+        console.log("RESULT:", result);
+        Scrapes.update({link: link}, {$set: result})
+        ScrapingActive = false
+        scrapeNext()
     }))
 }
+
+var scrapeForLinks = function(link) {
+    xray(link, ['a[title="Veebilehe kontaktandmed"]@href'])(Meteor.bindEnvironment(function(error, obj){
+        console.log("INITIAL FETCH DONE");
+        if (error)
+            console.log("ERROR: ", error);
+
+        var data
+        for (var i = 0; i < obj.length; i++) {
+            data = {
+                link: obj[i],
+                status: 'waiting',
+                type: 'content',
+                dateAdded: new Date(),
+            }
+            Scrapes.insert(data)
+        }
+        Scrapes.update({link: link}, {$set: {status: 'done'}})
+        ScrapingActive = false
+        scrapeNext()
+    }))
+}
+
+scrapeNext()

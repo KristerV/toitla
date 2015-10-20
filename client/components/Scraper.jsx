@@ -13,7 +13,7 @@ Scraper = React.createClass({
     getMeteorData() {
         var subscription = Meteor.subscribe("scrapes")
         return {
-            scrapes: Scrapes.find().fetch(),
+            scrapes: Scrapes.find({}, {sort: {dateAdded: 1}}).fetch(),
             subsReady: subscription.ready()
         }
     },
@@ -32,15 +32,20 @@ Scraper = React.createClass({
         var emails = []
         var data = []
         this.data.scrapes.forEach(function(item, i){
-            if (item.email)
-                emails.push(item.email + ", ")
-            data.push(<tr key={i}>
-                <td>{item.name}</td>
-                <td>{item.address}</td>
-                <td>{item.telephone}</td>
-                <td>{item.email}</td>
-                <td><a href={item.website}>{item.website}</a></td>
-            </tr>)
+            if (item.type === 'links') {
+                data.push(<tr key={i} style={{backgroundColor: "#ccc"}}><td colSpan="6">{item.link}</td></tr>)
+            } else {
+                if (item.email)
+                    emails.push(item.email + ", ")
+                data.push(<tr key={i}>
+                    <td className={item.status}>{item.status}</td>
+                    <td>{item.name}</td>
+                    <td>{item.address}</td>
+                    <td>{item.telephone}</td>
+                    <td>{item.email}</td>
+                    <td><a href={item.website}>{item.website}</a></td>
+                </tr>)
+            }
         })
         return(<div>
             <div className="mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 padding margin">Sisesta neti.ee link ja saa kontaktid kätte. <b style={{color: "red"}}>NB! Kätte saamine võtab aega ja iga päring koormab serverit</b>, seega ole ettevaatlik. (samas esimene peaks 20sek max võtma)
