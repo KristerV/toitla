@@ -44,13 +44,17 @@ Layout = React.createClass({
         FlowRouter.go("menu", {userId: Meteor.userId()})
     },
 
+    goLogin(e) {
+        FlowRouter.go("login")
+    },
+
     goNewOrder(e) {
         Order.createOrder()
     },
 
     render() {
         return <div className="h100"><AppBar
-            iconElementLeft={
+            iconElementLeft={Meteor.userId() ?
                 <div>
                     <RaisedButton
                         label="Toitla"
@@ -64,13 +68,14 @@ Layout = React.createClass({
                         label="Uus tellimus"
                         primary={true}
                         onClick={this.goNewOrder}/>
-                </div>}
-            iconElementRight={<div>
+                </div> : <div></div>}
+            iconElementRight={Meteor.userId() ? <div>
                 <button className="mdl-button mdl-js-button text-white"
                     onClick={this.goMenu}>Minu menüü</button>
                 <button className="mdl-button mdl-js-button text-white"
                     onClick={this.goProfile}>Profiil</button>
-            </div> } />
+            </div> : <div><button className="mdl-button mdl-js-button text-white"
+                onClick={this.goLogin}>Logi sisse / Registreeri</button></div>} />
         {this.props.content}</div>
         // return(<Toolbar>
         //     <ToolbarGroup float="left">

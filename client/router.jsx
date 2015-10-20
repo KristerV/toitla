@@ -53,6 +53,7 @@ FlowRouter.route('/menuu/:userId', {
 });
 
 FlowRouter.route('/login/', {
+	name: 'login',
 	action: function(params) {
 		ReactLayout.render(LoginForm)
 	}

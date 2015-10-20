@@ -51,13 +51,16 @@ MenuItemsContainer = React.createClass({
 
         // Preloader: push empty component based on count
         for (var i = list.length; i < itemcount; i++) {
-            list.push(<MenuItem key={'loadingItem'+i} menuitemKey={'loadingItem'+i} menuitem={{item}}/>)
+            list.push(<MenuItem key={'loadingItem'+i} menuitemKey={'loadingItem'+i} menuitem={{}}/>)
         }
+
+        if (Meteor.userId())
+            var newItem = <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" onClick={this.newMenuitemTemplate}>Lisa uus toit</button>
 
         // Render
         return(<div className="MenuItemContainer">
             {list}
-            <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" onClick={this.newMenuitemTemplate}>Lisa uus toit</button>
+            {newItem}
         </div>)
     }
 })

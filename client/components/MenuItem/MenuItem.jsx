@@ -12,8 +12,10 @@ MenuItem = React.createClass({
         Meteor.call('unpublishMenuitem', this.props.menuitem._id)
     },
 
-    updateField(e) {
-        console.log("updateField");
+    deleteMenuitem(e) {
+        var c = confirm('Kindel, et soovid kustutada toidu "' + this.props.menuitem.title + '"?')
+        if (c)
+            Meteor.call('deleteMenuitem', this.props.menuitem._id)
     },
 
     render() {
@@ -37,7 +39,7 @@ MenuItem = React.createClass({
         // Render
         return(
         <div className="MenuItem margin mdl-shadow--2dp inline">
-            <CornerMenu menuitem={item} menuitemKey={menuitemKey} unpublish={this.unpublish}/>
+            <CornerMenu menuitem={item} menuitemKey={menuitemKey} unpublish={this.unpublish} deleteMenuitem={this.deleteMenuitem}/>
             <FoodThumbnail menuitem={item}/>
             <MenuItemDetails menuitem={item}/>
             {contents}

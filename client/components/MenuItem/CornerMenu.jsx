@@ -28,9 +28,7 @@ CornerMenu = React.createClass({
         if (this.props.menuitem && this.props.menuitem.published) {
             optionsList.push(<li key={1} className="mdl-menu__item" onClick={this.props.unpublish}>eemalda avalikkusest</li>)
         } else {
-            optionsList.push(<li key={2} className="mdl-menu__item">muuda</li>)
-            optionsList.push(<li key={3} className="mdl-menu__item">kustuta</li>)
-            optionsList.push(<li key={4} className="mdl-menu__item">eemalda tellimusest</li>)
+            optionsList.push(<li key={3} className="mdl-menu__item" onClick={this.props.deleteMenuitem}>kustuta</li>)
         }
         return optionsList
     },

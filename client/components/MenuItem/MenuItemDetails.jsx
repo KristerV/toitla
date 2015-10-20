@@ -21,7 +21,7 @@ MenuItemDetails = React.createClass({
         var menuitem = this.props.menuitem
         var content
         if (menuitem) {
-            var user = Meteor.users.findOne(menuitem.chefId)
+            var user = Meteor.users.findOne(menuitem.chefId) || {profile: {}}
             content = <div>
                 <p>{user.profile.name}</p>
                 <TextInput

@@ -6,7 +6,6 @@ MenuItemTextSection = React.createClass({
 
     render() {
         var className = "padding " + this.props.className
-        console.log(className);
 
         // Render
         return(
