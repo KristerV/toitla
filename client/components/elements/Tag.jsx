@@ -9,7 +9,8 @@ Tag = React.createClass({
         var label = this.props.label
         var color = this.props.color
         var name = this.props.name
-        var onClick = this.props.onClick
+        var editMode = this.props.editMode
+        var onClick = editMode ? this.props.onClick : null
 
         if (active) {
             var style = {color: color, fontWeight: 'bold'}

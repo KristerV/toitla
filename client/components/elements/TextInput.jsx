@@ -1,7 +1,12 @@
+
 TextInput = React.createClass({
 
     getInitialState() {
         return {}
+    },
+
+    updateTextareaHeight(e) {
+
     },
 
     render() {
@@ -9,7 +14,7 @@ TextInput = React.createClass({
 
         // Render
         return(
-        <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label js-disablingSwitch">
             {this.getInputType(_id)}
             <label className="mdl-textfield__label" htmlFor={_id}>{this.props.label}</label>
             <span className="mdl-textfield__error">{this.props.errorMsg}</span>
@@ -17,25 +22,29 @@ TextInput = React.createClass({
     },
 
     getInputType(id) {
-        if (this.props.rows) {
-            return <textarea
-                    className="mdl-textfield__input"
-                    name={this.props.name}
-                    type="text"
-                    pattern={this.props.pattern}
-                    id={id}
-                    defaultValue={this.props.value}
-                    rows={this.props.rows}
-                    onBlur={this.props.onBlur}/>
-        } else {
-            return <input
-                    className="mdl-textfield__input"
-                    name={this.props.name}
-                    type="text"
-                    pattern={this.props.pattern}
-                    id={id}
-                    defaultValue={this.props.value}
-                    onBlur={this.props.onBlur}/>
-        }
+            if (this.props.rows) {
+                return <textarea
+                        className="mdl-textfield__input"
+                        name={this.props.name}
+                        type="text"
+                        pattern={this.props.pattern}
+                        id={id}
+                        key={3}
+                        defaultValue={this.props.value}
+                        rows={this.props.rows}
+                        onBlur={this.props.onBlur}
+                        disabled={!this.props.editMode}/>
+            } else {
+                return <input
+                        className="mdl-textfield__input"
+                        name={this.props.name}
+                        type="text"
+                        pattern={this.props.pattern}
+                        id={id}
+                        key={4}
+                        defaultValue={this.props.value}
+                        onBlur={this.props.onBlur}
+                        disabled={!this.props.editMode}/>
+            }
     }
 })
