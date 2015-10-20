@@ -1,6 +1,7 @@
 var phantom = Meteor.npmRequire('x-ray-phantom')
 var XRAY = Meteor.npmRequire('x-ray')
 var xray = XRAY().driver(phantom()).delay(300)
+var xray2 = XRAY().delay(300)
 var weak = Meteor.npmRequire('weak')
 var ScrapingActive = false
 
@@ -70,12 +71,13 @@ var scrapeNextContent = function(link) {
 }
 
 var scrapeForLinks = function(link) {
-    xray(link, ['a[title="Veebilehe kontaktandmed"]@href'])(Meteor.bindEnvironment(function(error, obj){
+    xray2(link, ['a[title="Veebilehe kontaktandmed"]@href'])(Meteor.bindEnvironment(function(error, obj){
         console.log("INITIAL FETCH DONE");
         if (error)
             console.log("ERROR: ", error);
 
         var data
+        console.log(obj.length);
         for (var i = 0; i < obj.length; i++) {
             data = {
                 link: obj[i],

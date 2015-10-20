@@ -35,7 +35,7 @@ Scraper = React.createClass({
             if (item.type === 'links') {
                 data.push(<tr key={i} style={{backgroundColor: "#ccc"}}><td colSpan="6">{item.link}</td></tr>)
             } else {
-                if (item.email)
+                if (item.email && item.status === 'done')
                     emails.push(item.email + ", ")
                 data.push(<tr key={i}>
                     <td className={item.status}>{item.status}</td>
