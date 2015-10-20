@@ -29,6 +29,9 @@ Scraper = React.createClass({
     },
 
     render() {
+        if (!Meteor.userId() || !Roles.userIsInRole(this.userId, ['manager'])) {
+            return <p>404 not found</p>
+        }
         var emails = []
         var data = []
         this.data.scrapes.forEach(function(item, i){
@@ -48,7 +51,7 @@ Scraper = React.createClass({
             }
         })
         return(<div>
-            <div className="mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 padding margin">Sisesta neti.ee link ja saa kontaktid kätte. <b style={{color: "red"}}>NB! Kätte saamine võtab aega ja iga päring koormab serverit</b>, seega ole ettevaatlik. (samas esimene peaks 20sek max võtma)
+            <div className="mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 padding margin">Hetkel töötab asi ainult neti.ee-ga.
                 <br/>
                 <form onSubmit={this.scrape} className="inblock">
                     <input name="scraper" className="margin mdl-textfield__input inblock" placeholder="neti.ee link" type="text" style={{width: "200px"}}/>
