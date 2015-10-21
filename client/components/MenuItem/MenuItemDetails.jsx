@@ -38,6 +38,8 @@ MenuItemDetails = React.createClass({
                     rows="1"
                     name="ingredients"
                     onBlur={this.updateText}/>
+                {/* colors are the last of each palette, from:                              */}
+                {/* https://www.google.com/design/spec/style/color.html#color-color-palette */}
                 <Tag label="lihavaba"
                     editMode={editMode}
                     active={_.contains(menuitem.tags, "meatfree")}
@@ -55,6 +57,12 @@ MenuItemDetails = React.createClass({
                     active={_.contains(menuitem.tags, "raw")}
                     name="raw"
                     color="#00BFA5"
+                    onClick={this.switchTag}/>
+                <Tag label="mahe"
+                    editMode={editMode}
+                    active={_.contains(menuitem.tags, "eco")}
+                    name="eco"
+                    color="#8D6E63"
                     onClick={this.switchTag}/>
                 <Tag label="gluteenivaba"
                     editMode={editMode}
@@ -77,16 +85,14 @@ MenuItemDetails = React.createClass({
                 <Tag label="lihavaba" active={false} color="#64DD17"/>
                 <Tag label="vegan" active={false} color="#00C853"/>
                 <Tag label="toor" active={false} color="#00BFA5"/>
+                <Tag label="mahe" active={false} color="#8D6E63"/>
                 <Tag label="gluteenivaba" active={false} color="#0091EA"/>
                 <Tag label="laktoosivaba" active={false} color="#2962FF"/>
             </div>
-
         }
 
 
         // Render
-        // colors are the last of each palette, from:
-        // https://www.google.com/design/spec/style/color.html#color-color-palette
         return(
             <section className="padding details">
                 {content}
