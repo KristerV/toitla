@@ -1,3 +1,4 @@
+
 MenuItemDetails = React.createClass({
 
     getInitialState() {
@@ -14,11 +15,17 @@ MenuItemDetails = React.createClass({
         var fieldName = $(e.target).attr('name')
         var fieldValue = $(e.target).val()
         var itemId = this.props.menuitem._id
-        Meteor.call('updateMenuitemText', itemId, fieldName, fieldValue)
+        Meteor.call('menuitem--updateField', itemId, fieldName, fieldValue)
+    },
+
+    changeDropdown(result) {
+        var itemId = this.props.menuitem._id
+        Meteor.call('menuitem--updateField', itemId, result.name, result.value)
     },
 
     render() {
         var menuitem = this.props.menuitem
+        var errors = menuitem.formErrors || {}
         var editMode = Roles.userIsInRole(Meteor.userId(), 'manager') || (!menuitem.inorder && !menuitem.published)
         var content
         if (menuitem) {
@@ -30,14 +37,16 @@ MenuItemDetails = React.createClass({
                     label="Toidu nimetus"
                     value={menuitem.title}
                     name="title"
-                    onBlur={this.updateText}/>
+                    onBlur={this.updateText}
+                    errorMsg={errors.title}/>
                 <TextInput
                     editMode={editMode}
                     label="Koostisosad"
                     value={menuitem.ingredients}
                     rows="1"
                     name="ingredients"
-                    onBlur={this.updateText}/>
+                    onBlur={this.updateText}
+                    errorMsg={errors.ingredients}/>
                 {/* colors are the last of each palette, from:                              */}
                 {/* https://www.google.com/design/spec/style/color.html#color-color-palette */}
                 <Tag label="lihavaba"
@@ -76,6 +85,33 @@ MenuItemDetails = React.createClass({
                     name="lactosefree"
                     color="#2962FF"
                     onClick={this.switchTag}/>
+                <DropDown menuItems={[
+                    {value: null, text: 'tüüp'},
+                    {value: 'main', text: 'soolane'},
+                    {value: 'dessert', text: 'magus'},
+                    ]}
+                    name="foodType"
+                    selectedIndex={Settings.getIndexOfSetting('foodTypes', menuitem.foodType)}
+                    onChange={this.changeDropdown}
+                    errorMsg={errors.foodType}/>
+                <DropDown menuItems={[
+                    {value: null, text: 'Hinnaklass'},
+                    {value: 'class1', text: 'Tükihind '+Settings.priceClasses.class1},
+                    {value: 'class2', text: 'Tükihind '+Settings.priceClasses.class2},
+                    {value: 'class3', text: 'Tükihind '+Settings.priceClasses.class3},
+                    ]}
+                    name="priceClass"
+                    selectedIndex={Settings.getIndexOfSetting('priceClasses', menuitem.priceClass)}
+                    onChange={this.changeDropdown}
+                    errorMsg={errors.priceClass}/>
+                <TextInput
+                    editMode={editMode}
+                    label="Kaal (g)"
+                    value={menuitem.weight}
+                    name="weight"
+                    onBlur={this.updateText}
+                    errorMsg={errors.weight}
+                    />
             </div>
         } else {
             content = <div className="placeholder">
