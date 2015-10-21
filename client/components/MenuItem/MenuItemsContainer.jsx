@@ -35,7 +35,7 @@ MenuItemsContainer = React.createClass({
     },
 
     newMenuitemTemplate() {
-        Meteor.call('newMenuitemTemplate', this.props.chefId)
+        Meteor.call('menuitemTemplate--new', this.props.chefId)
     },
 
     render() {

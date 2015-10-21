@@ -8,19 +8,19 @@ MenuItemDetails = React.createClass({
     switchTag(e) {
         var tag = $(e.target).attr('name')
         var itemId = this.props.menuitem._id
-        Meteor.call('switchMenuitemTag', itemId, tag)
+        Meteor.call('menuitemTemplate--switchTag', itemId, tag)
     },
 
     updateText(e) {
         var fieldName = $(e.target).attr('name')
         var fieldValue = $(e.target).val()
         var itemId = this.props.menuitem._id
-        Meteor.call('menuitem--updateField', itemId, fieldName, fieldValue)
+        Meteor.call('menuitemTemplate--updateField', itemId, fieldName, fieldValue)
     },
 
     changeDropdown(result) {
         var itemId = this.props.menuitem._id
-        Meteor.call('menuitem--updateField', itemId, result.name, result.value)
+        Meteor.call('menuitemTemplate--updateField', itemId, result.name, result.value)
     },
 
     render() {
