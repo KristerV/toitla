@@ -94,7 +94,7 @@ MenuItemDetails = React.createClass({
                             ]}
                             name="foodType"
                             autoWidth={false}
-                            selectedIndex={Settings.getIndexOfSettingWithPlaceholder('foodTypes', menuitem.foodType)+1}
+                            selectedIndex={Settings.getIndexOfSetting('foodTypes', menuitem.foodType, true)}
                             onChange={this.changeDropdown}
                             errorMsg={errors.foodType}/>
                     </div>
@@ -107,7 +107,7 @@ MenuItemDetails = React.createClass({
                             ]}
                             name="priceClass"
                             autoWidth={false}
-                            selectedIndex={Settings.getIndexOfSettingWithPlaceholder('priceClasses', menuitem.priceClass)+1}
+                            selectedIndex={Settings.getIndexOfSetting('priceClasses', menuitem.priceClass, true)}
                             onChange={this.changeDropdown}
                             errorMsg={errors.priceClass}/>
                     </div>
