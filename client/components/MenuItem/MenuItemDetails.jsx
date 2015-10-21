@@ -30,7 +30,7 @@ MenuItemDetails = React.createClass({
         var content
         if (menuitem) {
             var user = Meteor.users.findOne(menuitem.chefId) || {profile: {}}
-            content = <div>
+            content = <div className="padding">
                 <p>{user.profile.name}</p>
                 <TextInput
                     editMode={editMode}
@@ -85,25 +85,33 @@ MenuItemDetails = React.createClass({
                     name="lactosefree"
                     color="#2962FF"
                     onClick={this.switchTag}/>
-                <DropDown menuItems={[
-                    {value: null, text: 'tüüp'},
-                    {value: 'main', text: 'soolane'},
-                    {value: 'dessert', text: 'magus'},
-                    ]}
-                    name="foodType"
-                    selectedIndex={Settings.getIndexOfSetting('foodTypes', menuitem.foodType)}
-                    onChange={this.changeDropdown}
-                    errorMsg={errors.foodType}/>
-                <DropDown menuItems={[
-                    {value: null, text: 'Hinnaklass'},
-                    {value: 'class1', text: 'Tükihind '+Settings.priceClasses.class1},
-                    {value: 'class2', text: 'Tükihind '+Settings.priceClasses.class2},
-                    {value: 'class3', text: 'Tükihind '+Settings.priceClasses.class3},
-                    ]}
-                    name="priceClass"
-                    selectedIndex={Settings.getIndexOfSetting('priceClasses', menuitem.priceClass)}
-                    onChange={this.changeDropdown}
-                    errorMsg={errors.priceClass}/>
+                <div className="w100">
+                    <div style={{width: '50%'}} className="inline vtop paddingr box">
+                        <DropDown menuItems={[
+                            {value: null, text: 'tüüp'},
+                            {value: 'main', text: 'soolane'},
+                            {value: 'dessert', text: 'magus'},
+                            ]}
+                            name="foodType"
+                            autoWidth={false}
+                            selectedIndex={Settings.getIndexOfSettingWithPlaceholder('foodTypes', menuitem.foodType)+1}
+                            onChange={this.changeDropdown}
+                            errorMsg={errors.foodType}/>
+                    </div>
+                    <div style={{width: '50%'}} className="inline vtop paddingl box">
+                        <DropDown menuItems={[
+                            {value: null, text: 'Hinnaklass'},
+                            {value: 'class1', text: 'Tükihind '+Settings.priceClasses.class1},
+                            {value: 'class2', text: 'Tükihind '+Settings.priceClasses.class2},
+                            {value: 'class3', text: 'Tükihind '+Settings.priceClasses.class3},
+                            ]}
+                            name="priceClass"
+                            autoWidth={false}
+                            selectedIndex={Settings.getIndexOfSettingWithPlaceholder('priceClasses', menuitem.priceClass)+1}
+                            onChange={this.changeDropdown}
+                            errorMsg={errors.priceClass}/>
+                    </div>
+                </div>
                 <TextInput
                     editMode={editMode}
                     label="Kaal (g)"
@@ -114,7 +122,7 @@ MenuItemDetails = React.createClass({
                     />
             </div>
         } else {
-            content = <div className="placeholder">
+            content = <div className="placeholder padding">
                 <p>Eesnimi Perenimi</p>
                 <p>Ilus toidu pealkiri</p>
                 <p>Pikk ja detailne kirjeldus koostisosadest</p>

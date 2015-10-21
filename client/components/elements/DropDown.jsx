@@ -19,17 +19,24 @@ DropDown = React.createClass({
     },
 
     render() {
-        return(<div style={{display: "inline-block"}}><DropDownMenu
+        var style = {}
+        var divStyle = {display: "inline-block"}
+        if (!this.props.autoWidth) {
+            style.width = '100%'
+            divStyle.width = '100%'
+        }
+        _.extend(style, this.props.style)
+        return(<div style={divStyle}><DropDownMenu
             displayMember={this.props.displayMember}
             valueMember={this.props.valueMember || 'value'}
             autoWidth={this.props.autoWidth}
             menuItems={this.props.menuItems}
             menuItemStyle={this.props.menuItemStyle}
             selectedIndex={this.props.selectedIndex}
-            underlineStyle={this.props.underlineStyle}
-            iconStyle={this.props.iconStyle}
-            labelStyle={this.props.labelStyle}
-            style={this.props.style}
+            underlineStyle={{margin: "-2px 0 0 0"}}
+            iconStyle={{right: 0}}
+            labelStyle={{paddingLeft: "2px"}}
+            style={style}
             disabled={this.props.disabled}
             onChange={this.onChange}
             />
@@ -39,7 +46,7 @@ DropDown = React.createClass({
                 fontSize: "12px",
                 top: "-6px",
                 display: "block",
-                paddingLeft: "24px",
+                paddingLeft: "2px",
             }}>{this.props.errorMsg}</span>
         </div>)
     }
