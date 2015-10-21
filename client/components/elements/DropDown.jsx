@@ -34,6 +34,8 @@ DropDown = React.createClass({
             iconStyle['opacity'] = 0
             underlineStyle['opacity'] = 0
         }
+        if (this.props.errorMsg)
+            underlineStyle['borderColor'] = 'rgb(222, 50, 38)'
         _.extend(style, this.props.style)
 
         // CLASSES

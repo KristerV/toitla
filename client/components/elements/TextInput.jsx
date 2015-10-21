@@ -27,30 +27,32 @@ TextInput = React.createClass({
     },
 
     getInputType(id) {
-            if (this.props.rows) {
-                return <textarea
-                        className="mdl-textfield__input"
-                        name={this.props.name}
-                        type="text"
-                        pattern={this.props.pattern}
-                        id={id}
-                        key={3}
-                        ref="textarea"
-                        defaultValue={this.props.value}
-                        rows={this.props.rows}
-                        onBlur={this.props.onBlur}
-                        disabled={!this.props.editMode}/>
-            } else {
-                return <input
-                        className="mdl-textfield__input"
-                        name={this.props.name}
-                        type="text"
-                        pattern={this.props.pattern}
-                        id={id}
-                        key={4}
-                        defaultValue={this.props.value}
-                        onBlur={this.props.onBlur}
-                        disabled={!this.props.editMode}/>
-            }
+        if (this.props.errorMsg || this.props.patternError)
+            var errorClass = 'red-underline'
+        if (this.props.rows) {
+            return <textarea
+                    className={"mdl-textfield__input " + errorClass}
+                    name={this.props.name}
+                    type="text"
+                    pattern={this.props.pattern}
+                    id={id}
+                    key={3}
+                    ref="textarea"
+                    defaultValue={this.props.value}
+                    rows={this.props.rows}
+                    onBlur={this.props.onBlur}
+                    disabled={!this.props.editMode}/>
+        } else {
+            return <input
+                    className={"mdl-textfield__input " + errorClass}
+                    name={this.props.name}
+                    type="text"
+                    pattern={this.props.pattern}
+                    id={id}
+                    key={4}
+                    defaultValue={this.props.value}
+                    onBlur={this.props.onBlur}
+                    disabled={!this.props.editMode}/>
+        }
     }
 })
