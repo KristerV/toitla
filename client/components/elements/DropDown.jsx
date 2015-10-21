@@ -19,25 +19,40 @@ DropDown = React.createClass({
     },
 
     render() {
+        var editMode = this.props.editMode
+
+        // STYLES
         var style = {}
         var divStyle = {display: "inline-block"}
+        var underlineStyle = {margin: "-2px 0 0 0"}
+        var iconStyle = {right: 0}
         if (!this.props.autoWidth) {
             style.width = '100%'
             divStyle.width = '100%'
         }
+        if (!editMode) {
+            iconStyle['opacity'] = 0
+            underlineStyle['opacity'] = 0
+        }
         _.extend(style, this.props.style)
-        return(<div style={divStyle}><DropDownMenu
+
+        // CLASSES
+        var divClass = "dropdown"
+        if (!editMode)
+            divClass += " disabled"
+
+        return(<div style={divStyle} className={divClass}><DropDownMenu
             displayMember={this.props.displayMember}
             valueMember={this.props.valueMember || 'value'}
             autoWidth={this.props.autoWidth}
             menuItems={this.props.menuItems}
             menuItemStyle={this.props.menuItemStyle}
             selectedIndex={this.props.selectedIndex}
-            underlineStyle={{margin: "-2px 0 0 0"}}
-            iconStyle={{right: 0}}
-            labelStyle={{paddingLeft: "2px"}}
+            underlineStyle={underlineStyle}
+            iconStyle={iconStyle}
+            labelStyle={{paddingLeft: "2px", color: "black"}}
             style={style}
-            disabled={this.props.disabled}
+            disabled={!this.props.editMode}
             onChange={this.onChange}
             />
             <span style={{
