@@ -46,6 +46,7 @@ Scraper = React.createClass({
                     <td>{item.address}</td>
                     <td>{item.telephone}</td>
                     <td>{item.email}</td>
+                    <td>{item.link}</td>
                     <td><a href={item.website}>{item.website}</a></td>
                 </tr>)
             }

@@ -90,11 +90,15 @@ var scrapeForLinks = function(link) {
         }
 
         // Pagination links
-        if (obj.length > 1) {
+        if (obj.length > 1 && link.indexOf('?b=10&t=1') === -1) {
             if (link.indexOf('api') > -1) {
-                var newLink = link.replace('?b=2&t=1', '?b=3&t=1').replace('?b=1&t=1', '?b=2&t=1')
+                var newLink = link
+                for (var i = 10; i > 0; i--) {
+                    newLink = newLink.replace('?b='+i+'&t=1', '?b='+(i+1)+'&t=1')
+                }
             } else {
                 var newLink = link.replace('cgi-bin', 'api')+'?b=1&t=1'
+                newLink = newLink.replace('??', '?')
             }
             Scrapes.insert({
                 type: 'links',
