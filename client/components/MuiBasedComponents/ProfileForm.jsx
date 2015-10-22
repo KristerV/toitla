@@ -49,7 +49,7 @@ ProfileForm = React.createClass({
     render() {
         if (!this.data.user)
             return <div>Loading...</div>
-        if (!Roles.userIsInRole(Meteor.userId(), 'manager'))
+        if (!Roles.userIsInRole(Meteor.userId(), 'manager') || this.data.user._id !== Meteor.userId())
             return <div>Not allowed</div>
         var user = this.data.user || {}
         user.profile = user.profile || {}
