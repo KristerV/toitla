@@ -5,17 +5,17 @@ MenuItem = React.createClass({
     },
 
     publish(e) {
-        Meteor.call('publishMenuitem', this.props.menuitem._id)
+        Meteor.call('menuitemTemplate--publish', this.props.menuitem._id)
     },
 
     unpublish(e) {
-        Meteor.call('unpublishMenuitem', this.props.menuitem._id)
+        Meteor.call('menuitemTemplate--unpublish', this.props.menuitem._id)
     },
 
     deleteMenuitem(e) {
         var c = confirm('Kindel, et soovid kustutada toidu "' + this.props.menuitem.title + '"?')
         if (c)
-            Meteor.call('deleteMenuitem', this.props.menuitem._id)
+            Meteor.call('menuitemTemplate--delete', this.props.menuitem._id)
     },
 
     render() {

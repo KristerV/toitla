@@ -18,38 +18,41 @@ TextInput = React.createClass({
 
         // Render
         return(
-        <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label js-disablingSwitch">
+        <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label js-disablingSwitch w100">
             {this.getInputType(_id)}
             <label className="mdl-textfield__label" htmlFor={_id}>{this.props.label}</label>
-            <span className="mdl-textfield__error">{this.props.errorMsg}</span>
+            <span className="mdl-textfield__error">{this.props.patternError}</span>
+            <span className="mdl-textfield__error visible">{this.props.errorMsg}</span>
         </div>)
     },
 
     getInputType(id) {
-            if (this.props.rows) {
-                return <textarea
-                        className="mdl-textfield__input"
-                        name={this.props.name}
-                        type="text"
-                        pattern={this.props.pattern}
-                        id={id}
-                        key={3}
-                        ref="textarea"
-                        defaultValue={this.props.value}
-                        rows={this.props.rows}
-                        onBlur={this.props.onBlur}
-                        disabled={!this.props.editMode}/>
-            } else {
-                return <input
-                        className="mdl-textfield__input"
-                        name={this.props.name}
-                        type="text"
-                        pattern={this.props.pattern}
-                        id={id}
-                        key={4}
-                        defaultValue={this.props.value}
-                        onBlur={this.props.onBlur}
-                        disabled={!this.props.editMode}/>
-            }
+        if (this.props.errorMsg || this.props.patternError)
+            var errorClass = 'red-underline'
+        if (this.props.rows) {
+            return <textarea
+                    className={"mdl-textfield__input " + errorClass}
+                    name={this.props.name}
+                    type="text"
+                    pattern={this.props.pattern}
+                    id={id}
+                    key={3}
+                    ref="textarea"
+                    defaultValue={this.props.value}
+                    rows={this.props.rows}
+                    onBlur={this.props.onBlur}
+                    disabled={!this.props.editMode}/>
+        } else {
+            return <input
+                    className={"mdl-textfield__input " + errorClass}
+                    name={this.props.name}
+                    type="text"
+                    pattern={this.props.pattern}
+                    id={id}
+                    key={4}
+                    defaultValue={this.props.value}
+                    onBlur={this.props.onBlur}
+                    disabled={!this.props.editMode}/>
+        }
     }
 })
