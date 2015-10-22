@@ -52,7 +52,14 @@ Layout = React.createClass({
         Order.createOrder()
     },
 
+    goUsers(e) {
+        FlowRouter.go("users")
+    },
+
     render() {
+        if (Roles.userIsInRole(Meteor.userId(), 'manager'))
+            var goUsers = <button className="mdl-button mdl-js-button text-white"
+            onClick={this.goUsers}>Kasutajad</button>
         return <div className="h100"><AppBar
             iconElementLeft={Meteor.userId() ?
                 <div>
@@ -70,6 +77,7 @@ Layout = React.createClass({
                         onClick={this.goNewOrder}/>
                 </div> : <div></div>}
             iconElementRight={Meteor.userId() ? <div>
+                {goUsers}
                 <button className="mdl-button mdl-js-button text-white"
                     onClick={this.goMenu}>Minu menüü</button>
                 <button className="mdl-button mdl-js-button text-white"

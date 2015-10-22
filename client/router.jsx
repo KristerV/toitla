@@ -59,6 +59,15 @@ FlowRouter.route('/login/', {
 	}
 });
 
+FlowRouter.route('/kasutajad/', {
+	name: 'users',
+	action: function(params) {
+		ReactLayout.render(Layout, {
+			content: <UsersContainer/>
+		});
+	}
+});
+
 FlowRouter.route('/scraper/', {
 	triggersEnter: [loginRequired],
 	action: function(params) {
