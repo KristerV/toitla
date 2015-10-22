@@ -23,6 +23,7 @@ ProfileForm = React.createClass({
 
     mixins: [ReactMeteorData],
     getMeteorData() {
+        var subscription = Meteor.subscribe("allUserData")
         return {
             user: Meteor.users.findOne(this.props.userId),
         }
@@ -48,6 +49,8 @@ ProfileForm = React.createClass({
     render() {
         if (!this.data.user)
             return <div>Loading...</div>
+        if (!Roles.userIsInRole(Meteor.userId(), 'manager'))
+            return <div>Not allowed</div>
         var user = this.data.user || {}
         user.profile = user.profile || {}
         if (user.emails && user.emails[0] && user.emails[0].address)
