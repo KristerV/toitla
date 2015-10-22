@@ -6,13 +6,16 @@ Meteor.methods({
         for (var i = 0; i < 10; i++) {
             var userId = Meteor.users.insert({
                 roles: [ 'chef' ],
-                profile: { name: Fake.sentence(2), vet: true },
+                profile: {
+                    name: Fake.sentence(2),
+                    vet: true,
+                    address: Fake.sentence(2),
+                    companyCode: Fake.sentence(1),
+                    companyName: Fake.sentence(1),
+                    homepage: Fake.sentence(1),
+                    tel: Fake.sentence(1),
+                },
                 emails: [{address: Fake.word()+"@address.ee"}],
-                address: Fake.sentence(2),
-                companyCode: Fake.sentence(1),
-                companyName: Fake.sentence(1),
-                homepage: Fake.sentence(1),
-                tel: Fake.sentence(1),
             });
             for (var j = 0; j < 10; j++) {
                 var data = {
