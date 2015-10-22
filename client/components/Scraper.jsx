@@ -36,7 +36,7 @@ Scraper = React.createClass({
         var data = []
         this.data.scrapes.forEach(function(item, i){
             if (item.type === 'links') {
-                data.push(<tr key={i} style={{backgroundColor: "#ccc"}}><td colSpan="6">{item.link}</td></tr>)
+                data.push(<tr key={i} style={{backgroundColor: "#ccc"}}><td colSpan="7">{item.link}</td></tr>)
             } else {
                 if (item.email && item.status === 'done')
                     emails.push(item.email + ", ")
@@ -46,8 +46,8 @@ Scraper = React.createClass({
                     <td>{item.address}</td>
                     <td>{item.telephone}</td>
                     <td>{item.email}</td>
-                    <td>{item.link}</td>
                     <td><a href={item.website}>{item.website}</a></td>
+                    <td><a href={item.link}>{item.link}</a></td>
                 </tr>)
             }
         })
