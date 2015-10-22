@@ -33,14 +33,15 @@ UsersContainer = React.createClass({
               </thead>
               <tbody>
                 {this.data.users.map(function(user){
+                    var profile = user.profile || {}
                     if (user.status && user.status.lastLogin)
                         var lastLogin = moment(user.status.lastLogin.date).format("HH:mm - D.MM.YYYY")
                     return <tr key={user._id}>
-                        <td className="mdl-data-table__cell--non-numeric">{user.profile.name}</td>
+                        <td className="mdl-data-table__cell--non-numeric">{profile.name}</td>
                         <td>{user.getEmail()}</td>
                         <td>
                             <label className="mdl-checkbox mdl-js-checkbox">
-                                <input type="checkbox" className="mdl-checkbox__input" checked={user.profile.vet} readOnly={true}/>
+                                <input type="checkbox" className="mdl-checkbox__input" checked={profile.vet} readOnly={true}/>
                             </label>
                         </td>
                         <td>{lastLogin}</td>
