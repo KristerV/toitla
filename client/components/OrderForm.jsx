@@ -19,9 +19,7 @@ OrderForm = React.createClass({
     },
 
     componentWillMount() {
-        ThemeManager.setPalette({
-            disabledColor: "rgba(0,0,0,0.6)",
-        })
+        LightRawTheme.palette.disabledColor = "rgba(0,0,0,0.6)"
     },
 
     getInitialState() {

@@ -18,7 +18,7 @@ StatusForm = React.createClass({
         return (
             <Paper className="margin padding">
                 <DropDownMenu
-                    menuitems={this.props.selectPhases}
+                    menuItems={this.props.selectPhases}
                     onChange={this.updatePhase}
                     selectedIndex={Settings.getPhaseIndex(order.status.phase)}/>
                 <RaisedButton
