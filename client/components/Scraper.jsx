@@ -32,6 +32,9 @@ Scraper = React.createClass({
         if (!Meteor.userId() || !Roles.userIsInRole(Meteor.userId(), 'manager')) {
             return <p>404 not found</p>
         }
+        if (!this.data.subsReady) {
+            return <p>loading</p>
+        }
         var emails = []
         var data = []
         this.data.scrapes.forEach(function(item, i){
