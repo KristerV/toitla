@@ -98,7 +98,7 @@ DetailsForm = React.createClass({
                 <div className="floatingPrice">
                     <div className="wrapper">
                         <p>Kokku</p>
-                        <h1>{order.details.calculatedPrice}€</h1>
+                        <h2>{order.details.calculatedPrice}€</h2>
                     </div>
                 </div>
           }
