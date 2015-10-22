@@ -5,4 +5,4 @@ Push.allow({
 	}
 });
 
-Push.debug = true;
+Push.debug = false;
