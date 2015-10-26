@@ -47,44 +47,17 @@ MenuItemDetails = React.createClass({
                     name="ingredients"
                     onBlur={this.updateText}
                     errorMsg={errors.ingredients}/>
-                {/* colors are the last of each palette, from:                              */}
-                {/* https://www.google.com/design/spec/style/color.html#color-color-palette */}
-                <Tag label="lihavaba"
-                    editMode={editMode}
-                    active={_.contains(menuitem.tags, "meatfree")}
-                    name="meatfree"
-                    color="#64DD17"
-                    onClick={this.switchTag}/>
-                <Tag label="vegan"
-                    editMode={editMode}
-                    active={_.contains(menuitem.tags, "vegan")}
-                    name="vegan"
-                    color="#00C853"
-                    onClick={this.switchTag}/>
-                <Tag label="toor"
-                    editMode={editMode}
-                    active={_.contains(menuitem.tags, "raw")}
-                    name="raw"
-                    color="#00BFA5"
-                    onClick={this.switchTag}/>
-                <Tag label="mahe"
-                    editMode={editMode}
-                    active={_.contains(menuitem.tags, "eco")}
-                    name="eco"
-                    color="#8D6E63"
-                    onClick={this.switchTag}/>
-                <Tag label="gluteenivaba"
-                    editMode={editMode}
-                    active={_.contains(menuitem.tags, "glutenfree")}
-                    name="glutenfree"
-                    color="#0091EA"
-                    onClick={this.switchTag}/>
-                <Tag label="laktoosivaba"
-                    editMode={editMode}
-                    active={_.contains(menuitem.tags, "lactosefree")}
-                    name="lactosefree"
-                    color="#2962FF"
-                    onClick={this.switchTag}/>
+
+                {Settings.menuitemTags.map(function(tag, i){
+                    return <Tag key={i}
+                        label={tag.label}
+                        editMode={editMode}
+                        active={_.contains(menuitem.tags, tag.name)}
+                        name={tag.name}
+                        color={tag.color}
+                        onClick={this.switchTag}/>
+                }.bind(this))}
+
                 <div className="w100">
                     <div style={{width: '50%'}} className="inline vtop paddingr box">
                         <DropDown menuItems={[
