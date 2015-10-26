@@ -48,3 +48,8 @@ raix:push
 
 npm-container
 anti:fake
+constellation:velocity
+constellation:console
+constellation:plugins
+constellation:autopublish
+constellation:subscriptions
