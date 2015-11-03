@@ -67,12 +67,14 @@ OrderForm = React.createClass({
             var detailsForm = <DetailsForm {...this.props} order={order}/>
         if (order.suborders)
             var suborders = <SubordersForm {...this.props} order={order}/>
+        var menuItems = <MenuItemsContainer orderId={order._id}/>
 
         return (
             <div>
                 <div className={order.submitted ? "layout-left" : "layout-order"}>
                     {statusForm}
                     {detailsForm}
+                    {menuItems}
                 </div>
                 <div className="layout-right">
                     {suborders}
