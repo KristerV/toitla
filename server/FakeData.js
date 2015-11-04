@@ -2,14 +2,17 @@ FakeData = {
     generateFakeMenuitemTemplates: function(){
         Security.devOnly()
         for (var i = 0; i < 10; i++) {
+            var rand1 = !!parseInt(Math.random() * 4)
+            var rand2 = !!parseInt(Math.random() * 3)
+            var rand3 = !!parseInt(Math.random() * 2)
             var userId = Meteor.users.insert({
                 roles: [ 'chef' ],
                 profile: {
-                    name: Fake.sentence(2),
-                    vet: true,
+                    name: rand1 ? Fake.sentence(2) : null,
+                    vet: rand2 ? true : null,
                     address: Fake.sentence(2),
-                    companyCode: Fake.sentence(1),
-                    companyName: Fake.sentence(1),
+                    companyCode: rand3 ? Fake.sentence(1) : null,
+                    companyName: rand3 ? Fake.sentence(1) : null,
                     homepage: Fake.sentence(1),
                     tel: Fake.sentence(1),
                 },
@@ -48,6 +51,12 @@ FakeData = {
 }
 
 Meteor.methods({
+    "fake.regen": function(){
+        FakeData.removeAllMenuItemTemplates()
+        FakeData.removeAllMenuItemsInOrder()
+        FakeData.removeAllFakeUsers()
+        FakeData.generateFakeMenuitemTemplates()
+    },
     "fake.all": function(){
         FakeData.generateFakeMenuitemTemplates()
     },
