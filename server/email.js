@@ -19,9 +19,9 @@ Email = {
         },
         function(error, result) {
           if(error){
-            console.log("Email error: " + error)
+            console.error("Email error: " + error)
           } else {
-            console.log("Email sent")
+            console.info("Email sent")
           }
         }
       )

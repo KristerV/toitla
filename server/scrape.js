@@ -39,8 +39,8 @@ var scrapeNext = function() {
     }
     ScrapingActive = true
     var link = next.link
-    console.log(" ");
-    console.log("GO TO: " + link);
+    console.info(" ");
+    console.info("GO TO: " + link);
     if (next.type === 'links') {
         scrapeForLinks(link)
     } else if (next.type === 'content') {
@@ -57,13 +57,13 @@ var scrapeNextContent = function(link) {
         website: '.fc-bi-urls-field a@href',
     })(Meteor.bindEnvironment(function(error, result){
         if (error)
-            console.log("ERROR:", error);
+            console.error("ERROR:", error);
         if (result.address.indexOf("allinn") > -1 && result.email) {
             result.status = 'done'
         } else {
             result.status = 'ditched'
         }
-        console.log("RESULT:", result);
+        console.info("RESULT:", result);
         Scrapes.update({link: link}, {$set: result})
         ScrapingActive = false
         scrapeNext()
@@ -72,9 +72,9 @@ var scrapeNextContent = function(link) {
 
 var scrapeForLinks = function(link) {
     xray2(link, ['a[title="Veebilehe kontaktandmed"]@href'])(Meteor.bindEnvironment(function(error, obj){
-        console.log("INITIAL FETCH DONE");
+        console.info("INITIAL FETCH DONE");
         if (error)
-            console.log("ERROR: ", error);
+            console.error("ERROR: ", error);
 
         // Insert links into queue
         var data
