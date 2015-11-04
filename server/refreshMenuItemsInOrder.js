@@ -1,3 +1,6 @@
+// TODO: ainult need kokad kel nimi ja vet amet
+// TODO: arvestaks min kokkasid ja et hind tuleks sobilik
+
 RefreshMenuItemsInOrder = function(orderId){
     check(orderId, String);
     var order = Orders.findOne(orderId)
