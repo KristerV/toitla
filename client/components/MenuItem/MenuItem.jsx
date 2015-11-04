@@ -18,19 +18,25 @@ MenuItem = React.createClass({
             Meteor.call('menuitemTemplate--delete', this.props.menuitem._id)
     },
 
+    nextFood(e) {
+        Meteor.call("menuitemInOrder--switchItem", this.props.menuitem._id)
+    },
+
     render() {
         var menuitem = this.props.menuitem
         var menuitemKey = this.props.menuitemKey
-        var contents = []
+        var extraSections = []
 
         if (menuitem.inorder) {
-            contents.push(<MenuItemButtonSection key={1} label="Vaheta" onClick={this.nextFood} colored={true}/>)
-            contents.push(<MenuItemChef key={2} menuitem={menuitem}/>)
+            if (menuitem.chefId === Meteor.userId())
+                extraSections.push(<MenuItemChef key={2} menuitem={menuitem}/>)
+            else
+                extraSections.push(<MenuItemButtonSection key={1} label="Vaheta" onClick={this.nextFood} colored={true}/>)
         } else {
             if (!menuitem.published) {
-                contents.push(<MenuItemButtonSection key={3} label="avalikusta" onClick={this.publish} accented={true}/>)
+                extraSections.push(<MenuItemButtonSection key={3} label="avalikusta" onClick={this.publish} accented={true}/>)
             } else {
-                contents.push(<MenuItemTextSection key={4} text="Toit on avalik" className="greenBack"/>)
+                extraSections.push(<MenuItemTextSection key={4} text="Toit on avalik" className="greenBack"/>)
             }
         }
 
@@ -40,7 +46,7 @@ MenuItem = React.createClass({
             <CornerMenu menuitem={menuitem} menuitemKey={menuitemKey} unpublish={this.unpublish} deleteMenuitem={this.deleteMenuitem}/>
             <FoodThumbnail menuitem={menuitem}/>
             <MenuItemDetails menuitem={menuitem}/>
-            {contents}
+            {extraSections}
         </div>)
     }
 })
