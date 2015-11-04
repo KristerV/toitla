@@ -67,7 +67,8 @@ OrderForm = React.createClass({
             var detailsForm = <DetailsForm {...this.props} order={order}/>
         if (order.suborders)
             var suborders = <SubordersForm {...this.props} order={order}/>
-        var menuItems = <MenuItemsContainer orderId={order._id}/>
+        if (order.details.peopleCount && order.contact.email)
+            var menuItems = <MenuItemsContainer orderId={order._id}/>
 
         return (
             <div>
