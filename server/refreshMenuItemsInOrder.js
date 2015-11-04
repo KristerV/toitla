@@ -15,6 +15,7 @@ RefreshMenuItemsInOrder = function(orderId){
             delete newItem._id
             newItem.orderId = orderId
             newItem.inorder = true
+            newItem.chefName = Meteor.users.findOne(newItem.chefId).profile.name
             MenuItemsInOrder.insert(newItem)
         }
     }

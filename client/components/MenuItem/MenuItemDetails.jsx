@@ -31,7 +31,7 @@ MenuItemDetails = React.createClass({
         if (menuitem) {
             var user = Meteor.users.findOne(menuitem.chefId) || {profile: {}}
             content = <div className="padding">
-                <p>{user.profile.name}</p>
+                <p>{menuitem.chefName || user.profile.name}</p>
                 <TextInput
                     editMode={editMode}
                     label="Toidu nimetus"
