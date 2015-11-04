@@ -18,7 +18,4 @@ RefreshMenuItemsInOrder = function(orderId){
             MenuItemsInOrder.insert(newItem)
         }
     }
-
-
-
 }

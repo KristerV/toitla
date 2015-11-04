@@ -1,8 +1,6 @@
-Meteor.methods({
+FakeData = {
     generateFakeMenuitemTemplates: function(){
-        if (process.env.NODE_ENV !== 'development') {
-            return false
-        }
+        Security.devOnly()
         for (var i = 0; i < 10; i++) {
             var userId = Meteor.users.insert({
                 roles: [ 'chef' ],
@@ -17,6 +15,7 @@ Meteor.methods({
                 },
                 emails: [{address: Fake.word()+"@address.ee"}],
             });
+            if (userId) console.info("Generated user: " + userId)
             for (var j = 0; j < 10; j++) {
                 var data = {
                     chefId: userId,
@@ -29,26 +28,36 @@ Meteor.methods({
                     foodType: Fake.fromArray(Settings.foodTypes),
                     priceClass: Fake.fromArray(Settings.getKeys('priceClasses'))
                 }
-                MenuItemTemplates.insert(data)
+                var template = MenuItemTemplates.insert(data)
+                if (template) console.info("Generated MenuItemTemplate: " + template)
             }
         }
     },
-    removeAllMenuItemTemplates: function() {
-        if (process.env.NODE_ENV !== 'development') {
-            return false
-        }
+    removeAllMenuItemTemplates: function(){
+        Security.devOnly()
         MenuItemTemplates.remove({})
     },
-    removeAllMenuItemsInOrder: function() {
-        if (process.env.NODE_ENV !== 'development') {
-            return false
-        }
+    removeAllMenuItemsInOrder: function(){
+        Security.devOnly()
         MenuItemsInOrder.remove({})
     },
-    removeAllFakeUsers: function() {
-        if (process.env.NODE_ENV !== 'development') {
-            return false
-        }
+    removeAllFakeUsers: function(){
+        Security.devOnly()
         Meteor.users.remove({services: {$exists: 0}})
     },
+}
+
+Meteor.methods({
+    "fake.all": function(){
+        FakeData.generateFakeMenuitemTemplates()
+    },
+    "fake.none": function(){
+        FakeData.removeAllMenuItemTemplates()
+        FakeData.removeAllMenuItemsInOrder()
+        FakeData.removeAllFakeUsers()
+    },
+    "fake.generateMenuitemTemplates": function(){FakeData.generateFakeMenuitemTemplates()},
+    "fake.removeAllMenuItemTemplates": function(){FakeData.removeAllMenuItemTemplates()},
+    "fake.removeAllMenuItemsInOrder": function(){FakeData.removeAllMenuItemsInOrder()},
+    "fake.removeAllFakeUsers": function(){FakeData.removeAllFakeUsers()},
 });
