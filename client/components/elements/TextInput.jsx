@@ -10,7 +10,7 @@ TextInput = React.createClass({
     componentDidMount() {
         // auto resize textarea
         if (this.refs.textarea)
-            $(this.refs.textarea.getDOMNode()).textareaAutoSize()
+            $(this.refs.textarea).textareaAutoSize()
     },
 
     render() {
