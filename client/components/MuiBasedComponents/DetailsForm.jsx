@@ -26,7 +26,7 @@ DetailsForm = React.createClass({
         } else {
             this.setState({'details.peopleCount': null})
         }
-        Meteor.call('menuitemInOrder--refreshOrder', this._id)
+        Meteor.call('menuitemInOrder--refreshOrder', this.props.order._id)
     },
 
     handleTextFieldChange(e) {
