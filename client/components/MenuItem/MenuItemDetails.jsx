@@ -26,7 +26,7 @@ MenuItemDetails = React.createClass({
     render() {
         var menuitem = this.props.menuitem
         var errors = menuitem.formErrors || {}
-        var editMode = Roles.userIsInRole(Meteor.userId(), 'manager') || (!menuitem.inorder && !menuitem.published)
+        var editMode = !menuitem.inorder && !menuitem.published
 
         // Placeholder
         if (!menuitem) {
