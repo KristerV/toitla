@@ -13,6 +13,7 @@ RefreshMenuItemsInOrder = function(orderId){
         for (var i = 0; i < newItemsRequired; i++) {
             var newItem = MenuItemTemplates.find({rand: {$gte: Math.random()}}, {sort: {rand: 1}, limit: 1}).fetch()[0]
             newItem.orderId = orderId
+            newItem.inorder = true
             MenuItemsInOrder.insert(newItem)
         }
     }
