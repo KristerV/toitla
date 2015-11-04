@@ -21,7 +21,9 @@ DetailsForm = React.createClass({
 
     handlePeopleCountChange(e) {
         var val = parseInt(e.target.value)
-        if (val && val < Settings.minimum_people_count) {
+        if (!Number(e.target.value)) {
+            this.setState({'details.peopleCount': "Palun sisesta arv"})
+        } else if (val && val < Settings.minimum_people_count) {
             this.setState({'details.peopleCount': "Teenindame vaid gruppe alates "+Settings.minimum_people_count+" inimest."})
         } else {
             this.setState({'details.peopleCount': null})
