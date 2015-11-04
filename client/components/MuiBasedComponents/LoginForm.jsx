@@ -97,7 +97,7 @@ LoginForm = React.createClass({
     },
 
     handleTabChange(i, tab, c) {
-        if (!c) return
+        if (!c || c.isTrusted === false) return
         this.setState({
             formType: c.props.name,
         })
