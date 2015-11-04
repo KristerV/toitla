@@ -76,6 +76,7 @@ FlowRouter.route('/scraper/', {
 });
 
 FlowRouter.route('/tellimus/:orderId', {
+	name: "order",
 	action: function(params) {
 		if (!Meteor.userId())
 			ReactLayout.render(OrderForm, {orderId: params.orderId})

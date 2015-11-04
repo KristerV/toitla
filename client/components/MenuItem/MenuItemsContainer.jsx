@@ -61,7 +61,7 @@ MenuItemsContainer = React.createClass({
             list.push(<MenuItem key={'loadingItem'+i} menuitemKey={'loadingItem'+i} menuitem={{}}/>)
         }
 
-        if (Meteor.userId())
+        if (Meteor.userId() && FlowRouter.current().route.name === "menu")
             var newItem = <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" onClick={this.newMenuitemTemplate}>Lisa uus toit</button>
 
         // Render
