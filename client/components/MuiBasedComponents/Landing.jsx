@@ -43,20 +43,22 @@ Landing = React.createClass({
       <div className="logo"><img className="toitla" src="/icons/white-toitla.svg"/>
       </div>
       <table className="main">
-        <tr>
-          <td className="left">
-            <h2>Toome kodused suupisted, küpsetised ja näpu-lõunad Sinu üritusele</h2>
-            <div onClick={this.goNewOrder} className="btn order">
-              <p><strong>Telli</strong> </p>
-            </div>
-          </td>
-          <td className="right">
-            <h2>Soovid pakkuda oma suupisteid või küpsetisi?</h2>
-            <div onClick={this.goLogin} className="btn chef">
-              <p><strong>Liitu</strong> </p>
-            </div>
-          </td>
-        </tr>
+          <tbody>
+            <tr>
+              <td className="left">
+                <h2>Toome kodused suupisted, küpsetised ja näpu-lõunad Sinu üritusele</h2>
+                <div onClick={this.goNewOrder} className="btn order">
+                  <p><strong>Telli</strong> </p>
+                </div>
+              </td>
+              <td className="right">
+                <h2>Soovid pakkuda oma suupisteid või küpsetisi?</h2>
+                <div onClick={this.goLogin} className="btn chef">
+                  <p><strong>Liitu</strong> </p>
+                </div>
+              </td>
+            </tr>
+        </tbody>
       </table>
       <div className="bottom">
         <a className="facebook" href="https://www.facebook.com/toitlacom" target="_blank">Facebook</a>
