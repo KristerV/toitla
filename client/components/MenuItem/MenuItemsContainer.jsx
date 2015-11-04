@@ -17,6 +17,7 @@ MenuItemsContainer = React.createClass({
         } else if (this.props.orderId) {
             subscription = Meteor.subscribe("menuitems_inorder", {orderId: this.props.orderId})
             menuitems = MenuItemsInOrder.find({orderId: this.props.orderId})
+            console.log(menuitems.fetch());
             itemCount = Counts.get('MenuItemsInOrderCount')
         }
 

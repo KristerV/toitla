@@ -20,6 +20,7 @@ Meteor.methods({
             for (var j = 0; j < 10; j++) {
                 var data = {
                     chefId: userId,
+                    rand: Math.random(),
                     title: Fake.sentence(3),
                     ingredients: Fake.sentence(10),
                     weight: Fake.fromArray([10, 50 ,100, 150, 190, 210, 260, 280, 330, 390, 450]),
@@ -37,6 +38,12 @@ Meteor.methods({
             return false
         }
         MenuItemTemplates.remove({})
+    },
+    removeAllMenuItemsInOrder: function() {
+        if (process.env.NODE_ENV !== 'development') {
+            return false
+        }
+        MenuItemsInOrder.remove({})
     },
     removeAllFakeUsers: function() {
         if (process.env.NODE_ENV !== 'development') {
