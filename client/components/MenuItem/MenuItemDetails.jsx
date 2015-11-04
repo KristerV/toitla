@@ -78,7 +78,7 @@ MenuItemDetails = React.createClass({
                             onClick={this.switchTag}/>
                     }.bind(this))}
                 </div>
-                {getSpecifications()}
+                {this.getSpecifications()}
             </section>
         )
     },
@@ -126,5 +126,5 @@ MenuItemDetails = React.createClass({
                 errorMsg={errors.weight}
             />
         </div>
-    }
+    },
 })
