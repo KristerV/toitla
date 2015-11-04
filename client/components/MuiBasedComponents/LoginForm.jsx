@@ -50,7 +50,7 @@ LoginForm = React.createClass({
                 this.setState({passwordRepeatError: "Paroolid ei kattu"})
                 error = true
             }
-            if (!/^[^@]+@[^@]+\.[^@]+$/.test(s.email)) {
+            if (!Security.isEmail(s.email)) {
                 this.setState({emailError: "See ei ole väga emaili moodi"})
                 error = true
             }
