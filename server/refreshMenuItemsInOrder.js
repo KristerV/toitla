@@ -7,12 +7,18 @@ RefreshMenuItemsInOrder = function(orderId){
     var newItemsRequired = itemsNeededTotal - menuItemsInOrder.length
     console.log("RefreshMenuItemsInOrder: " + newItemsRequired);
 
-    for (var i = 0; i < newItemsRequired; i++) {
-        var newItem = MenuItemTemplates.find({rand: {$gte: Math.random()}}, {sort: {rand: 1}, limit: 1}).fetch()[0]
-        newItem.orderId = orderId
-        console.log(newItem);
-        MenuItemsInOrder.insert(newItem)
+    if (newItemsRequired < 0) {
+        MenuItemsInOrder.remove({orderId: orderId})
+        RefreshMenuItemsInOrder(orderId)
+    } else {
+        for (var i = 0; i < newItemsRequired; i++) {
+            var newItem = MenuItemTemplates.find({rand: {$gte: Math.random()}}, {sort: {rand: 1}, limit: 1}).fetch()[0]
+            newItem.orderId = orderId
+            console.log(newItem);
+            MenuItemsInOrder.insert(newItem)
+        }
     }
+
 
 
 }
