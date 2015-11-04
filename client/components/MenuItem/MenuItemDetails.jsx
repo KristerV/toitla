@@ -69,10 +69,12 @@ MenuItemDetails = React.createClass({
                         errorMsg={errors.ingredients}/>
 
                     {Settings.menuitemTags.map(function(tag, i){
+                        var active = _.contains(menuitem.tags, tag.name)
+                        if (menuitem.inorder && (!tag.public || !active)) return
                         return <Tag key={i}
                             label={tag.label}
                             editMode={editMode}
-                            active={_.contains(menuitem.tags, tag.name)}
+                            active={active}
                             name={tag.name}
                             color={tag.color}
                             onClick={this.switchTag}/>
