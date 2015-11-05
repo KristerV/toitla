@@ -56,8 +56,9 @@ MenuItemsInOrderManager = {
         console.log("============== findChefs ==============");
         var chefs = Meteor.users.find({eligible: true}, {sort: {manualRating: -1, acceptanceScore: -1}}).fetch()
         this.chefIds = _.pluck(chefs, '_id')
-        console.log(this.chefIds);
-
+        for (var i = 0; i < chefs.length; i++) {
+            console.log(chefs[i]._id, chefs[i].manualRating, chefs[i].profile.name);
+        }
     },
     getNextFood() {
         // meals.forEach{ menu.push( firstChef.getFood( weightLeft / mealsLeft.length, specs ) ) }
