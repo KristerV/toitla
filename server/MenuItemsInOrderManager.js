@@ -1,8 +1,10 @@
 // FIXME: kokal max 90 suupistet või 3 snäkki
-// FIXME: 2 kokka, 5:1 toitude arv
 // FIXME: meatfree doesn't always happen
-// TODO: schedule instead of refresh, so less CPU wasted
 // FIXME: kuidas saab menuitem undefined tulla?
+// TODO: pauside arv
+// TODO: raha slider
+// TODO: mis tüüpi toidud kliendile jätab?
+// TODO: menüü tuleb kehva kohta
 var scheduledOrderRefreshes = []
 MenuItemsInOrderManager = class {
 
@@ -27,6 +29,21 @@ MenuItemsInOrderManager = class {
     }
 
     switchItem(itemId) {
+        this.log("============ switchItem ============");
+        check(itemId, String)
+        if (scheduledOrderRefreshes.indexOf(this.orderId) == -1) {
+            this.log("Schedule successful");
+            scheduledOrderRefreshes.push(this.orderId)
+            Meteor.setTimeout(function(){
+                 scheduledOrderRefreshes.splice(scheduledOrderRefreshes.indexOf(this.orderId), 1)
+                 this.runSwitchItem(itemId)
+            }.bind(this), 1000);
+        } else {
+            this.log("Schedule FAILED");
+        }
+    }
+
+    runSwitchItem(itemId) {
         this.log("========================================= switchItem =========================================");
         check(itemId, String)
         this.reset()
@@ -44,7 +61,6 @@ MenuItemsInOrderManager = class {
     refreshOrder() {
         this.log("============ refreshOrder ============");
         check(this.orderId, String)
-        this.reset()
         if (scheduledOrderRefreshes.indexOf(this.orderId) == -1) {
             this.log("Schedule successful");
             scheduledOrderRefreshes.push(this.orderId)
@@ -59,6 +75,7 @@ MenuItemsInOrderManager = class {
 
     runRefreshOrder() {
         this.log("========================================= runRefreshOrder =========================================");
+        this.reset()
         this.getRequirements()
         this.findChefs()
         this.constructMenu()
@@ -170,6 +187,8 @@ MenuItemsInOrderManager = class {
         } else if (ignoreUnwanted) {
             throw new Meteor.Error("STILL NO MENUITEM")
         } else {
+            this.log("RESET REJECTED");
+            MenuItemsInOrder.remove({orderId: this.orderId, rejected: true})
             this.addMeal(mealSpecs, true)
         }
     }
