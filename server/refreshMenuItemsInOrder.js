@@ -9,6 +9,7 @@ MenuItemsInOrderManager = {
     settings: Settings.menuConstructor,
     refresh: function(orderId) {
         console.log("=============== refresh ===============");
+        console.log("orderId",orderId);
         this.orderId = orderId
         this.calcMenuDetails()
         this.findChefs()
@@ -17,21 +18,36 @@ MenuItemsInOrderManager = {
         this.insertFoods()
     },
     calcMenuDetails() {
-        // var snacks = people / peoplePerMeal
-        // var mealsCount = parseInt( snacks / 30 )
         // var meals = 2/3soolast( 1/3 vege + 2/3 soolast ) + 1/3magus
-        // totalWeight = people * 250
         console.log("=========== calcMenuDetails ===========");
         this.order = Orders.findOne(this.orderId)
         if (!this.order) throw new Meteor.Error("MenuItemsInOrderManager.calcMenuDetails(): no such order exists.")
         var people = Number(this.order.details.peopleCount)
         console.log("people",people);
-        var mealCount = parseInt( people / 6 )
+        var mealCount = Math.round( people / 5 )
         console.log("mealCount",mealCount);
         var snacksCount = mealCount * people
         console.log("snacksCount",snacksCount);
         var snacksPerMeal = snacksCount / mealCount
         console.log("snacksPerMeal",snacksPerMeal);
+        var mealPlan = []
+        var dishVeg = mealCount * 0.15
+        console.log("dishVeg", dishVeg);
+        var dishDessert = mealCount * 0.33 + dishVeg
+        console.log("dishDessert", dishDessert);
+        for (var i = 0; i < mealCount; i++) {
+            if (i < dishVeg) {
+                mealPlan.push({tags: ['meatfree'], type: 'main'})
+            }
+            else if (i < dishDessert) {
+                mealPlan.push({type: 'dessert'})
+                }
+            else {
+                mealPlan.push({type: 'main'})
+            }
+        }
+        console.log("mealPlan", mealPlan);
+        this.mealPlan = mealPlan
     },
     findChefs() {
         // chefs.find(vet, firmanimi, firmakood, kokanimi).sort(manualRating, acceptanceScore)
@@ -39,6 +55,7 @@ MenuItemsInOrderManager = {
     },
     getNextFood() {
         // meals.forEach{ menu.push( firstChef.getFood( weightLeft / mealsLeft.length, specs ) ) }
+        // totalWeight = people * 250
         console.log("============= getNextFood =============");
     },
     cropTotalPrice() {
