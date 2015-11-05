@@ -6,8 +6,9 @@
 var scheduledOrderRefreshes = []
 class MenuItemsInOrderManager {
 
-    constructor(orderId) {
+    constructor(orderId, verbose) {
         check(orderId, String)
+        this.verbose = verbose
         this.orderId = orderId
         this.order = Orders.findOne(orderId)
         this.settings = Settings.menuConstructor
@@ -26,7 +27,7 @@ class MenuItemsInOrderManager {
     }
 
     switchItem(itemId) {
-        console.log("========================================= switchItem =========================================");
+        this.log("========================================= switchItem =========================================");
         check(itemId, String)
         this.reset()
         var oldItem = MenuItemsInOrder.findOne(itemId)
@@ -40,23 +41,23 @@ class MenuItemsInOrderManager {
     }
 
     refreshOrder() {
-        console.log("============ refreshOrder ============");
+        this.log("============ refreshOrder ============");
         check(this.orderId, String)
         this.reset()
         if (scheduledOrderRefreshes.indexOf(this.orderId) == -1) {
-            console.log("Schedule successful");
+            this.log("Schedule successful");
             scheduledOrderRefreshes.push(this.orderId)
             Meteor.setTimeout(function(){
                  scheduledOrderRefreshes.splice(scheduledOrderRefreshes.indexOf(this.orderId), 1)
                  this.runRefreshOrder()
             }.bind(this), 2000);
         } else {
-            console.log("Schedule FAILED");
+            this.log("Schedule FAILED");
         }
     }
 
     runRefreshOrder() {
-        console.log("========================================= runRefreshOrder =========================================");
+        this.log("========================================= runRefreshOrder =========================================");
         this.getRequirements()
         this.findChefs()
         this.constructMenu()
@@ -66,29 +67,29 @@ class MenuItemsInOrderManager {
     }
     getRequirements() {
         // var meals = 2/3soolast( 1/3 vege + 2/3 soolast ) + 1/3magus
-        console.log("=========== getRequirements ===========");
+        this.log("=========== getRequirements ===========");
 
         this.order = Orders.findOne(this.orderId)
         if (!this.order) throw new Meteor.Error("MenuItemsInOrderManager.getRequirements(): no such order exists.")
 
         var people = Number(this.order.details.peopleCount)
-        console.log("people",people);
+        this.log("people",people);
 
         var mealCount = Math.round( people / 5 )
-        console.log("mealCount",mealCount);
+        this.log("mealCount",mealCount);
 
         var snacksCount = mealCount * people
-        console.log("snacksCount",snacksCount);
+        this.log("snacksCount",snacksCount);
 
         this.snacksPerMeal = snacksCount / mealCount
-        console.log("snacksPerMeal",this.snacksPerMeal);
+        this.log("snacksPerMeal",this.snacksPerMeal);
 
         var mealPlan = []
         var dishVeg = mealCount * 0.15
-        console.log("dishVeg", dishVeg);
+        this.log("dishVeg", dishVeg);
 
         var dishDessert = mealCount * 0.33 + dishVeg
-        console.log("dishDessert", dishDessert);
+        this.log("dishDessert", dishDessert);
 
         for (var i = 0; i < mealCount; i++) {
             if (i < dishVeg) {
@@ -102,24 +103,24 @@ class MenuItemsInOrderManager {
             }
         }
         this.mealPlan = mealPlan
-        console.log("mealPlan", mealPlan);
+        this.log("mealPlan", mealPlan);
 
         this.totalWeight = people * this.settings.gramsPerPerson
-        console.log("totalWeight",this.totalWeight);
+        this.log("totalWeight",this.totalWeight);
     }
     findChefs() {
         // chefs.find(vet, firmanimi, firmakood, kokanimi).sort(manualRating, acceptanceScore)
-        console.log("============== findChefs ==============");
+        this.log("============== findChefs ==============");
         var chefs = Meteor.users.find({eligible: true}, {sort: {manualRating: -1, acceptanceScore: -1}, limit: 20}).fetch()
         this.chefIdList = _.pluck(chefs, '_id')
         for (var i = 0; i < chefs.length; i++) {
-            console.log(chefs[i]._id, chefs[i].manualRating, chefs[i].profile.name);
+            this.log(chefs[i]._id, chefs[i].manualRating, chefs[i].profile.name);
         }
     }
     constructMenu() {
         // meals.forEach{ menu.push( firstChef.getFood( weightLeft / mealsLeft.length, specs ) ) }
         // totalWeight = people * 250
-        console.log("============= constructMenu =============");
+        this.log("============= constructMenu =============");
         var weightLeft = this.totalWeight
         var mealsLeft = this.mealPlan.slice(0)
         while (!_.isEmpty(mealsLeft)) {
@@ -129,13 +130,13 @@ class MenuItemsInOrderManager {
             var item = this.addMeal(mealSpecs)
             weightLeft = weightLeft - ( item.weight * this.snacksPerMeal )
             if (0 > weightLeft) weightLeft = 0
-            console.log("");
+            this.log("");
         }
         this.printMeals()
     }
     addMeal(mealSpecs, ignoreUnwanted) {
-        console.log("================ addMeal ================");
-        console.log("MEAL", mealSpecs);
+        this.log("================ addMeal ================");
+        this.log("MEAL", mealSpecs);
         var item = null
         var find = {
             weight: {$gt: mealSpecs.minWeight},
@@ -148,15 +149,15 @@ class MenuItemsInOrderManager {
         }
         if (mealSpecs.priceClass) find.priceClass = mealSpecs.priceClass
         if (mealSpecs.tags) find.tags = mealSpecs.tag
-        console.log("FIND", find.weight['$gt']+"g", find.foodType);
-        console.log(find);
+        this.log("FIND", find.weight['$gt']+"g", find.foodType);
+        this.log(find);
 
         var chefIndex = 0
         while (!item && chefIndex < this.chefIdList.length) {
             // TODO: rand not implemented
             var rand = Math.random()
             find.chefId = this.chefIdList[chefIndex],
-            console.log("CHEF", find.chefId);
+            this.log("CHEF", find.chefId);
             item = MenuItemTemplates.findOne(find)
             chefIndex++
         }
@@ -164,7 +165,7 @@ class MenuItemsInOrderManager {
         if (item) {
             item.originalSpecifications = mealSpecs
             this.meals.push(item)
-            console.log("ITEM", item._id, item.weight+"g", _.pluck(item.tags, 'name'));
+            this.log("ITEM", item._id, item.weight+"g", _.pluck(item.tags, 'name'));
             return item
         } else if (ignoreUnwanted) {
             throw new Meteor.Error("STILL NO MENUITEM")
@@ -174,40 +175,40 @@ class MenuItemsInOrderManager {
     }
     cropTotalPrice() {
         // menu.forEach{ if (maxPrice > currentPrice) { replace most expensive piece  } catch { ERROR } }
-        console.log("=======================================");
-        console.log("============ cropTotalPrice ===========");
+        this.log("=======================================");
+        this.log("============ cropTotalPrice ===========");
         this.calculateMaxPrice()
         var count = 0
         while (this.maxPrice < this.currentPrice && count < 100) {
             this.replaceHighestPrice()
             this.calculateCurrentPrice()
-            console.log("COUNT", count);
+            this.log("COUNT", count);
             count++
         }
         this.printMeals()
-        console.log("^^^^^^^^^^^^ cropTotalPrice ^^^^^^^^^^^");
-        console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+        this.log("^^^^^^^^^^^^ cropTotalPrice ^^^^^^^^^^^");
+        this.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
     }
     calculateCurrentPrice(){
-        console.log("======== calculateCurrentPrice ========");
+        this.log("======== calculateCurrentPrice ========");
         var currentPrice = 0
         for (var i = 0; i < this.meals.length; i++) {
             var mealPrice = Settings.priceClasses[this.meals[i].priceClass] * this.snacksPerMeal
             currentPrice = currentPrice + mealPrice
         }
         this.currentPrice = currentPrice
-        console.log("CURRENT", this.currentPrice);
+        this.log("CURRENT", this.currentPrice);
     }
     calculateMaxPrice() {
-        console.log("========== calculateMaxPrice ==========");
+        this.log("========== calculateMaxPrice ==========");
         var orderTotal = this.order.details.currentPrice || this.order.details.calculatedPrice
         this.maxPrice = orderTotal * this.settings.foodMaxPercentFromTotal
-        console.log("MAX", this.maxPrice);
+        this.log("MAX", this.maxPrice);
         this.calculateCurrentPrice()
     }
     replaceHighestPrice() {
-        console.log("========== replaceHighestPrice ===========");
-        console.log("------------- removeOneItem --------------");
+        this.log("========== replaceHighestPrice ===========");
+        this.log("------------- removeOneItem --------------");
         var highestPrice = 0
         var responsible = []
         for (var i = 0; i < this.meals.length; i++) {
@@ -220,24 +221,24 @@ class MenuItemsInOrderManager {
                 responsible.push(meal)
             }
         }
-        console.log("HIGHEST PRICE", highestPrice);
+        this.log("HIGHEST PRICE", highestPrice);
         var pickOne = responsible[parseInt(Math.random() * responsible.length)]
-        console.log("REMOVE", pickOne._id);
+        this.log("REMOVE", pickOne._id);
         var index = _.indexOf(this.meals, pickOne)
         this.meals.splice(index, 1)
-        console.log("--------------- addNewItem ---------------");
-        console.log(pickOne);
+        this.log("--------------- addNewItem ---------------");
+        this.log(pickOne);
         if (pickOne.priceClass == 'class1') {
             console.error("Already at cheapest class")
         } else {
             var classNr = parseInt(pickOne.priceClass.slice(-1)) - 1
             pickOne.originalSpecifications.priceClass = pickOne.priceClass.slice(0,-1) + classNr
-            console.log("NEW PRICECLASS", pickOne.originalSpecifications.priceClass);
+            this.log("NEW PRICECLASS", pickOne.originalSpecifications.priceClass);
             this.addMeal(pickOne.originalSpecifications)
         }
     }
     insertFoods() {
-        console.log("============ insertFoods ==============");
+        this.log("============ insertFoods ==============");
         var results = []
         _.each(this.meals, function(newItem, i){
             newItem.templateId = newItem._id
@@ -248,12 +249,12 @@ class MenuItemsInOrderManager {
             var result = MenuItemsInOrder.insert(newItem)
             results.push(result)
         }.bind(this))
-        console.log("RESULTS", results);
-        console.log("ITEMS IN ORDER", MenuItemsInOrder.find({orderId: this.orderId, rejected: {$ne: true}}).fetch().length);
+        this.log("RESULTS", results);
+        this.log("ITEMS IN ORDER", MenuItemsInOrder.find({orderId: this.orderId, rejected: {$ne: true}}).fetch().length);
     }
     printMeals(fromDB) {
-        console.log("");
-        console.log("           CHEFID           ITEMID");
+        this.log("");
+        this.log("           CHEFID           ITEMID");
         var grossWeight = 0
         var grossPrice = 0
         var meals
@@ -268,11 +269,17 @@ class MenuItemsInOrderManager {
             var snacksPerMeal = this.snacksPerMeal || meals[i].originalSpecifications.snacksPerMeal
             var mealPrice = Settings.priceClasses[meals[i].priceClass] * snacksPerMeal
             grossPrice = grossPrice + mealPrice
-            console.log("ITEM", item.chefId, item._id, G.strlen(item.foodType, 7), G.strlen(item.weight+"g", 5), _.pluck(item.tags, 'name'));
+            this.log("ITEM", item.chefId, item._id, G.strlen(item.foodType, 7), G.strlen(item.weight+"g", 5), _.pluck(item.tags, 'name'));
         }
-        console.log("");
-        console.log("TOTAL MEALS", meals.length, grossWeight+"g", grossPrice+"€");
-        console.log("");
+        this.log("");
+        this.log("TOTAL MEALS", meals.length, grossWeight+"g", grossPrice+"€");
+        this.log("");
+    }
+
+    log(){
+        if (this.verbose) {
+            console.log.apply(this, arguments)
+        }
     }
 }
 
