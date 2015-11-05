@@ -1,6 +1,6 @@
 // NOTE: in case of switch
-// NOTE: et toit ei korduks
-// NOTE: kokal max 90 suupistet
+// FIXME: kokal max 90 suupistet või 3 snäkki
+// FIXME: 2 kokka, 5:1 toitude arv
 
 MenuItemsInOrderManager = {
     orderId: null,
@@ -12,6 +12,10 @@ MenuItemsInOrderManager = {
     chefIdList: null,
     totalWeight: null,
     snacksPerMeal: null,
+    maxPrice: null,
+    currentPrice: null,
+    priceExcess: null,
+    tooExpensiveIds: [],
     refresh: function(orderId) {
         console.log("=============== refresh ===============");
         console.log("orderId",orderId);
@@ -71,61 +75,123 @@ MenuItemsInOrderManager = {
         console.log("============= constructMenu =============");
         var weightLeft = this.totalWeight
         var mealsLeft = this.mealPlan.slice(0)
-        var lastWeight
         while (!_.isEmpty(mealsLeft)) {
-            var inMenu = _.pluck(this.meals, '_id')
-            var meal = mealsLeft.shift()
-            console.log("MEAL", meal);
-            var minWeight = weightLeft / mealsLeft.length / this.snacksPerMeal
-            var item = null
-            var chefIndex = 0
-            var find = {
-                _id: {$nin: inMenu},
-                weight: {$gt: minWeight},
-                published: true,
-                foodType: meal.foodType,
-            }
-            if (meal.tags) find.tags = meal.tag
-            console.log("FIND", find.weight['$gt']+"g", find.foodType);
-            while (!item && chefIndex < this.chefIdList.length) {
-                var rand = Math.random()
-                find.chefId = this.chefIdList[chefIndex],
-                console.log("CHEF", find.chefId);
-                item = MenuItemTemplates.findOne(find)
-                chefIndex++
-            }
-            if (item) {
-                this.meals.push(item)
-                console.log("ITEM", item._id, item.weight+"g", _.pluck(item.tags, 'name'));
-                weightLeft = weightLeft - ( item.weight * this.snacksPerMeal )
-                if (0 > weightLeft) weightLeft = 0
-            } else
-                console.log("NO MENUITEM FOUND");
+            var mealSpecs = mealsLeft.shift()
+            mealSpecs.minWeight = weightLeft / mealsLeft.length / this.snacksPerMeal
+            var item = this.addMeal(mealSpecs)
+            weightLeft = weightLeft - ( item.weight * this.snacksPerMeal )
+            if (0 > weightLeft) weightLeft = 0
             console.log("");
         }
-        var grossWeight = 0
-        console.log("           CHEFID           ITEMID      FOODTYPE WEIGHT");
-        for (var i = 0; i < this.meals.length; i++) {
-            var item = this.meals[i]
-            grossWeight = grossWeight + item.weight
-            console.log("ITEM", item.chefId, item._id, item.foodType, item.weight+"g");
+        this.printMeals()
+    },
+    addMeal(mealSpecs) {
+        console.log("================ addMeal ================");
+        console.log("MEAL", mealSpecs);
+        var inMenu = _.pluck(this.meals, '_id')
+        inMenu = _.union(inMenu, this.tooExpensiveIds)
+        var item = null
+        var chefIndex = 0
+        var find = {
+            _id: {$nin: inMenu},
+            weight: {$gt: mealSpecs.minWeight},
+            published: true,
+            foodType: mealSpecs.foodType,
         }
-        console.log("TOTAL MEALS", this.meals.length, grossWeight+"g");
-
+        if (mealSpecs.tags) find.tags = mealSpecs.tag
+        console.log("FIND", find.weight['$gt']+"g", find.foodType);
+        while (!item && chefIndex < this.chefIdList.length) {
+            var rand = Math.random()
+            find.chefId = this.chefIdList[chefIndex],
+            console.log("CHEF", find.chefId);
+            item = MenuItemTemplates.findOne(find)
+            chefIndex++
+        }
+        if (item) {
+            item.originalSpecifications = mealSpecs
+            this.meals.push(item)
+            console.log("ITEM", item._id, item.weight+"g", _.pluck(item.tags, 'name'));
+            return item
+        } else
+            throw new Meteor.Error("NO MENUITEM FOUND")
     },
     cropTotalPrice() {
         // menu.forEach{ if (maxPrice > currentPrice) { replace most expensive piece  } catch { ERROR } }
+        console.log("=======================================");
         console.log("============ cropTotalPrice ===========");
-        var maxFoodPrice = this.order.details.currentPrice * 0.5
-        while (maxFoodPrice < this.currentFoodPrice) {
-            this.replaceHighPrice()
+        this.calculateMaxPrice()
+        var count = 0
+        while (this.maxPrice < this.currentPrice && count < 100) {
+            this.replaceHighestPrice()
+            this.calculateCurrentPrice()
+            console.log("COUNT", count);
+            count++
         }
+        this.printMeals()
+        console.log("^^^^^^^^^^^^ cropTotalPrice ^^^^^^^^^^^");
+        console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
     },
-    replaceHighPrice() {
-        console.log("========== replaceHighPrice ===========");
+    calculateCurrentPrice(){
+        console.log("======== calculateCurrentPrice ========");
+        var currentPrice = 0
+        for (var i = 0; i < this.meals.length; i++) {
+            var mealPrice = Settings.priceClasses[this.meals[i].priceClass] * this.snacksPerMeal
+            currentPrice = currentPrice + mealPrice
+        }
+        this.currentPrice = currentPrice
+        console.log("CURRENT", this.currentPrice);
+        this.priceExcess = this.currentPrice - this.maxPrice
+        console.log("EXCESS", this.priceExcess);
+    },
+    calculateMaxPrice() {
+        console.log("========== calculateMaxPrice ==========");
+        var orderTotal = this.order.details.currentPrice || this.order.details.calculatedPrice
+        this.maxPrice = orderTotal * this.settings.foodMaxPercentFromTotal
+        console.log("MAX", this.maxPrice);
+        this.calculateCurrentPrice()
+    },
+    replaceHighestPrice() {
+        console.log("========== replaceHighestPrice ===========");
+        console.log("------------- removeOneItem --------------");
+        var highestPrice = 0
+        var responsible = []
+        for (var i = 0; i < this.meals.length; i++) {
+            var meal = this.meals[i]
+            var price = Settings.priceClasses[meal.priceClass]
+            if (price > highestPrice) {
+                highestPrice = price
+                responsible = [meal]
+            } else if (price == highestPrice) {
+                responsible.push(meal)
+            }
+        }
+        console.log("HIGHEST PRICE", highestPrice);
+        var pickOne = responsible[parseInt(Math.random() * responsible.length)]
+        console.log("REMOVE", pickOne._id);
+        this.tooExpensiveIds.push(pickOne._id)
+        var index = _.indexOf(this.meals, pickOne)
+        this.meals.splice(index, 1)
+        console.log("--------------- addNewItem ---------------");
+        this.addMeal(pickOne.originalSpecifications)
     },
     insertFoods() {
         console.log("============ insertFoods ==============");
+    },
+    printMeals() {
+        console.log("");
+        console.log("           CHEFID           ITEMID");
+        var grossWeight = 0
+        var grossPrice = 0
+        for (var i = 0; i < this.meals.length; i++) {
+            var item = this.meals[i]
+            grossWeight = grossWeight + item.weight
+            var mealPrice = Settings.priceClasses[this.meals[i].priceClass] * this.snacksPerMeal
+            grossPrice = grossPrice + mealPrice
+            console.log("ITEM", item.chefId, item._id, G.strlen(item.foodType, 7), G.strlen(item.weight+"g", 5), _.pluck(item.tags, 'name'));
+        }
+        console.log("");
+        console.log("TOTAL MEALS", this.meals.length, grossWeight+"g", grossPrice+"€");
+        console.log("");
     },
 }
 

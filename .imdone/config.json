@@ -16,7 +16,10 @@
       "XXX",
       "IDEA",
       "NOTE",
-      "REVIEW"
+      "REVIEW",
+      "FIX",
+      "TEMP",
+      "BUG",
     ]
   },
   "lists": [
