@@ -176,6 +176,17 @@ MenuItemsInOrderManager = {
     },
     insertFoods() {
         console.log("============ insertFoods ==============");
+        var results = []
+        _.each(this.meals, function(newItem, i){
+            newItem.templateId = newItem._id
+            delete newItem._id
+            newItem.orderId = this.orderId
+            newItem.inorder = true
+            newItem.chefName = Meteor.users.findOne(newItem.chefId).profile.name
+            var result = MenuItemsInOrder.insert(newItem)
+            results.push(result)
+        })
+        console.log("results", results);
     },
     printMeals() {
         console.log("");
