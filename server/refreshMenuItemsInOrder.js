@@ -86,7 +86,7 @@ MenuItemsInOrderManager = {
                 foodType: meal.foodType,
             }
             if (meal.tags) find.tags = meal.tag
-            console.log("FIND", find.weight, find.foodType);
+            console.log("FIND", find.weight['$gt']+"g", find.foodType);
             while (!item && chefIndex < this.chefIdList.length) {
                 var rand = Math.random()
                 find.chefId = this.chefIdList[chefIndex],
@@ -104,12 +104,13 @@ MenuItemsInOrderManager = {
             console.log("");
         }
         var grossWeight = 0
+        console.log("           CHEFID           ITEMID      FOODTYPE WEIGHT");
         for (var i = 0; i < this.meals.length; i++) {
             var item = this.meals[i]
             grossWeight = grossWeight + item.weight
             console.log("ITEM", item.chefId, item._id, item.foodType, item.weight+"g");
         }
-        console.log("mealsTotal", this.meals.length, grossWeight+"g");
+        console.log("TOTAL MEALS", this.meals.length, grossWeight+"g");
 
     },
     cropTotalPrice() {
