@@ -282,9 +282,3 @@ class MenuItemsInOrderManager {
         }
     }
 }
-
-manager1 = new MenuItemsInOrderManager('AebtsdtGzwjpaBfnm');
-manager1.refreshOrder()
-Meteor.setTimeout(function(){
-    manager1.refreshOrder()
-}, 6000);
