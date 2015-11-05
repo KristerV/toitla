@@ -34,6 +34,7 @@ MenuItemsInOrderManager = class {
         MenuItemsInOrder.update(itemId, {$set: {rejected: true}})
         var rejectedTemplates = MenuItemsInOrder.find({orderId: oldItem.orderId, rejected: true}).fetch()
         this.rejectedTemplates = _.pluck(rejectedTemplates, 'templateId')
+        this.rejectedTemplates.push(itemId)
         this.findChefs()
         oldItem.originalSpecifications.priceClass = oldItem.priceClass
         this.addMeal(oldItem.originalSpecifications)
@@ -111,7 +112,7 @@ MenuItemsInOrderManager = class {
     findChefs() {
         // chefs.find(vet, firmanimi, firmakood, kokanimi).sort(manualRating, acceptanceScore)
         this.log("============== findChefs ==============");
-        var chefs = Meteor.users.find({eligible: true}, {sort: {manualRating: -1, acceptanceScore: -1}, limit: 20}).fetch()
+        var chefs = Meteor.users.find({eligible: true}, {sort: {manualRating: -1, acceptanceScore: -1}, limit: 10}).fetch()
         this.chefIdList = _.pluck(chefs, '_id')
         for (var i = 0; i < chefs.length; i++) {
             this.log(chefs[i]._id, chefs[i].manualRating, chefs[i].profile.name);
@@ -150,15 +151,14 @@ MenuItemsInOrderManager = class {
         if (mealSpecs.priceClass) find.priceClass = mealSpecs.priceClass
         if (mealSpecs.tags) find.tags = mealSpecs.tag
         this.log("FIND", find.weight['$gt']+"g", find.foodType);
-        this.log(find);
 
         var chefIndex = 0
         while (!item && chefIndex < this.chefIdList.length) {
-            // TODO: rand not implemented
             var rand = Math.random()
             find.chefId = this.chefIdList[chefIndex],
             this.log("CHEF", find.chefId);
-            item = MenuItemTemplates.findOne(find)
+            var items = MenuItemTemplates.find(find).fetch()
+            item = items[parseInt(Math.random() * items.length)]
             chefIndex++
         }
 
