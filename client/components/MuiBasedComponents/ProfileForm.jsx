@@ -29,17 +29,6 @@ ProfileForm = React.createClass({
         }
     },
 
-    handleTextFieldChange(e) {
-        var name = e.target.name
-        var value = e.target.value
-        var userId = Meteor.userId()
-        Meteor.users.update(userId, {$set: {[name]: value}})
-    },
-
-    handleCheckboxChange(e, check) {
-        TODO()
-    },
-
     logout(e) {
         Meteor.logout(function(){
             FlowRouter.go("/")
