@@ -1,30 +1,30 @@
-// NOTE: in case of switch
 // FIXME: kokal max 90 suupistet või 3 snäkki
 // FIXME: 2 kokka, 5:1 toitude arv
+// FIXME: meatfree doesn't always happen
 
 MenuItemsInOrderManager = {
-    orderId: null,
-    order: null,
-    allTemplateIdsInOrder: null,
     settings: Settings.menuConstructor,
+    order: null,
+    orderId: null,
     mealPlan: null,
-    meals: [],
+    maxPrice: null,
     chefIdList: null,
     totalWeight: null,
-    snacksPerMeal: null,
-    maxPrice: null,
-    currentPrice: null,
     priceExcess: null,
+    currentPrice: null,
+    snacksPerMeal: null,
+    allTemplateIdsInOrder: null,
+    meals: [],
     tooExpensiveIds: [],
     rejectedTemplates: [],
     switchItem: function(itemId) {
-        // FIXME: what values in Insert are needed from refreshOrder?
         var oldItem = MenuItemsInOrder.findOne(itemId)
         this.orderId = oldItem.orderId
         MenuItemsInOrder.update(itemId, {$set: {rejected: true}})
         var rejectedTemplates = MenuItemsInOrder.find({orderId: oldItem.orderId, rejected: true}).fetch()
         this.rejectedTemplates = _.pluck(rejectedTemplates, 'templateId')
-        this.addMeal(oldItem.originalSpecifications)
+        this.findChefs()
+        this.addMeal(oldItem.originalSpecifications, oldItem.priceClass)
         this.insertFoods()
     },
     refreshOrder: function(orderId) {
@@ -35,6 +35,7 @@ MenuItemsInOrderManager = {
         this.findChefs()
         this.constructMenu()
         this.cropTotalPrice()
+        MenuItemsInOrder.remove({orderId: this.orderId})
         this.insertFoods()
     },
     getRequirements() {
@@ -97,7 +98,8 @@ MenuItemsInOrderManager = {
         var mealsLeft = this.mealPlan.slice(0)
         while (!_.isEmpty(mealsLeft)) {
             var mealSpecs = mealsLeft.shift()
-            mealSpecs.minWeight = weightLeft / mealsLeft.length / this.snacksPerMeal
+            mealSpecs.minWeight = weightLeft / mealsLeft.length / this.snacksPerMeal || 0
+            mealSpecs.snacksPerMeal = this.snacksPerMeal
             var item = this.addMeal(mealSpecs)
             weightLeft = weightLeft - ( item.weight * this.snacksPerMeal )
             if (0 > weightLeft) weightLeft = 0
@@ -105,7 +107,7 @@ MenuItemsInOrderManager = {
         }
         this.printMeals()
     },
-    addMeal(mealSpecs) {
+    addMeal(mealSpecs, priceClass) {
         console.log("================ addMeal ================");
         console.log("MEAL", mealSpecs);
         var unwanted = _.union(_.pluck(this.meals, '_id'), this.tooExpensiveIds, this.rejectedTemplates)
@@ -117,6 +119,7 @@ MenuItemsInOrderManager = {
             published: true,
             foodType: mealSpecs.foodType,
         }
+        if (priceClass) find.priceClass = priceClass
         if (mealSpecs.tags) find.tags = mealSpecs.tag
         console.log("FIND", find.weight['$gt']+"g", find.foodType);
         while (!item && chefIndex < this.chefIdList.length) {
@@ -206,27 +209,36 @@ MenuItemsInOrderManager = {
             results.push(result)
         }.bind(this))
         console.log("RESULTS", results);
-        console.log("ITEMS IN ORDER", MenuItemsInOrder.find({orderId: this.orderId}).fetch().length);
+        console.log("ITEMS IN ORDER", MenuItemsInOrder.find({orderId: this.orderId, rejected: {$ne: true}}).fetch().length);
     },
-    printMeals() {
+    printMeals(fromDB) {
         console.log("");
         console.log("           CHEFID           ITEMID");
         var grossWeight = 0
         var grossPrice = 0
-        for (var i = 0; i < this.meals.length; i++) {
-            var item = this.meals[i]
+        var meals
+        if (fromDB)
+            meals = MenuItemsInOrder.find({orderId: this.orderId, rejected: {$ne: true}}).fetch()
+        else
+            meals = this.meals
+
+        for (var i = 0; i < meals.length; i++) {
+            var item = meals[i]
             grossWeight = grossWeight + item.weight
-            var mealPrice = Settings.priceClasses[this.meals[i].priceClass] * this.snacksPerMeal
+            var snacksPerMeal = this.snacksPerMeal || meals[i].originalSpecifications.snacksPerMeal
+            var mealPrice = Settings.priceClasses[meals[i].priceClass] * snacksPerMeal
             grossPrice = grossPrice + mealPrice
             console.log("ITEM", item.chefId, item._id, G.strlen(item.foodType, 7), G.strlen(item.weight+"g", 5), _.pluck(item.tags, 'name'));
         }
         console.log("");
-        console.log("TOTAL MEALS", this.meals.length, grossWeight+"g", grossPrice+"€");
+        console.log("TOTAL MEALS", meals.length, grossWeight+"g", grossPrice+"€");
         console.log("");
     },
 }
 
 MenuItemsInOrderManager.refreshOrder('AebtsdtGzwjpaBfnm')
+// MenuItemsInOrderManager.switchItem('QC3Nv8JyTb7PA4Sdy')
+MenuItemsInOrderManager.printMeals(true)
 
 /*
 refresh: function(orderId) {
