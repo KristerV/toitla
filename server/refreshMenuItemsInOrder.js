@@ -16,34 +16,53 @@ MenuItemsInOrderManager = {
     currentPrice: null,
     priceExcess: null,
     tooExpensiveIds: [],
-    refresh: function(orderId) {
-        console.log("=============== refresh ===============");
+    rejectedTemplates: [],
+    switchItem: function(itemId) {
+        // FIXME: what values in Insert are needed from refreshOrder?
+        var oldItem = MenuItemsInOrder.findOne(itemId)
+        this.orderId = oldItem.orderId
+        MenuItemsInOrder.update(itemId, {$set: {rejected: true}})
+        var rejectedTemplates = MenuItemsInOrder.find({orderId: oldItem.orderId, rejected: true}).fetch()
+        this.rejectedTemplates = _.pluck(rejectedTemplates, 'templateId')
+        this.addMeal(oldItem.originalSpecifications)
+        this.insertFoods()
+    },
+    refreshOrder: function(orderId) {
+        console.log("=============== refreshOrder ===============");
         console.log("orderId",orderId);
         this.orderId = orderId
-        this.calcMenuDetails()
+        this.getRequirements()
         this.findChefs()
         this.constructMenu()
         this.cropTotalPrice()
         this.insertFoods()
     },
-    calcMenuDetails() {
+    getRequirements() {
         // var meals = 2/3soolast( 1/3 vege + 2/3 soolast ) + 1/3magus
-        console.log("=========== calcMenuDetails ===========");
+        console.log("=========== getRequirements ===========");
+
         this.order = Orders.findOne(this.orderId)
-        if (!this.order) throw new Meteor.Error("MenuItemsInOrderManager.calcMenuDetails(): no such order exists.")
+        if (!this.order) throw new Meteor.Error("MenuItemsInOrderManager.getRequirements(): no such order exists.")
+
         var people = Number(this.order.details.peopleCount)
         console.log("people",people);
+
         var mealCount = Math.round( people / 5 )
         console.log("mealCount",mealCount);
+
         var snacksCount = mealCount * people
         console.log("snacksCount",snacksCount);
+
         this.snacksPerMeal = snacksCount / mealCount
         console.log("snacksPerMeal",this.snacksPerMeal);
+
         var mealPlan = []
         var dishVeg = mealCount * 0.15
         console.log("dishVeg", dishVeg);
+
         var dishDessert = mealCount * 0.33 + dishVeg
         console.log("dishDessert", dishDessert);
+
         for (var i = 0; i < mealCount; i++) {
             if (i < dishVeg) {
                 mealPlan.push({tag: 'meatfree', foodType: 'main'})
@@ -55,8 +74,9 @@ MenuItemsInOrderManager = {
                 mealPlan.push({foodType: 'main'})
             }
         }
-        console.log("mealPlan", mealPlan);
         this.mealPlan = mealPlan
+        console.log("mealPlan", mealPlan);
+
         this.totalWeight = people * this.settings.gramsPerPerson
         console.log("totalWeight",this.totalWeight);
     },
@@ -88,12 +108,11 @@ MenuItemsInOrderManager = {
     addMeal(mealSpecs) {
         console.log("================ addMeal ================");
         console.log("MEAL", mealSpecs);
-        var inMenu = _.pluck(this.meals, '_id')
-        inMenu = _.union(inMenu, this.tooExpensiveIds)
+        var unwanted = _.union(_.pluck(this.meals, '_id'), this.tooExpensiveIds, this.rejectedTemplates)
         var item = null
         var chefIndex = 0
         var find = {
-            _id: {$nin: inMenu},
+            _id: {$nin: unwanted},
             weight: {$gt: mealSpecs.minWeight},
             published: true,
             foodType: mealSpecs.foodType,
@@ -207,7 +226,7 @@ MenuItemsInOrderManager = {
     },
 }
 
-MenuItemsInOrderManager.refresh('AebtsdtGzwjpaBfnm')
+MenuItemsInOrderManager.refreshOrder('AebtsdtGzwjpaBfnm')
 
 /*
 refresh: function(orderId) {
