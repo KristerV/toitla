@@ -1,92 +1,24 @@
-<!-- now -->
-* menüü kliendile
-* menüü kokale - pealkiri / koostisosad / tagid
-* käsitsi majandamise võimalus
-* arve saatmine
+# BUG
+meatfree doesn't always happen
+kuidas saab menuitem undefined tulla?
+pauside arv arvestada (muud toidutüübi variandid ära võtta)
+menüü tuleb kehva kohta
+kokale teavitus tellimusest
 
-<!-- BACKLOG ---
-* koka overview on segane. Parem oleks [uus, ootab kinnitust, kinnitatud, tehtud] või üldse otse suborderiteni?
-* back lõpuks läheks äpist välja
-* notificationile klikk võiks minna otse tellimuse sisse
-* manageriks saab lisada admin
-* Tracking
-* kokkadele statistikat
-* Arve saatmise süsteem (erply API, GWA arendajalt küsida)
-	* kliendile arve
-	* kokalt toitlale arve
------------------->
+# NEXT
+Kokale teade tellimuse kohta
+Võta järgmine kokk kui üks ütleb ei
+
+# MUSTHAVE
+Logistika
+koka overview overhaul [uus, ootab kinnitust, kinnitatud, tehtud]
+Tagasiside ja ratingud
+Arve saatmine Toitlalt Kliendile (erply, GWA arendajalt saab küsida)
+Arve saatmine Kokalt Toitlale (erply, GWA arendajalt saab küsida)
 
 
-# ROLES
-# LOCKS
-# NOTIFICATIONS
-* TESTS
-
-# PROFIIL
-# 	nimi
-# 	asukoht
-# 	email
-# 	telefon
-# 	vet
-# 	billing
-# 	ettevõtte nimetus
-# 	Köögi aadress
-# 	Koduleht
-# 	"Olen teavitanud Vet ametit oma koduköögist"
-	<!-- kaart asukohaga -->
-  <!--
-  pilt
-	kirjeldus
-	oskused
-	[rating]
-	[tehtud tellimused] -->
-
-# OVERVIEW MANAGER KOKK
-	<!-- .class-1 kui vajab tähelepanu, .class-2 kui lähedal -->
-
-# ORDER
-	<!--
-	notes MANAGER
-	Tagasiside TELLIJA
-		rating
-		tekst
-	Järgmise tegevuse kuupäev ja kirjeldus
-	Actions
-		send to client - offer (arvega)
-		send to client - feedback -->
-
-# Suborder
-#		CreatedAt
-#		Detailid
-#     Inimesi
-#			allergiad
-#			Hind
-#			Aeg
-#			Sisu
-#			Organisatsioon
-#		currentChefId
-#		Kokk
-#			chefId
-#			sentAt
-		* receivedAt
-		* seenAt
-# 		repliedAt
-# 		result
-# 		Kirjeldus
-# 		Koostisosad
-#   Actions
-#			Offer to chef
-#			push notification
-		<!-- Logistika KOKK MANAGER DRIVER
-			(Asukoht)
-			Järgi minemise aeg
-			Järgi mineja
-			Märkmed
-		Tagasside TELLIJA
-			rating
-			tekst -->
-
-# CHEF LIST
-# 	name
-# 	online_idle_offline
-# 	lastReplyToThisOffer
+# NICETOHAVE
+back nupp läheks välja
+Koka profiil avalikuks
+Tellimuste thumbid muudavad värvi kui vajavad tähelepanu
+Testid

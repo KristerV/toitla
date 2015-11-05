@@ -1,10 +1,4 @@
-// FIXME: kokal max 90 suupistet või 3 snäkki
-// FIXME: meatfree doesn't always happen
-// FIXME: kuidas saab menuitem undefined tulla?
-// TODO: pauside arv
-// TODO: raha slider
-// TODO: mis tüüpi toidud kliendile jätab?
-// TODO: menüü tuleb kehva kohta
+
 var scheduledOrderRefreshes = []
 MenuItemsInOrderManager = class {
 
