@@ -48,6 +48,7 @@ MenuItemDetails = React.createClass({
         }
 
         var user = Meteor.users.findOne(menuitem.chefId) || {profile: {}}
+        var activeTagNames = _.pluck(menuitem.tags, 'name')
 
         // Render
         return(
@@ -71,7 +72,7 @@ MenuItemDetails = React.createClass({
                         errorMsg={errors.ingredients}/>
 
                     {Settings.menuitemTags.map(function(tag, i){
-                        var active = _.contains(menuitem.tags, tag.name)
+                        var active = _.contains(activeTagNames, tag.name)
                         if (menuitem.inorder && (!tag.public || !active)) return
                         return <Tag key={i}
                             label={tag.label}
