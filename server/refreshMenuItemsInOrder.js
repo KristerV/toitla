@@ -9,13 +9,26 @@ class MenuItemsInOrderManager {
     constructor(orderId) {
         check(orderId, String)
         this.orderId = orderId
+        this.order = Orders.findOne(orderId)
         this.settings = Settings.menuConstructor
-        this.meals = [] // where the result is saved
+        this.reset()
+    }
+
+    reset() {
+        this.meals = []
+        this.mealPlan = []
+        this.chefIdList = []
+        this.rejectedTemplates = []
+        this.currentPrice = null
+        this.maxPrice = null
+        this.snacksPerMeal = null
+        this.totalWeight = null
     }
 
     switchItem(itemId) {
         console.log("========================================= switchItem =========================================");
         check(itemId, String)
+        this.reset()
         var oldItem = MenuItemsInOrder.findOne(itemId)
         MenuItemsInOrder.update(itemId, {$set: {rejected: true}})
         var rejectedTemplates = MenuItemsInOrder.find({orderId: oldItem.orderId, rejected: true}).fetch()
@@ -29,6 +42,7 @@ class MenuItemsInOrderManager {
     refreshOrder() {
         console.log("============ refreshOrder ============");
         check(this.orderId, String)
+        this.reset()
         if (scheduledOrderRefreshes.indexOf(this.orderId) == -1) {
             console.log("Schedule successful");
             scheduledOrderRefreshes.push(this.orderId)
@@ -183,8 +197,6 @@ class MenuItemsInOrderManager {
         }
         this.currentPrice = currentPrice
         console.log("CURRENT", this.currentPrice);
-        this.priceExcess = this.currentPrice - this.maxPrice
-        console.log("EXCESS", this.priceExcess);
     }
     calculateMaxPrice() {
         console.log("========== calculateMaxPrice ==========");
@@ -267,8 +279,7 @@ class MenuItemsInOrderManager {
 var manager1 = new MenuItemsInOrderManager('AebtsdtGzwjpaBfnm');
 manager1.refreshOrder()
 Meteor.setTimeout(function(){
-    var manager2 = new MenuItemsInOrderManager('AebtsdtGzwjpaBfnm');
-    manager2.refreshOrder()
+    manager1.refreshOrder()
 }, 6000);
 // Meteor.setTimeout(function(){
 //     MenuItemsInOrderManager.refreshOrder('AebtsdtGzwjpaBfnm')
