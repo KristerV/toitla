@@ -185,8 +185,9 @@ MenuItemsInOrderManager = {
             newItem.chefName = Meteor.users.findOne(newItem.chefId).profile.name
             var result = MenuItemsInOrder.insert(newItem)
             results.push(result)
-        })
-        console.log("results", results);
+        }.bind(this))
+        console.log("RESULTS", results);
+        console.log("ITEMS IN ORDER", MenuItemsInOrder.find({orderId: this.orderId}).fetch().length);
     },
     printMeals() {
         console.log("");
