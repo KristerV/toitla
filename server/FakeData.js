@@ -28,7 +28,7 @@ FakeData = {
                     ingredients: Fake.sentence(10),
                     weight: Fake.fromArray([10, 50 ,100, 150, 190, 210, 260, 280, 330, 390, 450]),
                     published: true,
-                    tags: Fake.fromArray([Fake.fromArray(Settings.menuitemTags),Fake.fromArray(Settings.menuitemTags),Fake.fromArray(Settings.menuitemTags)],[],[Fake.fromArray(Settings.menuitemTags)]),
+                    tags: Fake.fromArray([[Fake.fromArray(Settings.menuitemTags),Fake.fromArray(Settings.menuitemTags),Fake.fromArray(Settings.menuitemTags)],[],[Fake.fromArray(Settings.menuitemTags)]]),
                     foodType: Fake.fromArray(Settings.foodTypes),
                     priceClass: Fake.fromArray(Settings.getKeys('priceClasses'))
                 }

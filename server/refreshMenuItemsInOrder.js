@@ -8,14 +8,17 @@ MenuItemsInOrderManager = {
     allTemplateIdsInOrder: null,
     settings: Settings.menuConstructor,
     mealPlan: null,
-    chefIds: null,
+    meals: [],
+    chefIdList: null,
+    totalWeight: null,
+    snacksPerMeal: null,
     refresh: function(orderId) {
         console.log("=============== refresh ===============");
         console.log("orderId",orderId);
         this.orderId = orderId
         this.calcMenuDetails()
         this.findChefs()
-        this.getNextFood()
+        this.constructMenu()
         this.cropTotalPrice()
         this.insertFoods()
     },
@@ -30,8 +33,8 @@ MenuItemsInOrderManager = {
         console.log("mealCount",mealCount);
         var snacksCount = mealCount * people
         console.log("snacksCount",snacksCount);
-        var snacksPerMeal = snacksCount / mealCount
-        console.log("snacksPerMeal",snacksPerMeal);
+        this.snacksPerMeal = snacksCount / mealCount
+        console.log("snacksPerMeal",this.snacksPerMeal);
         var mealPlan = []
         var dishVeg = mealCount * 0.15
         console.log("dishVeg", dishVeg);
@@ -39,31 +42,75 @@ MenuItemsInOrderManager = {
         console.log("dishDessert", dishDessert);
         for (var i = 0; i < mealCount; i++) {
             if (i < dishVeg) {
-                mealPlan.push({tags: ['meatfree'], type: 'main'})
+                mealPlan.push({tag: 'meatfree', foodType: 'main'})
             }
             else if (i < dishDessert) {
-                mealPlan.push({type: 'dessert'})
+                mealPlan.push({foodType: 'dessert'})
                 }
             else {
-                mealPlan.push({type: 'main'})
+                mealPlan.push({foodType: 'main'})
             }
         }
         console.log("mealPlan", mealPlan);
         this.mealPlan = mealPlan
+        this.totalWeight = people * this.settings.gramsPerPerson
+        console.log("totalWeight",this.totalWeight);
     },
     findChefs() {
         // chefs.find(vet, firmanimi, firmakood, kokanimi).sort(manualRating, acceptanceScore)
         console.log("============== findChefs ==============");
         var chefs = Meteor.users.find({eligible: true}, {sort: {manualRating: -1, acceptanceScore: -1}}).fetch()
-        this.chefIds = _.pluck(chefs, '_id')
+        this.chefIdList = _.pluck(chefs, '_id')
         for (var i = 0; i < chefs.length; i++) {
             console.log(chefs[i]._id, chefs[i].manualRating, chefs[i].profile.name);
         }
     },
-    getNextFood() {
+    constructMenu() {
         // meals.forEach{ menu.push( firstChef.getFood( weightLeft / mealsLeft.length, specs ) ) }
         // totalWeight = people * 250
-        console.log("============= getNextFood =============");
+        console.log("============= constructMenu =============");
+        var weightLeft = this.totalWeight
+        var mealsLeft = this.mealPlan.slice(0)
+        var lastWeight
+        while (!_.isEmpty(mealsLeft)) {
+            var inMenu = _.pluck(this.meals, '_id')
+            var meal = mealsLeft.shift()
+            console.log("MEAL", meal);
+            var minWeight = weightLeft / mealsLeft.length / this.snacksPerMeal
+            var item = null
+            var chefIndex = 0
+            var find = {
+                _id: {$nin: inMenu},
+                weight: {$gt: minWeight},
+                published: true,
+                foodType: meal.foodType,
+            }
+            if (meal.tags) find.tags = meal.tag
+            console.log("FIND", find.weight, find.foodType);
+            while (!item && chefIndex < this.chefIdList.length) {
+                var rand = Math.random()
+                find.chefId = this.chefIdList[chefIndex],
+                console.log("CHEF", find.chefId);
+                item = MenuItemTemplates.findOne(find)
+                chefIndex++
+            }
+            if (item) {
+                this.meals.push(item)
+                console.log("ITEM", item._id, item.weight+"g", _.pluck(item.tags, 'name'));
+                weightLeft = weightLeft - ( item.weight * this.snacksPerMeal )
+                if (0 > weightLeft) weightLeft = 0
+            } else
+                console.log("NO MENUITEM FOUND");
+            console.log("");
+        }
+        var grossWeight = 0
+        for (var i = 0; i < this.meals.length; i++) {
+            var item = this.meals[i]
+            grossWeight = grossWeight + item.weight
+            console.log("ITEM", item.chefId, item._id, item.foodType, item.weight+"g");
+        }
+        console.log("mealsTotal", this.meals.length, grossWeight+"g");
+
     },
     cropTotalPrice() {
         // menu.forEach{ if (maxPrice > currentPrice) { replace most expensive piece  } catch { ERROR } }
