@@ -4,7 +4,7 @@
 // TODO: schedule instead of refresh, so less CPU wasted
 // FIXME: kuidas saab menuitem undefined tulla?
 var scheduledOrderRefreshes = []
-class MenuItemsInOrderManager {
+MenuItemsInOrderManager = class {
 
     constructor(orderId, verbose) {
         check(orderId, String)
