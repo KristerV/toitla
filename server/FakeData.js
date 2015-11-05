@@ -2,20 +2,21 @@ FakeData = {
     generateFakeMenuitemTemplates: function(){
         Security.devOnly()
         for (var i = 0; i < 10; i++) {
-            var rand1 = !!parseInt(Math.random() * 4)
-            var rand2 = !!parseInt(Math.random() * 3)
-            var rand3 = !!parseInt(Math.random() * 2)
+            var rand = !!parseInt(Math.random() * 3)
             var userId = Meteor.users.insert({
                 roles: [ 'chef' ],
                 profile: {
-                    name: rand1 ? Fake.sentence(2) : null,
-                    vet: rand2 ? true : null,
+                    name: rand ? Fake.sentence(2) : null,
+                    vet: rand ? true : null,
                     address: Fake.sentence(2),
-                    companyCode: rand3 ? Fake.sentence(1) : null,
-                    companyName: rand3 ? Fake.sentence(1) : null,
+                    companyCode: rand ? Fake.sentence(1) : null,
+                    companyName: rand ? Fake.sentence(1) : null,
                     homepage: Fake.sentence(1),
                     tel: Fake.sentence(1),
                 },
+                eligible: rand ? true : false,
+                manualRating: parseInt( Math.random() * 5 ),
+                acceptanceScore: parseInt( Math.random() * 5 ),
                 emails: [{address: Fake.word()+"@address.ee"}],
             });
             if (userId) console.info("Generated user: " + userId)

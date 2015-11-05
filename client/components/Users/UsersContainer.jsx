@@ -26,6 +26,7 @@ UsersContainer = React.createClass({
                   <th className="mdl-data-table__cell--non-numeric">Nimi</th>
                   <th>E-mail</th>
                   <th>Vet</th>
+                  <th>rating</th>
                   <th>Viimati online</th>
                   <th></th>
                   <th></th>
@@ -43,6 +44,13 @@ UsersContainer = React.createClass({
                             <label className="mdl-checkbox mdl-js-checkbox">
                                 <input type="checkbox" className="mdl-checkbox__input" checked={profile.vet} readOnly={true}/>
                             </label>
+                        </td>
+                        <td>
+                            <TextInput
+                                editMode={true}
+                                value={user.manualRating}
+                                name="manualRating"
+                                onBlur={user.handleTextFieldChange.bind(user)}/>
                         </td>
                         <td>{lastLogin}</td>
                         <td>

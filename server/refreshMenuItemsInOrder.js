@@ -7,6 +7,8 @@ MenuItemsInOrderManager = {
     order: null,
     allTemplateIdsInOrder: null,
     settings: Settings.menuConstructor,
+    mealPlan: null,
+    chefIds: null,
     refresh: function(orderId) {
         console.log("=============== refresh ===============");
         console.log("orderId",orderId);
@@ -52,6 +54,10 @@ MenuItemsInOrderManager = {
     findChefs() {
         // chefs.find(vet, firmanimi, firmakood, kokanimi).sort(manualRating, acceptanceScore)
         console.log("============== findChefs ==============");
+        var chefs = Meteor.users.find({eligible: true}, {sort: {manualRating: -1, acceptanceScore: -1}}).fetch()
+        this.chefIds = _.pluck(chefs, '_id')
+        console.log(this.chefIds);
+
     },
     getNextFood() {
         // meals.forEach{ menu.push( firstChef.getFood( weightLeft / mealsLeft.length, specs ) ) }
