@@ -34,7 +34,7 @@ class MenuItemsInOrderManager {
         var rejectedTemplates = MenuItemsInOrder.find({orderId: oldItem.orderId, rejected: true}).fetch()
         this.rejectedTemplates = _.pluck(rejectedTemplates, 'templateId')
         this.findChefs()
-        olditem.originalSpecifications.priceClass = oldItem.priceClass
+        oldItem.originalSpecifications.priceClass = oldItem.priceClass
         this.addMeal(oldItem.originalSpecifications)
         this.insertFoods()
     }
@@ -276,7 +276,7 @@ class MenuItemsInOrderManager {
     }
 }
 
-var manager1 = new MenuItemsInOrderManager('AebtsdtGzwjpaBfnm');
+manager1 = new MenuItemsInOrderManager('AebtsdtGzwjpaBfnm');
 manager1.refreshOrder()
 Meteor.setTimeout(function(){
     manager1.refreshOrder()
