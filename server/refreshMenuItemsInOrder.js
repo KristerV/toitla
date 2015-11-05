@@ -1,7 +1,8 @@
 // FIXME: kokal max 90 suupistet või 3 snäkki
 // FIXME: 2 kokka, 5:1 toitude arv
 // FIXME: meatfree doesn't always happen
-
+// TODO: schedule instead of refresh, so less CPU wasted
+var scheduledOrderRefreshes = []
 MenuItemsInOrderManager = {
     settings: Settings.menuConstructor,
     order: null,
@@ -18,17 +19,37 @@ MenuItemsInOrderManager = {
     tooExpensiveIds: [],
     rejectedTemplates: [],
     switchItem: function(itemId) {
+        console.log("");
+        console.log("========================================= switchItem =========================================");
+        check(itemId, String)
         var oldItem = MenuItemsInOrder.findOne(itemId)
         this.orderId = oldItem.orderId
         MenuItemsInOrder.update(itemId, {$set: {rejected: true}})
         var rejectedTemplates = MenuItemsInOrder.find({orderId: oldItem.orderId, rejected: true}).fetch()
         this.rejectedTemplates = _.pluck(rejectedTemplates, 'templateId')
         this.findChefs()
-        this.addMeal(oldItem.originalSpecifications, oldItem.priceClass)
+        olditem.originalSpecifications.priceClass = oldItem.priceClass
+        this.addMeal(oldItem.originalSpecifications)
         this.insertFoods()
     },
-    refreshOrder: function(orderId) {
-        console.log("=============== refreshOrder ===============");
+    scheduleRefreshOrder: function(orderId) {
+        console.log("============ scheduleRefreshOrder ============");
+        check(orderId, String)
+        if (scheduledOrderRefreshes.indexOf(orderId) == -1) {
+            console.log("Schedule successful");
+            scheduledOrderRefreshes.push(orderId)
+            Meteor.setTimeout(function(){
+                 scheduledOrderRefreshes.splice(scheduledOrderRefreshes.indexOf(orderId), 1)
+                 this.refreshOrder(orderId)
+            }.bind(this), 2000);
+        } else {
+            console.log("Schedule FAILED");
+        }
+    },
+        refreshOrder: function(orderId) {
+        console.log("");
+        console.log("========================================= refreshOrder =========================================");
+        check(orderId, String)
         console.log("orderId",orderId);
         this.orderId = orderId
         this.getRequirements()
@@ -84,7 +105,7 @@ MenuItemsInOrderManager = {
     findChefs() {
         // chefs.find(vet, firmanimi, firmakood, kokanimi).sort(manualRating, acceptanceScore)
         console.log("============== findChefs ==============");
-        var chefs = Meteor.users.find({eligible: true}, {sort: {manualRating: -1, acceptanceScore: -1}}).fetch()
+        var chefs = Meteor.users.find({eligible: true}, {sort: {manualRating: -1, acceptanceScore: -1}, limit: 20}).fetch()
         this.chefIdList = _.pluck(chefs, '_id')
         for (var i = 0; i < chefs.length; i++) {
             console.log(chefs[i]._id, chefs[i].manualRating, chefs[i].profile.name);
@@ -107,35 +128,46 @@ MenuItemsInOrderManager = {
         }
         this.printMeals()
     },
-    addMeal(mealSpecs, priceClass) {
+    addMeal(mealSpecs, ignoreUnwanted) {
         console.log("================ addMeal ================");
         console.log("MEAL", mealSpecs);
-        var unwanted = _.union(_.pluck(this.meals, '_id'), this.tooExpensiveIds, this.rejectedTemplates)
         var item = null
-        var chefIndex = 0
         var find = {
-            _id: {$nin: unwanted},
             weight: {$gt: mealSpecs.minWeight},
             published: true,
             foodType: mealSpecs.foodType,
         }
-        if (priceClass) find.priceClass = priceClass
+        if (!ignoreUnwanted) {
+            var unwanted = _.union(_.pluck(this.meals, '_id'), this.tooExpensiveIds, this.rejectedTemplates)
+            find._id = {$nin: unwanted}
+        }
+        if (mealSpecs.priceClass) find.priceClass = mealSpecs.priceClass
         if (mealSpecs.tags) find.tags = mealSpecs.tag
         console.log("FIND", find.weight['$gt']+"g", find.foodType);
+
+        var chefIndex = 0
         while (!item && chefIndex < this.chefIdList.length) {
+            // TODO: rand not implemented
             var rand = Math.random()
             find.chefId = this.chefIdList[chefIndex],
             console.log("CHEF", find.chefId);
+            console.log("");
+            console.log(find);
+            console.log("");
             item = MenuItemTemplates.findOne(find)
             chefIndex++
         }
+
         if (item) {
             item.originalSpecifications = mealSpecs
             this.meals.push(item)
             console.log("ITEM", item._id, item.weight+"g", _.pluck(item.tags, 'name'));
             return item
-        } else
-            throw new Meteor.Error("NO MENUITEM FOUND")
+        } else if (ignoreUnwanted) {
+            throw new Meteor.Error("STILL NO MENUITEM")
+        } else {
+            this.addMeal(mealSpecs, true)
+        }
     },
     cropTotalPrice() {
         // menu.forEach{ if (maxPrice > currentPrice) { replace most expensive piece  } catch { ERROR } }
@@ -236,9 +268,24 @@ MenuItemsInOrderManager = {
     },
 }
 
-MenuItemsInOrderManager.refreshOrder('AebtsdtGzwjpaBfnm')
+MenuItemsInOrderManager.scheduleRefreshOrder('AebtsdtGzwjpaBfnm')
+Meteor.setTimeout(function(){
+    MenuItemsInOrderManager.scheduleRefreshOrder('AebtsdtGzwjpaBfnm')
+}, 3000);
+// Meteor.setTimeout(function(){
+//     MenuItemsInOrderManager.scheduleRefreshOrder('AebtsdtGzwjpaBfnm')
+// }, 7000);
+// Meteor.setTimeout(function(){
+//     MenuItemsInOrderManager.scheduleRefreshOrder('AebtsdtGzwjpaBfnm')
+// }, 10000);
+// Meteor.setTimeout(function(){
+//     MenuItemsInOrderManager.scheduleRefreshOrder('AebtsdtGzwjpaBfnm')
+// }, 13000);
+// Meteor.setTimeout(function(){
+//     MenuItemsInOrderManager.scheduleRefreshOrder('AebtsdtGzwjpaBfnm')
+// }, 16000);
 // MenuItemsInOrderManager.switchItem('QC3Nv8JyTb7PA4Sdy')
-MenuItemsInOrderManager.printMeals(true)
+// MenuItemsInOrderManager.printMeals(true)
 
 /*
 refresh: function(orderId) {
