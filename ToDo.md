@@ -1,9 +1,12 @@
 # NOW
+peida kliendi eest menüü ära ja enable lives!
 meatfree doesn't always happen
 kuidas saab menuitem undefined tulla?
 pauside arv arvestada (muud toidutüübi variandid ära võtta)
 menüü tuleb kehva kohta
 kokale teavitus tellimusest
+tõlkida inglise keelde
+kas 0.5 on adekvaatne omahind?
 
 # NEXT
 Kokale teade tellimuse kohta
