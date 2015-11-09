@@ -43,37 +43,38 @@ Landing = React.createClass({
       <div className="logo"><img className="toitla" src="/icons/white-toitla.svg"/>
       </div>
       <table className="main">
+      <tbody>
         <tr>
           <td className="left">
-            <h2>Toome kodused suupisted, küpsetised ja näpu-lõunad Sinu üritusele</h2>
+            <h3 dangerouslySetInnerHTML={T("landing","tagline_client")}></h3>
             <div onClick={this.goNewOrder} className="btn order">
-              <p><strong>Telli</strong> </p>
+              <p style={{fontSize: "1.3em", padding: "0.25em"}}><strong dangerouslySetInnerHTML={T("landing","order_now")}></strong> </p>
             </div>
           </td>
           <td className="right">
-            <h2>Soovid pakkuda oma suupisteid või küpsetisi?</h2>
+            <h3 dangerouslySetInnerHTML={T("landing","tagline_chef")}></h3>
             <div onClick={this.goLogin} className="btn chef">
-              <p><strong>Liitu</strong> </p>
+              <p style={{fontSize: "1.3em", padding: "0.25em"}}><strong dangerouslySetInnerHTML={T("landing","signup")}></strong> </p>
             </div>
           </td>
         </tr>
+        </tbody>
       </table>
       <div className="bottom">
         <a className="facebook" href="https://www.facebook.com/toitlacom" target="_blank">Facebook</a>
       </div>
-      <h1 className="huge2">Kontakt</h1>
+      <h1 className="huge2" dangerouslySetInnerHTML={T("landing","contact")}></h1>
       <p className="tekst">food@toitla.com</p>
       <p className="tekst">+372 521 6686</p>
       <p className="tekst">Orase 4a, Tallinn, Estonia</p>
-      <h1 className="huge">Meist</h1>
-      <p className="tekst">Meil sai suurköökide suupistetest villand. Otsustasime turule tuua väiksed, kuid suure südamega tegijad. Toitla ühendab endas kirglikke kodukokkasid, kohalikke pisipagareid, kodukohvikuid ja teisi iseseisvaid tegijad. Teeme Sulle isikupärased suupisted, kodused küpsetised ja eripärased näpu-lõunad imelihtsalt kättesaadavaks.
-Meil on veel pikk iduettevõtlusteekond käia, kuid lubame, et juba täna üllatame Sind üle ootuste positiivselt (ja kui ei üllata, siis me tahame sellest teada!). Kui Sul on häid mõtteid meie tegevuse osas või tahad kaasa lüüa, siis võta meiega ühendust.</p>
-      <h1 className="huge">Pakume</h1>
-      <p className="tekst">Kui plaanid mõne ürituse kohvipausi või lõunat, sünnipäeva sõprade seltsis, tähtpäeva tööl või lihtsalt erilisemat hetke mõne seltskonnaga, siis meil saad just Sulle sobivad soolased ja magusad suupisted. Meie kokad kasutavad naturaalset ja värsket toorainet, tööstuslikke lisaaineid lisamata. Võimalusel eelistatakse kodumaist tootjat või ka oma enda koduaia saadusi. Pöörame erilist tähelepanu toitumise erivajadustele ja allergiatele. Meie jaoks kõige olulisem on tagada toidu kvaliteet. Toidud valmistatakse vaid konkreetsele üritusele vahetult enne üritust. Vajadusel pakume juurde värskelt röstitud ning kohapeal valmistatud kohvi, naturaalset teed ja maitsestatud kraanivett. Tegutseme Tallinnas ja suupisteid pakume gruppidele alates 15 inimesest.</p>
+      <h1 className="huge" dangerouslySetInnerHTML={T("landing","about_us")}></h1>
+      <p className="tekst" dangerouslySetInnerHTML={T("landing","about_us_content")}></p>
+      <h1 className="huge" dangerouslySetInnerHTML={T("landing","we_offer")}></h1>
+      <p className="tekst" dangerouslySetInnerHTML={T("landing","we_offer_content")}></p>
       <div className="gallery">
-        <h1 className="huge2">Oleme kostitanud üle 1000 inimese ja pakkunud enam kui 4100 suupistet.</h1>
-        <h1>Fleep kliendiüritus</h1>
-        <h2>100 inimest, üks päev</h2>
+        <h1 className="huge2" dangerouslySetInnerHTML={T("landing","tagline_served")}></h1>
+        <h1 dangerouslySetInnerHTML={T("landing","fleep")}></h1>
+        <h2 dangerouslySetInnerHTML={T("landing","fleep_content")}></h2>
         <div className="images">
           <a href="/images/events/Fleep/fleep5.JPG" data-lightbox="images">
             <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep5.JPG)"}}>
@@ -172,8 +173,8 @@ Meil on veel pikk iduettevõtlusteekond käia, kuid lubame, et juba täna üllat
             </div>
           </a>
         </div>
-        <h1>GoingGlobal module 2</h1>
-        <h2>60 inimest, 2 päeva</h2>
+        <h1 dangerouslySetInnerHTML={T("landing","GG")}></h1>
+        <h2 dangerouslySetInnerHTML={T("landing","GG_content")}></h2>
         <div className="images">
           <a href="/images/events/GoigGlobalM2/HeiliSandwichCake.jpg" data-lightbox="images">
             <div className="image" style={{"backgroundImage":"url(/images/events/GoigGlobalM2/HeiliSandwichCake.jpg)"}}>
@@ -260,10 +261,8 @@ Meil on veel pikk iduettevõtlusteekond käia, kuid lubame, et juba täna üllat
             </div>
           </a>
         </div>
-        <h1>Engage Estonia
-        </h1>
-        <h2>100 inimest, üks päev
-        </h2>
+        <h1 dangerouslySetInnerHTML={T("landing","engage_estonia")}></h1>
+        <h2 dangerouslySetInnerHTML={T("landing","engage_estonia_content")}></h2>
         <div className="images">
           <a href="/images/events/EngageEstonia/_MG_4022.jpg" data-lightbox="images">
             <div className="image" style={{"backgroundImage":"url(/images/events/EngageEstonia/_MG_4022.jpg)"}}>
@@ -336,7 +335,6 @@ Meil on veel pikk iduettevõtlusteekond käia, kuid lubame, et juba täna üllat
         </div>
       </div>
       <div className="bottom-margin">
-      <p>tere</p>
       </div>
 		</div>
 		        )
