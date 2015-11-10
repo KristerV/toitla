@@ -56,14 +56,14 @@ MenuItemDetails = React.createClass({
                 <div className="padding">
                     <p>{menuitem.chefName || user.profile.name}</p>
                     <TextInput
-                        editMode={this.state.editMode}
+                        disabled={!this.state.editMode}
                         label="Toidu nimetus"
                         value={menuitem.title}
                         name="title"
                         onBlur={this.updateText}
                         errorMsg={errors.title}/>
                     <TextInput
-                        editMode={this.state.editMode}
+                        disabled={!this.state.editMode}
                         label="Koostisosad"
                         value={menuitem.ingredients}
                         rows="1"
@@ -76,7 +76,7 @@ MenuItemDetails = React.createClass({
                         if (menuitem.inorder && (!tag.public || !active)) return
                         return <Tag key={i}
                             label={tag.label}
-                            editMode={this.state.editMode}
+                            disabled={!this.state.editMode}
                             active={active}
                             name={tag.name}
                             color={tag.color}
@@ -125,7 +125,7 @@ MenuItemDetails = React.createClass({
                 </div>
             </div>
             <TextInput
-                editMode={this.state.editMode}
+                disabled={!this.state.editMode}
                 label="Kaal (g)"
                 value={menuitem.weight}
                 name="weight"

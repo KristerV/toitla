@@ -47,7 +47,6 @@ UsersContainer = React.createClass({
                         </td>
                         <td>
                             <TextInput
-                                editMode={true}
                                 value={user.manualRating}
                                 name="manualRating"
                                 onBlur={user.handleTextFieldChange.bind(user)}/>

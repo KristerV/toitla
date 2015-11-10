@@ -41,7 +41,7 @@ TextInput = React.createClass({
                     defaultValue={this.props.value}
                     rows={this.props.rows}
                     onBlur={this.props.onBlur}
-                    disabled={!this.props.editMode}/>
+                    disabled={this.props.disabled}/>
         } else {
             return <input
                     className={"mdl-textfield__input " + errorClass}
@@ -52,7 +52,7 @@ TextInput = React.createClass({
                     key={4}
                     defaultValue={this.props.value}
                     onBlur={this.props.onBlur}
-                    disabled={!this.props.editMode}/>
+                    disabled={this.props.disabled}/>
         }
     }
 })

@@ -10,7 +10,7 @@ StatusForm = React.createClass({
     },
 
     updatePhase(e, selectedIndex, menuitem) {
-        this.props.order.updatePhase(menuitem.value)
+        this.props.order.updatePhase(e.value)
     },
 
     deleteOrder(e) {
