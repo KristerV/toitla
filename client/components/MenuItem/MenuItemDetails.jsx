@@ -103,7 +103,7 @@ MenuItemDetails = React.createClass({
                         {value: 'dessert', text: 'magus'},
                         ]}
                         name="foodType"
-                        editMode={this.state.editMode}
+                        disabled={!this.state.editMode}
                         autoWidth={false}
                         selectedIndex={Settings.getIndexOfSetting('foodTypes', menuitem.foodType, true)}
                         onChange={this.changeDropdown}
@@ -117,7 +117,7 @@ MenuItemDetails = React.createClass({
                         {value: 'class3', text: 'Tükihind '+Settings.priceClasses.class3},
                         ]}
                         name="priceClass"
-                        editMode={this.state.editMode}
+                        disabled={!this.state.editMode}
                         autoWidth={false}
                         selectedIndex={Settings.getIndexOfSetting('priceClasses', menuitem.priceClass, true)}
                         onChange={this.changeDropdown}

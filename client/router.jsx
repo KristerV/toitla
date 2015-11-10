@@ -79,10 +79,10 @@ FlowRouter.route('/tellimus/:orderId', {
 	name: "order",
 	action: function(params) {
 		if (!Meteor.userId())
-			ReactLayout.render(OrderForm, {orderId: params.orderId})
+			ReactLayout.render(OrderContainer, {orderId: params.orderId})
 		else
 			ReactLayout.render(Layout, {
-			content: <OrderForm orderId={params.orderId}/>
+			content: <OrderContainer orderId={params.orderId}/>
 		});
 	}
 });

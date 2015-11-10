@@ -81,9 +81,9 @@ DetailsForm = React.createClass({
 
     render() {
         var order = this.props.order
-        var userId = Meteor.userId()
-        var disabledDetails = !order.allowedEdit(userId, 'details')
-        var disabledContact = !order.allowedEdit(userId, 'contact')
+
+        if (!order)
+            return <div className="mdl-spinner mdl-js-spinner is-active"></div>
 
         // Delay between today and possible to order
         var minimumDate = moment().add(Settings.minimum_days_notice, 'days').toDate()
@@ -92,7 +92,6 @@ DetailsForm = React.createClass({
         if (!order.submitted) {
             var submitButton = <RaisedButton
                 style={{display: 'block', margin: 'auto', width: '150px'}}
-                disabled={disabledDetails}
                 type="submit"
                 label="Esita tellimus"
                 primary={true}/>
@@ -109,7 +108,6 @@ DetailsForm = React.createClass({
             var priceLabel = "Hind (orig: "+order.details.originalPrice+"/ kalk: "+order.details.calculatedPrice+")"
             var price =
                 <TextField
-                    disabled={disabledDetails}
                     floatingLabelText={priceLabel}
                     name="details.customPrice"
                     onChange={this.handleTextFieldChange}
@@ -120,7 +118,6 @@ DetailsForm = React.createClass({
             <form onSubmit={this.handleSubmit}>
                 <Paper className="padding margin paper-initial-order">
                     <TextField
-                        disabled={disabledDetails}
                         floatingLabelText="Inimeste arv"
                         name="details.peopleCount"
                         onChange={this.handleTextFieldChange}
@@ -128,14 +125,12 @@ DetailsForm = React.createClass({
                         value={order.details.peopleCount}
                         errorText={this.state['details.peopleCount']} />
                     <TextField
-                        disabled={disabledDetails}
                         floatingLabelText="Asukoht"
                         name="details.location"
                         onChange={this.handleTextFieldChange}
                         value={order.details.location}
                         errorText={this.state['details.location']} />
                     <DatePicker
-                        disabled={disabledDetails}
                         floatingLabelText="Kuupäev"
                         minDate={minimumDate}
                         onChange={this.handleFromDateChange}
@@ -144,7 +139,6 @@ DetailsForm = React.createClass({
                         formatDate={this.getDateFormat}
                         errorText={this.state['details.fromDate']} />
                     <TimePicker
-                        disabled={disabledDetails}
                         floatingLabelText="Kellaaeg"
                         format="24hr"
                         onChange={this.handleFromTimeChange}
@@ -153,28 +147,24 @@ DetailsForm = React.createClass({
                 </Paper>
                 <Paper className="padding margin paper-initial-order">
                     <TextField
-                        disabled={disabledContact}
                         floatingLabelText="Organisatsioon"
                         name="contact.organization"
                         onChange={this.handleTextFieldChange}
                         value={order.contact.organization}
                         errorText={this.state['contact.organization']} />
                     <TextField
-                        disabled={disabledContact}
                         floatingLabelText="Kontakti nimi"
                         name="contact.name"
                         onChange={this.handleTextFieldChange}
                         value={order.contact.name}
                         errorText={this.state['contact.name']} />
                     <TextField
-                        disabled={disabledContact}
                         floatingLabelText="Telefoni number"
                         name="contact.number"
                         onChange={this.handleTextFieldChange}
                         value={order.contact.number}
                         errorText={this.state['contact.number']} />
                     <TextField
-                        disabled={disabledContact}
                         floatingLabelText="E-mail"
                         name="contact.email"
                         onChange={this.handleTextFieldChange}
@@ -204,7 +194,6 @@ DetailsForm = React.createClass({
                         if (order.details.serviceType === 'catering') {
                             return <div>
                                 <TextField
-                                    disabled={disabledDetails}
                                     floatingLabelText="Kohvi-/suupistepauside arv"
                                     name="details.mealCount"
                                     onChange={this.handleTextFieldChange}
@@ -218,21 +207,18 @@ DetailsForm = React.createClass({
                 </Paper>
                 <Paper className="padding margin">
                     <TextField
-                        disabled={disabledDetails}
                         className="full-width"
                         floatingLabelText="Mis üritusega on tegemist?"
                         name="details.eventDescription"
                         onChange={this.handleTextFieldChange}
                         value={order.details.eventDescription}/>
                     <TextField
-                        disabled={disabledDetails}
                         className="full-width"
                         floatingLabelText="Allergiad"
                         name="details.allergies"
                         onChange={this.handleTextFieldChange}
                         value={order.details.allergies}/>
                     <TextField
-                        disabled={disabledDetails}
                         className="full-width"
                         floatingLabelText="Lisainfo"
                         rows={4}

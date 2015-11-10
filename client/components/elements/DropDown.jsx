@@ -19,7 +19,7 @@ DropDown = React.createClass({
     },
 
     render() {
-        var editMode = this.props.editMode
+        var disabled = this.props.disabled
 
         // STYLES
         var style = {}
@@ -30,7 +30,7 @@ DropDown = React.createClass({
             style.width = '100%'
             divStyle.width = '100%'
         }
-        if (!editMode) {
+        if (disabled) {
             iconStyle['opacity'] = 0
             underlineStyle['opacity'] = 0
         }
@@ -40,7 +40,7 @@ DropDown = React.createClass({
 
         // CLASSES
         var divClass = "dropdown"
-        if (!editMode)
+        if (disabled)
             divClass += " disabled"
 
         return(<div style={divStyle} className={divClass}><DropDownMenu
@@ -54,7 +54,7 @@ DropDown = React.createClass({
             iconStyle={iconStyle}
             labelStyle={{paddingLeft: "2px", color: "black"}}
             style={style}
-            disabled={!this.props.editMode}
+            disabled={this.props.disabled}
             onChange={this.onChange}
             />
             <span style={{
