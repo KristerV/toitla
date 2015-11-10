@@ -7,10 +7,10 @@ NewOrder = React.createClass({
         return(<div>
             <StatusForm order={order}/>
             <OrderContactForm order={order}/>
-            {/*<EventDetailsForm order={order}/>*/}
-            {/*<AllergiesForm order={order}/>*/}
-            {/*<PriceForm order={order}/>*/}
-            {/*<OutroForm order={order} header="Testing question" description="smaller text" onPrimaryClick={this.onPrimaryClick} onSecondaryClick={this.onSecondaryClick} />*/}
+            <OrderEventForm order={order}/>
+            {/*<OrderAllergiesForm order={order}/>*/}
+            {/*<OrderPriceForm order={order}/>*/}
+            {/*<OrderOutroForm order={order} header="Testing question" description="smaller text" onPrimaryClick={this.onPrimaryClick} onSecondaryClick={this.onSecondaryClick} />*/}
             {menuitems}
         </div>)
     }
