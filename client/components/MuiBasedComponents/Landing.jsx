@@ -68,11 +68,11 @@ Landing = React.createClass({
       <p className="tekst">+372 521 6686</p>
       <p className="tekst">Orase 4a, Tallinn, Estonia</p>
       <h1 className="huge" dangerouslySetInnerHTML={T("landing","about_us")}></h1>
-      <p className="tekst" dangerouslySetInnerHTML={T("landing","about_us_content")}></p>
+      <p className="tekst" dangerouslySetInnerHTML={T("landing","about_us_content", true)}></p>
       <h1 className="huge" dangerouslySetInnerHTML={T("landing","we_offer")}></h1>
-      <p className="tekst" dangerouslySetInnerHTML={T("landing","we_offer_content")}></p>
+      <p className="tekst" dangerouslySetInnerHTML={T("landing","we_offer_content", true)}></p>
       <div className="gallery">
-        <h1 className="huge2" dangerouslySetInnerHTML={T("landing","tagline_served")}></h1>
+        <h1 className="huge2" dangerouslySetInnerHTML={T("landing","tagline_served", true)}></h1>
         <h1 dangerouslySetInnerHTML={T("landing","fleep")}></h1>
         <h2 dangerouslySetInnerHTML={T("landing","fleep_content")}></h2>
         <div className="images">

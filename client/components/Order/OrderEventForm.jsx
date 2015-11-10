@@ -2,39 +2,57 @@ OrderEventForm = React.createClass({
     handleTextFieldChange(e) {
         this.props.order.handleTextFieldChange(e)
     },
+
+    handleFromDateChange(nill, date) {
+        this.props.order.updateField('event.fromDate', date)
+    },
+
+    handleFromTimeChange(nill, date) {
+        this.props.order.updateField('event.fromTime', date)
+    },
+
     render() {
-        // if (!this.props.order)
-        //     return(<Loader/>)
+        if (!this.props.order)
+            return(<Loader/>)
         var order = this.props.order
-        // order.errors = order.errors || {}
+        order.event = order.event || {}
+        order.errors = order.errors || {}
+
+        // Delay between today and possible to order
+        var minimumDate = moment().add(Settings.minimum_days_notice, 'days').toDate()
+
         return(<div className="paper margin padding">
             <Loader ifNot={order.event}/>
             <TextInput
-                label=T("people_count")
+                label={T("order", "people_count")}
                 name="event.peopleCount"
                 onBlur={this.handleTextFieldChange}
                 value={order.event.peopleCount}
+                pattern="-?[0-9]*(\.[0-9]+)?"
+                patternError={T("order", "people_count_patternError")}
                 errorMsg={order.errors['event.peopleCount']} />
             <TextInput
-                label=T("location")
+                label={T("order", "location")}
                 name="event.location"
                 onBlur={this.handleTextFieldChange}
                 value={order.event.location}
                 errorMsg={order.errors['event.location']} />
-            <TextInput
-                label=T("from_date")
+            <DatePickerMUI
+                label={T("order","from_date")}
+                minDate={minimumDate}
+                onChange={this.handleFromDateChange}
                 name="event.fromDate"
-                onBlur={this.handleTextFieldChange}
-                value={order.event.fromDate}
+                defaultDate={order.event.fromDate}
+                autoOk={true}
                 errorMsg={order.errors['event.fromDate']} />
-            <TextInput
-                label=T("from_time")
-                name="event.fromTime"
-                onBlur={this.handleTextFieldChange}
+            <TimePickerMUI
+                label={T("order", "from_time")}
+                onChange={this.handleFromTimeChange}
                 value={order.event.fromTime}
+                name="event.fromTime"
                 errorMsg={order.errors['event.fromTime']} />
             <TextInput
-                label=T("event_type")
+                label={T("order", "event_type")}
                 name="event.eventType"
                 onBlur={this.handleTextFieldChange}
                 value={order.event.eventType}

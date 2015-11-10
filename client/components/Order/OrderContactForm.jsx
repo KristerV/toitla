@@ -26,7 +26,7 @@ OrderContactForm = React.createClass({
                 onBlur={this.handleTextFieldChange}
                 value={order.contact.number}
                 pattern="-?[0-9]*(\.[0-9]+)?"
-                patternError={T("order", "number")} // "Palun sisesta number"
+                patternError={T("order", "telephone_patternError")}
                 errorMsg={order.errors['contact.number']} />
             <TextInput
                 label={T("order", "email")}
@@ -34,7 +34,7 @@ OrderContactForm = React.createClass({
                 onBlur={this.handleTextFieldChange}
                 value={order.contact.email}
                 pattern="^[^@]+@[^@]+\.[^@]+$"
-                patternError={T("order","email_patternError")} // "Oled kindel, et see on su email?"
+                patternError={T("order","email_patternError")}
                 errorMsg={order.errors['contact.email']} />
             <Loader ifNot={order.contact}/>
         </div>)

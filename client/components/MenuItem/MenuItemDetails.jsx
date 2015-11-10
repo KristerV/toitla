@@ -97,7 +97,7 @@ MenuItemDetails = React.createClass({
         return <div>
             <div className="w100">
                 <div style={{width: '50%'}} className="inline vtop paddingr box">
-                    <DropDown menuItems={[
+                    <DropDownMUI menuItems={[
                         {value: null, text: 'tüüp'},
                         {value: 'main', text: 'soolane'},
                         {value: 'dessert', text: 'magus'},
@@ -110,7 +110,7 @@ MenuItemDetails = React.createClass({
                         errorMsg={errors.foodType}/>
                 </div>
                 <div style={{width: '50%'}} className="inline vtop paddingl box">
-                    <DropDown menuItems={[
+                    <DropDownMUI menuItems={[
                         {value: null, text: 'Hinnaklass'},
                         {value: 'class1', text: 'Tükihind '+Settings.priceClasses.class1},
                         {value: 'class2', text: 'Tükihind '+Settings.priceClasses.class2},

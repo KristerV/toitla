@@ -6,7 +6,7 @@ var {
 } = MUI;
 var { ThemeManager, LightRawTheme } = Styles;
 
-DropDown = React.createClass({
+DropDownMUI = React.createClass({
     childContextTypes: { muiTheme: React.PropTypes.object, },
     getChildContext() { return { muiTheme: ThemeManager.getMuiTheme(LightRawTheme), } },
 
