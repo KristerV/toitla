@@ -4,7 +4,7 @@ OrderGuestAllergyForm = React.createClass({
         var value = $('input[name=guestAllergyInput]').val()
         $('input[name=guestAllergyInput]').val("")
         this.props.order.pushToArray("allergies.guests", value)
-        alert(T("allergy_submit"))
+        alert(T("order", "allergy_alert"))
     },
 
     render() {
