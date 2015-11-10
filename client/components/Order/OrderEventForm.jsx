@@ -24,6 +24,18 @@ OrderEventForm = React.createClass({
         return(<div className="paper margin padding">
             <Loader ifNot={order.event}/>
             <TextInput
+                label={T("order", "event_name")}
+                name="event.eventName"
+                onBlur={this.handleTextFieldChange}
+                value={order.event.eventName}
+                errorMsg={order.errors['event.eventName']} />
+            <TextInput
+                label={T("order", "event_type")}
+                name="event.eventType"
+                onBlur={this.handleTextFieldChange}
+                value={order.event.eventType}
+                errorMsg={order.errors['event.eventType']} />
+            <TextInput
                 label={T("order", "people_count")}
                 name="event.peopleCount"
                 onBlur={this.handleTextFieldChange}
@@ -51,12 +63,6 @@ OrderEventForm = React.createClass({
                 value={order.event.fromTime}
                 name="event.fromTime"
                 errorMsg={order.errors['event.fromTime']} />
-            <TextInput
-                label={T("order", "event_type")}
-                name="event.eventType"
-                onBlur={this.handleTextFieldChange}
-                value={order.event.eventType}
-                errorMsg={order.errors['event.eventType']} />
 
         </div>)
     }

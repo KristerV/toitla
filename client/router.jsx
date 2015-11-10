@@ -87,6 +87,18 @@ FlowRouter.route('/tellimus/:orderId', {
 	}
 });
 
+FlowRouter.route('/allergia/:allergyId', {
+	name: "guestAllergy",
+	action: function(params) {
+		if (!Meteor.userId())
+			ReactLayout.render(GuestAllergyContainer, {allergyId: params.allergyId})
+		else
+			ReactLayout.render(Layout, {
+			content: <GuestAllergyContainer allergyId={params.allergyId}/>
+		});
+	}
+});
+
 FlowRouter.route('/alatellimus/:suborderId', {
 	triggersEnter: [loginRequired, startIdleMonitor],
 	action: function(params) {

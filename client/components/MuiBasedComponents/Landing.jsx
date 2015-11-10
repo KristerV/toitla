@@ -46,15 +46,15 @@ Landing = React.createClass({
       <tbody>
         <tr>
           <td className="left">
-            <h3 dangerouslySetInnerHTML={T("landing","tagline_client")}></h3>
+            <h3>{T("landing","tagline_client")}></h3>
             <div onClick={this.goNewOrder} className="btn order">
-              <p style={{fontSize: "1.3em", padding: "0.25em"}}><strong dangerouslySetInnerHTML={T("landing","order_now")}></strong> </p>
+              <p style={{fontSize: "1.3em", padding: "0.25em"}}><strong>{T("landing","order_now")}></strong> </p>
             </div>
           </td>
           <td className="right">
-            <h3 dangerouslySetInnerHTML={T("landing","tagline_chef")}></h3>
+            <h3>{T("landing","tagline_chef")}></h3>
             <div onClick={this.goLogin} className="btn chef">
-              <p style={{fontSize: "1.3em", padding: "0.25em"}}><strong dangerouslySetInnerHTML={T("landing","signup")}></strong> </p>
+              <p style={{fontSize: "1.3em", padding: "0.25em"}}><strong>{T("landing","signup")}></strong> </p>
             </div>
           </td>
         </tr>
@@ -63,18 +63,18 @@ Landing = React.createClass({
       <div className="bottom">
         <a className="facebook" href="https://www.facebook.com/toitlacom" target="_blank">Facebook</a>
       </div>
-      <h1 className="huge2" dangerouslySetInnerHTML={T("landing","contact")}></h1>
+      <h1 className="huge2">{T("landing","contact")}</h1>
       <p className="tekst">food@toitla.com</p>
       <p className="tekst">+372 521 6686</p>
       <p className="tekst">Orase 4a, Tallinn, Estonia</p>
-      <h1 className="huge" dangerouslySetInnerHTML={T("landing","about_us")}></h1>
+      <h1 className="huge">{T("landing","about_us")}</h1>
       <p className="tekst" dangerouslySetInnerHTML={T("landing","about_us_content", true)}></p>
-      <h1 className="huge" dangerouslySetInnerHTML={T("landing","we_offer")}></h1>
+      <h1 className="huge">{T("landing","we_offer")}</h1>
       <p className="tekst" dangerouslySetInnerHTML={T("landing","we_offer_content", true)}></p>
       <div className="gallery">
         <h1 className="huge2" dangerouslySetInnerHTML={T("landing","tagline_served", true)}></h1>
-        <h1 dangerouslySetInnerHTML={T("landing","fleep")}></h1>
-        <h2 dangerouslySetInnerHTML={T("landing","fleep_content")}></h2>
+        <h1>{T("landing","fleep")}</h1>
+        <h2>{T("landing","fleep_content")}</h2>
         <div className="images">
           <a href="/images/events/Fleep/fleep5.JPG" data-lightbox="images">
             <div className="image" style={{"backgroundImage":"url(/images/events/Fleep/fleep5.JPG)"}}>
@@ -173,8 +173,8 @@ Landing = React.createClass({
             </div>
           </a>
         </div>
-        <h1 dangerouslySetInnerHTML={T("landing","GG")}></h1>
-        <h2 dangerouslySetInnerHTML={T("landing","GG_content")}></h2>
+        <h1>{T("landing","GG")}</h1>
+        <h2>{T("landing","GG_content")}</h2>
         <div className="images">
           <a href="/images/events/GoigGlobalM2/HeiliSandwichCake.jpg" data-lightbox="images">
             <div className="image" style={{"backgroundImage":"url(/images/events/GoigGlobalM2/HeiliSandwichCake.jpg)"}}>
@@ -261,8 +261,8 @@ Landing = React.createClass({
             </div>
           </a>
         </div>
-        <h1 dangerouslySetInnerHTML={T("landing","engage_estonia")}></h1>
-        <h2 dangerouslySetInnerHTML={T("landing","engage_estonia_content")}></h2>
+        <h1>{T("landing","engage_estonia")}</h1>
+        <h2>{T("landing","engage_estonia_content")}</h2>
         <div className="images">
           <a href="/images/events/EngageEstonia/_MG_4022.jpg" data-lightbox="images">
             <div className="image" style={{"backgroundImage":"url(/images/events/EngageEstonia/_MG_4022.jpg)"}}>
