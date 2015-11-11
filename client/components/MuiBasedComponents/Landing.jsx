@@ -34,11 +34,11 @@ Landing = React.createClass({
 		return (
 		<div className="landing">
 			<Dialog
-				title="Tellimus edastatud."
+				title={T("order_done_title")}
 				ref="orderSentDialog"
 				actions={actions}
 				onDismiss={this.closeDialog}>
-				Täpsustavate küsimuste korral võtame Sinuga ise ühendust. Meiega saad kontakti appi@toitla.com või +3725216686.
+				{T("order_done_content")}
 			</Dialog>
       <div className="logo"><img className="toitla" src="/icons/white-toitla.svg"/>
       </div>
@@ -48,13 +48,13 @@ Landing = React.createClass({
           <td className="left">
             <h3>{T("landing","tagline_client")}</h3>
             <div onClick={this.goNewOrder} className="btn order">
-              <p style={{fontSize: "1.3em", padding: "0.25em"}}><strong>{T("landing","order_now")}></strong> </p>
+              <p style={{fontSize: "1.3em", padding: "0.25em"}}><strong>{T("landing","order_now")}</strong> </p>
             </div>
           </td>
           <td className="right">
             <h3>{T("landing","tagline_chef")}</h3>
             <div onClick={this.goLogin} className="btn chef">
-              <p style={{fontSize: "1.3em", padding: "0.25em"}}><strong>{T("landing","signup")}></strong> </p>
+              <p style={{fontSize: "1.3em", padding: "0.25em"}}><strong>{T("landing","signup")}</strong> </p>
             </div>
           </td>
         </tr>
