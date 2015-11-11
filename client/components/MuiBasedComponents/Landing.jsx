@@ -46,13 +46,13 @@ Landing = React.createClass({
       <tbody>
         <tr>
           <td className="left">
-            <h3>{T("landing","tagline_client")}></h3>
+            <h3>{T("landing","tagline_client")}</h3>
             <div onClick={this.goNewOrder} className="btn order">
               <p style={{fontSize: "1.3em", padding: "0.25em"}}><strong>{T("landing","order_now")}></strong> </p>
             </div>
           </td>
           <td className="right">
-            <h3>{T("landing","tagline_chef")}></h3>
+            <h3>{T("landing","tagline_chef")}</h3>
             <div onClick={this.goLogin} className="btn chef">
               <p style={{fontSize: "1.3em", padding: "0.25em"}}><strong>{T("landing","signup")}></strong> </p>
             </div>
