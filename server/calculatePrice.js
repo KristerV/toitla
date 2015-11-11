@@ -12,10 +12,10 @@ Meteor.methods({
 
         // Fetch data
         var order = Orders.findOne(orderId);
-        var details = order.details
-        var peopleCount = details.peopleCount
-        var mealCount = details.mealCount
-        var serviceType = details.serviceType || 'heavy'
+        var event = order.event
+        var peopleCount = event.peopleCount
+        var mealCount = event.mealCount || 1
+        var serviceType = event.serviceType || 'heavy'
 
         // Calculate
         var price = 0
@@ -32,7 +32,7 @@ Meteor.methods({
             throw new Meteor.Error("Calculator does not know of this service")
 
         // Update price
-        Orders.update(orderId, {$set: {'details.calculatedPrice': Math.ceil(price)}})
+        Orders.update(orderId, {$set: {'price.calculated': Math.ceil(price)}})
 
     }
 });

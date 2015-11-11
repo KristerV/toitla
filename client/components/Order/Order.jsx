@@ -1,17 +1,25 @@
 NewOrder = React.createClass({
 
     render() {
+        if (!this.props.order)
+            return(<Loader/>)
         var order = this.props.order
-        if (order)
-            var menuitems = <MenuItemsContainer orderId={order._id}/>
+        order.errors = order.errors || {}
         return(<div>
             <StatusForm order={order}/>
             <OrderContactForm order={order}/>
             <OrderEventForm order={order}/>
+            {/*<MenuItemsContainer order={order}/>*/}
             <OrderAllergiesForm order={order}/>
-            {/*<OrderPriceForm order={order}/>*/}
-            {/*<OrderOutroForm order={order} header="Testing question" description="smaller text" onPrimaryClick={this.onPrimaryClick} onSecondaryClick={this.onSecondaryClick} />*/}
-            {menuitems}
+            <OrderPriceForm order={order}/>
+            <OrderGeneralInputForm
+                order={order}
+                title={T("order", "anything_else")}
+                inputName="extraInfo"
+                inputValue={order.extraInfo}
+                inputErrorMsg={order.errors['extraInfo']}
+                />
+            {/*<OrderGeneralInfoForm order={order} title="Testing question" description="smaller text"/>*/}
         </div>)
     }
 })
