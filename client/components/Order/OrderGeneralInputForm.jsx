@@ -18,6 +18,7 @@ OrderGeneralInputForm = React.createClass({
                 name={props.inputName}
                 onBlur={this.handleTextFieldChange}
                 value={props.inputValue}
+                label={props.inputLabel}
                 errorMsg={props.inputErrorMsg}
                 rows={props.inputRows} />
         </div>)

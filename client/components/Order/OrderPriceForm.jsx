@@ -1,8 +1,6 @@
 OrderPriceForm = React.createClass({
 
     render() {
-        if (!this.props.order || !this.props.order.price || !this.props.order.price.calculated)
-            return(<br/>)
         var order = this.props.order
 
         return(<div className="paper margin padding">

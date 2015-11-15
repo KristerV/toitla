@@ -5,21 +5,34 @@ NewOrder = React.createClass({
             return(<Loader/>)
         var order = this.props.order
         order.errors = order.errors || {}
-        return(<div>
+        return(<div className="h100">
             <StatusForm order={order}/>
-            <OrderContactForm order={order}/>
-            <OrderEventForm order={order}/>
+            <OrderSection
+                leftContent={<OrderSectionText dangerouslySetInnerHTML={T("order", "contact_form", true)}/>}
+                rightContent={<OrderContactForm order={order}/>}
+            />
+            <OrderSection
+                leftContent={<OrderSectionText dangerouslySetInnerHTML={T("order", "event_form", true)}/>}
+                rightContent={<OrderEventForm order={order}/>}
+            />
+            <OrderSection
+                leftContent={<OrderSectionText dangerouslySetInnerHTML={T("order", "allergies_form", true)}/>}
+                rightContent={<OrderAllergiesForm order={order}/>}
+            />
+            <OrderSection
+                content={<OrderSectionText dangerouslySetInnerHTML={T("order", "price_form", true)}/>}
+            />
+            <OrderSection
+                leftContent={<OrderSectionText dangerouslySetInnerHTML={T("order", "anything_else", true)}/>}
+                rightContent={<OrderGeneralInputForm
+                    order={order}
+                    inputName="extraInfo"
+                    inputLabel={T("anything_else_placeholder")}
+                    inputValue={order.extraInfo}
+                    inputErrorMsg={order.errors['extraInfo']}
+                    />}
+            />
             {/*<MenuItemsContainer order={order}/>*/}
-            <OrderAllergiesForm order={order}/>
-            <OrderPriceForm order={order}/>
-            <OrderGeneralInputForm
-                order={order}
-                title={T("order", "anything_else")}
-                inputName="extraInfo"
-                inputValue={order.extraInfo}
-                inputErrorMsg={order.errors['extraInfo']}
-                />
-            {/*<OrderGeneralInfoForm order={order} title="Testing question" description="smaller text"/>*/}
         </div>)
     }
 })
