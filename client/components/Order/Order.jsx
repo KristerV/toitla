@@ -28,6 +28,9 @@ NewOrder = React.createClass({
                 labelKey={"extra_form_label"}
                 />
 
+            {/*Menu*/}
+            {/*<MenuItemsContainer order={order}/>*/}
+
             {/*Allergies*/}
             <OrderSection
                 leftContent={<OrderSectionText dangerouslySetInnerHTML={T("order", "allergies_form", true)}/>}
@@ -57,8 +60,6 @@ NewOrder = React.createClass({
             <OrderSection
                 content={<OrderSectionText dangerouslySetInnerHTML={T("order", "form_finish", true)}/>}
             />
-
-            {/*<MenuItemsContainer order={order}/>*/}
         </div>)
     }
 })
