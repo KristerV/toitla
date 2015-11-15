@@ -174,12 +174,8 @@ DetailsForm = React.createClass({
                 <Paper className="padding margin relative">
                     <RadioButtonGroup name="details.serviceType" onChange={this.handleRadioChange} valueSelected={order.details.serviceType}>
                             <RadioButton
-                            value="light"
-                            label="Lõuna (kerged suupisted)"
-                            style={{marginBottom:16}} />
-                            <RadioButton
                             value="heavy"
-                            label="Pidusöök (toekamad suupisted)"
+                            label="Suupisted"
                             style={{marginBottom:16}}/>
                             <RadioButton
                             value="catering"
