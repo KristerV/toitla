@@ -26,7 +26,6 @@ OrderAllergiesForm = React.createClass({
 
         return(<div className="paper margin padding">
             <h3>{T("order", "allergies_kill")}</h3>
-            <p>{T("order", "allergies_description")}</p>
             <TextInput
                 label={T("order", "allergies_label")}
                 name="allergies.host"
