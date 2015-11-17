@@ -1,4 +1,4 @@
-OrderSectionText = React.createClass({
+NewOrderSectionText = React.createClass({
     render() {
         var element
         if (this.props.dangerouslySetInnerHTML)

@@ -1,11 +1,11 @@
 NewOrderSectionMenu = React.createClass({
     render() {
         var order = this.props.order
-        return(<OrderSection
-            leftContent={<OrderSectionText dangerouslySetInnerHTML={T("order", "menu_form", true)}/>}
+        return(<NewOrderSection
+            leftContent={<NewOrderSectionText dangerouslySetInnerHTML={T("order", "menu_form", true)}/>}
             rightContent={<OrderMenuForm order={order}/>}
             bottomContent={<MenuItemsContainer order={order}/>}
-            buttons={<OrderFlowButtons
+            buttons={<NewOrderFlowButtons
                     flowIndex={this.props.flowIndex}
                     primaryLabel={T("order", "menu_form_primary_button_label")}
                     primaryFlowNext={this.props.primaryFlowNext}

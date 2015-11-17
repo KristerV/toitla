@@ -1,10 +1,10 @@
 NewOrderSectionEvent = React.createClass({
     render() {
         var order = this.props.order
-        return(<OrderSection
-            leftContent={<OrderSectionText dangerouslySetInnerHTML={T("order", "event_form", true)}/>}
+        return(<NewOrderSection
+            leftContent={<NewOrderSectionText dangerouslySetInnerHTML={T("order", "event_form", true)}/>}
             rightContent={<OrderEventForm order={order}/>}
-            buttons={<OrderFlowButtons
+            buttons={<NewOrderFlowButtons
                     flowIndex={this.props.flowIndex}
                     primaryLabel={T("order", "event_form_primary_button_label")}
                     primaryFlowNext={this.props.primaryFlowNext}

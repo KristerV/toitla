@@ -1,10 +1,10 @@
 NewOrderSectionContacts = React.createClass({
     render() {
         var order = this.props.order
-        return(<OrderSection
-            leftContent={<OrderSectionText dangerouslySetInnerHTML={T("order", "contact_form", true)}/>}
+        return(<NewOrderSection
+            leftContent={<NewOrderSectionText dangerouslySetInnerHTML={T("order", "contact_form", true)}/>}
             rightContent={<OrderContactForm order={order}/>}
-            buttons={<OrderFlowButtons
+            buttons={<NewOrderFlowButtons
                     primaryLabel={T("order", "contact_form_primary_button")}
                     secondaryLabel={T("order", "contact_form_secondary_button")}
                     flowIndex={this.props.flowIndex}

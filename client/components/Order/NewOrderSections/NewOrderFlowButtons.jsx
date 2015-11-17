@@ -1,4 +1,4 @@
-OrderFlowButtons = React.createClass({
+NewOrderFlowButtons = React.createClass({
     render() {
         /*
         primaryLabel
