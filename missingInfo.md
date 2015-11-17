@@ -3,3 +3,5 @@ menüüd
     spetsialiseerume suupistetele.
     vajame igast kaalust ja igast hinnaklassist toite.
     Palume koostisosad võimaliklt täpselt kirja saada.
+new order
+    only in tallinn

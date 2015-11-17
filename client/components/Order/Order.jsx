@@ -55,7 +55,27 @@ NewOrder = React.createClass({
                 />
 
             {/*Menu*/}
-            {/*<MenuItemsContainer order={order}/>*/}
+            <OrderSection
+                leftContent={<OrderSectionText dangerouslySetInnerHTML={T("order", "menu_form", true)}/>}
+                rightContent={<OrderMenuForm order={order}/>}
+                bottomContent={<MenuItemsContainer order={order}/>}
+                buttons={<OrderFlowButtons
+                        flowIndex={1}
+                        primaryLabel={T("order", "menu_form_primary_button_label")}
+                        primaryFlowNext="allergies_form"
+                        secondaryLabel={T("order", "menu_form_secondary_button_label")}
+                        secondaryFlowNext="menu_form_finish"
+                    />}
+            />
+            <OrderFinishForm order={order}
+                textKey={"menu_form_finish"}
+                labelKey={"extra_form_label"}
+                buttons={<OrderFlowButtons
+                        flowIndex={2}
+                        primaryLabel={T("order", "finish_form_button_label")}
+                        primaryFlowNext="thanks_form"
+                    />}
+                />
 
             {/*Allergies*/}
             <OrderSection
@@ -64,41 +84,9 @@ NewOrder = React.createClass({
                 buttons={<OrderFlowButtons
                         flowIndex={2}
                         primaryLabel={T("order", "allergies_form_primary_button_label")}
-                        primaryFlowNext="price_form"
-                        secondaryLabel={T("order", "allergies_form_secondary_button_label")}
-                        secondaryFlowNext="allergies_form_finish"
-                    />}
-            />
-            <OrderFinishForm order={order}
-                textKey={"allergies_form_finish"}
-                labelKey={"extra_form_label"}
-                buttons={<OrderFlowButtons
-                        flowIndex={3}
-                        primaryLabel={T("order", "finish_form_button_label")}
-                        primaryFlowNext="thanks_form"
-                    />}
-                />
-
-            {/*Price*/}
-            <OrderSection
-                content={<OrderSectionText dangerouslySetInnerHTML={T("order", "price_form", true)}/>}
-                buttons={<OrderFlowButtons
-                        flowIndex={3}
-                        primaryLabel={T("order", "price_form_primary_button_label")}
                         primaryFlowNext="extra_form"
-                        secondaryLabel={T("order", "price_form_secondary_button_label")}
-                        secondaryFlowNext="price_form_finish"
                     />}
             />
-            <OrderFinishForm order={order}
-                textKey={"price_form_finish"}
-                labelKey={"price_form_finish_label"}
-                buttons={<OrderFlowButtons
-                        flowIndex={4}
-                        primaryLabel={T("order", "finish_form_button_label")}
-                        primaryFlowNext="thanks_form"
-                    />}
-                />
 
             {/*Extra info*/}
             <OrderFinishForm order={order}
@@ -113,8 +101,8 @@ NewOrder = React.createClass({
 
             {/*Thanks*/}
             <OrderSection
-                content={<OrderSectionText dangerouslySetInnerHTML={T("order", "thanks_form", true)}/>}
-                buttons={<OrderFlowButtons
+                bottomContent={<OrderSectionText dangerouslySetInnerHTML={T("order", "thanks_form", true)}/>}
+                bottomButtons={<OrderFlowButtons
                         flowIndex={5}
                         primaryLabel={T("order", "")}
                         primaryFlowNext=""
