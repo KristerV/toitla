@@ -6,6 +6,7 @@ OrderSection = React.createClass({
                     <div className="mdl-cell mdl-cell--12-col center-down">
                         <div className="center-up">
                             {this.props.content}
+                            {this.props.buttons}
                         </div>
                     </div>
                 </section>)
@@ -19,6 +20,7 @@ OrderSection = React.createClass({
                     <div className="mdl-cell mdl-cell--6-col center-down">
                         <div className="center-up">
                             {this.props.rightContent}
+                            {this.props.buttons}
                         </div>
                     </div>
                 </section>)
