@@ -1,30 +1,37 @@
 OrderMenuForm = React.createClass({
-    handlePriceChange(e) {
-        console.log(e.target.value);
+    handleClassChange(e) {
+        this.props.order.updateField('price.class', e.target.value)
+    },
+    handleCheckboxChange(e) {
+        this.props.order.handleChangeCheckbox(e)
     },
     render() {
+        var order = this.props.order
+        order.price = order.price || {}
         return(<div className="paper margin padding">
             <h5 className="text-hint text-center">fancymeter</h5>
             <input
                 className="mdl-slider mdl-js-slider"
                 type="range"
                 min="0"
-                defaultValue="1"
+                defaultValue={order.price.class || 1}
                 max="2"
                 step="1"
-                onChange={this.handlePriceChange}
+                onChange={this.handleClassChange}
                 />
             <br/>
-            <label className="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" htmlFor="checkbox-1">
-                <input type="checkbox" id="checkbox-1" className="mdl-checkbox__input" />
-                <span className="mdl-checkbox__label">{T("order","serve_coffee")}</span>
-            </label>
-            <label className="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" htmlFor="checkbox-2">
-                <input type="checkbox" id="checkbox-2" className="mdl-checkbox__input" />
-                <span className="mdl-checkbox__label">{T("order","servers_needed")}</span>
-            </label>
+            <Checkbox
+                checked={order.price.serveCoffee}
+                label={T("order","serve_coffee")}
+                name={'price.serveCoffee'}
+                onChange={this.handleCheckboxChange}/>
+            <Checkbox
+                checked={order.price.serversNeeded}
+                label={T("order","servers_needed")}
+                name={'price.serversNeeded'}
+                onChange={this.handleCheckboxChange}/>
             <br/>
-            <h4 className="text-center">Get this menu for 350€</h4>
+            <h4 className="text-center">Get this menu for {order.price.calculated}€</h4>
         </div>)
     }
 })
