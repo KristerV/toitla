@@ -54,7 +54,7 @@ MenuItemDetails = React.createClass({
         return(
             <section className="padding details">
                 <div className="padding">
-                    <p>{menuitem.chefName || user.profile.name}</p>
+                    <p className="text-hint">{menuitem.chefName || user.profile.name}</p>
                     <TextInput
                         disabled={!this.state.editMode}
                         label="Toidu nimetus"
