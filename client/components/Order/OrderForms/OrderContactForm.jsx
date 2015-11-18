@@ -8,7 +8,6 @@ OrderContactForm = React.createClass({
         var order = this.props.order
         order.errors = order.errors || {}
         order.errors.contact = order.errors.contact || {}
-        console.log(order.errors.contact.email);
         return(<div className="paper margin padding">
             <TextInput
                 label={T("order", "organization")}
@@ -27,7 +26,7 @@ OrderContactForm = React.createClass({
                 name="contact.number"
                 onBlur={this.handleTextFieldChange}
                 value={order.contact.number}
-                pattern="^\+?[0-9 ]?"
+                pattern="^\+?[0-9 ]*"
                 patternError={T("order", "telephone_patternError")}
                 errorMsg={order.errors.contact.number} />
             <TextInput
