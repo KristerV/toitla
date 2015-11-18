@@ -20,7 +20,6 @@ MenuItemsContainer = React.createClass({
             menuitems = MenuItemsInOrder.find({orderId: orderId, rejected: {$ne: true}})
             itemCount = Counts.get('MenuItemsInOrderCount')
         }
-        console.log(menuitems.fetch());
 
         // if (this.props.menuitemId) {
         //     subscription = Meteor.subscribe("menuitems", {_id: this.props.menuitemId})

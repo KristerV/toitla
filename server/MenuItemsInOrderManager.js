@@ -10,7 +10,6 @@ MenuItemsInOrderManager = class {
         this.settings = Settings.menuConstructor
         this.reset()
     }
-
     reset() {
         this.meals = []
         this.mealPlan = []
@@ -20,8 +19,9 @@ MenuItemsInOrderManager = class {
         this.priceToClient = null
         this.snacksPerMeal = null
         this.totalWeight = null
+        this.snacksCount = null
+        this.peopleCount = null
     }
-
     switchItem(itemId) {
         this.log("============ switchItem ============");
         check(itemId, String)
@@ -36,7 +36,6 @@ MenuItemsInOrderManager = class {
             this.log("Schedule FAILED");
         }
     }
-
     runSwitchItem(itemId) {
         this.log("========================================= switchItem =========================================");
         check(itemId, String)
@@ -51,7 +50,6 @@ MenuItemsInOrderManager = class {
         this.addMeal(oldItem.originalSpecifications)
         this.insertFoods()
     }
-
     refreshOrder() {
         this.log("============ refreshOrder ============");
         check(this.orderId, String)
@@ -66,7 +64,6 @@ MenuItemsInOrderManager = class {
             this.log("Schedule FAILED");
         }
     }
-
     runRefreshOrder() {
         this.log("========================================= runRefreshOrder =========================================");
         this.reset()
@@ -75,7 +72,12 @@ MenuItemsInOrderManager = class {
         this.constructMenu()
         MenuItemsInOrder.remove({orderId: this.orderId})
         this.insertFoods()
-        this.calculateActualPrice()
+        this.runCalculatePrice()
+    }
+    calculatePrice() {
+        this.getRequirements()
+        this.meals = MenuItemsInOrder.find({orderId: this.orderId, rejected: {$ne: true}}).fetch()
+        this.runCalculatePrice()
     }
     getRequirements() {
         // var meals = 2/3soolast( 1/3 vege + 2/3 soolast ) + 1/3magus
@@ -84,26 +86,26 @@ MenuItemsInOrderManager = class {
         this.order = Orders.findOne(this.orderId)
         if (!this.order) throw new Meteor.Error("MenuItemsInOrderManager.getRequirements(): no such order exists.")
 
-        var people = Number(this.order.event.peopleCount)
-        this.log("people",people);
+        this.peopleCount = Number(this.order.event.peopleCount)
+        this.log("peopleCount",this.peopleCount);
 
-        var mealCount = Math.round( people / 5 )
-        this.log("mealCount",mealCount);
+        this.mealCount = Math.round( this.peopleCount / 5 )
+        this.log("mealCount",this.mealCount);
 
-        var snacksCount = mealCount * people
-        this.log("snacksCount",snacksCount);
+        this.snacksCount = this.mealCount * this.peopleCount
+        this.log("snacksCount",this.snacksCount);
 
-        this.snacksPerMeal = snacksCount / mealCount
+        this.snacksPerMeal = this.snacksCount / this.mealCount
         this.log("snacksPerMeal",this.snacksPerMeal);
 
         var mealPlan = []
-        var dishVeg = mealCount * 0.15
+        var dishVeg = this.mealCount * 0.15
         this.log("dishVeg", dishVeg);
 
-        var dishDessert = mealCount * 0.33 + dishVeg
+        var dishDessert = this.mealCount * 0.33 + dishVeg
         this.log("dishDessert", dishDessert);
 
-        for (var i = 0; i < mealCount; i++) {
+        for (var i = 0; i < this.mealCount; i++) {
             if (i < dishVeg) {
                 mealPlan.push({tag: 'meatfree', foodType: 'main'})
             }
@@ -131,7 +133,7 @@ MenuItemsInOrderManager = class {
         }
         this.log("priceClasses",this.priceClasses)
 
-        this.totalWeight = people * this.settings.gramsPerPerson
+        this.totalWeight = this.peopleCount * this.settings.gramsPerPerson
         this.log("totalWeight",this.totalWeight);
     }
     findChefs() {
@@ -203,19 +205,27 @@ MenuItemsInOrderManager = class {
             return this.addMeal(mealSpecs, true)
         }
     }
-    calculateActualPrice(){
-        this.log("======== calculateActualPrice ========");
+    runCalculatePrice(){
+        this.log("======== runCalculatePrice ========");
         var priceToClient = 0
         for (var i = 0; i < this.meals.length; i++) {
             var mealPrice = Settings.priceClasses[this.meals[i].priceClass] * this.snacksPerMeal
             priceToClient = priceToClient + mealPrice
         }
-        this.priceToClient = priceToClient
+
+        // Margin
+        priceToClient = priceToClient * 1.8
+
+        if (this.order.price.serveDrinks) priceToClient += this.peopleCount * 2.85
+        if (this.order.price.serveCoffee) priceToClient += this.peopleCount * 1.75
+
+        this.priceToClient = parseInt(priceToClient)
         this.log("PRICE", this.priceToClient)
         this.updatePrice()
+        return this.priceToClient
     }
     updatePrice() {
-        Orders.update(this.orderId, {$set: {'price.calculatedPrice': this.priceToClient}})
+        Orders.update(this.orderId, {$set: {'price.calculated': this.priceToClient}})
     }
     replaceHighestPrice() {
         // This method is deprecated, but too good to just throw away

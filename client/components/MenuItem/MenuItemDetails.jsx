@@ -101,6 +101,7 @@ MenuItemDetails = React.createClass({
                         {value: null, text: 'tüüp'},
                         {value: 'main', text: 'soolane'},
                         {value: 'dessert', text: 'magus'},
+                        {value: 'drink', text: 'jook'},
                         ]}
                         name="foodType"
                         disabled={!this.state.editMode}
