@@ -16,8 +16,8 @@ MenuItemsInOrderManager = class {
         this.mealPlan = []
         this.chefIdList = []
         this.rejectedTemplates = []
-        this.currentPrice = null
-        this.maxPrice = null
+        this.priceClasses = []
+        this.priceToClient = null
         this.snacksPerMeal = null
         this.totalWeight = null
     }
@@ -73,9 +73,9 @@ MenuItemsInOrderManager = class {
         this.getRequirements()
         this.findChefs()
         this.constructMenu()
-        this.cropTotalPrice()
         MenuItemsInOrder.remove({orderId: this.orderId})
         this.insertFoods()
+        this.calculateActualPrice()
     }
     getRequirements() {
         // var meals = 2/3soolast( 1/3 vege + 2/3 soolast ) + 1/3magus
@@ -117,6 +117,20 @@ MenuItemsInOrderManager = class {
         this.mealPlan = mealPlan
         this.log("mealPlan", mealPlan);
 
+        var selectedPriceClass = this.order.price.class
+        this.priceClasses = []
+        var availablePriceClasses = Settings.getKeys("priceClasses")
+        for (var i = 0; i < mealPlan.length; i++) {
+            if (selectedPriceClass == 0) {
+                this.priceClasses.push(availablePriceClasses[0])
+            } else if (selectedPriceClass == 2) {
+                this.priceClasses.push(availablePriceClasses[2])
+            } else {
+                this.priceClasses.push(null)
+            }
+        }
+        this.log("priceClasses",this.priceClasses)
+
         this.totalWeight = people * this.settings.gramsPerPerson
         this.log("totalWeight",this.totalWeight);
     }
@@ -135,8 +149,10 @@ MenuItemsInOrderManager = class {
         this.log("============= constructMenu =============");
         var weightLeft = this.totalWeight
         var mealsLeft = this.mealPlan.slice(0)
+        var pricesLeft = this.priceClasses.slice(0)
         while (!_.isEmpty(mealsLeft)) {
             var mealSpecs = mealsLeft.shift()
+            mealSpecs.priceClass = pricesLeft.shift()
             mealSpecs.minWeight = weightLeft / mealsLeft.length / this.snacksPerMeal || 0
             mealSpecs.snacksPerMeal = this.snacksPerMeal
             var item = this.addMeal(mealSpecs)
@@ -146,7 +162,7 @@ MenuItemsInOrderManager = class {
         }
         this.printMeals()
     }
-    addMeal(mealSpecs, ignoreUnwanted) {
+    addMeal(mealSpecs, lessStrictSpecs) {
         this.log("================ addMeal ================");
         this.log("MEAL", mealSpecs);
         var item = null
@@ -155,11 +171,11 @@ MenuItemsInOrderManager = class {
             published: true,
             foodType: mealSpecs.foodType,
         }
-        if (!ignoreUnwanted) {
+        if (!lessStrictSpecs) {
             var unwanted = _.union(_.pluck(this.meals, '_id'), this.rejectedTemplates)
             find._id = {$nin: unwanted}
+            if (mealSpecs.priceClass) find.priceClass = mealSpecs.priceClass
         }
-        if (mealSpecs.priceClass) find.priceClass = mealSpecs.priceClass
         if (mealSpecs.tags) find.tags = mealSpecs.tag
         this.log("FIND", find.weight['$gt']+"g", find.foodType);
 
@@ -178,48 +194,31 @@ MenuItemsInOrderManager = class {
             this.meals.push(item)
             this.log("ITEM", item._id, item.weight+"g", _.pluck(item.tags, 'name'));
             return item
-        } else if (ignoreUnwanted) {
+        } else if (lessStrictSpecs) {
+            console.error('none of the chefs have what is needed:', find)
             throw new Meteor.Error("STILL NO MENUITEM")
         } else {
-            this.log("RESET REJECTED");
+            this.log("RESET REJECTED AND RUN AGAIN WITH LESS SPECS");
             MenuItemsInOrder.remove({orderId: this.orderId, rejected: true})
-            this.addMeal(mealSpecs, true)
+            return this.addMeal(mealSpecs, true)
         }
     }
-    cropTotalPrice() {
-        // menu.forEach{ if (maxPrice > currentPrice) { replace most expensive piece  } catch { ERROR } }
-        this.log("=======================================");
-        this.log("============ cropTotalPrice ===========");
-        this.calculateMaxPrice()
-        var count = 0
-        while (this.maxPrice < this.currentPrice && count < 100) {
-            this.replaceHighestPrice()
-            this.calculateCurrentPrice()
-            this.log("COUNT", count);
-            count++
-        }
-        this.printMeals()
-        this.log("^^^^^^^^^^^^ cropTotalPrice ^^^^^^^^^^^");
-        this.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-    }
-    calculateCurrentPrice(){
-        this.log("======== calculateCurrentPrice ========");
-        var currentPrice = 0
+    calculateActualPrice(){
+        this.log("======== calculateActualPrice ========");
+        var priceToClient = 0
         for (var i = 0; i < this.meals.length; i++) {
             var mealPrice = Settings.priceClasses[this.meals[i].priceClass] * this.snacksPerMeal
-            currentPrice = currentPrice + mealPrice
+            priceToClient = priceToClient + mealPrice
         }
-        this.currentPrice = currentPrice
-        this.log("CURRENT", this.currentPrice);
+        this.priceToClient = priceToClient
+        this.log("PRICE", this.priceToClient)
+        this.updatePrice()
     }
-    calculateMaxPrice() {
-        this.log("========== calculateMaxPrice ==========");
-        var orderTotal = this.order.price.currentPrice || this.order.price.calculatedPrice
-        this.maxPrice = orderTotal * this.settings.foodMaxPercentFromTotal
-        this.log("MAX", this.maxPrice);
-        this.calculateCurrentPrice()
+    updatePrice() {
+        Orders.update(this.orderId, {$set: {'price.calculatedPrice': this.priceToClient}})
     }
     replaceHighestPrice() {
+        // This method is deprecated, but too good to just throw away
         this.log("========== replaceHighestPrice ===========");
         this.log("------------- removeOneItem --------------");
         var highestPrice = 0
