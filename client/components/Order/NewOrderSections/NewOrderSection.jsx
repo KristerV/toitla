@@ -1,6 +1,6 @@
 NewOrderSection = React.createClass({
     render() {
-        return(<section className="mdl-grid order-section">
+        return(<section className="mdl-grid order-section max-width">
                 <div className="mdl-cell mdl-cell--6-col center-down">
                     <div className="center-up">
                         {this.props.leftContent}
