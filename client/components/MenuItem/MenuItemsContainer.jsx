@@ -21,6 +21,9 @@ MenuItemsContainer = React.createClass({
             itemCount = Counts.get('MenuItemsInOrderCount')
         }
 
+        // HACK: loading spinner for OrderMenuForm.jsx when price changes
+        $('#calculating-price-loader').removeClass('force-visible')
+
         // if (this.props.menuitemId) {
         //     subscription = Meteor.subscribe("menuitems", {_id: this.props.menuitemId})
         //     menuitems = MenuItemTemplates.find(this.props.menuitemId)

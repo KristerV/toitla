@@ -1,6 +1,6 @@
 OrderMenuForm = React.createClass({
-    handleClassChange(e) {
-        this.props.order.updateField('price.class', e.target.value)
+    handleSliderChange(e) {
+        this.props.order.updateField(e.target.name, e.target.value)
         this.props.order.refreshMenu()
     },
     handleCheckboxChange(e) {
@@ -11,7 +11,7 @@ OrderMenuForm = React.createClass({
         var order = this.props.order
         order.price = order.price || {}
         return(<div className="paper margin padding">
-            <h5 className="text-hint text-center">fancymeter</h5>
+            <h5 className="text-hint text-center">{T("order", "price_slider_title")}</h5>
             <input
                 className="mdl-slider mdl-js-slider"
                 type="range"
@@ -19,7 +19,21 @@ OrderMenuForm = React.createClass({
                 defaultValue={order.price.class || 1}
                 max="2"
                 step="1"
-                onChange={this.handleClassChange}
+                name="price.class"
+                onChange={this.handleSliderChange}
+                />
+            <h5 className="text-hint text-center">
+                {T("order", "coffeeBreaks_slider_title")}: {order.price.coffeeBreaks || 1}
+            </h5>
+            <input
+                className="mdl-slider mdl-js-slider"
+                type="range"
+                min="1"
+                defaultValue={order.price.coffeeBreaks || 1}
+                max="12"
+                step="1"
+                name="price.coffeeBreaks"
+                onChange={this.handleSliderChange}
                 />
             <br/>
             <Checkbox
