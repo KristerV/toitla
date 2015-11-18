@@ -4,6 +4,7 @@ NewOrder = React.createClass({
         if (!this.props.order)
             return(<Loader/>)
         var order = this.props.order
+        console.log(order);
         order.errors = order.errors || {}
         order.flow = order.flow || []
 

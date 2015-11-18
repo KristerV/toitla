@@ -5,10 +5,11 @@ NewOrderSectionEvent = React.createClass({
             leftContent={<NewOrderSectionText dangerouslySetInnerHTML={T("order", "event_form", true)}/>}
             rightContent={<OrderEventForm order={order}/>}
             buttons={<NewOrderFlowButtons
+                    order={order}
                     flowIndex={this.props.flowIndex}
                     primaryLabel={T("order", "event_form_primary_button_label")}
-                    primaryFlowNext={this.props.primaryFlowNext}
                     secondaryLabel={T("order", "event_form_secondary_button_label")}
+                    primaryFlowNext={this.props.primaryFlowNext}
                     secondaryFlowNext={this.props.secondaryFlowNext}
                 />}
         />)

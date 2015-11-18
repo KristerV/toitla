@@ -1,5 +1,4 @@
 NewOrderSection = React.createClass({
-
     render() {
         return(<section className="mdl-grid order-section">
                 <div className="mdl-cell mdl-cell--6-col center-down">
