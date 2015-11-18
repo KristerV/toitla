@@ -42,7 +42,7 @@ MenuItem = React.createClass({
 
         // Render
         return(
-        <div className="MenuItem margin mdl-shadow--2dp inline">
+        <div className="MenuItem mdl-shadow--2dp paper mdl-cell mdl-cell--4-col">
             <CornerMenu menuitem={menuitem} menuitemKey={menuitemKey} unpublish={this.unpublish} deleteMenuitem={this.deleteMenuitem}/>
             <FoodThumbnail menuitem={menuitem}/>
             <MenuItemDetails menuitem={menuitem}/>

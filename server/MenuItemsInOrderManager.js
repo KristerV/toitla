@@ -4,7 +4,7 @@ MenuItemsInOrderManager = class {
 
     constructor(orderId, verbose) {
         check(orderId, String)
-        this.verbose = verbose
+        this.verbose = verbose || true
         this.orderId = orderId
         this.order = Orders.findOne(orderId)
         this.settings = Settings.menuConstructor
@@ -84,7 +84,7 @@ MenuItemsInOrderManager = class {
         this.order = Orders.findOne(this.orderId)
         if (!this.order) throw new Meteor.Error("MenuItemsInOrderManager.getRequirements(): no such order exists.")
 
-        var people = Number(this.order.details.peopleCount)
+        var people = Number(this.order.event.peopleCount)
         this.log("people",people);
 
         var mealCount = Math.round( people / 5 )
@@ -214,7 +214,7 @@ MenuItemsInOrderManager = class {
     }
     calculateMaxPrice() {
         this.log("========== calculateMaxPrice ==========");
-        var orderTotal = this.order.details.currentPrice || this.order.details.calculatedPrice
+        var orderTotal = this.order.price.currentPrice || this.order.price.calculatedPrice
         this.maxPrice = orderTotal * this.settings.foodMaxPercentFromTotal
         this.log("MAX", this.maxPrice);
         this.calculateCurrentPrice()

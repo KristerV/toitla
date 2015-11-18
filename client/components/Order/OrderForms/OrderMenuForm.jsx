@@ -1,9 +1,11 @@
 OrderMenuForm = React.createClass({
     handleClassChange(e) {
         this.props.order.updateField('price.class', e.target.value)
+        this.props.order.refreshMenu()
     },
     handleCheckboxChange(e) {
         this.props.order.handleChangeCheckbox(e)
+        this.props.order.refreshMenu()
     },
     render() {
         var order = this.props.order

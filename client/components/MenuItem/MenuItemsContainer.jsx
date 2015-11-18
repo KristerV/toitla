@@ -15,11 +15,12 @@ MenuItemsContainer = React.createClass({
             menuitems = MenuItemTemplates.find({chefId: this.props.chefId})
             itemCount = Counts.get('MenuItemTemplatesCount')
         } else if (this.props.orderId || this.props.order) {
-            var orderId = this.props.orderId || this.props.order
+            var orderId = this.props.orderId || this.props.order._id
             subscription = Meteor.subscribe("menuitems_inorder", {orderId: orderId})
             menuitems = MenuItemsInOrder.find({orderId: orderId, rejected: {$ne: true}})
             itemCount = Counts.get('MenuItemsInOrderCount')
         }
+        console.log(menuitems.fetch());
 
         // if (this.props.menuitemId) {
         //     subscription = Meteor.subscribe("menuitems", {_id: this.props.menuitemId})
@@ -65,7 +66,7 @@ MenuItemsContainer = React.createClass({
             var newItem = <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" onClick={this.newMenuitemTemplate}>Lisa uus toit</button>
 
         // Render
-        return(<div className="MenuItemContainer">
+        return(<div className="MenuItemContainer mdl-grid">
             {list}
             {newItem}
         </div>)
