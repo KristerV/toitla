@@ -15,15 +15,15 @@ TextInput = React.createClass({
 
     render() {
         var _id = this.props._id || this.props.label
+        console.log(typeof this.props.patternError, !!this.props.patternError);
 
         // Render
         return(
         <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label js-disablingSwitch w100">
             {this.getInputType(_id)}
             <label className="mdl-textfield__label" htmlFor={_id}>{this.props.label}</label>
-            {this.props.errorMsg ?
-                <span className="mdl-textfield__error visible">{this.props.errorMsg}</span> :
-                <span className="mdl-textfield__error">{this.props.patternError}</span>}
+            <span className="mdl-textfield__error visible">{this.props.errorMsg}</span>
+            <span className="mdl-textfield__error">{this.props.patternError}</span>
 
 
         </div>)
