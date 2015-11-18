@@ -4,7 +4,7 @@ MenuItemsInOrderManager = class {
 
     constructor(orderId, verbose) {
         check(orderId, String)
-        this.verbose = verbose || true
+        this.verbose = verbose
         this.orderId = orderId
         this.order = Orders.findOne(orderId)
         this.settings = Settings.menuConstructor
@@ -89,23 +89,24 @@ MenuItemsInOrderManager = class {
         this.peopleCount = Number(this.order.event.peopleCount)
         this.log("peopleCount",this.peopleCount);
 
-        this.mealCount = Math.round( this.peopleCount / 5 )
-        this.log("mealCount",this.mealCount);
+        var coffeeBreakMultiplier = Math.max(1, this.order.price.coffeeBreaks * 0.8)
+        this.varietyCount = Math.round( this.peopleCount / 5 * coffeeBreakMultiplier)
+        this.log("varietyCount",this.varietyCount);
 
-        this.snacksCount = this.mealCount * this.peopleCount
+        this.snacksCount = this.varietyCount * this.peopleCount
         this.log("snacksCount",this.snacksCount);
 
-        this.snacksPerMeal = this.snacksCount / this.mealCount
+        this.snacksPerMeal = this.snacksCount / this.varietyCount
         this.log("snacksPerMeal",this.snacksPerMeal);
 
         var mealPlan = []
-        var dishVeg = this.mealCount * 0.15
+        var dishVeg = this.varietyCount * 0.15
         this.log("dishVeg", dishVeg);
 
-        var dishDessert = this.mealCount * 0.33 + dishVeg
+        var dishDessert = this.varietyCount * 0.33 + dishVeg
         this.log("dishDessert", dishDessert);
 
-        for (var i = 0; i < this.mealCount; i++) {
+        for (var i = 0; i < this.varietyCount; i++) {
             if (i < dishVeg) {
                 mealPlan.push({tag: 'meatfree', foodType: 'main'})
             }
