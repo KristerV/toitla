@@ -15,7 +15,6 @@ TextInput = React.createClass({
 
     render() {
         var _id = this.props._id || this.props.label
-        console.log(typeof this.props.patternError, !!this.props.patternError);
 
         // Render
         return(

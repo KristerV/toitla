@@ -26,9 +26,9 @@ OrderMenuForm = React.createClass({
                 name={'price.serveCoffee'}
                 onChange={this.handleCheckboxChange}/>
             <Checkbox
-                checked={order.price.serversNeeded}
-                label={T("order","servers_needed")}
-                name={'price.serversNeeded'}
+                checked={order.price.serveDrinks}
+                label={T("order","serve_drinks")}
+                name={'price.serveDrinks'}
                 onChange={this.handleCheckboxChange}/>
             <br/>
             <h4 className="text-center">Get this menu for {order.price.calculated}€</h4>
