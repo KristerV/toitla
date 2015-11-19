@@ -5,6 +5,7 @@ NewOrderSectionEventFinish = React.createClass({
             textKey={"event_form_finish"}
             labelKey={"extra_form_label"}
             buttons={<NewOrderFlowButtons
+                    order={order}
                     flowIndex={this.props.flowIndex}
                     primaryLabel={T("order", "finish_form_button_label")}
                     primaryFlowNext={this.props.primaryFlowNext}
