@@ -34,7 +34,7 @@ Landing = React.createClass({
 		<div className="landing">
             <div className="logo"><img className="toitla" src="/icons/white-toitla.svg"/>
             </div>
-            <table className="main">
+    <table className="main">
       <tbody>
         <tr>
           <td className="left">
