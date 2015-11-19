@@ -10,17 +10,20 @@ OrderGeneralInputForm = React.createClass({
         var props = this.props
         order.errors = order.errors || {}
 
-        return(<div className="paper margin padding">
-            <h3>{props.title}</h3>
-            <p>{props.description}</p>
-            <TextInput
-                label={props.inputLabel}
-                name={props.inputName}
-                onBlur={this.handleTextFieldChange}
-                value={props.inputValue}
-                label={props.inputLabel}
-                errorMsg={props.inputErrorMsg}
-                rows={props.inputRows} />
+        return(<div>
+                <div className="paper margin padding">
+                    <h3>{props.title}</h3>
+                    <p>{props.description}</p>
+                    <TextInput
+                        label={props.inputLabel}
+                        name={props.inputName}
+                        onBlur={this.handleTextFieldChange}
+                        value={props.inputValue}
+                        label={props.inputLabel}
+                        errorMsg={props.inputErrorMsg}
+                        rows={props.inputRows} />
+                </div>
+                {this.props.buttons}
         </div>)
     }
 })

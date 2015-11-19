@@ -7,6 +7,8 @@ NewOrderSectionThanks = React.createClass({
                     flowIndex={this.props.flowIndex}
                     primaryLabel={T("order", "")}
                     primaryFlowNext={this.props.primaryFlowNext}
+                    primaryAction={this.props.primaryAction}
+                    secondaryAction={this.props.secondaryAction}
                 />}
         />)
     }

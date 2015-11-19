@@ -11,6 +11,8 @@ NewOrderSectionEvent = React.createClass({
                     secondaryLabel={T("order", "event_form_secondary_button_label")}
                     primaryFlowNext={this.props.primaryFlowNext}
                     secondaryFlowNext={this.props.secondaryFlowNext}
+                    primaryAction={this.props.primaryAction}
+                    secondaryAction={this.props.secondaryAction}
                 />}
         />)
     }

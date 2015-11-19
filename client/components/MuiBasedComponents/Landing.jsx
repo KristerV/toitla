@@ -34,11 +34,11 @@ Landing = React.createClass({
 		return (
 		<div className="landing">
 			<Dialog
-				title={T("order_done_title")}
+				title={T("order", "order_done_title")}
 				ref="orderSentDialog"
 				actions={actions}
 				onDismiss={this.closeDialog}>
-				{T("order_done_content")}
+				{T("order", "order_done_content")}
 			</Dialog>
       <div className="logo"><img className="toitla" src="/icons/white-toitla.svg"/>
       </div>

@@ -9,6 +9,8 @@ NewOrderSectionAllergies = React.createClass({
                     flowIndex={this.props.flowIndex}
                     primaryLabel={T("order", "allergies_form_primary_button_label")}
                     primaryFlowNext={this.props.primaryFlowNext}
+                    primaryAction={this.props.primaryAction}
+                    secondaryAction={this.props.secondaryAction}
                 />}
         />)
     }

@@ -9,6 +9,7 @@ OrderFinishForm = React.createClass({
                 inputLabel={T("order", this.props.labelKey)}
                 inputValue={order.extraInfo}
                 inputErrorMsg={order.errors['extraInfo']}
+                buttons={this.props.buttons}
                 />}
         />)
     }

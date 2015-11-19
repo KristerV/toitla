@@ -11,6 +11,8 @@ NewOrderSectionContacts = React.createClass({
                     flowIndex={this.props.flowIndex}
                     primaryFlowNext={this.props.primaryFlowNext}
                     secondaryFlowNext={this.props.secondaryFlowNext}
+                    primaryAction={this.props.primaryAction}
+                    secondaryAction={this.props.secondaryAction}
                 />}
         />)
     }
