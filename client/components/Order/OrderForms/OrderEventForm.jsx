@@ -3,6 +3,11 @@ OrderEventForm = React.createClass({
         this.props.order.handleTextFieldChange(e)
     },
 
+    handlePeopleCountChange(e) {
+        this.props.order.handleTextFieldChange(e)
+        this.props.order.refreshMenu()
+    },
+
     handleFromDateChange(nill, date) {
         this.props.order.updateField('event.fromDate', date)
     },
@@ -39,7 +44,7 @@ OrderEventForm = React.createClass({
             <TextInput
                 label={T("order", "people_count")}
                 name="event.peopleCount"
-                onBlur={this.handleTextFieldChange}
+                onBlur={this.handlePeopleCountChange}
                 value={order.event.peopleCount}
                 pattern="-?[0-9]*(\.[0-9]+)?"
                 patternError={T("order", "people_count_patternError")}
