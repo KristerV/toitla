@@ -72,7 +72,7 @@ LoginForm = React.createClass({
             }.bind(this))
         } else if (formType == "login") {
             var error = false
-            if (Security.isEmail(s.email)) {
+            if (!Security.isEmail(s.email)) {
                 this.setState({emailError: "Kindel, et see on su e-mail?"})
                 error = true
             }
