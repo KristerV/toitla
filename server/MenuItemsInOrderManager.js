@@ -21,6 +21,7 @@ MenuItemsInOrderManager = class {
         this.totalWeight = null
         this.snacksCount = null
         this.peopleCount = null
+        this.varietyCount = null
     }
     switchItem(itemId) {
         this.log("============ switchItem ============");
@@ -218,7 +219,7 @@ MenuItemsInOrderManager = class {
         priceToClient = priceToClient * 1.8
 
         if (this.order.price.serveDrinks) priceToClient += this.peopleCount * 2.85
-        if (this.order.price.serveCoffee) priceToClient += this.peopleCount * 1.75
+        if (this.order.price.serveCoffee) priceToClient += this.peopleCount * 1.75 * this.order.price.coffeeBreaks
 
         this.priceToClient = parseInt(priceToClient)
         this.log("PRICE", this.priceToClient)
