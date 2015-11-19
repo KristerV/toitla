@@ -8,7 +8,7 @@ NewOrderSectionText = React.createClass({
             </h4>
         else
             element = <h4 className="section-text">{this.props.text}</h4>
-        return(<div>
+        return(<div className={this.props.className}>
                 {element}
             </div>)
     }
