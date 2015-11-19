@@ -2,7 +2,7 @@ NewOrderFlowButtons = React.createClass({
     primaryClick(e) {
         var action = this.props.primaryAction
         if (action) {
-            this.props.primaryAction(e)
+            action(e)
         } else {
             var currentIndex = this.props.flowIndex
             var nextFlowSection = this.props.primaryFlowNext

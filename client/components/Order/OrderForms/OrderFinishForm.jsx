@@ -5,6 +5,7 @@ OrderFinishForm = React.createClass({
             leftContent={<NewOrderSectionText dangerouslySetInnerHTML={T("order", this.props.textKey, true)}/>}
             rightContent={<OrderGeneralInputForm
                 order={order}
+                inputRows={1}
                 inputName="extraInfo"
                 inputLabel={T("order", this.props.labelKey)}
                 inputValue={order.extraInfo}

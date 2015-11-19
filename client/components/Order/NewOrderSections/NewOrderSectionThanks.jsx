@@ -5,10 +5,8 @@ NewOrderSectionThanks = React.createClass({
             bottomContent={<NewOrderSectionText dangerouslySetInnerHTML={T("order", "thanks_form", true)}/>}
             bottomButtons={<NewOrderFlowButtons
                     flowIndex={this.props.flowIndex}
-                    primaryLabel={T("order", "")}
-                    primaryFlowNext={this.props.primaryFlowNext}
-                    primaryAction={this.props.primaryAction}
-                    secondaryAction={this.props.secondaryAction}
+                    secondaryLabel={T("global", "back_home")}
+                    secondaryAction={this.props.primaryAction}
                 />}
         />)
     }
