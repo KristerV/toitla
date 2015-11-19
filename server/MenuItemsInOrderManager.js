@@ -14,7 +14,7 @@ MenuItemsInOrderManager = class {
         this.meals = []
         this.mealPlan = []
         this.chefIdList = []
-        this.rejectedTemplates = []
+        this.inUseTemplates = []
         this.priceClasses = []
         this.priceToClient = null
         this.snacksPerMeal = null
@@ -43,9 +43,9 @@ MenuItemsInOrderManager = class {
         this.reset()
         var oldItem = MenuItemsInOrder.findOne(itemId)
         MenuItemsInOrder.update(itemId, {$set: {rejected: true}})
-        var rejectedTemplates = MenuItemsInOrder.find({orderId: oldItem.orderId, rejected: true}).fetch()
-        this.rejectedTemplates = _.pluck(rejectedTemplates, 'templateId')
-        this.rejectedTemplates.push(itemId)
+        var inUseTemplates = MenuItemsInOrder.find({orderId: oldItem.orderId, rejected: {$ne: true}}).fetch()
+        this.inUseTemplates = _.pluck(inUseTemplates, 'templateId')
+        this.inUseTemplates.push(oldItem.templateId)
         this.findChefs()
         oldItem.originalSpecifications.priceClass = oldItem.priceClass
         this.addMeal(oldItem.originalSpecifications)
@@ -182,9 +182,12 @@ MenuItemsInOrderManager = class {
             weight: {$gt: mealSpecs.minWeight},
             published: true,
             foodType: mealSpecs.foodType,
+            rejected: {$ne: true}
         }
         if (!lessStrictSpecs) {
-            var unwanted = _.union(_.pluck(this.meals, '_id'), this.rejectedTemplates)
+            // Better let menu repeat than throw error
+            var unwanted = _.pluck(this.meals, '_id')
+            unwanted = _.union(unwanted, this.inUseTemplates)
             find._id = {$nin: unwanted}
             if (mealSpecs.priceClass) find.priceClass = mealSpecs.priceClass
         }
@@ -202,6 +205,7 @@ MenuItemsInOrderManager = class {
         }
 
         if (item) {
+            mealSpecs.amount = mealSpecs.amount || this.snacksPerMeal
             item.originalSpecifications = mealSpecs
             this.meals.push(item)
             this.log("ITEM", item._id, item.weight+"g", _.pluck(item.tags, 'name'));
@@ -278,7 +282,7 @@ MenuItemsInOrderManager = class {
             newItem.orderId = this.orderId
             newItem.inorder = true
             newItem.chefName = Meteor.users.findOne(newItem.chefId).profile.name
-            newItem.amount = this.snacksPerMeal
+            newItem.amount = this.snacksPerMeal || newItem.originalSpecifications.amount
             var result = MenuItemsInOrder.insert(newItem)
             results.push(result)
         }.bind(this))
