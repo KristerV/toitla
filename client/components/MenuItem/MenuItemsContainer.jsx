@@ -34,7 +34,7 @@ MenuItemsContainer = React.createClass({
             // subscription = Meteor.subscribe("menuitems", {chefId: this.props.chefId})
             // menuitems = MenuItemTemplates.find({chefId: this.props.chefId})
         // } else {
-        //     throw new Meteor.Error('MenuItemContainer.jsx: MenuItem called without any id\'s')
+        //     throw new Meteor.Error('MenuItemsContainer.jsx: MenuItem called without any id\'s')
         // }
 
         return {
@@ -68,7 +68,7 @@ MenuItemsContainer = React.createClass({
             var newItem = <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" onClick={this.newMenuitemTemplate}>Lisa uus toit</button>
 
         // Render
-        return(<div className="MenuItemContainer mdl-grid">
+        return(<div className="MenuItemsContainer mdl-grid">
             {list}
             {newItem}
         </div>)

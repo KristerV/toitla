@@ -1,26 +1,21 @@
 # NOW
-peida kliendi eest menüü ära ja enable lives!
-meatfree doesn't always happen
-kuidas saab menuitem undefined tulla?
-pauside arv arvestada (muud toidutüübi variandid ära võtta)
-menüü tuleb kehva kohta
-kokale teavitus tellimusest
-tõlkida inglise keelde
-kas 0.5 on adekvaatne omahind?
+meatfree ei reageeri
 
 # NEXT
 Kokale teade tellimuse kohta
 Võta järgmine kokk kui üks ütleb ei
+toidu primaryFlowNextkoka pilt
 
 # MUSTHAVE
 Logistika
-koka overview overhaul [uus, ootab kinnitust, kinnitatud, tehtud]
+Order vaade uuesti
+Overview uuesti
 Tagasiside ja ratingud
 Arve saatmine Toitlalt Kliendile (erply, GWA arendajalt saab küsida)
 Arve saatmine Kokalt Toitlale (erply, GWA arendajalt saab küsida)
 
 # NICETOHAVE
-back nupp läheks välja
+back nupp läheks äppist välja
 Koka profiil avalikuks
 Tellimuste thumbid muudavad värvi kui vajavad tähelepanu
 Testid
