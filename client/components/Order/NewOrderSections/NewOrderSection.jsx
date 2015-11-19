@@ -1,23 +1,38 @@
 NewOrderSection = React.createClass({
     render() {
-        return(<section className="mdl-grid order-section max-width">
-                <div className="mdl-cell mdl-cell--6-col center-down">
-                    <div className="center-up">
-                        {this.props.leftContent}
-                    </div>
-                </div>
-                <div className="mdl-cell mdl-cell--6-col center-down">
-                    <div className="center-up">
-                        {this.props.rightContent}
-                        {this.props.buttons}
-                    </div>
-                </div>
-                <div className="mdl-cell mdl-cell--12-col center-down" style={{marginTop: "2em"}}>
-                    <div className="center-up">
-                        {this.props.bottomContent}
-                        {this.props.bottomButtons}
-                    </div>
-                </div>
+
+        var left = <div className="mdl-cell mdl-cell--6-col center-down">
+            <div className="center-up">
+                {this.props.leftContent}
+            </div>
+        </div>
+
+        var right = <div className="mdl-cell mdl-cell--6-col center-down">
+            <div className="center-up">
+                {this.props.rightContent}
+                {this.props.buttons}
+            </div>
+        </div>
+
+        var bottom = <div className="mdl-cell mdl-cell--12-col center-down" style={{marginTop: "2em"}}>
+            <div className="center-up">
+                {this.props.bottomContent}
+                {this.props.bottomButtons}
+            </div>
+        </div>
+
+        // Remove empty element so margin: auto works on section contents
+        if (this.props.leftContent && this.props.rightContent && !this.props.bottomContent) {
+            bottom = null
+        } else if (!this.props.leftContent && !this.props.rightContent && this.props.bottomContent) {
+            left = null
+            right = null
+        }
+
+        return(<section className="mdl-grid order-section max-width box">
+                {left}
+                {right}
+                {bottom}
             </section>)
     }
 })

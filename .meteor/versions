@@ -83,6 +83,7 @@ npm-bcrypt@0.7.8_2
 npm-container@1.2.0
 npm-mongo@1.4.39_1
 observe-sequence@1.0.7
+okgrow:router-autoscroll@0.1.4
 ordered-dict@1.0.4
 package-version-parser@3.0.4
 practicalmeteor:chai@1.9.2_3
