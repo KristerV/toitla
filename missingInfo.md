@@ -5,3 +5,4 @@ menüüd
     Palume koostisosad võimaliklt täpselt kirja saada.
 new order
     only in tallinn
+    this menu may change (no chef, bad pricing)
