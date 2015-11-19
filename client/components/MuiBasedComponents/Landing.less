@@ -215,18 +215,30 @@ body {
 
 
 @media screen and (max-width: 650px) {
-.landing {
-    table.main {
-        height: 90%;
-        .right {
-            display: none;
+    .landing {
+        .logo {
+            height: 128px;
+            width: auto;
+        }
+        table.main {
+            height: 90%;
+            .left {
+                padding-top: 128px;
+            }
+            .right {
+                display: none;
+            }
+        }
+        .gallery {
+            .image {
+                width: 100%;
+                padding: 70% 0;
+            }
+        }
+        .bottom {
+            position: relative;
+            bottom: auto;
+            transform: translateY(-100%);
         }
     }
-    .gallery {
-        .image {
-            width: 100%;
-            padding: 70% 0;
-        }
-    }
-}
 }
