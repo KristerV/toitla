@@ -90,7 +90,10 @@ MenuItemsInOrderManager = class {
         this.peopleCount = Number(this.order.event.peopleCount)
         this.log("peopleCount",this.peopleCount);
 
-        var coffeeBreakMultiplier = Math.max(1, this.order.price.coffeeBreaks * 0.8)
+        this.price = this.order.price || {}
+        this.coffeeBreaks = this.price.coffeeBreaks || 1
+
+        var coffeeBreakMultiplier = Math.max(1, this.coffeeBreaks * 0.8)
         this.varietyCount = Math.round( this.peopleCount / 5 * coffeeBreakMultiplier)
         this.log("varietyCount",this.varietyCount);
 
@@ -121,7 +124,7 @@ MenuItemsInOrderManager = class {
         this.mealPlan = mealPlan
         this.log("mealPlan", mealPlan);
 
-        var selectedPriceClass = this.order.price.class
+        var selectedPriceClass = this.price.class || 1
         this.priceClasses = []
         var availablePriceClasses = Settings.getKeys("priceClasses")
         for (var i = 0; i < mealPlan.length; i++) {
@@ -223,8 +226,8 @@ MenuItemsInOrderManager = class {
         // Margin
         priceToClient = priceToClient * 1.8
 
-        if (this.order.price.serveDrinks) priceToClient += this.peopleCount * 2.85
-        if (this.order.price.serveCoffee) priceToClient += this.peopleCount * 1.75 * this.order.price.coffeeBreaks
+        if (this.price.serveDrinks) priceToClient += this.peopleCount * 2.85
+        if (this.price.serveCoffee) priceToClient += this.peopleCount * 1.75 * this.coffeeBreaks
 
         this.priceToClient = parseInt(priceToClient)
         this.log("PRICE", this.priceToClient)

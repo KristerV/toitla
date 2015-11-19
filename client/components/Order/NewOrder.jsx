@@ -1,7 +1,7 @@
 NewOrder = React.createClass({
 
-    goHomepage(e) {
-        FlowRouter.go("/")
+    submitForm(e) {
+        this.props.order.submitForm()
     },
 
     render() {
@@ -19,19 +19,19 @@ NewOrder = React.createClass({
                     form = <NewOrderSectionContacts key={i} order={order} flowIndex={0} primaryFlowNext="NewOrderSectionEvent" secondaryFlowNext="NewOrderSectionContactsFinish"/>
                     break
                 case "NewOrderSectionContactsFinish":
-                    form = <NewOrderSectionContactsFinish key={i} order={order} flowIndex={1} primaryAction={this.goHomepage}/>
+                    form = <NewOrderSectionContactsFinish key={i} order={order} flowIndex={1} primaryAction={this.submitForm}/>
                     break
                 case "NewOrderSectionEvent":
                     form = <NewOrderSectionEvent key={i} order={order} flowIndex={1} primaryFlowNext="NewOrderSectionMenu" secondaryFlowNext="NewOrderSectionEventFinish"/>
                     break
                 case "NewOrderSectionEventFinish":
-                    form = <NewOrderSectionEventFinish key={i} order={order} flowIndex={2} primaryAction={this.goHomepage}/>
+                    form = <NewOrderSectionEventFinish key={i} order={order} flowIndex={2} primaryAction={this.submitForm}/>
                     break
                 case "NewOrderSectionMenu":
                     form = <NewOrderSectionMenu key={i} order={order} flowIndex={2} primaryFlowNext="NewOrderSectionAllergies" secondaryFlowNext="NewOrderSectionMenuFinish"/>
                     break
                 case "NewOrderSectionMenuFinish":
-                    form = <NewOrderSectionMenuFinish key={i} order={order} flowIndex={3} primaryAction={this.goHomepage}/>
+                    form = <NewOrderSectionMenuFinish key={i} order={order} flowIndex={3} primaryAction={this.submitForm}/>
                     break
                 case "NewOrderSectionAllergies":
                     form = <NewOrderSectionAllergies key={i} order={order} flowIndex={3} primaryFlowNext="NewOrderSectionExtra"/>
@@ -40,7 +40,7 @@ NewOrder = React.createClass({
                     form = <NewOrderSectionExtra key={i} order={order} flowIndex={4} primaryFlowNext="NewOrderSectionThanks"/>
                     break
                 case "NewOrderSectionThanks":
-                    form = <NewOrderSectionThanks key={i} order={order} flowIndex={5} primaryAction={this.goHomepage}/>
+                    form = <NewOrderSectionThanks key={i} order={order} flowIndex={5} primaryAction={this.submitForm}/>
                     break
                 default:
                     throw new Meteor.Error("NewOrder form does not exist: " + order.flow[i])
