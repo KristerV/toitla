@@ -5,7 +5,7 @@ NewOrderSection = React.createClass({
         this.scrollInProgress = true
         Meteor.setTimeout(function(){
             $('body').animate({
-                scrollTop: $("section:last-of-type").offset().top
+                scrollTop: $(".order-section").last().offset().top
             }, 600);
             this.scrollInProgress = false
         }.bind(this), 50);
