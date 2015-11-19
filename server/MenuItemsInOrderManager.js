@@ -155,9 +155,13 @@ MenuItemsInOrderManager = class {
         var mealsLeft = this.mealPlan.slice(0)
         var pricesLeft = this.priceClasses.slice(0)
         while (!_.isEmpty(mealsLeft)) {
+            var mealsLeftCount = mealsLeft.length
+            this.log("weightLeft", weightLeft)
+            this.log("mealsLeftCount", mealsLeftCount)
             var mealSpecs = mealsLeft.shift()
             mealSpecs.priceClass = pricesLeft.shift()
-            mealSpecs.minWeight = weightLeft / mealsLeft.length / this.snacksPerMeal || 0
+            mealSpecs.minWeight = weightLeft / mealsLeftCount / this.snacksPerMeal || 0
+            this.log("minWeight", mealSpecs.minWeight)
             mealSpecs.snacksPerMeal = this.snacksPerMeal
             var item = this.addMeal(mealSpecs)
             weightLeft = weightLeft - ( item.weight * this.snacksPerMeal )
@@ -167,6 +171,7 @@ MenuItemsInOrderManager = class {
         this.printMeals()
     }
     addMeal(mealSpecs, lessStrictSpecs) {
+        this.log("")
         this.log("================ addMeal ================");
         this.log("MEAL", mealSpecs);
         var item = null
@@ -270,6 +275,7 @@ MenuItemsInOrderManager = class {
             newItem.orderId = this.orderId
             newItem.inorder = true
             newItem.chefName = Meteor.users.findOne(newItem.chefId).profile.name
+            newItem.amount = this.snacksPerMeal
             var result = MenuItemsInOrder.insert(newItem)
             results.push(result)
         }.bind(this))

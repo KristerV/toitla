@@ -49,6 +49,7 @@ MenuItemDetails = React.createClass({
 
         var user = Meteor.users.findOne(menuitem.chefId) || {profile: {}}
         var activeTagNames = _.pluck(menuitem.tags, 'name')
+        console.log("menuitem.amount",menuitem.amount);
 
         // Render
         return(
@@ -82,6 +83,7 @@ MenuItemDetails = React.createClass({
                             color={tag.color}
                             onClick={this.switchTag}/>
                     }.bind(this))}
+                    {menuitem.amount ? <h4>{menuitem.amount} pieces</h4> : null}
                 </div>
                 {this.getSpecifications()}
             </section>
