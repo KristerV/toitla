@@ -25,7 +25,7 @@ NewOrderSection = React.createClass({
             </div>
         </div>
 
-        var bottom = <div className="mdl-cell mdl-cell--12-col center-down" style={{marginTop: "2em"}}>
+        var bottom = <div className="mdl-cell mdl-cell--12-col center-down">
             <div className="center-up">
                 {this.props.bottomContent}
                 {this.props.bottomButtons}
