@@ -1,4 +1,15 @@
 NewOrderSection = React.createClass({
+    scrollInProgress: false,
+    componentDidMount() {
+        if (this.scrollInProgress) return
+        this.scrollInProgress = true
+        Meteor.setTimeout(function(){
+            $('body').animate({
+                scrollTop: $("section:last-of-type").offset().top
+            }, 600);
+            this.scrollInProgress = false
+        }.bind(this), 50);
+    },
     render() {
 
         var left = <div className="mdl-cell mdl-cell--6-col center-down">

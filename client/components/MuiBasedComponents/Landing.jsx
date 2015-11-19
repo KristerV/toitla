@@ -30,19 +30,11 @@ Landing = React.createClass({
 		this.refs.orderSentDialog.dismiss()
 	},
 	render() {
-		var actions = [{text: 'OK', onTouchTap: this.closeDialog, ref: "close"}]
 		return (
 		<div className="landing">
-			<Dialog
-				title={T("order", "order_done_title")}
-				ref="orderSentDialog"
-				actions={actions}
-				onDismiss={this.closeDialog}>
-				{T("order", "order_done_content")}
-			</Dialog>
-      <div className="logo"><img className="toitla" src="/icons/white-toitla.svg"/>
-      </div>
-      <table className="main">
+            <div className="logo"><img className="toitla" src="/icons/white-toitla.svg"/>
+            </div>
+            <table className="main">
       <tbody>
         <tr>
           <td className="left">
