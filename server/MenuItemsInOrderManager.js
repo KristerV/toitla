@@ -101,6 +101,9 @@ MenuItemsInOrderManager = class {
         this.log("snacksCount",this.snacksCount);
 
         this.snacksPerMeal = this.snacksCount / this.varietyCount
+        var minSnacksPerMeal = 20
+        if (this.snacksPerMeal < minSnacksPerMeal)
+            this.snacksPerMeal = minSnacksPerMeal
         this.log("snacksPerMeal",this.snacksPerMeal);
 
         var mealPlan = []
