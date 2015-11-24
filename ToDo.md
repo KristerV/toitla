@@ -1,4 +1,7 @@
 # NOW
+0,4 -> 1,2
+miinimumkogused toiule
+pilt toidule
 meatfree ei reageeri
 
 # NEXT
