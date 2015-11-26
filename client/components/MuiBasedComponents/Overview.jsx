@@ -24,6 +24,7 @@ Overview = React.createClass({
     },
 
     render() {
+        return (<h4 style={{color: "white"}}>Tellimusi vastu võtta keskkond veel ei võimalda. Seniks võid oma menüü ja profiili ära täita!</h4>)
         var phases = this.state.phases
         var ListPhases = []
         for (var i = 0; i < phases.length; i++) {

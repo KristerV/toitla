@@ -22,20 +22,8 @@ ListPhase = React.createClass({
 
     mixins: [ReactMeteorData],
     getMeteorData() {
-        var subscription = {ready: function(){return false}} // needed for error prevention
-
-        if (Roles.userIsInRole(Meteor.userId(), 'manager')) {
-            subscription = Meteor.subscribe("orders")
-            var orders = Orders.find({"status.phase": this.props.phase}).fetch()
-        } else if (Roles.userIsInRole(Meteor.userId(), 'chef')) {
-            subscription = Meteor.subscribe("suborders")
-            var suborders = Suborders.find({"phase": this.props.phase}).fetch()
-        }
 
         return {
-            orders: orders,
-            suborders: suborders,
-            subsReady: subscription.ready()
         }
     },
 
