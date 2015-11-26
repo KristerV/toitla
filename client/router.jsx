@@ -27,7 +27,7 @@ FlowRouter.route('/orders', {
 			content: <Overview/>
 		});
 		Meteor.setTimeout(function(){
-			if (document.location.hostname !== 'localhost' && process.env.NODE_ENV === 'development') {
+			if (window.location.href.indexOf("toitla.com:3000") > -1) {
 				sAlert.warning("This server is for development only.")
 			} else if (!Meteor.user().profile || !Meteor.user().profile.name) {
 				sAlert.info('Palun täida oma profiil ära, siis saame sulle tellimusi saata.', {timeout: 10000})
