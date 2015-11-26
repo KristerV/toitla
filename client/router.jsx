@@ -19,7 +19,7 @@ FlowRouter.route('/home', {
 	}
 });
 
-FlowRouter.route('/ylevaade', {
+FlowRouter.route('/orders', {
 	triggersEnter: [loginRequired, startIdleMonitor],
 	action: function(params) {
 		ReactLayout.render(Layout, {
@@ -33,7 +33,7 @@ FlowRouter.route('/ylevaade', {
 	}
 });
 
-FlowRouter.route('/profiil/:userId', {
+FlowRouter.route('/profile/:userId', {
 	triggersEnter: [loginRequired, startIdleMonitor],
 	name: 'profile',
 	action: function(params) {
@@ -43,7 +43,7 @@ FlowRouter.route('/profiil/:userId', {
 	}
 });
 
-FlowRouter.route('/menuu/:userId', {
+FlowRouter.route('/menu/:userId', {
 	name: 'menu',
 	action: function(params) {
 		ReactLayout.render(Layout, {
@@ -59,7 +59,7 @@ FlowRouter.route('/login/', {
 	}
 });
 
-FlowRouter.route('/kasutajad/', {
+FlowRouter.route('/users/', {
 	name: 'users',
 	action: function(params) {
 		ReactLayout.render(Layout, {
@@ -75,7 +75,7 @@ FlowRouter.route('/scraper/', {
 	}
 });
 
-FlowRouter.route('/tellimus/:orderId', {
+FlowRouter.route('/order/:orderId', {
 	name: "order",
 	action: function(params) {
 		if (!Meteor.userId())
@@ -87,7 +87,7 @@ FlowRouter.route('/tellimus/:orderId', {
 	}
 });
 
-FlowRouter.route('/allergia/:allergyId', {
+FlowRouter.route('/allergy/:allergyId', {
 	name: "guestAllergy",
 	action: function(params) {
 		if (!Meteor.userId())
@@ -95,18 +95,6 @@ FlowRouter.route('/allergia/:allergyId', {
 		else
 			ReactLayout.render(Layout, {
 			content: <GuestAllergyContainer allergyId={params.allergyId}/>
-		});
-	}
-});
-
-FlowRouter.route('/alatellimus/:suborderId', {
-	triggersEnter: [loginRequired, startIdleMonitor],
-	action: function(params) {
-		if (!Meteor.userId())
-			ReactLayout.render(OrderForm, {orderId: params.orderId})
-		else
-			ReactLayout.render(Layout, {
-			content: <SuborderItem suborderId={params.suborderId}/>
 		});
 	}
 });
