@@ -3,7 +3,7 @@ FlowRouter.route('/', {
 		if (!Meteor.userId())
 			ReactLayout.render(Landing, params.query);
 		else
-			FlowRouter.go("/ylevaade")
+			FlowRouter.go("orders")
 	}
 });
 
@@ -20,13 +20,16 @@ FlowRouter.route('/home', {
 });
 
 FlowRouter.route('/orders', {
+	name: 'orders',
 	triggersEnter: [loginRequired, startIdleMonitor],
 	action: function(params) {
 		ReactLayout.render(Layout, {
 			content: <Overview/>
 		});
 		Meteor.setTimeout(function(){
-			if (!Meteor.user().profile || !Meteor.user().profile.name) {
+			if (document.location.hostname !== 'localhost' && process.env.NODE_ENV === 'development') {
+				sAlert.warning("This server is for development only.")
+			} else if (!Meteor.user().profile || !Meteor.user().profile.name) {
 				sAlert.info('Palun täida oma profiil ära, siis saame sulle tellimusi saata.', {timeout: 10000})
 			}
 		}, 2000);

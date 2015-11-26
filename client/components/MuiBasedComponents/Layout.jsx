@@ -33,7 +33,7 @@ Layout = React.createClass({
     },
 
     goOverview(e) {
-        FlowRouter.go("/ylevaade")
+        FlowRouter.go("orders")
     },
 
     goProfile(e) {
@@ -59,7 +59,7 @@ Layout = React.createClass({
     render() {
         if (Roles.userIsInRole(Meteor.userId(), 'manager'))
             var goUsers = <button className="mdl-button mdl-js-button text-white"
-            onClick={this.goUsers}>Kasutajad</button>
+            onClick={this.goUsers}>Users</button>
         return <div className="h100"><AppBar
             iconElementLeft={Meteor.userId() ?
                 <div>

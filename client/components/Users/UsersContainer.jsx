@@ -25,11 +25,11 @@ UsersContainer = React.createClass({
                 <tr>
                   <th className="mdl-data-table__cell--non-numeric">Nimi</th>
                   <th>E-mail</th>
-                  <th>Vet</th>
                   <th>rating</th>
+                  <th>Vet</th>
+                  <th></th>
+                  <th></th>
                   <th>Viimati online</th>
-                  <th></th>
-                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -41,17 +41,17 @@ UsersContainer = React.createClass({
                         <td className="mdl-data-table__cell--non-numeric">{profile.name}</td>
                         <td>{user.getEmail()}</td>
                         <td>
+                            <TextInput
+                                value={user.manualRating}
+                                name="manualRating"
+                                onBlur={user.handleTextFieldChange.bind(user)}
+                                style={{width: "20px"}}/>
+                        </td>
+                        <td>
                             <label className="mdl-checkbox mdl-js-checkbox">
                                 <input type="checkbox" className="mdl-checkbox__input" checked={profile.vet} readOnly={true}/>
                             </label>
                         </td>
-                        <td>
-                            <TextInput
-                                value={user.manualRating}
-                                name="manualRating"
-                                onBlur={user.handleTextFieldChange.bind(user)}/>
-                        </td>
-                        <td>{lastLogin}</td>
                         <td>
                             <button className="mdl-button mdl-js-button mdl-button--raised" onClick={this.goProfile.bind(this, user._id)} name={name}>
                                 profiil
@@ -62,6 +62,7 @@ UsersContainer = React.createClass({
                                 menüü
                             </button>
                         </td>
+                        <td>{lastLogin}</td>
                     </tr>
                 }.bind(this))}
               </tbody>

@@ -67,7 +67,7 @@ LoginForm = React.createClass({
                     else
                         sAlert.error(err.reason)
                 } else {
-                    FlowRouter.go("/ylevaade")
+                    FlowRouter.go("orders")
                 }
             }.bind(this))
         } else if (formType == "login") {
@@ -90,7 +90,7 @@ LoginForm = React.createClass({
                     else
                         sAlert.error(err.reason)
                 } else {
-                    FlowRouter.go("/ylevaade")
+                    FlowRouter.go("orders")
                 }
             }.bind(this))
         }
