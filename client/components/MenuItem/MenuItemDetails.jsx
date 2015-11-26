@@ -47,7 +47,8 @@ MenuItemDetails = React.createClass({
             </section>
         }
 
-        var user = Meteor.users.findOne(menuitem.chefId) || {profile: {}}
+        var user = Meteor.users.findOne(menuitem.chefId) || {}
+        user.profile = user.profile || {}
         var activeTagNames = _.pluck(menuitem.tags, 'name')
 
         // Render
