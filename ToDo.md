@@ -1,13 +1,16 @@
 # NOW
-pilt toidule
-meatfree ei reageeri
+* Menüüd laivi
+    * peida menüü kliendilt
+    * Näita menüüd managerile
 
 # NEXT
+Tellimuse läbi viimise protsess
+pilt toidule
+meatfree ei reageeri
 Kokale teade tellimuse kohta
-Võta järgmine kokk kui üks ütleb ei
-toidu primaryFlowNextkoka pilt
 
 # MUSTHAVE
+Võta järgmine kokk kui üks ütleb ei
 Logistika
 Order vaade uuesti
 Overview uuesti

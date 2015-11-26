@@ -22,7 +22,7 @@ NewOrder = React.createClass({
                     form = <NewOrderSectionContactsFinish key={i} order={order} flowIndex={1} primaryFlowNext="NewOrderSectionThanks"/>
                     break
                 case "NewOrderSectionEvent":
-                    form = <NewOrderSectionEvent key={i} order={order} flowIndex={1} primaryFlowNext="NewOrderSectionMenu" secondaryFlowNext="NewOrderSectionEventFinish"/>
+                    form = <NewOrderSectionEvent key={i} order={order} flowIndex={1} primaryFlowNext="NewOrderSectionAllergies" secondaryFlowNext="NewOrderSectionEventFinish"/>
                     break
                 case "NewOrderSectionEventFinish":
                     form = <NewOrderSectionEventFinish key={i} order={order} flowIndex={2} primaryFlowNext="NewOrderSectionThanks"/>
