@@ -8,6 +8,7 @@ FlowRouter.route('/', {
 });
 
 FlowRouter.route('/home', {
+	name: "home",
 	action: function(params) {
 		if (Meteor.userId()) {
 			ReactLayout.render(Layout, {

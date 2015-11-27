@@ -20,7 +20,7 @@ UsersContainer = React.createClass({
 
     render() {
         return(
-            <table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+            <table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp max-width">
               <thead>
                 <tr>
                   <th className="mdl-data-table__cell--non-numeric">Nimi</th>
