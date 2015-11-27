@@ -59,7 +59,7 @@ UsersContainer = React.createClass({
                         </td>
                         <td>
                             <button className={"mdl-button mdl-js-button mdl-button--raised "+(user.menuCount ? "mdl-button--colored" : null)} onClick={this.goMenu.bind(this, user._id)} name={name}>
-                                menu - {user.menuCount}
+                                menu - {user.menuCount || 0}
                             </button>
                         </td>
                         <td>{lastLogin}</td>
