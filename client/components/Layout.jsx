@@ -7,6 +7,12 @@ Layout = React.createClass({
         }
     },
 
+    shouldComponentUpdate() {
+        $('.mdl-layout__drawer.is-visible').removeClass('is-visible')
+        $('.mdl-layout__obfuscator.is-visible').removeClass('is-visible')
+        return true
+    },
+
     goNewOrder(e) {
         Order.createOrder()
     },
