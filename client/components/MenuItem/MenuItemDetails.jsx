@@ -9,9 +9,9 @@ MenuItemDetails = React.createClass({
     },
 
     switchTag(e) {
-        var tag = $(e.target).attr('name')
+        var tagName = $(e.target).attr('name')
         var itemId = this.props.menuitem._id
-        Meteor.call('menuitemTemplate--switchTag', itemId, tag)
+        Meteor.call('menuitemTemplate--switchTag', itemId, tagName)
     },
 
     updateText(e) {
