@@ -1,6 +1,6 @@
 Checkbox = React.createClass({
     render() {
-        return(<label className="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+        return(<label className={"mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect " + this.props.className}>
             <input
                 type="checkbox"
                 className="mdl-checkbox__input"

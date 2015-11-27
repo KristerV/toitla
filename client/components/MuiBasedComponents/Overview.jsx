@@ -1,27 +1,4 @@
-injectTapEventPlugin()
-
-var {
-    Paper,
-    TextField,
-    RaisedButton,
-    Styles
-} = MUI;
-var { ThemeManager, LightRawTheme } = Styles;
-
 Overview = React.createClass({
-    childContextTypes: { muiTheme: React.PropTypes.object, },
-    getChildContext() { return { muiTheme: ThemeManager.getMuiTheme(LightRawTheme), } },
-
-    getInitialState() {
-        var phases = _.keys(Settings.phases)
-        if (Roles.userIsInRole(Meteor.userId(), 'chef')) {
-            phases.shift() // remove 'unsubmitted' phase
-            phases.shift() // remove 'new' phase
-        }
-        return {
-            phases: phases
-        }
-    },
 
     render() {
         return (<h4 style={{color: "white"}}>Tellimusi siia veel ei tule (moodul arendamisel). Seniks võid oma menüü ja profiili ära täita, sest täidame tellimusi käsitsi!</h4>)

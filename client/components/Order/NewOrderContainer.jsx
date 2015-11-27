@@ -1,4 +1,4 @@
-OrderContainer = React.createClass({
+NewOrderContainer = React.createClass({
 
     mixins: [ReactMeteorData],
     getMeteorData() {

@@ -24,7 +24,7 @@ FlowRouter.route('/orders', {
 	triggersEnter: [loginRequired, startIdleMonitor],
 	action: function(params) {
 		ReactLayout.render(Layout, {
-			content: <Overview/>
+			content: <OrdersContainer/>
 		});
 		Meteor.setTimeout(function(){
 			if (window.location.href.indexOf("toitla.com:3000") > -1) {
@@ -78,14 +78,26 @@ FlowRouter.route('/scraper/', {
 	}
 });
 
+FlowRouter.route('/neworder/:orderId', {
+	name: "neworder",
+	action: function(params) {
+		if (!Meteor.userId())
+			ReactLayout.render(NewOrderContainer, {orderId: params.orderId})
+		else
+			ReactLayout.render(Layout, {
+			content: <NewOrderContainer orderId={params.orderId}/>
+		});
+	}
+});
+
 FlowRouter.route('/order/:orderId', {
 	name: "order",
 	action: function(params) {
 		if (!Meteor.userId())
-			ReactLayout.render(OrderContainer, {orderId: params.orderId})
+			ReactLayout.render(OrdersContainer, {orderId: params.orderId})
 		else
 			ReactLayout.render(Layout, {
-			content: <OrderContainer orderId={params.orderId}/>
+			content: <OrdersContainer orderId={params.orderId}/>
 		});
 	}
 });

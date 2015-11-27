@@ -1,7 +1,7 @@
 # NOW
-* Menüüd laivi
-    * peida menüü kliendilt
-    * Näita menüüd managerile
+* Näita menüüd managerile (order)
+* Printida koostisosi (order)
+* Näita kõiki toite listis (orderis saaks vahetada)
 
 # NEXT
 Tellimuse läbi viimise protsess

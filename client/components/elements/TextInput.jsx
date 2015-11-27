@@ -21,11 +21,9 @@ TextInput = React.createClass({
         return(
         <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label js-disablingSwitch w100" style={style}>
             {this.getInputType(_id)}
-            {this.props.label ? <label className="mdl-textfield__label" htmlFor={_id}>{this.props.label}</label> : null}
+            <label className="mdl-textfield__label" htmlFor={_id}>{this.props.label}</label>
             <span className="mdl-textfield__error visible">{this.props.errorMsg}</span>
             <span className="mdl-textfield__error">{this.props.patternError}</span>
-
-
         </div>)
     },
 
@@ -55,7 +53,8 @@ TextInput = React.createClass({
                     key={4}
                     defaultValue={this.props.value}
                     onBlur={this.props.onBlur}
-                    disabled={this.props.disabled}/>
+                    disabled={this.props.disabled}
+                    />
         }
     }
 })
