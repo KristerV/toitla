@@ -53,13 +53,13 @@ UsersContainer = React.createClass({
                             </label>
                         </td>
                         <td>
-                            <button className="mdl-button mdl-js-button mdl-button--raised" onClick={this.goProfile.bind(this, user._id)} name={name}>
-                                profiil
+                            <button className={"mdl-button mdl-js-button mdl-button--raised "+(user.eligible ? "mdl-button--colored" : null)} onClick={this.goProfile.bind(this, user._id)} name={name}>
+                                profile
                             </button>
                         </td>
                         <td>
-                            <button className="mdl-button mdl-js-button mdl-button--raised" onClick={this.goMenu.bind(this, user._id)} name={name}>
-                                menüü
+                            <button className={"mdl-button mdl-js-button mdl-button--raised "+(user.menuCount ? "mdl-button--colored" : null)} onClick={this.goMenu.bind(this, user._id)} name={name}>
+                                menu - {user.menuCount}
                             </button>
                         </td>
                         <td>{lastLogin}</td>
