@@ -1,4 +1,9 @@
 OrderThumbnail = React.createClass({
+
+    deleteOrder(e) {
+        this.props.order.delete()
+    },
+
     render() {
         var order = this.props.order
         order.event = order.event || {}
@@ -22,8 +27,13 @@ OrderThumbnail = React.createClass({
                 <div className="mdl-cell mdl-cell--2-col">
                     {date}
                 </div>
-                <div className="mdl-cell mdl-cell--2-col">
+                <div className="mdl-cell mdl-cell--1-col">
                     {order.status.phase}
+                </div>
+                <div className="mdl-cell mdl-cell--1-col">
+                <button className="mdl-button mdl-js-button mdl-button--icon" onClick={this.deleteOrder}>
+                    <i className="material-icons">delete</i>
+                </button>
                 </div>
             </div>)
     }
