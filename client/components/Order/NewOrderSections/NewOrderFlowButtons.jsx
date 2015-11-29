@@ -3,7 +3,9 @@ NewOrderFlowButtons = React.createClass({
         var action = this.props.primaryAction
         if (action) {
             action(e)
-        } else {
+        }
+
+        if (this.props.primaryFlowNext) {
             var currentIndex = this.props.flowIndex
             var nextFlowSection = this.props.primaryFlowNext
             this.props.order.nextFlowSection(currentIndex, nextFlowSection)
@@ -13,7 +15,9 @@ NewOrderFlowButtons = React.createClass({
         var action = this.props.secondaryAction
         if (action) {
             this.props.secondaryAction(e)
-        } else {
+        }
+
+        if (this.props.secondaryFlowNext) {
             var currentIndex = this.props.flowIndex
             var nextFlowSection = this.props.secondaryFlowNext
             this.props.order.nextFlowSection(currentIndex, nextFlowSection)

@@ -9,6 +9,7 @@ NewOrderSectionExtra = React.createClass({
                     flowIndex={this.props.flowIndex}
                     primaryLabel={T("order", "finish_form_button_label")}
                     primaryFlowNext={this.props.primaryFlowNext}
+                    primaryAction={this.props.primaryAction}
                 />}
             />)
     }
