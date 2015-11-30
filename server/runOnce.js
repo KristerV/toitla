@@ -1,15 +1,15 @@
 // Convert ObjectIds it strings
-Meteor.startup(function(){
-    var items = MenuItemTemplates.find()
-    items.forEach(function(item){
-        if (!_.isString(item._id)) {
-            MenuItemTemplates.remove(item._id)
-            delete item._id
-            MenuItemTemplates.insert(item)
-        }
-
-    })
-});
+// Meteor.startup(function(){
+//     var items = MenuItemTemplates.find()
+//     items.forEach(function(item){
+//         if (!_.isString(item._id)) {
+//             MenuItemTemplates.remove(item._id)
+//             delete item._id
+//             MenuItemTemplates.insert(item)
+//         }
+//
+//     })
+// });
 
 // fix tags from arrays to objects
 // Meteor.startup(function(){
