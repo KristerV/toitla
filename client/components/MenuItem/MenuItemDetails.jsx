@@ -60,6 +60,7 @@ MenuItemDetails = React.createClass({
                         disabled={!this.state.editMode}
                         label="Toidu nimetus"
                         value={menuitem.title}
+                        rows="1"
                         name="title"
                         onBlur={this.updateText}
                         errorMsg={errors.title}/>
