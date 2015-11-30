@@ -19,7 +19,14 @@ OrderContainer = React.createClass({
                 <OrderContactForm order={order}/>
                 <OrderEventForm order={order}/>
                 <OrderAllergiesForm order={order}/>
-                <OrderFinishForm order={order} label="Extra info" textKey="Final word by client"/>
+                <OrderGeneralInputForm
+                    order={order}
+                    inputRows={1}
+                    inputName="extraInfo"
+                    inputLabel={T("order", "extra_form_label")}
+                    inputValue={order.extraInfo}
+                    inputErrorMsg={order.errors['extraInfo']}
+                />
                 <OrderMenuForm order={order}/>
             </div>)
     }
