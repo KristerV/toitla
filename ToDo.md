@@ -1,3 +1,8 @@
+# BUGS
+* pärast "muuda" ei saa kohe muuta, peab refreshima
+* Kati ei saa üldse muuta
+* toidu pealkiri üherealine
+
 # NOW
 * Näita menüüd managerile (order)
 * Printida koostisosi (order)
