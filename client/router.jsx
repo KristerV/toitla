@@ -48,6 +48,7 @@ FlowRouter.route('/profile/:userId', {
 });
 
 FlowRouter.route('/menu/:userId', {
+	triggersEnter: [loginRequired, startIdleMonitor],
 	name: 'menu',
 	action: function(params) {
 		ReactLayout.render(Layout, {
@@ -64,6 +65,7 @@ FlowRouter.route('/login/', {
 });
 
 FlowRouter.route('/users/', {
+	triggersEnter: [loginRequired, startIdleMonitor],
 	name: 'users',
 	action: function(params) {
 		ReactLayout.render(Layout, {
@@ -92,6 +94,7 @@ FlowRouter.route('/neworder/:orderId', {
 });
 
 FlowRouter.route('/order/:orderId', {
+	triggersEnter: [loginRequired, startIdleMonitor],
 	name: "order",
 	action: function(params) {
 		if (!Meteor.userId())
