@@ -1,13 +1,6 @@
 
 MenuItemDetails = React.createClass({
 
-    getInitialState() {
-        var menuitem = this.props.menuitem
-        return {
-            editMode: !menuitem.inorder && !menuitem.published
-        }
-    },
-
     switchTag(e) {
         var tagName = $(e.target).attr('name')
         var itemId = this.props.menuitem._id
@@ -29,6 +22,7 @@ MenuItemDetails = React.createClass({
     render() {
         var menuitem = this.props.menuitem
         var errors = menuitem.formErrors || {}
+        var editDisabled = menuitem.inorder || menuitem.published
 
         // Placeholder
         if (!menuitem) {
@@ -57,7 +51,7 @@ MenuItemDetails = React.createClass({
                 <div className="padding">
                     <p className="text-hint">{menuitem.chefName || user.profile.name}</p>
                     <TextInput
-                        disabled={!this.state.editMode}
+                        disabled={editDisabled}
                         label="Toidu nimetus"
                         value={menuitem.title}
                         rows="1"
@@ -65,7 +59,7 @@ MenuItemDetails = React.createClass({
                         onBlur={this.updateText}
                         errorMsg={errors.title}/>
                     <TextInput
-                        disabled={!this.state.editMode}
+                        disabled={editDisabled}
                         label="Koostisosad"
                         value={menuitem.ingredients}
                         rows="1"
@@ -78,7 +72,7 @@ MenuItemDetails = React.createClass({
                         if (menuitem.inorder && (!tag.public || !active)) return
                         return <Tag key={i}
                             label={tag.label}
-                            disabled={!this.state.editMode}
+                            disabled={editDisabled}
                             active={active}
                             name={tag.name}
                             color={tag.color}
@@ -97,6 +91,7 @@ MenuItemDetails = React.createClass({
         }
         var menuitem = this.props.menuitem
         var errors = menuitem.formErrors || {}
+        var editDisabled = menuitem.inorder || menuitem.published
         return <div>
             <div className="w100">
                 <div style={{width: '50%'}} className="inline vtop paddingr box">
@@ -107,7 +102,7 @@ MenuItemDetails = React.createClass({
                         {value: 'drink', text: 'jook'},
                         ]}
                         name="foodType"
-                        disabled={!this.state.editMode}
+                        disabled={editDisabled}
                         autoWidth={false}
                         selectedIndex={Settings.getIndexOfSetting('foodTypes', menuitem.foodType, true)}
                         onChange={this.changeDropdown}
@@ -121,7 +116,7 @@ MenuItemDetails = React.createClass({
                         {value: 'class3', text: 'Tükihind '+Settings.priceClasses.class3},
                         ]}
                         name="priceClass"
-                        disabled={!this.state.editMode}
+                        disabled={editDisabled}
                         autoWidth={false}
                         selectedIndex={Settings.getIndexOfSetting('priceClasses', menuitem.priceClass, true)}
                         onChange={this.changeDropdown}
@@ -129,7 +124,7 @@ MenuItemDetails = React.createClass({
                 </div>
             </div>
             <TextInput
-                disabled={!this.state.editMode}
+                disabled={editDisabled}
                 label="Kaal (g)"
                 value={menuitem.weight}
                 name="weight"

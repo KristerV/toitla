@@ -1,11 +1,10 @@
 # BUGS
-* pärast "muuda" ei saa kohe muuta, peab refreshima
-* Kati ei saa üldse muuta
 
 # NOW
 * Näita menüüd managerile (order)
 * Printida koostisosi (order)
 * Näita kõiki toite listis (orderis saaks vahetada)
+* Uberi SMS kujundada
 
 # NEXT
 Tellimuse läbi viimise protsess
