@@ -4,6 +4,10 @@ OrderThumbnail = React.createClass({
         this.props.order.delete()
     },
 
+    goOrder() {
+        FlowRouter.go("order", {orderId: this.props.order._id})
+    },
+
     render() {
         var order = this.props.order
         order.event = order.event || {}
@@ -14,7 +18,9 @@ OrderThumbnail = React.createClass({
         if (order.status.phase === "lost") className += "bg-red"
         else if (order.status.phase === "done") className += "bg-green"
         else if (order.status.phase === "unsubmitted") className += "bg-grey"
-        return(<div className={"mdl-grid paper padding " + className}>
+        else className += "bg-white"
+        return(<div className={"mdl-grid paper padding clickable " + className}
+            onClick={this.goOrder}>
                 <div className="mdl-cell mdl-cell--3-col">
                     {order.contact.organization || order.contact.name}
                 </div>

@@ -1,6 +1,11 @@
-OrderFinishForm = React.createClass({
+OrderFinishSection = React.createClass({
     render() {
-        var order = this.props.order
+        var order = this.props.order || {}
+        order.errors = order.errors || {}
+        if (!this.props.labelKey)
+            console.error("No label specified: OrderFinishSection")
+        if (!this.props.textKey)
+            console.error("No textKey specified: OrderFinishSection")
         return(<NewOrderSection
             leftContent={<NewOrderSectionText dangerouslySetInnerHTML={T("order", this.props.textKey, true)}/>}
             rightContent={<OrderGeneralInputForm

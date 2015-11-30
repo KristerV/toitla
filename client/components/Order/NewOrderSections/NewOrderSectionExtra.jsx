@@ -1,7 +1,7 @@
 NewOrderSectionExtra = React.createClass({
     render() {
         var order = this.props.order
-        return(<OrderFinishForm order={order}
+        return(<OrderFinishSection order={order}
             textKey={"extra_form"}
             labelKey={"extra_form_label"}
             buttons={<NewOrderFlowButtons

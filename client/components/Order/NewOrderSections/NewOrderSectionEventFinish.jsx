@@ -1,7 +1,7 @@
 NewOrderSectionEventFinish = React.createClass({
     render() {
         var order = this.props.order
-        return(<OrderFinishForm order={order}
+        return(<OrderFinishSection order={order}
             textKey={"event_form_finish"}
             labelKey={"extra_form_label"}
             buttons={<NewOrderFlowButtons
