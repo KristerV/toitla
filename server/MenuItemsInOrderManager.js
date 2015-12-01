@@ -1,6 +1,6 @@
 
 var scheduledOrderRefreshes = []
-MenuItemsInOrderManager = class {
+MenuGenerator = class {
 
     constructor(orderId, verbose) {
         check(orderId, String)
@@ -85,7 +85,7 @@ MenuItemsInOrderManager = class {
         this.log("=========== getRequirements ===========");
 
         this.order = Orders.findOne(this.orderId)
-        if (!this.order) throw new Meteor.Error("MenuItemsInOrderManager.getRequirements(): no such order exists.")
+        if (!this.order) throw new Meteor.Error("MenuGenerator.getRequirements(): no such order exists.")
 
         this.peopleCount = Number(this.order.event.peopleCount)
         this.log("peopleCount",this.peopleCount);

@@ -41,7 +41,7 @@ OrdersContainer = React.createClass({
         var ordersList = []
         orders.forEach(function(order){
             ordersList.push(<div key={order._id}>
-                <OrderThumbnail order={order}/>
+                <OrderListItem order={order}/>
             </div>)
         })
         return(<div className="max-width paper">

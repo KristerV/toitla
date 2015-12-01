@@ -1,4 +1,4 @@
-OrderThumbnail = React.createClass({
+OrderListItem = React.createClass({
 
     deleteOrder(e) {
         this.props.order.delete()

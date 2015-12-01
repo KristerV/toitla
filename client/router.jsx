@@ -98,10 +98,10 @@ FlowRouter.route('/order/:orderId', {
 	name: "order",
 	action: function(params) {
 		if (!Meteor.userId())
-			ReactLayout.render(OrderContainer, {orderId: params.orderId})
+			ReactLayout.render(OrderManagerContainer, {orderId: params.orderId})
 		else
 			ReactLayout.render(Layout, {
-			content: <OrderContainer orderId={params.orderId}/>
+			content: <OrderManagerContainer orderId={params.orderId}/>
 		});
 	}
 });

@@ -1,4 +1,4 @@
-OrderContainer = React.createClass({
+OrderManagerContainer = React.createClass({
 
     mixins: [ReactMeteorData],
     getMeteorData() {
@@ -16,6 +16,7 @@ OrderContainer = React.createClass({
             return <Loader/>
         var order = this.data.order
         return(<div>
+                <StatusForm order={order}/>
                 <OrderContactForm order={order}/>
                 <OrderEventForm order={order}/>
                 <OrderAllergiesForm order={order}/>

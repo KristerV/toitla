@@ -61,7 +61,6 @@ NewOrder = React.createClass({
         }
 
         return(<div className="h100">
-            {/*<StatusForm order={order}/>*/}
             {forms}
         </div>)
     }
