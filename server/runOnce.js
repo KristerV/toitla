@@ -1,3 +1,15 @@
+// Convert weight info to number
+Meteor.startup(function(){
+    var items = MenuItemTemplates.find()
+    items.forEach(function(item){
+        if (_.isString(item.weight)) {
+            var newWeight = Number(item.weight.match(/\d+/)[0])
+            MenuItemTemplates.update(item._id, {$set: {weight: newWeight}})
+        }
+
+    })
+});
+
 // Convert ObjectIds it strings
 // Meteor.startup(function(){
 //     var items = MenuItemTemplates.find()

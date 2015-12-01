@@ -4,7 +4,7 @@ MenuItemsInOrderManager = class {
 
     constructor(orderId, verbose) {
         check(orderId, String)
-        this.verbose = verbose
+        this.verbose = verbose || true // TURN ON FOR VERBOSITY
         this.orderId = orderId
         this.order = Orders.findOne(orderId)
         this.settings = Settings.menuConstructor
@@ -128,6 +128,7 @@ MenuItemsInOrderManager = class {
         this.log("mealPlan", mealPlan);
 
         var selectedPriceClass = this.price.class || 1
+        this.log("selectedPriceClass", selectedPriceClass)
         this.priceClasses = []
         var availablePriceClasses = Settings.getKeys("priceClasses")
         for (var i = 0; i < mealPlan.length; i++) {
@@ -136,7 +137,7 @@ MenuItemsInOrderManager = class {
             } else if (selectedPriceClass == 2) {
                 this.priceClasses.push(availablePriceClasses[2])
             } else {
-                this.priceClasses.push(null)
+                this.priceClasses.push(null) // null means "choose at random"
             }
         }
         this.log("priceClasses",this.priceClasses)
@@ -150,7 +151,7 @@ MenuItemsInOrderManager = class {
         var chefs = Meteor.users.find({eligible: true}, {sort: {manualRating: -1, acceptanceScore: -1}, limit: 10}).fetch()
         this.chefIdList = _.pluck(chefs, '_id')
         for (var i = 0; i < chefs.length; i++) {
-            this.log(chefs[i]._id, chefs[i].manualRating, chefs[i].profile.name);
+            this.log(chefs[i]._id, "rating:"+chefs[i].manualRating, chefs[i].profile.name, "foods:"+chefs[i].menuCount);
         }
     }
     constructMenu() {
@@ -188,14 +189,14 @@ MenuItemsInOrderManager = class {
             rejected: {$ne: true}
         }
         if (!lessStrictSpecs) {
-            // Better let menu repeat than throw error
+            // Better let menu items repeat themselves than throw error
             var unwanted = _.pluck(this.meals, '_id')
             unwanted = _.union(unwanted, this.inUseTemplates)
             find._id = {$nin: unwanted}
             if (mealSpecs.priceClass) find.priceClass = mealSpecs.priceClass
         }
         if (mealSpecs.tags) find.tags = mealSpecs.tag
-        this.log("FIND", find.weight['$gt']+"g", find.foodType);
+        this.log("FIND", find);
 
         var chefIndex = 0
         while (!item && chefIndex < this.chefIdList.length) {
