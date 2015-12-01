@@ -28,6 +28,7 @@ OrderContainer = React.createClass({
                     inputErrorMsg={order.errors['extraInfo']}
                 />
                 <OrderMenuForm order={order}/>
+                <MenuItemsContainer order={order}/>
             </div>)
     }
 })

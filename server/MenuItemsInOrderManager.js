@@ -4,7 +4,7 @@ MenuItemsInOrderManager = class {
 
     constructor(orderId, verbose) {
         check(orderId, String)
-        this.verbose = verbose || true // TURN ON FOR VERBOSITY
+        this.verbose = verbose // || true // TURN ON FOR VERBOSITY
         this.orderId = orderId
         this.order = Orders.findOne(orderId)
         this.settings = Settings.menuConstructor
