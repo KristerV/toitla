@@ -1,5 +1,9 @@
 # BUGS
 * no menuitem ever with real data :(
+* email check too early
+* Tab viskab kontaktidesse kuupäevast
+* sitt pealkiri see "table set"
+* thanks form ajaks on publish kinni
 
 # NOW
 * Näita menüüd managerile (order)

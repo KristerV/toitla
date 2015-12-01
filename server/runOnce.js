@@ -8,7 +8,6 @@
 //                 MenuItemTemplates.update(item._id, {$set: {weight: newWeight}})
 //             }
 //         }
-// 
 //     })
 // });
 
@@ -21,7 +20,6 @@
 //             delete item._id
 //             MenuItemTemplates.insert(item)
 //         }
-//
 //     })
 // });
 
