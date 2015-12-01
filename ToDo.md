@@ -1,4 +1,5 @@
 # BUGS
+* no menuitem ever with real data :(
 
 # NOW
 * Näita menüüd managerile (order)

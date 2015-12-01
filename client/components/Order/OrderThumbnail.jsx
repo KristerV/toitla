@@ -2,6 +2,7 @@ OrderThumbnail = React.createClass({
 
     deleteOrder(e) {
         this.props.order.delete()
+        e.stopPropagation()
     },
 
     goOrder() {
