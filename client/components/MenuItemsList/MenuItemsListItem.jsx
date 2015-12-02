@@ -13,19 +13,19 @@ MenuItemsListItem = React.createClass({
         var menuitem = this.props.menuitem
         if (this.data.user && this.data.user.profile)
             var chefName = this.data.user.profile.name
-        var style= {display: "inline-block"}
-        return(<div className="paper padding">
-            <p style={style}>{chefName}</p>
-            <div style={style}>{menuitem.title}
+        return(<tr className="paper padding">
+            <td>{chefName}</td>
+            <td className="wrap">{menuitem.title}</td>
+            <td>
                 <div id={"ingredients-tooltip-"+menuitem._id} className="icon material-icons">receipt</div>
                 <div className="mdl-tooltip" htmlFor={"ingredients-tooltip-"+menuitem._id}>
                     {menuitem.ingredients}
                 </div>
-            </div>
-            <div style={style}><Tags activeTags={menuitem.tags} onlyActive={true}/></div>
-            <p style={style}>{menuitem.foodType}</p>
-            <p style={style}>{Settings.getPriceFromClass(menuitem.priceClass)}€</p>
-            <p style={style}>{menuitem.weight}g</p>
-        </div>)
+            </td>
+            <td className="wrap"><Tags activeTags={menuitem.tags} onlyActive={true}/></td>
+            <td>{menuitem.foodType}</td>
+            <td>{Settings.getPriceFromClass(menuitem.priceClass)}€</td>
+            <td>{menuitem.weight}g</td>
+        </tr>)
     }
 })
