@@ -1,16 +1,15 @@
 # BUGS
-* no menuitem ever with real data :(
 * email check too early
 * Tab viskab kontaktidesse kuupäevast
+* chef can't new order, strangers can see all details, client can see details after submit.
 
 # NOW
-* Näita menüüd managerile (order)
-* Printida koostisosi (order)
 * Näita kõiki toite listis (orderis saaks vahetada)
+* Printida silte
 * Uberi SMS kujundada
-* Tellimuse läbi viimise protsess
 
 # NEXT
+* Protsess üle käia
 * meatfree ei reageeri menüü ehitamisel
 * pilt toidule
 * Kokale teade tellimuse kohta

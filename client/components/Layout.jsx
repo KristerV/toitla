@@ -21,13 +21,14 @@ Layout = React.createClass({
         var changingLinks = []
         var user = this.data.user || {isManager:function(){return false}}
         if (user.isManager()) {
+            changingLinks.push(<a key={3} className="mdl-navigation__link" href="/menus">All Menus</a>)
             changingLinks.push(<a key={2} className="mdl-navigation__link" href="/orders">Orders</a>)
             changingLinks.push(<a key={1} className="mdl-navigation__link" href="/users">Users</a>)
         }
 
         var links = <nav className="mdl-navigation">
             {changingLinks}
-            <a className="mdl-navigation__link" href={"/menu/"+user._id}>Menu</a>
+            <a className="mdl-navigation__link" href={"/menu/"+user._id}>My Menu</a>
             <a className="mdl-navigation__link" href={"/profile/"+user._id}>Profile</a>
             <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" onClick={this.goNewOrder}>new order</button>
         </nav>

@@ -1,12 +1,6 @@
 
 MenuItemDetails = React.createClass({
 
-    switchTag(e) {
-        var tagName = $(e.target).attr('name')
-        var itemId = this.props.menuitem._id
-        Meteor.call('menuitemTemplate--switchTag', itemId, tagName)
-    },
-
     updateText(e) {
         var fieldName = $(e.target).attr('name')
         var fieldValue = $(e.target).val()
@@ -24,26 +18,8 @@ MenuItemDetails = React.createClass({
         var errors = menuitem.formErrors || {}
         var editDisabled = menuitem.inorder || menuitem.published
 
-        // Placeholder
-        if (!menuitem) {
-            return <section className="padding details">
-                <div className="placeholder padding">
-                    <p>Eesnimi Perenimi</p>
-                    <p>Ilus toidu pealkiri</p>
-                    <p>Pikk ja detailne kirjeldus koostisosadest</p>
-                    <Tag label="lihavaba" active={false} color="#64DD17"/>
-                    <Tag label="vegan" active={false} color="#00C853"/>
-                    <Tag label="toor" active={false} color="#00BFA5"/>
-                    <Tag label="mahe" active={false} color="#8D6E63"/>
-                    <Tag label="gluteenivaba" active={false} color="#0091EA"/>
-                    <Tag label="laktoosivaba" active={false} color="#2962FF"/>
-                </div>
-            </section>
-        }
-
         var user = Meteor.users.findOne(menuitem.chefId) || {}
         user.profile = user.profile || {}
-        var activeTagNames = _.pluck(menuitem.tags, 'name')
 
         // Render
         return(
@@ -67,17 +43,11 @@ MenuItemDetails = React.createClass({
                         onBlur={this.updateText}
                         errorMsg={errors.ingredients}/>
 
-                    {Settings.menuitemTags.map(function(tag, i){
-                        var active = _.contains(activeTagNames, tag.name)
-                        if (menuitem.inorder && (!tag.public || !active)) return
-                        return <Tag key={i}
-                            label={tag.label}
-                            disabled={editDisabled}
-                            active={active}
-                            name={tag.name}
-                            color={tag.color}
-                            onClick={this.switchTag}/>
-                    }.bind(this))}
+                    <Tags
+                        activeTags={menuitem.tags}
+                        menuitemId={this.props.menuitem._id}
+                        disabled={editDisabled}
+                    />
                     {menuitem.amount ? <h4>{menuitem.amount} pieces</h4> : null}
                 </div>
                 {this.getSpecifications()}
