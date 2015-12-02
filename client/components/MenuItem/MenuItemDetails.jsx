@@ -47,6 +47,7 @@ MenuItemDetails = React.createClass({
                         activeTags={menuitem.tags}
                         menuitemId={this.props.menuitem._id}
                         disabled={editDisabled}
+                        onlyActive={editDisabled}
                     />
                     {menuitem.amount ? <h4>{menuitem.amount} pieces</h4> : null}
                 </div>
