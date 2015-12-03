@@ -48,6 +48,7 @@ MenuGenerator = class {
         this.inUseTemplates.push(oldItem.templateId)
         this.findChefs()
         oldItem.originalSpecifications.priceClass = oldItem.priceClass
+        oldItem.originalSpecifications.amount = oldItem.amount
         this.addMeal(oldItem.originalSpecifications)
         this.insertFoods()
     }
@@ -227,7 +228,7 @@ MenuGenerator = class {
         this.log("======== runCalculatePrice ========");
         var priceToClient = 0
         for (var i = 0; i < this.meals.length; i++) {
-            var mealPrice = Settings.priceClasses[this.meals[i].priceClass] * this.snacksPerMeal
+            var mealPrice = Settings.priceClasses[this.meals[i].priceClass] * (this.meals[i].amount || this.snacksPerMeal)
             priceToClient = priceToClient + mealPrice
         }
 
@@ -281,17 +282,27 @@ MenuGenerator = class {
         this.log("============ insertFoods ==============");
         var results = []
         _.each(this.meals, function(newItem, i){
-            newItem.templateId = newItem._id
-            delete newItem._id
-            newItem.orderId = this.orderId
-            newItem.inorder = true
-            newItem.chefName = Meteor.users.findOne(newItem.chefId).profile.name
-            newItem.amount = this.snacksPerMeal || newItem.originalSpecifications.amount
-            var result = MenuItemsInOrder.insert(newItem)
-            results.push(result)
+            results.push(this.insertTemplate(newItem))
         }.bind(this))
         this.log("RESULTS", results);
         this.log("ITEMS IN ORDER", MenuItemsInOrder.find({orderId: this.orderId, rejected: {$ne: true}}).fetch().length);
+    }
+    insertTemplate(template) {
+        this.log("============ insertTemplate ==============");
+        template.templateId = template._id
+        delete template._id
+        template.orderId = this.orderId
+        template.inorder = true
+        template.chefName = Meteor.users.findOne(template.chefId).profile.name
+        if (this.snacksPerMeal)
+            template.amount = this.snacksPerMeal
+        if (template.originalSpecifications)
+            template.amount = template.originalSpecifications.amount
+        else
+            template.amount = 20
+        this.log("INSERT:", template.templateId, template.amount+"pcs")
+        var result = MenuItemsInOrder.insert(template)
+        return result
     }
     printMeals(fromDB) {
         this.log("");

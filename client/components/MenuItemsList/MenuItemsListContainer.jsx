@@ -12,7 +12,7 @@ MenuItemsListContainer = React.createClass({
         if (!this.data.subsReady)
             return <Loader/>
         return(<div className="max-width">
-            <MenuItemsList menuitems={this.data.menuitems}/>
+            <MenuItemsList menuitems={this.data.menuitems} orderId={this.props.orderId}/>
         </div>)
     }
 })

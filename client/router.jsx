@@ -47,6 +47,16 @@ FlowRouter.route('/menus', {
 	}
 });
 
+FlowRouter.route('/menus/add-item-to-order/:orderId', {
+	name: 'menus-addItem',
+	triggersEnter: [loginRequired, startIdleMonitor],
+	action: function(params) {
+		ReactLayout.render(Layout, {
+			content: <MenuItemsListContainer orderId={params.orderId}/>
+		});
+	}
+});
+
 FlowRouter.route('/profile/:userId', {
 	triggersEnter: [loginRequired, startIdleMonitor],
 	name: 'profile',

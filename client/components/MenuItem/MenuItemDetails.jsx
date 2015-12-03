@@ -8,6 +8,13 @@ MenuItemDetails = React.createClass({
         Meteor.call('menuitemTemplate--updateField', itemId, fieldName, fieldValue)
     },
 
+    updateTextInOrder(e) {
+        var fieldName = $(e.target).attr('name')
+        var fieldValue = $(e.target).val()
+        var itemId = this.props.menuitem._id
+        Meteor.call('menuitemInOrder--updateField', itemId, fieldName, fieldValue)
+    },
+
     changeDropdown(result) {
         var itemId = this.props.menuitem._id
         Meteor.call('menuitemTemplate--updateField', itemId, result.name, result.value)
@@ -49,7 +56,15 @@ MenuItemDetails = React.createClass({
                         disabled={editDisabled}
                         onlyActive={editDisabled}
                     />
-                    {menuitem.amount ? <h4>{menuitem.amount} pieces</h4> : null}
+                    {menuitem.amount ?
+                        <TextInput
+                            label="pieces"
+                            name="amount"
+                            errorMsg={errors.amount}
+                            onBlur={this.updateTextInOrder}
+                            value={menuitem.amount}
+                        />
+                    : null}
                 </div>
                 {this.getSpecifications()}
             </section>

@@ -34,7 +34,7 @@ MenuItem = React.createClass({
         if (menuitem.inorder) {
             if (menuitem.chefId === Meteor.userId())
                 extraSections.push(<MenuItemChef key={2} menuitem={menuitem}/>)
-            else
+            else if (menuitem.originalSpecifications)
                 extraSections.push(<MenuItemButtonSection key={1} label="Vaheta" onClick={this.nextFood} colored={true}/>)
         } else {
             if (!menuitem.published) {
