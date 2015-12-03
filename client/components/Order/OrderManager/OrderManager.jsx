@@ -1,7 +1,8 @@
 OrderManager = React.createClass({
 
     render() {
-        var order = this.props.order
+        var order = this.props.order || {}
+        order.errors = order.errors || {}
         return(<div className="mdl-grid">
                     <div className="mdl-cell mdl-cell--4-col">
                         <StatusForm order={order}/>
