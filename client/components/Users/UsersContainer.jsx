@@ -18,6 +18,16 @@ UsersContainer = React.createClass({
         FlowRouter.go('menu', {userId: userId})
     },
 
+    deleteUser(e) {
+        var userId = $(e.target).parents("tr[data-userid]").attr("data-userid")
+        var user = Meteor.users.findOne(userId)
+        var c = confirm("DELETE FOREVER? User: "+user.getEmail())
+        if (!c) return false
+        if (user.menuCount) c = confirm("THIS USER HAS MENU ITEMS, DELETE?")
+        if (!c) return false
+        Meteor.call('Users.deleteUser', userId)
+    },
+
     render() {
         return(
             <table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp max-width">
@@ -37,7 +47,7 @@ UsersContainer = React.createClass({
                     var profile = user.profile || {}
                     if (user.status && user.status.lastLogin)
                         var lastLogin = moment(user.status.lastLogin.date).format("HH:mm - D.MM.YYYY")
-                    return <tr key={user._id}>
+                    return <tr key={user._id} data-userid={user._id}>
                         <td className="mdl-data-table__cell--non-numeric">{profile.name}</td>
                         <td>{user.getEmail()}</td>
                         <td>
@@ -63,6 +73,11 @@ UsersContainer = React.createClass({
                             </button>
                         </td>
                         <td>{lastLogin}</td>
+                        <td>
+                            <button className="mdl-button mdl-js-button mdl-button--icon" onClick={this.deleteUser}>
+                                <i className="material-icons">delete</i>
+                            </button>
+                        </td>
                     </tr>
                 }.bind(this))}
               </tbody>
