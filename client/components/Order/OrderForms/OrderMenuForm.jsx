@@ -5,7 +5,7 @@ OrderMenuForm = React.createClass({
     },
     handleCheckboxChange(e) {
         this.props.order.handleChangeCheckbox(e)
-        this.props.order.calculatePrice()
+        this.props.order.calculateTotals()
     },
     render() {
         var order = this.props.order
@@ -47,7 +47,9 @@ OrderMenuForm = React.createClass({
                 name={'price.serveDrinks'}
                 onChange={this.handleCheckboxChange}/>
             <br/>
-            <h4 className="text-center">Get this menu for {order.price.calculated}€</h4>
+            <h3 className="text-center">Price: {order.price.calculated}€</h3>
+            <h5 className="text-center">Pieces: {order.price.totalPieces}pcs</h5>
+            <h5 className="text-center">Weigth: {order.price.totalWeight}g</h5>
             <Loader id="calculating-price-loader"/>
         </div>)
     }

@@ -16,7 +16,6 @@ MenuGenerator = class {
         this.chefIdList = []
         this.inUseTemplates = []
         this.priceClasses = []
-        this.priceToClient = null
         this.snacksPerMeal = null
         this.totalWeight = null
         this.snacksCount = null
@@ -74,12 +73,12 @@ MenuGenerator = class {
         this.constructMenu()
         MenuItemsInOrder.remove({orderId: this.orderId})
         this.insertFoods()
-        this.runCalculatePrice()
+        this.runCalculateTotals()
     }
-    calculatePrice() {
+    calculateTotals() {
         this.getRequirements()
         this.meals = MenuItemsInOrder.find({orderId: this.orderId, rejected: {$ne: true}}).fetch()
-        this.runCalculatePrice()
+        this.runCalculateTotals()
     }
     getRequirements() {
         // var meals = 2/3soolast( 1/3 vege + 2/3 soolast ) + 1/3magus
@@ -224,27 +223,45 @@ MenuGenerator = class {
             return this.addMeal(mealSpecs, true)
         }
     }
-    runCalculatePrice(){
-        this.log("======== runCalculatePrice ========");
+    runCalculateTotals(){
+        this.log("======== runCalculateTotals ========");
+
+        // Looking for
         var priceToClient = 0
+        var totalWeight = 0
+        var totalPieces = 0
+
+        // For each menuitem
         for (var i = 0; i < this.meals.length; i++) {
-            var mealPrice = Settings.priceClasses[this.meals[i].priceClass] * (this.meals[i].amount || this.snacksPerMeal)
-            priceToClient = priceToClient + mealPrice
+            var mealPieces = this.meals[i].amount || this.snacksPerMeal
+            var mealPrice = Settings.priceClasses[this.meals[i].priceClass] * mealPieces
+            priceToClient += mealPrice
+            totalWeight += this.meals[i].weight
+            totalPieces += mealPieces
         }
 
-        // Margin
-        priceToClient = priceToClient * 1.8
-
+        // Price adjustment
+        priceToClient = priceToClient * 1.8 // margin
         if (this.price.serveDrinks) priceToClient += this.peopleCount * 2.85
         if (this.price.serveCoffee) priceToClient += this.peopleCount * 1.75 * this.coffeeBreaks
+        priceToClient = parseInt(priceToClient)
 
-        this.priceToClient = parseInt(priceToClient)
-        this.log("PRICE", this.priceToClient)
-        this.updatePrice()
-        return this.priceToClient
+        // Log
+        this.log("PRICE", priceToClient)
+        this.log("WEIGHT", totalWeight)
+        this.log("PIECES", totalPieces)
+
+        // Save info
+        this.updatePrice(priceToClient, totalWeight, totalPieces)
+
+        return priceToClient
     }
-    updatePrice() {
-        Orders.update(this.orderId, {$set: {'price.calculated': this.priceToClient}})
+    updatePrice(priceToClient, totalWeight, totalPieces) {
+        Orders.update(this.orderId, {$set: {
+            'price.calculated': priceToClient,
+            'price.totalWeight': totalWeight,
+            'price.totalPieces': totalPieces,
+        }})
     }
     replaceHighestPrice() {
         // This method is deprecated, but too good to just throw away
