@@ -13,7 +13,7 @@ MenuGenerator = class {
     reset() {
         this.meals = []
         this.mealPlan = []
-        this.chefIdList = []
+        this.chefs = []
         this.inUseTemplates = []
         this.priceClasses = []
         this.snacksPerMeal = null
@@ -148,10 +148,10 @@ MenuGenerator = class {
     findChefs() {
         // chefs.find(vet, firmanimi, firmakood, kokanimi).sort(manualRating, acceptanceScore)
         this.log("============== findChefs ==============");
-        var chefs = Meteor.users.find({eligible: true}, {sort: {manualRating: -1, acceptanceScore: -1}, limit: 10}).fetch()
-        this.chefIdList = _.pluck(chefs, '_id')
-        for (var i = 0; i < chefs.length; i++) {
-            this.log(chefs[i]._id, "rating:"+chefs[i].manualRating, chefs[i].profile.name, "foods:"+chefs[i].menuCount);
+        this.chefs = Meteor.users.find({eligible: true}, {sort: {manualRating: -1, acceptanceScore: -1}, limit: 10}).fetch()
+        for (var i = 0; i < this.chefs.length; i++) {
+            this.chefs[i].totalSnacks = 0
+            this.log(this.chefs[i]._id, "rating:"+this.chefs[i].manualRating, this.chefs[i].profile.name, "foods:"+this.chefs[i].menuCount);
         }
     }
     constructMenu() {
@@ -182,12 +182,16 @@ MenuGenerator = class {
         this.log("================ addMeal ================");
         this.log("MEAL", mealSpecs);
         var item = null
+
+        // {Find} start
         var find = {
             weight: {$gt: mealSpecs.minWeight},
             published: true,
             foodType: mealSpecs.foodType,
             rejected: {$ne: true}
         }
+
+        // If no menu found first round, make specs simpler
         if (!lessStrictSpecs) {
             // Better let menu items repeat themselves than throw error
             var unwanted = _.pluck(this.meals, '_id')
@@ -195,22 +199,52 @@ MenuGenerator = class {
             find._id = {$nin: unwanted}
             if (mealSpecs.priceClass) find.priceClass = mealSpecs.priceClass
         }
+
+        // Finish {find}
         if (mealSpecs.tags) find.tags = mealSpecs.tag
+
+        // Print
         this.log("FIND", find);
 
-        var chefIndex = 0
-        while (!item && chefIndex < this.chefIdList.length) {
+        // Find item, use as many chefs as needed
+        var chefIndex = -1
+        while (!item && chefIndex < this.chefs.length) {
+            chefIndex++
+            this.log("");
+            this.log("CURRENT CHEF",this.chefs[chefIndex].profile.name);
+
+            // Don't give too many snacks to one chef
+            var allChefsMaxedOut = true
+            for (var i = 0; i < this.chefs.length; i++) {
+                var chefMaxed = this.chefs[i].totalSnacks >= this.settings.maxSnacksPerChef
+                this.log("chefMaxed",chefMaxed);
+                allChefsMaxedOut = allChefsMaxedOut && chefMaxed
+            }
+            this.log("allChefsMaxedOut",allChefsMaxedOut);
+            var thisChefMaxed = this.chefs[chefIndex].totalSnacks >= this.settings.maxSnacksPerChef
+            this.log("thisChefMaxed", thisChefMaxed);
+            if (thisChefMaxed && !allChefsMaxedOut) {
+                this.log("CONTINUE");
+                continue
+            }
+
+            // Actually find the menuitem
             var rand = Math.random()
-            find.chefId = this.chefIdList[chefIndex],
+            find.chefId = this.chefs[chefIndex]._id,
             this.log("CHEF", find.chefId);
             var items = MenuItemTemplates.find(find).fetch()
             item = items[parseInt(Math.random() * items.length)]
-            chefIndex++
         }
 
         if (item) {
+            // Save specs for later use
             mealSpecs.amount = mealSpecs.amount || this.snacksPerMeal
             item.originalSpecifications = mealSpecs
+
+            // Update chef total snacks count
+            this.chefs[chefIndex].totalSnacks += mealSpecs.amount
+
+            // save item
             this.meals.push(item)
             this.log("ITEM", item._id, item.weight+"g", _.pluck(item.tags, 'name'));
             return item
