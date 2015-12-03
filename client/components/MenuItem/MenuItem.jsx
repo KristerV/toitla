@@ -18,6 +18,10 @@ MenuItem = React.createClass({
             Meteor.call('menuitemTemplate--delete', this.props.menuitem._id)
     },
 
+    removeFromOrder(e) {
+        Meteor.call('menuitemInOrder--removeItem', this.props.menuitem._id)
+    },
+
     nextFood(e) {
         Meteor.call("menuitemInOrder--switchItem", this.props.menuitem._id)
     },
@@ -40,10 +44,19 @@ MenuItem = React.createClass({
             }
         }
 
+        var options = []
+        if (menuitem.inorder) {
+            options.push({ label: 'remove from order', onClick: this.removeFromOrder})
+        } else if (menuitem.published) {
+            options.push({ label: 'change', onClick: this.unpublish})
+        } else if (!menuitem.published && !menuitem.inorder) {
+            options.push({ label: 'delete', onClick: this.deleteMenuitem})
+        }
+
         // Render
         return(
         <div className="MenuItem mdl-shadow--2dp paper mdl-cell mdl-cell--4-col">
-            <CornerMenu menuitem={menuitem} menuitemKey={menuitemKey} unpublish={this.unpublish} deleteMenuitem={this.deleteMenuitem}/>
+            <CornerMenu options={options}/>
             <FoodThumbnail menuitem={menuitem}/>
             <MenuItemDetails menuitem={menuitem}/>
             {extraSections}
