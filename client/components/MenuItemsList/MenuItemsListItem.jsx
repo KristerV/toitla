@@ -18,7 +18,10 @@ MenuItemsListItem = React.createClass({
             <td className="wrap">{menuitem.title}</td>
             <td>
                 <div id={"ingredients-tooltip-"+menuitem._id} className="icon material-icons">receipt</div>
-                <div className="mdl-tooltip" htmlFor={"ingredients-tooltip-"+menuitem._id}>
+                <div
+                    className="mdl-tooltip"
+                    htmlFor={"ingredients-tooltip-"+menuitem._id}
+                    style={{whiteSpace: "normal"}}>
                     {menuitem.ingredients}
                 </div>
             </td>
