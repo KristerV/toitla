@@ -207,9 +207,8 @@ MenuGenerator = class {
         this.log("FIND", find);
 
         // Find item, use as many chefs as needed
-        var chefIndex = -1
+        var chefIndex = 0
         while (!item && chefIndex < this.chefs.length) {
-            chefIndex++
             this.log("");
             this.log("CURRENT CHEF",this.chefs[chefIndex].profile.name);
 
@@ -225,6 +224,7 @@ MenuGenerator = class {
             this.log("thisChefMaxed", thisChefMaxed);
             if (thisChefMaxed && !allChefsMaxedOut) {
                 this.log("CONTINUE");
+                chefIndex++
                 continue
             }
 
@@ -234,6 +234,7 @@ MenuGenerator = class {
             this.log("CHEF", find.chefId);
             var items = MenuItemTemplates.find(find).fetch()
             item = items[parseInt(Math.random() * items.length)]
+            chefIndex++
         }
 
         if (item) {
@@ -242,7 +243,7 @@ MenuGenerator = class {
             item.originalSpecifications = mealSpecs
 
             // Update chef total snacks count
-            this.chefs[chefIndex].totalSnacks += mealSpecs.amount
+            this.chefs[chefIndex-1].totalSnacks += mealSpecs.amount
 
             // save item
             this.meals.push(item)
