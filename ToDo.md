@@ -1,5 +1,4 @@
 # TODAY
-Backups shelljs
 Investor email (don't send)
 Chef emails
 

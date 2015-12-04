@@ -7,6 +7,10 @@ OrderMenuForm = React.createClass({
         this.props.order.handleChangeCheckbox(e)
         this.props.order.calculateTotals()
     },
+    emptyOrderFromMenuitems(e) {
+        if (confirm("Remove all items for sure?"))
+            this.props.order.removeAllMenuitems()
+    },
     render() {
         var order = this.props.order
         order.price = order.price || {}
@@ -50,6 +54,7 @@ OrderMenuForm = React.createClass({
             <h3 className="text-center">Price: {order.price.calculated}€</h3>
             <h5 className="text-center">Pieces: {order.price.totalPieces}pcs</h5>
             <h5 className="text-center">Weigth: {order.price.totalWeight}g</h5>
+            <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--accent w100" onClick={this.emptyOrderFromMenuitems}>remove all foods</button>
             <Loader id="calculating-price-loader"/>
         </div>)
     }
