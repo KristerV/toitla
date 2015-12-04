@@ -1,3 +1,8 @@
+# TODAY
+Backups shelljs
+Investor email (don't send)
+Chef emails
+
 # BUGS
 * email check too early
 * Tab viskab kontaktidesse kuupäevast
@@ -15,6 +20,7 @@
 * Kokale teade tellimuse kohta
 
 # MUSTHAVE
+* Tagide seletused, ehk Kätlinile mis on vegan.
 * Tagasiside ja ratingud
 * Arve saatmine Toitlalt Kliendile (erply, GWA arendajalt saab küsida)
 * Arve saatmine Kokalt Toitlale (erply, GWA arendajalt saab küsida)
