@@ -26,7 +26,7 @@ OrderManager = React.createClass({
                 <OrderMenuForm order={order}/>
             </div>
             <div className="mdl-cell mdl-cell--12-col">
-                <MenuitemsContainer order={order} layout="list" />
+                <MenuitemsContainer order={order} layout="table" />
             </div>
         </div>)
     }

@@ -1,14 +1,5 @@
 MenuitemInTable = React.createClass({
 
-    mixins: [ReactMeteorData],
-    getMeteorData() {
-        var subscription = Meteor.subscribe("allUserData")
-        var user = Meteor.users.findOne(this.props.menuitem.chefId)
-        return {
-            user: user
-        }
-    },
-
     tickChecbox(mouseEvent, reactId, event) {
         mouseEvent.stopPropagation()
         var menuitemId = $(mouseEvent.target).parent().attr("data-menuitem-id")
@@ -25,11 +16,9 @@ MenuitemInTable = React.createClass({
 
     render() {
         var menuitem = this.props.menuitem
-        if (this.data.user && this.data.user.profile)
-            var chefName = this.data.user.profile.name
         return(<tr className="paper padding" onClick={this.tickChecbox} data-menuitem-id={menuitem._id}>
             {this.props.checkboxes ? <td><Checkbox name="Tere" id={menuitem._id} /></td> : null}
-            <td>{chefName}</td>
+            <td>{menuitem.chefName}</td>
             <td className="wrap">{menuitem.title}</td>
             <td>
                 <div id={"ingredients-tooltip-"+menuitem._id} className="icon material-icons">receipt</div>
