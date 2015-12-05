@@ -1,5 +1,12 @@
 MenuitemInTable = React.createClass({
 
+    updateTextInOrder(e) {
+        var fieldName = $(e.target).attr('name')
+        var fieldValue = $(e.target).val()
+        var itemId = this.props.menuitem._id
+        Meteor.call('menuitemInOrder--updateField', itemId, fieldName, fieldValue)
+    },
+
     tickChecbox(mouseEvent, reactId, event) {
         mouseEvent.stopPropagation()
         var menuitemId = $(mouseEvent.target).parent().attr("data-menuitem-id")
@@ -16,6 +23,7 @@ MenuitemInTable = React.createClass({
 
     render() {
         var menuitem = this.props.menuitem
+        errors = menuitem.errors || {}
         return(<tr className="paper padding" onClick={this.tickChecbox} data-menuitem-id={menuitem._id}>
             {this.props.checkboxes ? <td><Checkbox name="Tere" id={menuitem._id} /></td> : null}
             <td>{menuitem.chefName}</td>
@@ -30,6 +38,16 @@ MenuitemInTable = React.createClass({
                 </div>
             </td>
             <td className="wrap"><Tags activeTags={menuitem.tags} onlyActive={true}/></td>
+            <td>{menuitem.amount ?
+                <TextInput
+                    style={{width: "30px"}}
+                    label="pieces"
+                    name="amount"
+                    errorMsg={errors.amount}
+                    onBlur={this.updateTextInOrder}
+                    value={menuitem.amount}
+                />
+            : null}</td>
             <td>{menuitem.foodType}</td>
             <td>{Settings.getPriceFromClass(menuitem.priceClass)}€</td>
             <td>{menuitem.weight}g</td>

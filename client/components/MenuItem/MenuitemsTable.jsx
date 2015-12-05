@@ -1,8 +1,9 @@
 MenuitemsTable = React.createClass({
 
     render() {
-
+        var menuitems = this.props.menuitems
         var addMenuitemsMode = this.props.mode === 'addMenuitemToOrder'
+        var isAmount = menuitems.length > 0 ? menuitems[0].amount : false
 
         return(<div>
             {addMenuitemsMode ?
@@ -16,13 +17,14 @@ MenuitemsTable = React.createClass({
                         <th>Title</th>
                         <th>Ing.</th>
                         <th>Tags</th>
+                        {isAmount ? <th>Amount</th> : null}
                         <th>Type</th>
                         <th>Price</th>
                         <th>Weight</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {this.props.menuitems.map(function(menuitem, i) {
+                    {menuitems.map(function(menuitem, i) {
                         return <MenuitemInTable key={i} menuitem={menuitem} checkboxes={addMenuitemsMode}/>
                     }.bind(this))}
                 </tbody>
