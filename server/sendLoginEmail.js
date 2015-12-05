@@ -1,5 +1,3 @@
-// taken mostly from https://github.com/meteor/meteor/blob/master/packages/accounts-password/password_server.js#L573
-
 Accounts.sendLoginEmail = function(address){
 
   if (! address) {
@@ -19,6 +17,7 @@ Accounts.sendLoginEmail = function(address){
   Accounts._insertLoginToken(user._id, tokenRecord);
 
   var loginUrl = Meteor.absoluteUrl('login/' + tokenRecord.token)
+  console.log(loginUrl);
 
   var html = ''
   if (user.profile) {
