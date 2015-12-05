@@ -24,6 +24,7 @@ body {
   	height: 80%;
   	border-collapse: collapse;
   	td {
+      display: table-cell !important;
   		width: 50%;
   	}
   	h1, h2, h3, p {
@@ -37,13 +38,13 @@ body {
   }
 
   .btn {
-  	background-color: rgba(255, 255, 255, 0.2);
+  	background-color: rgba(0, 0, 0, 0.4);
   	padding: 0.3em 4em 0.3em 4em;
   	display: inline-block;
   	border-radius: 3px;
   	cursor: pointer;
   	&:hover {
-  		background-color: rgba(255,255,255,0.4);
+  		background-color: rgba(0,0,0,0.2);
   	}
   }
 
@@ -221,12 +222,24 @@ body {
             width: auto;
         }
         table.main {
-            height: 90%;
+            box-shadow: none;
+            height: auto;
+            padding-bottom: 1em;
             .left {
-                padding-top: 128px;
+                box-shadow: 0px 8px 7px rgba(0,0,0,0.5);
+                padding-top: 170px;
+                display: block !important;
+                padding-bottom: 1em;
+                width: 100%;
             }
             .right {
-                display: none;
+                display: block !important;
+                width: 100%;
+                padding-bottom: 1em;
+                h3 {
+                  display: none;
+                }
+                background-image: none;
             }
         }
         .gallery {
@@ -236,9 +249,7 @@ body {
             }
         }
         .bottom {
-            position: relative;
-            bottom: auto;
-            transform: translateY(-100%);
+            display: none;
         }
     }
 }
