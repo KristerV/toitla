@@ -36,22 +36,19 @@ Accounts.sendLoginEmail = function(address){
 
   var loginUrl = Accounts.urls.login(tokenRecord.token);
 
-  var options = {
-    to: address,
-    from: Accounts.emailTemplates.login.from
-      ? Accounts.emailTemplates.login.from(user)
-      : Accounts.emailTemplates.from,
-    subject: Accounts.emailTemplates.login.subject(user),
-    text: Accounts.emailTemplates.login.text(user, loginUrl)
-  };
-
-  if (typeof Accounts.emailTemplates.login.html === 'function') {
-    options.html = Accounts.emailTemplates.login.html(user, loginUrl);
+  var html = ''
+  if (user.profile) {
+    html += '<p>Hey ' + user.profile.name + ',</p>'
+    html += "<p>To login, just follow this link.</p>"
+  }
+  else {
+    html += '<p>Hey there,</p>'
+    html += "<p>To register, just follow this link. A user wil be created for you.</p>"
   }
 
-  if (typeof Accounts.emailTemplates.headers === 'object') {
-    options.headers = Accounts.emailTemplates.headers;
-  }
+  html += '<p><a target="_blank" href="'+loginUrl+'">'+loginUrl+'</a></p>'
 
-  Email.send(options);
+  html += '<p>All the best, Toitla</p>'
+
+  Email.send(null, address, 'Toitla login link', html)
 };

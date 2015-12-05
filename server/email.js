@@ -5,7 +5,7 @@ Email = {
           "data": {
             "key": process.env.MANDRILL_KEY,
             "message": {
-              "from_email": from,
+              "from_email": from || 'teavitus@toitla.com',
               "subject": subject,
               "html": html,
               "to": [
