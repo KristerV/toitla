@@ -92,7 +92,7 @@ FlowRouter.route('/login/:token', {
 				sAlert.error(a.reason)
 			}
 		})
-		FlowRouter.go("/")
+		window.location.href = Meteor.absoluteUrl("");
 	}
 });
 
