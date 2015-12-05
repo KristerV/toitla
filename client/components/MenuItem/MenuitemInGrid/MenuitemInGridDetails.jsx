@@ -1,5 +1,5 @@
 
-MenuItemDetails = React.createClass({
+MenuitemInGridDetails = React.createClass({
 
     updateText(e) {
         var fieldName = $(e.target).attr('name')

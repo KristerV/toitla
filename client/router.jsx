@@ -42,7 +42,7 @@ FlowRouter.route('/menus', {
 	triggersEnter: [loginRequired, startIdleMonitor],
 	action: function(params) {
 		ReactLayout.render(Layout, {
-			content: <MenuItemsListContainer/>
+			content: <MenuitemsContainer layout="table"/>
 		});
 	}
 });
@@ -52,7 +52,7 @@ FlowRouter.route('/menus/add-item-to-order/:orderId', {
 	triggersEnter: [loginRequired, startIdleMonitor],
 	action: function(params) {
 		ReactLayout.render(Layout, {
-			content: <MenuItemsListContainer orderId={params.orderId}/>
+			content: <MenuitemsContainer layout="table" orderId={params.orderId} mode={'addMenuitemToOrder'}/>
 		});
 	}
 });
@@ -72,7 +72,7 @@ FlowRouter.route('/menu/:userId', {
 	name: 'menu',
 	action: function(params) {
 		ReactLayout.render(Layout, {
-			content: <MenuItemsContainer chefId={params.userId}/>
+			content: <MenuitemsContainer chefId={params.userId}/>
 		});
 	}
 });

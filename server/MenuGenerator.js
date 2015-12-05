@@ -40,9 +40,9 @@ MenuGenerator = class {
         this.log("========================================= switchItem =========================================");
         check(itemId, String)
         this.reset()
-        var oldItem = MenuItemsInOrder.findOne(itemId)
-        MenuItemsInOrder.update(itemId, {$set: {rejected: true}})
-        var inUseTemplates = MenuItemsInOrder.find({orderId: oldItem.orderId, rejected: {$ne: true}}).fetch()
+        var oldItem = MenuitemsInOrder.findOne(itemId)
+        MenuitemsInOrder.update(itemId, {$set: {rejected: true}})
+        var inUseTemplates = MenuitemsInOrder.find({orderId: oldItem.orderId, rejected: {$ne: true}}).fetch()
         this.inUseTemplates = _.pluck(inUseTemplates, 'templateId')
         this.inUseTemplates.push(oldItem.templateId)
         this.findChefs()
@@ -71,13 +71,13 @@ MenuGenerator = class {
         this.getRequirements()
         this.findChefs()
         this.constructMenu()
-        MenuItemsInOrder.remove({orderId: this.orderId})
+        MenuitemsInOrder.remove({orderId: this.orderId})
         this.insertFoods()
         this.runCalculateTotals()
     }
     calculateTotals() {
         this.getRequirements()
-        this.meals = MenuItemsInOrder.find({orderId: this.orderId, rejected: {$ne: true}}).fetch()
+        this.meals = MenuitemsInOrder.find({orderId: this.orderId, rejected: {$ne: true}}).fetch()
         this.runCalculateTotals()
     }
     getRequirements() {
@@ -232,7 +232,7 @@ MenuGenerator = class {
             var rand = Math.random()
             find.chefId = this.chefs[chefIndex]._id,
             this.log("CHEF", find.chefId);
-            var items = MenuItemTemplates.find(find).fetch()
+            var items = MenuitemTemplates.find(find).fetch()
             item = items[parseInt(Math.random() * items.length)]
             chefIndex++
         }
@@ -254,7 +254,7 @@ MenuGenerator = class {
             throw new Meteor.Error("STILL NO MENUITEM")
         } else {
             this.log("RESET REJECTED AND RUN AGAIN WITH LESS SPECS");
-            MenuItemsInOrder.remove({orderId: this.orderId, rejected: true})
+            MenuitemsInOrder.remove({orderId: this.orderId, rejected: true})
             return this.addMeal(mealSpecs, true)
         }
     }
@@ -337,7 +337,7 @@ MenuGenerator = class {
             results.push(this.insertTemplate(newItem))
         }.bind(this))
         this.log("RESULTS", results);
-        this.log("ITEMS IN ORDER", MenuItemsInOrder.find({orderId: this.orderId, rejected: {$ne: true}}).fetch().length);
+        this.log("ITEMS IN ORDER", MenuitemsInOrder.find({orderId: this.orderId, rejected: {$ne: true}}).fetch().length);
     }
     insertTemplate(template) {
         this.log("============ insertTemplate ==============");
@@ -353,7 +353,7 @@ MenuGenerator = class {
         else
             template.amount = 20
         this.log("INSERT:", template.templateId, template.amount+"pcs")
-        var result = MenuItemsInOrder.insert(template)
+        var result = MenuitemsInOrder.insert(template)
         return result
     }
     printMeals(fromDB) {
@@ -363,7 +363,7 @@ MenuGenerator = class {
         var grossPrice = 0
         var meals
         if (fromDB)
-            meals = MenuItemsInOrder.find({orderId: this.orderId, rejected: {$ne: true}}).fetch()
+            meals = MenuitemsInOrder.find({orderId: this.orderId, rejected: {$ne: true}}).fetch()
         else
             meals = this.meals
 

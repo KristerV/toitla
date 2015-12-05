@@ -3,6 +3,7 @@ Investor email (don't send)
 Chef emails
 
 # BUGS
+* Janikal Number error menuitemis
 * email check too early
 * Tab viskab kontaktidesse kuupäevast
 * chef can't new order, strangers can see all details, client can see details after submit.

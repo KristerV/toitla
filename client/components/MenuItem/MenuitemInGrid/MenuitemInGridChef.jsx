@@ -1,4 +1,4 @@
-MenuItemChef = React.createClass({
+MenuitemInGridChef = React.createClass({
 
     getInitialState() {
         return {}

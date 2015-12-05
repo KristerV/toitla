@@ -1,4 +1,4 @@
-MenuItemsListItem = React.createClass({
+MenuitemInTable = React.createClass({
 
     mixins: [ReactMeteorData],
     getMeteorData() {

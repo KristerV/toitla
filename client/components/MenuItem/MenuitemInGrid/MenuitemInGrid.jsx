@@ -1,4 +1,4 @@
-MenuItem = React.createClass({
+MenuitemInGrid = React.createClass({
 
     getInitialState() {
         return {}
@@ -33,14 +33,14 @@ MenuItem = React.createClass({
 
         if (menuitem.inorder) {
             if (menuitem.chefId === Meteor.userId())
-                extraSections.push(<MenuItemChef key={2} menuitem={menuitem}/>)
+                extraSections.push(<MenuitemInGridChef key={2} menuitem={menuitem}/>)
             else if (menuitem.originalSpecifications)
-                extraSections.push(<MenuItemButtonSection key={1} label="Vaheta" onClick={this.nextFood} colored={true}/>)
+                extraSections.push(<MenuitemInGridButtonSection key={1} label="Vaheta" onClick={this.nextFood} colored={true}/>)
         } else {
             if (!menuitem.published) {
-                extraSections.push(<MenuItemButtonSection key={3} label="avalikusta" onClick={this.publish} accented={true}/>)
+                extraSections.push(<MenuitemInGridButtonSection key={3} label="avalikusta" onClick={this.publish} accented={true}/>)
             } else {
-                extraSections.push(<MenuItemTextSection key={4} text="Toit on avalik" className="greenBack"/>)
+                extraSections.push(<MenuitemInGridTextSection key={4} text="Toit on avalik" className="greenBack"/>)
             }
         }
 
@@ -55,19 +55,11 @@ MenuItem = React.createClass({
 
         // Render
         return(
-        <div className="MenuItem mdl-shadow--2dp paper mdl-cell mdl-cell--4-col">
+        <div className="MenuitemGrid mdl-shadow--2dp paper mdl-cell mdl-cell--4-col">
             <CornerMenu options={options}/>
-            <FoodThumbnail menuitem={menuitem}/>
-            <MenuItemDetails menuitem={menuitem}/>
+            <MenuitemInGridFoodThumbnail menuitem={menuitem}/>
+            <MenuitemInGridDetails menuitem={menuitem}/>
             {extraSections}
         </div>)
     }
 })
-/*
-
-<CornerMenu/> // edit, unpublish, delete
-<FoodThumbnail menuitem={item}/> // add, remove
-<MenuItemDetails menuitem={item}/> // text, tags
-<MenuItemClient menuitem={item}/> // next, rating, comment
-<MenuItemChef menuitem={item}/> // accept, decline, archive
-*/

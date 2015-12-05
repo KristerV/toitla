@@ -1,4 +1,4 @@
-MenuItemClient = React.createClass({
+MenuitemClient = React.createClass({
 
     getInitialState() {
         return {}

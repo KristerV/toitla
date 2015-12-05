@@ -5,7 +5,7 @@ NewOrderSectionMenu = React.createClass({
             leftContent={<NewOrderSectionText dangerouslySetInnerHTML={T("order", "menu_form", true)}/>}
             rightContent={<OrderMenuForm order={order}/>}
             bottomContent={<div>
-                <MenuItemsContainer order={order}/>
+                <MenuitemsContainer order={order}/>
                 <NewOrderSectionText className="display-none" dangerouslySetInnerHTML={T("order", "no_menu_items", true)}/>
             </div>}
             buttons={<NewOrderFlowButtons

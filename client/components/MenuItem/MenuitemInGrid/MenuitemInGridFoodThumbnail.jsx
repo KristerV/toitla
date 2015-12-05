@@ -1,4 +1,4 @@
-MenuItemEdit = React.createClass({
+MenuitemInGridFoodThumbnail = React.createClass({
 
     getInitialState() {
         return {}

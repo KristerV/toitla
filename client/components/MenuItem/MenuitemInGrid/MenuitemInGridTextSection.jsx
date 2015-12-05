@@ -1,4 +1,4 @@
-MenuItemTextSection = React.createClass({
+MenuitemInGridTextSection = React.createClass({
 
     getInitialState() {
         return {}

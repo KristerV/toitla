@@ -1,9 +1,4 @@
-MenuItemButtonSection = React.createClass({
-
-    getInitialState() {
-        return {}
-    },
-
+MenuitemInGridButtonSection = React.createClass({
     render() {
         var buttonClass = "w100 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
         if (this.props.accented)
