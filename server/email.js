@@ -40,5 +40,8 @@ Meteor.methods({
       throw new Meteor.Error("You're not allowed to send email")
     }
 
+  },
+  sendEmailLogin: function(email) {
+    Accounts.sendLoginEmail(email)
   }
 });

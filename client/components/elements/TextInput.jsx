@@ -38,11 +38,13 @@ TextInput = React.createClass({
                     pattern={this.props.pattern}
                     id={id}
                     key={3}
-                    ref="textarea"
+                    ref={this.props.ref || "textarea"}
                     defaultValue={this.props.value}
                     rows={this.props.rows}
                     onBlur={this.props.onBlur}
-                    disabled={this.props.disabled}/>
+                    disabled={this.props.disabled}
+                    autofocus={this.props.autofocus}
+                    />
         } else {
             return <input
                     className={"mdl-textfield__input " + errorClass}
@@ -51,9 +53,11 @@ TextInput = React.createClass({
                     pattern={this.props.pattern}
                     id={id}
                     key={4}
+                    ref={this.props.ref}
                     defaultValue={this.props.value}
                     onBlur={this.props.onBlur}
                     disabled={this.props.disabled}
+                    autofocus={this.props.autofocus}
                     />
         }
     }

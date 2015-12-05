@@ -1,0 +1,20 @@
+.button-login-send {
+    &.button-login-sent {
+        span {
+            display: none;
+        }
+        &:after {
+            content: "Email sent";
+        }
+        background-color: green !important;
+    }
+    &.button-not-email {
+        span {
+            display: none;
+        }
+        &:after {
+            content: "Not an email";
+        }
+        background-color: red !important;
+    }
+}

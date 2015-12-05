@@ -1,6 +1,8 @@
 255kb:meteor-status@1.4.2
 accounts-base@1.2.2
 accounts-password@1.1.4
+accounts-ui@1.1.6
+accounts-ui-unstyled@1.1.8
 alanning:roles@1.2.14
 aldeed:template-extension@3.4.3
 amplify@1.0.0
@@ -86,6 +88,7 @@ observe-sequence@1.0.7
 okgrow:router-autoscroll@0.1.4
 ordered-dict@1.0.4
 package-version-parser@3.0.4
+poetic:accounts-passwordless@0.0.7
 practicalmeteor:chai@1.9.2_3
 practicalmeteor:loglevel@1.1.0_3
 promise@0.5.1
