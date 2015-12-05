@@ -4,11 +4,11 @@ MenuitemsTable = React.createClass({
 
         var addMenuitemsMode = this.props.mode === 'addMenuitemToOrder'
 
-        return(<div className="paper">
+        return(<div className="paper max-width">
             {addMenuitemsMode ?
                 <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--accent margin" onClick={this.props.modeAction}>Add selection to order</button>
             : null}
-            <table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp max-width">
+            <table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
                 <thead>
                     <tr>
                         {addMenuitemsMode ? <th>C</th> : null}
