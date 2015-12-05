@@ -84,6 +84,18 @@ FlowRouter.route('/login/', {
 	}
 });
 
+FlowRouter.route('/login/:token', {
+	name: 'login-token',
+	action: function(params) {
+		Meteor.loginWithToken(params.token, function(err, result){
+			if (err) {
+				sAlert.error(a.reason)
+			}
+		})
+		FlowRouter.go("/")
+	}
+});
+
 FlowRouter.route('/users/', {
 	triggersEnter: [loginRequired, startIdleMonitor],
 	name: 'users',

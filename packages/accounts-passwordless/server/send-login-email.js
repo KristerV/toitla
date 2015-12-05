@@ -15,26 +15,10 @@ Accounts.sendLoginEmail = function(address){
     user = Accounts.findUserByEmail(address)
   }
 
-  var tokenRecord = {
-    token: Random.secret(),
-    address: address,
-    when: new Date()
-  };
+  var tokenRecord = Accounts._generateStampedLoginToken()
+  Accounts._insertLoginToken(user._id, tokenRecord);
 
-  Meteor.users.update(
-    { _id: user._id },
-    { $push: {'services.email.verificationTokens': tokenRecord } }
-  );
-
-  Meteor._ensure(user, 'services', 'email');
-
-  if (!user.services.email.verificationTokens) {
-    user.services.email.verificationTokens = [];
-  }
-
-  user.services.email.verificationTokens.push(tokenRecord);
-
-  var loginUrl = Accounts.urls.login(tokenRecord.token);
+  var loginUrl = Meteor.absoluteUrl('login/' + tokenRecord.token)
 
   var html = ''
   if (user.profile) {
