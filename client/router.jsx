@@ -89,10 +89,10 @@ FlowRouter.route('/login/:token', {
 	action: function(params) {
 		Meteor.loginWithToken(params.token, function(err, result){
 			if (err) {
-				sAlert.error(a.reason)
+				sAlert.error(err.reason)
 			}
+			window.location.href = Meteor.absoluteUrl()
 		})
-		window.location.href = Meteor.absoluteUrl("");
 	}
 });
 
