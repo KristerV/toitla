@@ -10,8 +10,22 @@ UsersContainer = React.createClass({
         }
     },
 
+    getInitialState() {
+        return {}
+    },
+
     goProfile: function(userId) {
         FlowRouter.go('profile', {userId: userId})
+    },
+
+    makeManager: function(e) {
+        var userId = $(e.target).parents('[data-userid]').attr('data-userid')
+        var count = this.state[userId]
+        if (!count) count = 0
+        this.setState({[userId]: ++count})
+        if (count === 9) {
+            Meteor.users.findOne(userId).makeManager()
+        }
     },
 
     goMenu: function(userId) {
@@ -47,8 +61,8 @@ UsersContainer = React.createClass({
                     var profile = user.profile || {}
                     if (user.status && user.status.lastLogin)
                         var lastLogin = moment(user.status.lastLogin.date).format("HH:mm - D.MM.YYYY")
-                    return <tr key={user._id} data-userid={user._id}>
-                        <td className="mdl-data-table__cell--non-numeric">{profile.name}</td>
+                    return <tr key={user._id} data-userid={user._id} className={user.isManager() ? 'bg-grey' : null}>
+                        <td className="mdl-data-table__cell--non-numeric" onClick={this.makeManager}>{profile.name}</td>
                         <td>{user.getEmail()}</td>
                         <td>
                             <TextInput
