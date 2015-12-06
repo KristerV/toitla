@@ -54,7 +54,8 @@ OrderMenuForm = React.createClass({
             <h3 className="text-center">Price: {order.price.calculated}€</h3>
             <h5 className="text-center">Pieces: {order.price.totalPieces}pcs</h5>
             <h5 className="text-center">Weigth: {order.price.totalWeight}g</h5>
-            <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--accent w100" onClick={this.emptyOrderFromMenuitems}>remove all foods</button>
+            <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored w100" onClick={this.emptyOrderFromMenuitems}>remove all foods</button>
+            <MenuitemButtonAdd orderId={order._id}/>
             <Loader id="calculating-price-loader"/>
         </div>)
     }

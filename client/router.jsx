@@ -52,7 +52,7 @@ FlowRouter.route('/menus/add-item-to-order/:orderId', {
 	triggersEnter: [loginRequired, startIdleMonitor],
 	action: function(params) {
 		ReactLayout.render(Layout, {
-			content: <MenuitemsContainer layout="table" orderId={params.orderId} mode={'addMenuitemToOrder'}/>
+			content: <MenuitemsContainer layout="table" orderId={params.orderId} mode="addMenuitemToOrder"/>
 		});
 	}
 });

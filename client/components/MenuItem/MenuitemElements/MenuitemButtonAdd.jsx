@@ -27,7 +27,7 @@ MenuitemButtonAdd = React.createClass({
         }
 
         if (buttonLabel && buttonAction) {
-            return <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
+            return <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--accent w100 margin-top"
                 onClick={buttonAction}>
                     {buttonLabel}
             </button>
