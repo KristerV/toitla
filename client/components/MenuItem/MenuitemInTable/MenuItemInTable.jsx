@@ -51,16 +51,16 @@ MenuitemInTable = React.createClass({
                 </div>
             </td>
             <td className="wrap"><Tags activeTags={menuitem.tags} onlyActive={true}/></td>
-            <td>{menuitem.amount ?
-                <TextInput
+            {menuitem.amount ?
+                <td><TextInput
                     style={{width: "30px"}}
                     label="pieces"
                     name="amount"
                     errorMsg={errors.amount}
                     onBlur={this.updateTextInOrder}
                     value={menuitem.amount}
-                />
-            : null}</td>
+                /></td>
+            : null}
             <td>{menuitem.foodType}</td>
             <td>{Settings.getPriceFromClass(menuitem.priceClass)}€</td>
             <td>{menuitem.weight}g</td>

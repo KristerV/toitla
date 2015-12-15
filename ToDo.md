@@ -1,31 +1,36 @@
-# TODAY
-Investor email (don't send)
-Chef emails
+# NOW
+* Menüü itemile saaks admin tagasisidet anda
+* if (kokale koostamise õigus) Admin ja Manager eraldada.
 
 # BUGS
-* Janikal Number error menuitemis
-* email check too early
+* Fleep order date incorrect
+* email check too early in order process - annoying
 * Tab viskab kontaktidesse kuupäevast
-* chef can't new order, strangers can see all details, client can see details after submit.
+* publish - chef can't new order, strangers can see all details, client can see details after submit.
+* publish - Price info on ebavajalikult avalik
+* meatfree ei reageeri menüü ehitamisel
 
-# NOW
-* Näita kõiki toite listis (orderis saaks vahetada)
+# NEXT
+* Filteris in menuitem list
+* Feedback box for menuitem
+* Order menu form - piece per face, grams per face
+* Login form have gmail.com link
+* remove single item in order
+* How far did the client get in form?
+* Sign for development area more prevelant
+* Kokk näeb tellimusi
+* Kokk saab tellimusi koostada
+* Kokal eraldi nupp enda tellimuste vaatamiseks
 * Printida silte
 * Uberi SMS kujundada
 
-# NEXT
-* Protsess üle käia
-* meatfree ei reageeri menüü ehitamisel
-* pilt toidule
-* Kokale teade tellimuse kohta
-
 # MUSTHAVE
-* Tagide seletused, ehk Kätlinile mis on vegan.
+* Kokale teade tellimuse kohta
 * Tagasiside ja ratingud
 * Arve saatmine Toitlalt Kliendile (erply, GWA arendajalt saab küsida)
-* Arve saatmine Kokalt Toitlale (erply, GWA arendajalt saab küsida)
 
 # NICETOHAVE
+* Kokk saab pakendeid juurde tellida
 * back nupp läheks äppist välja
 * Koka profiil avalikuks
 * Tellimuste thumbid muudavad värvi kui vajavad tähelepanu
