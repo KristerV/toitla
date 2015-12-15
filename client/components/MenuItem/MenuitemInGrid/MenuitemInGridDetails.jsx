@@ -1,6 +1,16 @@
 
 MenuitemInGridDetails = React.createClass({
 
+    mixins: [ReactMeteorData],
+    getMeteorData() {
+        var subscription = Meteor.subscribe("allUserData")
+        var user = Meteor.users.findOne(this.props.menuitem.chefId, {fields: {profile: 1}})
+        return {
+            subsReady: subscription.ready(),
+            user: user,
+        }
+    },
+
     updateText(e) {
         var fieldName = $(e.target).attr('name')
         var fieldValue = $(e.target).val()

@@ -21,13 +21,18 @@ MenuitemInTable = React.createClass({
         mouseEvent.stopPropagation()
         var menuitemId = $(mouseEvent.target).parent().attr("data-menuitem-id")
         if (!menuitemId) return false
-        var checkboxMDL = $('.mdl-js-checkbox#'+menuitemId)[0].MaterialCheckbox
-        var checkboxInput = $('.mdl-js-checkbox#'+menuitemId+' input')
 
-        if (checkboxInput.is(":checked")) {
-            checkboxMDL.uncheck()
+        if (this.props.checkboxes) {
+            var checkboxMDL = $('.mdl-js-checkbox#'+menuitemId)[0].MaterialCheckbox
+            var checkboxInput = $('.mdl-js-checkbox#'+menuitemId+' input')
+
+            if (checkboxInput.is(":checked")) {
+                checkboxMDL.uncheck()
+            } else {
+                checkboxMDL.check()
+            }
         } else {
-            checkboxMDL.check()
+            FlowRouter.go('menuitem', {menuitemId: menuitemId})
         }
     },
 
@@ -37,7 +42,7 @@ MenuitemInTable = React.createClass({
         if (user && user.profile)
             var profileName = user.profile.name
         errors = menuitem.errors || {}
-        return(<tr className="paper padding" onClick={this.tickChecbox} data-menuitem-id={menuitem._id}>
+        return(<tr className="paper padding clickable" onClick={this.tickChecbox} data-menuitem-id={menuitem._id}>
             {this.props.checkboxes ? <td><Checkbox name="Tere" id={menuitem._id} /></td> : null}
             <td>{menuitem.chefName || profileName}</td>
             <td className="wrap">{menuitem.title}</td>

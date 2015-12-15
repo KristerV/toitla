@@ -1,6 +1,7 @@
 # NOW
 * Menüü itemile saaks admin tagasisidet anda
-* if (kokale koostamise õigus) Admin ja Manager eraldada.
+* Toitude filtreerimine
+* Order hinna excel
 
 # BUGS
 * Fleep order date incorrect
@@ -11,8 +12,6 @@
 * meatfree ei reageeri menüü ehitamisel
 
 # NEXT
-* Filteris in menuitem list
-* Feedback box for menuitem
 * Order menu form - piece per face, grams per face
 * Login form have gmail.com link
 * remove single item in order
@@ -35,3 +34,4 @@
 * Koka profiil avalikuks
 * Tellimuste thumbid muudavad värvi kui vajavad tähelepanu
 * Testid
+* Logistika: millal kokal valmis on.

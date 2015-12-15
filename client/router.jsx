@@ -138,18 +138,6 @@ FlowRouter.route('/order/:orderId', {
 	}
 });
 
-FlowRouter.route('/order/:orderId', {
-	name: "order",
-	action: function(params) {
-		if (!Meteor.userId())
-			ReactLayout.render(OrdersContainer, {orderId: params.orderId})
-		else
-			ReactLayout.render(Layout, {
-			content: <OrdersContainer orderId={params.orderId}/>
-		});
-	}
-});
-
 FlowRouter.route('/allergy/:allergyId', {
 	name: "guestAllergy",
 	action: function(params) {
@@ -158,6 +146,16 @@ FlowRouter.route('/allergy/:allergyId', {
 		else
 			ReactLayout.render(Layout, {
 			content: <GuestAllergyContainer allergyId={params.allergyId}/>
+		});
+	}
+});
+
+FlowRouter.route('/menuitem/:menuitemId', {
+	triggersEnter: [loginRequired, startIdleMonitor],
+	name: "menuitem",
+	action: function(params) {
+		ReactLayout.render(Layout, {
+			content: <MenuitemsContainer menuitemId={params.menuitemId}/>
 		});
 	}
 });

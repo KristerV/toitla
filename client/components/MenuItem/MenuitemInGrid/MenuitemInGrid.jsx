@@ -1,5 +1,12 @@
 MenuitemInGrid = React.createClass({
 
+    updateText(e) {
+        var fieldName = $(e.target).attr('name')
+        var fieldValue = $(e.target).val()
+        var itemId = this.props.menuitem._id
+        Meteor.call('menuitemTemplate--updateField', itemId, fieldName, fieldValue)
+    },
+
     getInitialState() {
         return {}
     },
@@ -30,6 +37,8 @@ MenuitemInGrid = React.createClass({
         var menuitem = this.props.menuitem
         var menuitemKey = this.props.menuitemKey
         var extraSections = []
+        var isManager = Roles.userIsInRole(Meteor.userId(), 'manager')
+        var errors = menuitem.errors || {}
 
         if (menuitem.inorder) {
             if (menuitem.chefId === Meteor.userId())
@@ -37,12 +46,23 @@ MenuitemInGrid = React.createClass({
             else if (menuitem.originalSpecifications)
                 extraSections.push(<MenuitemInGridButtonSection key={1} label="Vaheta" onClick={this.nextFood} colored={true}/>)
         } else {
+            if (isManager || menuitem.managerComments) {
+                extraSections.push(<div className="padding" key={5}><TextInput
+                    disabled={!isManager}
+                    label="Manager comments"
+                    value={menuitem.managerComments}
+                    rows="1"
+                    name="managerComments"
+                    onBlur={this.updateText}
+                    errorMsg={errors.managerComments}/></div>)
+            }
             if (!menuitem.published) {
                 extraSections.push(<MenuitemInGridButtonSection key={3} label="avalikusta" onClick={this.publish} accented={true}/>)
             } else {
                 extraSections.push(<MenuitemInGridTextSection key={4} text="Toit on avalik" className="greenBack"/>)
             }
         }
+
 
         var options = []
         if (menuitem.inorder) {
