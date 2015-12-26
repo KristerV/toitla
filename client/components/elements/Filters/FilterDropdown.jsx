@@ -4,11 +4,14 @@ FilterDropdown = React.createClass({
         return {activeEntries: []}
     },
 
-    onChange(e) {
+    addItem(e) {
         var list = this.state.activeEntries
-        list.push(e)
-        this.setState({activeEntries: list})
-        this.sendToParent(list)
+        var exists = _.findWhere(list, e)
+        if (!exists) {
+            list.push(e)
+            this.setState({activeEntries: list})
+            this.sendToParent(list)
+        }
     },
 
     removeItem(e) {
@@ -26,7 +29,7 @@ FilterDropdown = React.createClass({
         menuitems.unshift({text: this.props.label, value: null})
         return(<div>
                 <DropDownMUI
-                    onChange={this.onChange}
+                    onChange={this.addItem}
                     name={this.props.name}
                     autoWidth={this.props.autoWidth}
                     menuItems={menuitems}
