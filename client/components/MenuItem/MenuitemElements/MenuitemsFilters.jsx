@@ -57,8 +57,8 @@ MenuitemsFilters = React.createClass({
         } else if (obj.name === 'freetext') {
             if (obj.value) {
                 filters.$or = [
-                    {title: {$regex : ".*"+obj.value+".*"}},
-                    {ingredients: {$regex : ".*"+obj.value+".*"}}
+                    {title: {$regex: ".*"+obj.value+".*", $options: 'i'}},
+                    {ingredients: {$regex: ".*"+obj.value+".*", $options: 'i'}}
                 ]
             } else {
                 delete filters.$or
@@ -106,41 +106,49 @@ MenuitemsFilters = React.createClass({
             return {text: value, value: key}
         })
 
-        return(<div className="padding margin paper">
-            <FilterDropdown
-                label="Any chef"
-                name="chefId"
-                menuItems={chefs}
-                autoWidth={true}
-                onChange={this.onChangeDropdown}/>
-            <FilterText
-                label="Name / Ingredient"
-                name="freetext"
-                onChange={this.onChangeText}/>
-            <FilterDropdown
-                label="All tags"
-                autoWidth={true}
-                name="tags"
-                menuItems={tags}
-                onChange={this.onChangeDropdown}/>
-            <FilterDropdown
-                label="Any food type"
-                autoWidth={true}
-                name="foodType"
-                menuItems={foodTypes}
-                onChange={this.onChangeDropdown}/>
-            <FilterDropdown
-                label="Any price"
-                autoWidth={true}
-                name="priceClass"
-                menuItems={priceClasses}
-                onChange={this.onChangeDropdown}/>
-            <FilterText
-                name="min-weight"
-                label="Min weight"
-                pattern="[0-9]*"
-                patternError="Only enter a number"
-                onChange={this.onChangeText}/>
+        return(<div className="padding margin paper mdl-grid">
+            <div className="mdl-cell mdl-cell--2-col">
+                <FilterDropdown
+                    label="Any chef"
+                    name="chefId"
+                    menuItems={chefs}
+                    onChange={this.onChangeDropdown}/>
+            </div>
+            <div className="mdl-cell mdl-cell--2-col">
+                <FilterText
+                    label="Name / Ingredient"
+                    name="freetext"
+                    onChange={this.onChangeText}/>
+            </div>
+            <div className="mdl-cell mdl-cell--2-col">
+                <FilterDropdown
+                    label="All tags"
+                    name="tags"
+                    menuItems={tags}
+                    onChange={this.onChangeDropdown}/>
+            </div>
+            <div className="mdl-cell mdl-cell--2-col">
+                <FilterDropdown
+                    label="Any food type"
+                    name="foodType"
+                    menuItems={foodTypes}
+                    onChange={this.onChangeDropdown}/>
+            </div>
+            <div className="mdl-cell mdl-cell--2-col">
+                <FilterDropdown
+                    label="Any price"
+                    name="priceClass"
+                    menuItems={priceClasses}
+                    onChange={this.onChangeDropdown}/>
+            </div>
+            <div className="mdl-cell mdl-cell--2-col">
+                <FilterText
+                    name="min-weight"
+                    label="Min weight"
+                    pattern="[0-9]*"
+                    patternError="Only enter a number"
+                    onChange={this.onChangeText}/>
+            </div>
         </div>)
     }
 })
