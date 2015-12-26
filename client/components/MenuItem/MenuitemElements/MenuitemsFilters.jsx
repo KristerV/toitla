@@ -39,7 +39,38 @@ MenuitemsFilters = React.createClass({
 
         // Save state
         this.setState({filters: filters})
+        this.sendToParent(filters)
+    },
 
+    onChangeText(obj) {
+
+        // Get old values
+        var filters = this.state.filters
+
+        if (obj.name === 'min-weight') {
+            var nr = Number(obj.value)
+            if (obj.value && nr) {
+                filters.weight = {$gt: nr}
+            } else {
+                delete filters.weight
+            }
+        } else if (obj.name === 'freetext') {
+            if (obj.value) {
+                filters.$or = [
+                    {title: {$regex : ".*"+obj.value+".*"}},
+                    {ingredients: {$regex : ".*"+obj.value+".*"}}
+                ]
+            } else {
+                delete filters.$or
+            }
+        }
+
+        // Save state
+        this.setState({filters: filters})
+        this.sendToParent(filters)
+    },
+
+    sendToParent(filters) {
         // Format filters into 'and' conditions
         var and = []
         for (var key in filters) {
@@ -83,11 +114,9 @@ MenuitemsFilters = React.createClass({
                 autoWidth={true}
                 onChange={this.onChangeDropdown}/>
             <FilterText
-                name="description"
-                onChange={this.onChange}/>
-            <FilterText
-                name="ingredients"
-                onChange={this.onChange}/>
+                label="Name / Ingredient"
+                name="freetext"
+                onChange={this.onChangeText}/>
             <FilterDropdown
                 label="All tags"
                 autoWidth={true}
@@ -107,14 +136,11 @@ MenuitemsFilters = React.createClass({
                 menuItems={priceClasses}
                 onChange={this.onChangeDropdown}/>
             <FilterText
-                name="ingredients"
-                onChange={this.onChange}/>
-            <FilterText
-                name="weight-from"
-                onChange={this.onChange}/>
-            <FilterText
-                name="weight-to"
-                onChange={this.onChange}/>
+                name="min-weight"
+                label="Min weight"
+                pattern="[0-9]*"
+                patternError="Only enter a number"
+                onChange={this.onChangeText}/>
         </div>)
     }
 })
