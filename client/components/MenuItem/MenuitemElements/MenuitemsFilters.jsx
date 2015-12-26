@@ -16,7 +16,14 @@ MenuitemsFilters = React.createClass({
 
     onChange(obj) {
         var filters = this.state.filters
-        if (obj.inputType === 'dropdown') {
+        if (obj.name === 'tags') {
+            var tagNames = _.pluck(obj.results, 'value')
+            var f = []
+            for (var i = 0; i < tagNames.length; i++) {
+                f.push({'tags.name': tagNames[i]})
+            }
+            filters.$and = f
+        } else if (obj.inputType === 'dropdown') {
             var values = _.pluck(obj.results, 'value')
             if (values.length > 0) {
                 filters[obj.name] = {$in: values}
@@ -68,12 +75,12 @@ MenuitemsFilters = React.createClass({
                 onChange={this.onChange}/>
             <FilterDropdown
                 autoWidth={true}
-                name="foodtype"
+                name="foodType"
                 menuItems={foodTypes}
                 onChange={this.onChange}/>
             <FilterDropdown
                 autoWidth={true}
-                name="price"
+                name="priceClass"
                 menuItems={priceClasses}
                 onChange={this.onChange}/>
             <FilterText

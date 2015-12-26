@@ -6,6 +6,7 @@ MenuitemsContainer = React.createClass({
 
     filtersChange(obj) {
         this.setState({find: obj})
+        console.log("FIND",obj);
     },
 
     mixins: [ReactMeteorData],
