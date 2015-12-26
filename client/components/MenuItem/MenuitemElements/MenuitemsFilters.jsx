@@ -21,32 +21,37 @@ MenuitemsFilters = React.createClass({
 
         // Get new values
         var values = _.pluck(obj.results, 'value')
-        var and = []
 
-        // Tags need special treatement (and condition)
+        // Add filter with proper condition
         if (obj.name === 'tags') {
-            for (var i = 0; i < values.length; i++) {
-                and.push({'tags.name': values[i]})
+            if (values.length > 0) {
+                filters['tags.name'] = {$all: values}
+            } else {
+                delete filters['tags.name']
             }
-            values = []
-        }
-
-        // Add 'and' conditions to filters
-        if (and.length > 0) {
-            filters.$and = and
         } else {
-            delete filters.$and
+            if (values.length > 0) {
+                filters[obj.name] = {$in: values}
+            } else {
+                delete filters[obj.name]
+            }
         }
 
-        // Add normal condition values to filters
-        if (values.length > 0) {
-            filters[obj.name] = {$in: values}
-        } else {
-            delete filters[obj.name]
-        }
-
+        // Save state
         this.setState({filters: filters})
-        this.props.onChange(filters)
+
+        // Format filters into 'and' conditions
+        var and = []
+        for (var key in filters) {
+            and.push({[key]: filters[key]})
+        }
+
+        // React UI to changes
+        if (and.length > 0) {
+            this.props.onChange({$and: and})
+        } else {
+            this.props.onChange({})
+        }
     },
 
     render() {
