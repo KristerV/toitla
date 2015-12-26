@@ -44,9 +44,9 @@ MenuitemInTable = React.createClass({
         errors = menuitem.errors || {}
         return(<tr className="paper padding clickable" onClick={this.tickChecbox} data-menuitem-id={menuitem._id}>
             {this.props.checkboxes ? <td><Checkbox name="Tere" id={menuitem._id} /></td> : null}
-            <td>{menuitem.chefName || profileName}</td>
-            <td className="wrap">{menuitem.title}</td>
-            <td>
+            <td className="mdl-data-table__cell--non-numeric">{menuitem.chefName || profileName}</td>
+            <td className="wrap mdl-data-table__cell--non-numeric">{menuitem.title}</td>
+            <td className="mdl-data-table__cell--non-numeric">
                 <div id={"ingredients-tooltip-"+menuitem._id} className="icon material-icons">receipt</div>
                 <div
                     className="mdl-tooltip"
@@ -55,7 +55,7 @@ MenuitemInTable = React.createClass({
                     {menuitem.ingredients}
                 </div>
             </td>
-            <td className="wrap"><Tags activeTags={menuitem.tags} onlyActive={true}/></td>
+            <td className="wrap mdl-data-table__cell--non-numeric"><Tags activeTags={menuitem.tags} onlyActive={true}/></td>
             {menuitem.amount ?
                 <td><TextInput
                     style={{width: "30px"}}
@@ -66,7 +66,7 @@ MenuitemInTable = React.createClass({
                     value={menuitem.amount}
                 /></td>
             : null}
-            <td>{menuitem.foodType}</td>
+            <td className="mdl-data-table__cell--non-numeric">{menuitem.foodType}</td>
             <td>{Settings.getPriceFromClass(menuitem.priceClass)}€</td>
             <td>{menuitem.weight}g</td>
         </tr>)

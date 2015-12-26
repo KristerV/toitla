@@ -13,12 +13,12 @@ MenuitemsTable = React.createClass({
                 <thead>
                     <tr>
                         {addMenuitemsMode ? <th>C</th> : null}
-                        <th>Chef</th>
-                        <th>Title</th>
-                        <th>Ing.</th>
-                        <th>Tags</th>
+                        <th className="mdl-data-table__cell--non-numeric">Chef</th>
+                        <th className="mdl-data-table__cell--non-numeric">Title</th>
+                        <th className="mdl-data-table__cell--non-numeric">Ing.</th>
+                        <th className="mdl-data-table__cell--non-numeric">Tags</th>
                         {isAmount ? <th>Amount</th> : null}
-                        <th>Type</th>
+                        <th className="mdl-data-table__cell--non-numeric">Type</th>
                         <th>Price</th>
                         <th>Weight</th>
                     </tr>
