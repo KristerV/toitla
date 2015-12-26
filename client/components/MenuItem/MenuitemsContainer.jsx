@@ -25,7 +25,9 @@ MenuitemsContainer = React.createClass({
             menuitems = MenuitemsInOrder.find({orderId: orderId, rejected: {$ne: true}})
         } else {
             subscription = Meteor.subscribe("menuitem_templates")
-            menuitems = MenuitemTemplates.find(this.state.find)
+            var find = this.state.find
+            find.published = true
+            menuitems = MenuitemTemplates.find(find)
         }
 
         // HACK: hide loading spinner for OrderMenuForm.jsx when price changes
