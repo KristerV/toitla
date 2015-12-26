@@ -22,7 +22,11 @@ MenuitemsFilters = React.createClass({
             for (var i = 0; i < tagNames.length; i++) {
                 f.push({'tags.name': tagNames[i]})
             }
-            filters.$and = f
+            if (f.length > 0) {
+                filters.$and = f
+            } else {
+                delete filters.$and
+            }
         } else if (obj.inputType === 'dropdown') {
             var values = _.pluck(obj.results, 'value')
             if (values.length > 0) {
