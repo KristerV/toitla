@@ -1,5 +1,4 @@
 # NOW
-* Menüü itemile saaks admin tagasisidet anda
 * Toitude filtreerimine
 * Order hinna excel
 
@@ -12,6 +11,7 @@
 * meatfree ei reageeri menüü ehitamisel
 
 # NEXT
+* Manager can add new user (with email)
 * Order menu form - piece per face, grams per face
 * Login form have gmail.com link
 * remove single item in order

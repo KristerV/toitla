@@ -1,0 +1,90 @@
+MenuitemsFilters = React.createClass({
+
+    mixins: [ReactMeteorData],
+    getMeteorData() {
+        var subscription = Meteor.subscribe("allUserData")
+        var users = Meteor.users.find({profile: {$exists: 1}}).fetch()
+        return {
+            subsReady: subscription.ready(),
+            users: users,
+        }
+    },
+
+    getInitialState() {
+        return {filters: {}}
+    },
+
+    onChange(obj) {
+        var filters = this.state.filters
+        if (obj.inputType === 'dropdown') {
+            var values = _.pluck(obj.results, 'value')
+            if (values.length > 0) {
+                filters[obj.name] = {$in: values}
+            } else {
+                delete filters[obj.name]
+            }
+        }
+        this.setState({filters: filters})
+        this.props.onChange(filters)
+    },
+
+    render() {
+        var chefs = _.map(this.data.users, function(user){
+            if (user.profile) {
+                var label = user.eligible ? "" : " X "
+                label += user.profile.name
+                return {text: label, value: user._id}
+            }
+        })
+
+        var tags = _.map(Settings.menuitemTags, function(tag){
+            return {text: tag.label, value: tag.name}
+        })
+
+        var foodTypes = _.map(Settings.foodTypes, function(type){
+            return {text: type, value: type}
+        })
+
+        var priceClasses = _.map(Settings.priceClasses, function(value, key, list){
+            return {text: value, value: key}
+        })
+
+        return(<div className="padding margin paper">
+            <FilterDropdown
+                name="chefId"
+                menuItems={chefs}
+                autoWidth={true}
+                onChange={this.onChange}/>
+            <FilterText
+                name="description"
+                onChange={this.onChange}/>
+            <FilterText
+                name="ingredients"
+                onChange={this.onChange}/>
+            <FilterDropdown
+                autoWidth={true}
+                name="tags"
+                menuItems={tags}
+                onChange={this.onChange}/>
+            <FilterDropdown
+                autoWidth={true}
+                name="foodtype"
+                menuItems={foodTypes}
+                onChange={this.onChange}/>
+            <FilterDropdown
+                autoWidth={true}
+                name="price"
+                menuItems={priceClasses}
+                onChange={this.onChange}/>
+            <FilterText
+                name="ingredients"
+                onChange={this.onChange}/>
+            <FilterText
+                name="weight-from"
+                onChange={this.onChange}/>
+            <FilterText
+                name="weight-to"
+                onChange={this.onChange}/>
+        </div>)
+    }
+})

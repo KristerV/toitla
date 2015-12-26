@@ -1,7 +1,11 @@
 MenuitemsContainer = React.createClass({
 
     getInitialState() {
-        return {}
+        return {find: {}}
+    },
+
+    filtersChange(obj) {
+        this.setState({find: obj})
     },
 
     mixins: [ReactMeteorData],
@@ -21,7 +25,7 @@ MenuitemsContainer = React.createClass({
             menuitems = MenuitemsInOrder.find({orderId: orderId, rejected: {$ne: true}})
         } else {
             subscription = Meteor.subscribe("menuitem_templates")
-            menuitems = MenuitemTemplates.find()
+            menuitems = MenuitemTemplates.find(this.state.find)
         }
 
         // HACK: hide loading spinner for OrderMenuForm.jsx when price changes
@@ -57,6 +61,7 @@ MenuitemsContainer = React.createClass({
 
         // Render
         return(<div>
+            { this.props.filters ? <MenuitemsFilters onChange={this.filtersChange}/> : null}
             { this.props.layout === 'table' ?
                 <MenuitemsTable menuitems={menuitems} mode={this.props.mode} modeAction={modeAction}/>
                 :

@@ -17,7 +17,7 @@ Accounts.sendLoginEmail = function(address){
   Accounts._insertLoginToken(user._id, tokenRecord);
 
   var loginUrl = Meteor.absoluteUrl('login/' + tokenRecord.token)
-  console.log(loginUrl);
+  console.info(loginUrl);
 
   var html = ''
   if (user.profile) {
