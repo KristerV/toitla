@@ -14,27 +14,37 @@ MenuitemsFilters = React.createClass({
         return {filters: {}}
     },
 
-    onChange(obj) {
+    onChangeDropdown(obj) {
+
+        // Get old values
         var filters = this.state.filters
+
+        // Get new values
+        var values = _.pluck(obj.results, 'value')
+        var and = []
+
+        // Tags need special treatement (and condition)
         if (obj.name === 'tags') {
-            var tagNames = _.pluck(obj.results, 'value')
-            var f = []
-            for (var i = 0; i < tagNames.length; i++) {
-                f.push({'tags.name': tagNames[i]})
+            for (var i = 0; i < values.length; i++) {
+                and.push({'tags.name': values[i]})
             }
-            if (f.length > 0) {
-                filters.$and = f
-            } else {
-                delete filters.$and
-            }
-        } else if (obj.inputType === 'dropdown') {
-            var values = _.pluck(obj.results, 'value')
-            if (values.length > 0) {
-                filters[obj.name] = {$in: values}
-            } else {
-                delete filters[obj.name]
-            }
+            values = []
         }
+
+        // Add 'and' conditions to filters
+        if (and.length > 0) {
+            filters.$and = and
+        } else {
+            delete filters.$and
+        }
+
+        // Add normal condition values to filters
+        if (values.length > 0) {
+            filters[obj.name] = {$in: values}
+        } else {
+            delete filters[obj.name]
+        }
+
         this.setState({filters: filters})
         this.props.onChange(filters)
     },
@@ -62,10 +72,11 @@ MenuitemsFilters = React.createClass({
 
         return(<div className="padding margin paper">
             <FilterDropdown
+                label="Any chef"
                 name="chefId"
                 menuItems={chefs}
                 autoWidth={true}
-                onChange={this.onChange}/>
+                onChange={this.onChangeDropdown}/>
             <FilterText
                 name="description"
                 onChange={this.onChange}/>
@@ -73,20 +84,23 @@ MenuitemsFilters = React.createClass({
                 name="ingredients"
                 onChange={this.onChange}/>
             <FilterDropdown
+                label="All tags"
                 autoWidth={true}
                 name="tags"
                 menuItems={tags}
-                onChange={this.onChange}/>
+                onChange={this.onChangeDropdown}/>
             <FilterDropdown
+                label="Any food type"
                 autoWidth={true}
                 name="foodType"
                 menuItems={foodTypes}
-                onChange={this.onChange}/>
+                onChange={this.onChangeDropdown}/>
             <FilterDropdown
+                label="Any price"
                 autoWidth={true}
                 name="priceClass"
                 menuItems={priceClasses}
-                onChange={this.onChange}/>
+                onChange={this.onChangeDropdown}/>
             <FilterText
                 name="ingredients"
                 onChange={this.onChange}/>

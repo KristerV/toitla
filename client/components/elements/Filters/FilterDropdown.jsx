@@ -23,7 +23,7 @@ FilterDropdown = React.createClass({
 
     render() {
         var menuitems = this.props.menuItems
-        menuitems.unshift({text: "(add "+this.props.name+")", value: null})
+        menuitems.unshift({text: this.props.label, value: null})
         return(<div>
                 <DropDownMUI
                     onChange={this.onChange}
