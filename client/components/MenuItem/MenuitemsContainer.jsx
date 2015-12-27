@@ -27,7 +27,8 @@ MenuitemsContainer = React.createClass({
         var or = []
         if (!_.isEmpty(filterList)) {
             or.push({$and: filterList})
-            or.push({_id: {$in: checkedIds}}) // need this only if some filter applied
+            if (!_.isEmpty(checkedIds))
+                or.push({_id: {$in: checkedIds}}) // need this only if some filter applied
         }
         if (!_.isEmpty(or))
             find.$or = or

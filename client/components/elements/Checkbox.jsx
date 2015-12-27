@@ -2,6 +2,8 @@ Checkbox = React.createClass({
     render() {
         var labelClass = "mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect "
         var inputClass = "mdl-checkbox__input"
+
+        // Use this when need controlled checked state. MDL does not support.
         if (this.props.defaultStyle) {
             labelClass = ""
             inputClass = ""
