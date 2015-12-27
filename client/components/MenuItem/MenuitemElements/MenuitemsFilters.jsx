@@ -39,7 +39,7 @@ MenuitemsFilters = React.createClass({
 
         // Save state
         this.setState({filters: filters})
-        this.sendToParent(filters)
+        this.props.onChange(filters)
     },
 
     onChangeText(obj) {
@@ -67,22 +67,7 @@ MenuitemsFilters = React.createClass({
 
         // Save state
         this.setState({filters: filters})
-        this.sendToParent(filters)
-    },
-
-    sendToParent(filters) {
-        // Format filters into 'and' conditions
-        var and = []
-        for (var key in filters) {
-            and.push({[key]: filters[key]})
-        }
-
-        // React UI to changes
-        if (and.length > 0) {
-            this.props.onChange({$and: and})
-        } else {
-            this.props.onChange({})
-        }
+        this.props.onChange(filters)
     },
 
     render() {

@@ -47,7 +47,7 @@ OrdersContainer = React.createClass({
         return(<div className="max-width paper">
             <Checkbox
                 className="margin"
-                checked={this.state.showAllOrders}
+                defaultChecked={this.state.showAllOrders}
                 onChange={this.switchShowAll}
                 label="Show all orders"
             />

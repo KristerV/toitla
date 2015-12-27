@@ -1,8 +1,43 @@
+stoppage = false
 MenuitemsTable = React.createClass({
+
+    getInitialState() {
+        return {
+            addMenuitemsMode: this.props.mode === 'addMenuitemToOrder',
+            checkedItemIds: []
+        }
+    },
+
+    onMenuitemClick(mouseEvent, reactId, event) {
+        mouseEvent.stopPropagation() // Doesn't seem to help
+        event.stopPropagation() // Doesn't seem to help
+        if (this.stoppage) return // Stop propagation properly
+        this.stoppage = true
+
+        // Timeout is needed, because stopPropagation does not work and this.stoppage needs a delay
+        Meteor.setTimeout(function(){
+            this.stoppage = false
+            var menuitemId = $(mouseEvent.target).parents('[data-menuitem-id]').attr("data-menuitem-id")
+            if (!menuitemId) return false
+
+            if (this.state.addMenuitemsMode) {
+                var checkedItemIds = this.state.checkedItemIds
+                if (_.contains(checkedItemIds, menuitemId)) {
+                    checkedItemIds = _.without(checkedItemIds, menuitemId)
+                } else {
+                    checkedItemIds.push(menuitemId)
+                }
+                this.setState({checkedItemIds: checkedItemIds})
+                this.props.checkboxesChanged(checkedItemIds)
+            } else {
+                FlowRouter.go('menuitem', {menuitemId: menuitemId})
+            }
+        }.bind(this), 10);
+    },
 
     render() {
         var menuitems = this.props.menuitems
-        var addMenuitemsMode = this.props.mode === 'addMenuitemToOrder'
+        var addMenuitemsMode = this.state.addMenuitemsMode
         var isAmount = menuitems.length > 0 ? menuitems[0].amount : false
 
         return(<div>
@@ -25,7 +60,13 @@ MenuitemsTable = React.createClass({
                 </thead>
                 <tbody>
                     {menuitems.map(function(menuitem, i) {
-                        return <MenuitemInTable key={i} menuitem={menuitem} checkboxes={addMenuitemsMode}/>
+                        return <MenuitemInTable
+                                    key={i}
+                                    menuitem={menuitem}
+                                    checkboxes={addMenuitemsMode}
+                                    checked={_.contains(this.state.checkedItemIds, menuitem._id)}
+                                    defaultChecbox={true}
+                                    onClick={this.onMenuitemClick}/>
                     }.bind(this))}
                 </tbody>
             </table>

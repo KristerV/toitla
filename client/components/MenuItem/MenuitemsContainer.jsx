@@ -1,11 +1,38 @@
 MenuitemsContainer = React.createClass({
 
     getInitialState() {
-        return {find: {}}
+        return {}
     },
 
-    filtersChange(obj) {
-        this.setState({find: obj})
+    filtersChange(filters) {
+        var find = this.state.find
+
+        // Format filters into 'and' conditions
+        var and = []
+        for (var key in filters) {
+            and.push({[key]: filters[key]})
+        }
+        this.setState({filterList: and})
+    },
+
+    checkboxesChanged(menuitemsIds) {
+        this.setState({checkedIds: menuitemsIds})
+    },
+
+    getFind() {
+        var find = {published: true}
+        var filterList = this.state.filterList
+        var checkedIds = this.state.checkedIds
+
+        var or = []
+        if (!_.isEmpty(filterList)) {
+            or.push({$and: filterList})
+            or.push({_id: {$in: checkedIds}}) // need this only if some filter applied
+        }
+        if (!_.isEmpty(or))
+            find.$or = or
+
+        return find
     },
 
     mixins: [ReactMeteorData],
@@ -25,9 +52,8 @@ MenuitemsContainer = React.createClass({
             menuitems = MenuitemsInOrder.find({orderId: orderId, rejected: {$ne: true}})
         } else {
             subscription = Meteor.subscribe("menuitem_templates")
-            var find = this.state.find
-            find.published = true
-            menuitems = MenuitemTemplates.find(find)
+            console.log(this.getFind());
+            menuitems = MenuitemTemplates.find(this.getFind())
         }
 
         // HACK: hide loading spinner for OrderMenuForm.jsx when price changes
@@ -41,11 +67,7 @@ MenuitemsContainer = React.createClass({
 
     onAddItemsToOrder(e) {
         var orderId = this.props.orderId
-        var newItems = []
-        $('table .mdl-js-checkbox').each(function(){
-            if ($(this).find("input[type=checkbox]").is(":checked"))
-                newItems.push(this.id)
-        })
+        var newItems = this.state.checkedIds
         Meteor.call('menuitemInOrder--addArray', orderId, newItems)
         FlowRouter.go('order', {orderId: orderId})
     },
@@ -65,7 +87,7 @@ MenuitemsContainer = React.createClass({
         return(<div>
             { this.props.filters ? <MenuitemsFilters onChange={this.filtersChange}/> : null}
             { this.props.layout === 'table' ?
-                <MenuitemsTable menuitems={menuitems} mode={this.props.mode} modeAction={modeAction}/>
+                <MenuitemsTable menuitems={menuitems} mode={this.props.mode} modeAction={modeAction} checkboxesChanged={this.checkboxesChanged}/>
                 :
                 <MenuitemsGrid menuitems={menuitems} mode={this.props.mode} modeAction={modeAction}/>
             }

@@ -17,40 +17,26 @@ MenuitemInTable = React.createClass({
         Meteor.call('menuitemInOrder--updateField', itemId, fieldName, fieldValue)
     },
 
-    tickChecbox(mouseEvent, reactId, event) {
-        mouseEvent.stopPropagation()
-        var menuitemId = $(mouseEvent.target).parent().attr("data-menuitem-id")
-        if (!menuitemId) return false
-
-        if (this.props.checkboxes) {
-            var checkboxMDL = $('.mdl-js-checkbox#'+menuitemId)[0].MaterialCheckbox
-            var checkboxInput = $('.mdl-js-checkbox#'+menuitemId+' input')
-
-            if (checkboxInput.is(":checked")) {
-                checkboxMDL.uncheck()
-            } else {
-                checkboxMDL.check()
-            }
-        } else {
-            FlowRouter.go('menuitem', {menuitemId: menuitemId})
-        }
-    },
-
     render() {
         var menuitem = this.props.menuitem
         var user = this.data.user
+        var id = menuitem._id
         if (user && user.profile)
             var profileName = user.profile.name
         errors = menuitem.errors || {}
-        return(<tr className="paper padding clickable" onClick={this.tickChecbox} data-menuitem-id={menuitem._id}>
-            {this.props.checkboxes ? <td><Checkbox name="Tere" id={menuitem._id} /></td> : null}
+        return(<tr className="paper padding clickable" onClick={this.props.onClick} data-menuitem-id={id}>
+            {this.props.checkboxes ?
+                <td>
+                    <Checkbox name="Tere" id={id} checked={this.props.checked} defaultStyle={this.props.defaultChecbox}/>
+                </td>
+            : null}
             <td className="mdl-data-table__cell--non-numeric">{menuitem.chefName || profileName}</td>
             <td className="wrap mdl-data-table__cell--non-numeric">{menuitem.title}</td>
             <td className="mdl-data-table__cell--non-numeric">
-                <div id={"ingredients-tooltip-"+menuitem._id} className="icon material-icons">receipt</div>
+                <div id={"ingredients-tooltip-"+id} className="icon material-icons">receipt</div>
                 <div
                     className="mdl-tooltip"
-                    htmlFor={"ingredients-tooltip-"+menuitem._id}
+                    htmlFor={"ingredients-tooltip-"+id}
                     style={{whiteSpace: "normal"}}>
                     {menuitem.ingredients}
                 </div>

@@ -41,12 +41,12 @@ OrderMenuForm = React.createClass({
                 />
             <br/>
             <Checkbox
-                checked={order.price.serveCoffee}
+                defaultChecked={order.price.serveCoffee}
                 label={T("order","serve_coffee")}
                 name={'price.serveCoffee'}
                 onChange={this.handleCheckboxChange}/>
             <Checkbox
-                checked={order.price.serveDrinks}
+                defaultChecked={order.price.serveDrinks}
                 label={T("order","serve_drinks")}
                 name={'price.serveDrinks'}
                 onChange={this.handleCheckboxChange}/>
