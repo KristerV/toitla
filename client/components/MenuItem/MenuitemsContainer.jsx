@@ -52,7 +52,6 @@ MenuitemsContainer = React.createClass({
             menuitems = MenuitemsInOrder.find({orderId: orderId, rejected: {$ne: true}})
         } else {
             subscription = Meteor.subscribe("menuitem_templates")
-            console.log(this.getFind());
             menuitems = MenuitemTemplates.find(this.getFind())
         }
 

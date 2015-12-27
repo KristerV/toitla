@@ -382,7 +382,7 @@ MenuGenerator = class {
 
     log(){
         if (this.verbose) {
-            console.log.apply(this, arguments)
+            console.info.apply(this, arguments)
         }
     }
 }
