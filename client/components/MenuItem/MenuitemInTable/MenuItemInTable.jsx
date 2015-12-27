@@ -20,7 +20,7 @@ MenuitemInTable = React.createClass({
     render() {
         var menuitem = this.props.menuitem
         var user = this.data.user
-        var id = menuitem._id
+        var id = menuitem.templateId || menuitem._id // inorder || template
         if (user && user.profile)
             var profileName = user.profile.name
         errors = menuitem.errors || {}
