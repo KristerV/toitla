@@ -1,24 +1,22 @@
 # NOW
-* Toitude filtreerimine
-* Order hinna excel
+* feature: remove single item in order
+* feature: Order omahind ja kogus näkku, tk näkku
+* feature: Login form have gmail.com link
 
 # BUGS
-* Fleep order date incorrect
-* email check too early in order process - annoying
-* Tab viskab kontaktidesse kuupäevast
-* publish - chef can't new order, strangers can see all details, client can see details after submit.
-* publish - Price info on ebavajalikult avalik
-* meatfree ei reageeri menüü ehitamisel
+* bug: Fleep order date incorrect
+* bug: email check too early in order process - annoying
+* bug: Tab viskab kontaktidesse kuupäevast
+* bug: publish - chef can't new order, strangers can see all details, client can see details after submit.
+* bug: publish - Price info on ebavajalikult avalik
+* bug: meatfree ei reageeri menüü ehitamisel
 
 # NEXT
 * Manager can add new user (with email)
-* Order menu form - piece per face, grams per face
-* Login form have gmail.com link
-* remove single item in order
-* How far did the client get in form?
+* Order hinna excel
 * Sign for development area more prevelant
 * Kokk näeb tellimusi
-* Kokk saab tellimusi koostada
+* Kokk vastab tellimusele
 * Kokal eraldi nupp enda tellimuste vaatamiseks
 * Printida silte
 * Uberi SMS kujundada
