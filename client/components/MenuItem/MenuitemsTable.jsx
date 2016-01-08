@@ -1,4 +1,3 @@
-stoppage = false
 MenuitemsTable = React.createClass({
 
     getInitialState() {
@@ -10,7 +9,6 @@ MenuitemsTable = React.createClass({
 
     onMenuitemClick(mouseEvent, reactId, event) {
         mouseEvent.stopPropagation() // Doesn't seem to help
-        event.stopPropagation() // Doesn't seem to help
         if (this.stoppage) return // Stop propagation properly
         this.stoppage = true
 
