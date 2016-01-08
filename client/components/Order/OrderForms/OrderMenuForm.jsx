@@ -51,9 +51,11 @@ OrderMenuForm = React.createClass({
                 name={'price.serveDrinks'}
                 onChange={this.handleCheckboxChange}/>
             <br/>
-            <h3 className="text-center">Price: {order.price.calculated}€</h3>
-            <h5 className="text-center">Pieces: {order.price.totalPieces}pcs</h5>
-            <h5 className="text-center">Weigth: {order.price.totalWeight}g</h5>
+            <h4 style={{marginBottom: 0}}>Net Price: {order.price.calculated}€</h4>
+            <p style={{marginBottom: 0}}>Net Price PP: {order.price.netPricePerPerson}€</p>
+            <p style={{marginBottom: 0}}>Weight PP: {order.price.weightPerPerson}g</p>
+            <p style={{marginBottom: 0}}>Pieces PP: {order.price.piecesPerPerson}pcs</p>
+            <p className="text-hint">PP means Per Person</p>
             <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored w100" onClick={this.emptyOrderFromMenuitems}>remove all foods</button>
             <MenuitemButtonAdd orderId={order._id}/>
             <Loader id="calculating-price-loader"/>

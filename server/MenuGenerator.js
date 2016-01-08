@@ -262,40 +262,52 @@ MenuGenerator = class {
         this.log("======== runCalculateTotals ========");
 
         // Looking for
-        var priceToClient = 0
+        var netPrice = 0
         var totalWeight = 0
         var totalPieces = 0
+        var weightPerPerson = 0
+        var piecesPerPerson = 0
+        var netPricePerPerson = 0
 
-        // For each menuitem
+        // Totals
         for (var i = 0; i < this.meals.length; i++) {
             var mealPieces = this.meals[i].amount || this.snacksPerMeal
             var mealPrice = Settings.priceClasses[this.meals[i].priceClass] * mealPieces
-            priceToClient += mealPrice
+            netPrice += mealPrice
             totalWeight += this.meals[i].weight
             totalPieces += mealPieces
         }
 
-        // Price adjustment
-        priceToClient = priceToClient * 1.8 // margin
-        if (this.price.serveDrinks) priceToClient += this.peopleCount * 2.85
-        if (this.price.serveCoffee) priceToClient += this.peopleCount * 1.75 * this.coffeeBreaks
-        priceToClient = parseInt(priceToClient)
+        // Per person
+        weightPerPerson = totalWeight / this.peopleCount
+        piecesPerPerson = totalPieces / this.peopleCount
+        netPricePerPerson = netPrice / this.peopleCount
+
+        // Round
+        netPrice = parseInt(netPrice)
+        netPricePerPerson = netPricePerPerson.toFixed(2)
 
         // Log
-        this.log("PRICE", priceToClient)
+        this.log("NET PRICE", netPrice)
+        this.log("NET PRICE PP", netPricePerPerson)
         this.log("WEIGHT", totalWeight)
+        this.log("WEIGHT PER PERSON", weightPerPerson)
         this.log("PIECES", totalPieces)
+        this.log("PIECES PER PERSON", piecesPerPerson)
 
         // Save info
-        this.updatePrice(priceToClient, totalWeight, totalPieces)
+        this.updatePrice(netPrice, netPricePerPerson, totalWeight, weightPerPerson, totalPieces, piecesPerPerson)
 
-        return priceToClient
+        return netPrice
     }
-    updatePrice(priceToClient, totalWeight, totalPieces) {
+    updatePrice(price, netPricePerPerson, totalWeight, weightPerPerson, totalPieces, piecesPerPerson) {
         Orders.update(this.orderId, {$set: {
-            'price.calculated': priceToClient,
+            'price.calculated': price,
             'price.totalWeight': totalWeight,
             'price.totalPieces': totalPieces,
+            'price.weightPerPerson': weightPerPerson,
+            'price.piecesPerPerson': piecesPerPerson,
+            'price.netPricePerPerson': netPricePerPerson,
         }})
     }
     replaceHighestPrice() {

@@ -8,6 +8,11 @@ CornerMenu = React.createClass({
         e.stopPropagation()
     },
 
+    handleClickOption(option, e) {
+        e.stopPropagation()
+        option.onClick(e)
+    },
+
     render() {
         var rand = Random.id()
 
@@ -21,8 +26,8 @@ CornerMenu = React.createClass({
             <ul className="mdl-menu mdl-menu--bottom-right mdl-js-menu"
                 htmlFor={"cornerMenuIcon-"+rand}>
                 {this.props.options.map(function(option, i){
-                    return <li key={i} className="mdl-menu__item" onClick={option.onClick}>{option.label}</li>
-                })}
+                    return <li key={i} className="mdl-menu__item" onClick={this.handleClickOption.bind(null,option)}>{option.label}</li>
+                }.bind(this))}
             </ul>
         </div>)
     }

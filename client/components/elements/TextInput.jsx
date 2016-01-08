@@ -13,6 +13,10 @@ TextInput = React.createClass({
             $(this.refs.textarea).textareaAutoSize()
     },
 
+    handleClick(e) {
+        e.stopPropagation()
+    },
+
     render() {
         var _id = this.props._id || this.props.label
         var style = this.props.style || {}
@@ -44,6 +48,7 @@ TextInput = React.createClass({
                     onBlur={this.props.onBlur}
                     disabled={this.props.disabled}
                     autofocus={this.props.autofocus}
+                    onClick={this.handleClick}
                     />
         } else {
             return <input
@@ -58,6 +63,7 @@ TextInput = React.createClass({
                     onBlur={this.props.onBlur}
                     disabled={this.props.disabled}
                     autofocus={this.props.autofocus}
+                    onClick={this.handleClick}
                     />
         }
     }
