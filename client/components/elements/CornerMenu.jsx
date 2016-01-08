@@ -4,13 +4,17 @@ CornerMenu = React.createClass({
         return {}
     },
 
+    handleClick(e) {
+        e.stopPropagation()
+    },
+
     render() {
         var rand = Random.id()
 
         // Render
         return(
         <div className="mdl-container__menu">
-            <button id={"cornerMenuIcon-"+rand} className="mdl-button mdl-js-button mdl-button--icon">
+            <button id={"cornerMenuIcon-"+rand} className="mdl-button mdl-js-button mdl-button--icon" onClick={this.handleClick}>
                 <i className="material-icons">more_vert</i>
             </button>
 

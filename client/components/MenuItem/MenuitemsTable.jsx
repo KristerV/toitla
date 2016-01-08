@@ -54,6 +54,7 @@ MenuitemsTable = React.createClass({
                         <th className="mdl-data-table__cell--non-numeric">Type</th>
                         <th>Price</th>
                         <th>Weight</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>

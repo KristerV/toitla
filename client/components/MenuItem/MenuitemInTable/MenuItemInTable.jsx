@@ -17,6 +17,16 @@ MenuitemInTable = React.createClass({
         Meteor.call('menuitemInOrder--updateField', itemId, fieldName, fieldValue)
     },
 
+    deleteMenuitem(e) {
+        var c = confirm('Kindel, et soovid kustutada toidu "' + this.props.menuitem.title + '"?')
+        if (c)
+            Meteor.call('menuitemTemplate--delete', this.props.menuitem._id)
+    },
+
+    removeFromOrder(e) {
+        Meteor.call('menuitemInOrder--removeItem', this.props.menuitem._id)
+    },
+
     render() {
         var menuitem = this.props.menuitem
         var user = this.data.user
@@ -24,6 +34,14 @@ MenuitemInTable = React.createClass({
         if (user && user.profile)
             var profileName = user.profile.name
         errors = menuitem.errors || {}
+
+        var options = []
+        if (menuitem.inorder) {
+            options.push({ label: 'remove from order', onClick: this.removeFromOrder})
+        } else if (!menuitem.published && !menuitem.inorder) {
+            options.push({ label: 'delete', onClick: this.deleteMenuitem})
+        }
+
         return(<tr className="paper padding clickable" onClick={this.props.onClick} data-menuitem-id={id}>
             {this.props.checkboxes ?
                 <td>
@@ -55,6 +73,7 @@ MenuitemInTable = React.createClass({
             <td className="mdl-data-table__cell--non-numeric">{menuitem.foodType}</td>
             <td>{Settings.getPriceFromClass(menuitem.priceClass)}€</td>
             <td>{menuitem.weight}g</td>
+            <td><CornerMenu options={options}/></td>
         </tr>)
     }
 })
