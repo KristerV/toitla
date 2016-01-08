@@ -15,7 +15,7 @@ OrderMenuForm = React.createClass({
         var order = this.props.order
         order.price = order.price || {}
         return(<div className="paper margin padding">
-            <h5 className="text-hint text-center">{T("order", "price_slider_title")}</h5>
+            {/*<h5 className="text-hint text-center">{T("order", "price_slider_title")}</h5>
             <input
                 className="mdl-slider mdl-js-slider"
                 type="range"
@@ -25,8 +25,8 @@ OrderMenuForm = React.createClass({
                 step="1"
                 name="price.class"
                 onChange={this.handleSliderChange}
-                />
-            <h5 className="text-hint text-center">
+                />*/}
+            {/*<h5 className="text-hint text-center">
                 {T("order", "coffeeBreaks_slider_title")}: {order.price.coffeeBreaks || 1}
             </h5>
             <input
@@ -39,7 +39,7 @@ OrderMenuForm = React.createClass({
                 name="price.coffeeBreaks"
                 onChange={this.handleSliderChange}
                 />
-            <br/>
+            <br/>*/}
             <h4 style={{marginBottom: 0}}>Net Price: {order.price.calculated}€</h4>
             <p style={{marginBottom: 0}}>Net Price PP: {order.price.netPricePerPerson}€</p>
             <p style={{marginBottom: 0}}>Weight PP: {order.price.weightPerPerson}g</p>
