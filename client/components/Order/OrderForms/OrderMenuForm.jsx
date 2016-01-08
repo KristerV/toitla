@@ -40,17 +40,6 @@ OrderMenuForm = React.createClass({
                 onChange={this.handleSliderChange}
                 />
             <br/>
-            <Checkbox
-                defaultChecked={order.price.serveCoffee}
-                label={T("order","serve_coffee")}
-                name={'price.serveCoffee'}
-                onChange={this.handleCheckboxChange}/>
-            <Checkbox
-                defaultChecked={order.price.serveDrinks}
-                label={T("order","serve_drinks")}
-                name={'price.serveDrinks'}
-                onChange={this.handleCheckboxChange}/>
-            <br/>
             <h4 style={{marginBottom: 0}}>Net Price: {order.price.calculated}€</h4>
             <p style={{marginBottom: 0}}>Net Price PP: {order.price.netPricePerPerson}€</p>
             <p style={{marginBottom: 0}}>Weight PP: {order.price.weightPerPerson}g</p>
