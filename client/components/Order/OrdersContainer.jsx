@@ -34,7 +34,7 @@ OrdersContainer = React.createClass({
 
     render() {
         var user = Meteor.user()
-        if (!user || user.isChef()) {
+        if (!user || !user.isManager()) {
             return (<h4 style={{color: "white"}}>Tellimusi siia veel ei tule (moodul arendamisel). Seniks võid oma menüü ja profiili ära täita, sest täidame tellimusi käsitsi!</h4>)
         }
         var orders = this.data.orders
