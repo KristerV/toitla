@@ -272,7 +272,7 @@ MenuGenerator = class {
         // Totals
         for (var i = 0; i < this.meals.length; i++) {
             var mealPieces = this.meals[i].amount || this.snacksPerMeal
-            var mealPrice = Settings.priceClasses[this.meals[i].priceClass] * mealPieces
+            var mealPrice = this.meals[i].price * mealPieces
             netPrice += mealPrice
             totalWeight += this.meals[i].weight
             totalPieces += mealPieces
