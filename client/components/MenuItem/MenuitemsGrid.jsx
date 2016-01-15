@@ -5,7 +5,7 @@ MenuitemsGrid = React.createClass({
             {this.props.menuitems.map(function(item, i){
                 return <MenuitemInGrid key={item._id} menuitemKey={item._id} menuitem={item}/>
             })}
-            <MenuitemButtonAdd chefId={singleItem.chefId}
+            <MenuitemButtonAdd chefId={this.props.chefId}
                 orderId={singleItem.orderId}/>
         </div>)
     }

@@ -71,7 +71,7 @@ MenuitemInTable = React.createClass({
                 /></td>
             : null}
             <td className="mdl-data-table__cell--non-numeric">{menuitem.foodType}</td>
-            <td>{Settings.getPriceFromClass(menuitem.priceClass)}€</td>
+            <td>{menuitem.price}€</td>
             <td>{menuitem.weight}g</td>
             <td><CornerMenu options={options}/></td>
         </tr>)

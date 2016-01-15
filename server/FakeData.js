@@ -30,7 +30,7 @@ FakeData = {
                     published: true,
                     tags: Fake.fromArray([[Fake.fromArray(Settings.menuitemTags),Fake.fromArray(Settings.menuitemTags),Fake.fromArray(Settings.menuitemTags)],[],[Fake.fromArray(Settings.menuitemTags)]]),
                     foodType: Fake.fromArray(Settings.foodTypes),
-                    priceClass: Fake.fromArray(Settings.getKeys('priceClasses'))
+                    price: Fake.fromArray([0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.5, 2])
                 }
                 var template = MenuitemTemplates.insert(data)
                 if (template) console.info("Generated MenuitemTemplate: " + template)

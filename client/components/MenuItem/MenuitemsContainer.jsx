@@ -89,7 +89,7 @@ MenuitemsContainer = React.createClass({
             { this.props.layout === 'table' ?
                 <MenuitemsTable menuitems={menuitems} mode={this.props.mode} modeAction={modeAction} checkboxesChanged={this.checkboxesChanged}/>
                 :
-                <MenuitemsGrid menuitems={menuitems} mode={this.props.mode} modeAction={modeAction}/>
+                <MenuitemsGrid chefId={this.props.chefId} menuitems={menuitems} mode={this.props.mode} modeAction={modeAction}/>
             }
         </div>)
     }

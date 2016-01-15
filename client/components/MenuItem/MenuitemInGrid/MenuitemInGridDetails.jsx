@@ -105,18 +105,14 @@ MenuitemInGridDetails = React.createClass({
                         errorMsg={errors.foodType}/>
                 </div>
                 <div style={{width: '50%'}} className="inline vtop paddingl box">
-                    <DropDownMUI menuItems={[
-                        {value: null, text: 'Hinnaklass'},
-                        {value: 'class1', text: 'Tükihind '+Settings.priceClasses.class1},
-                        {value: 'class2', text: 'Tükihind '+Settings.priceClasses.class2},
-                        {value: 'class3', text: 'Tükihind '+Settings.priceClasses.class3},
-                        ]}
-                        name="priceClass"
+                    <TextInput
+                        label="Tükihind (€)"
                         disabled={editDisabled}
-                        autoWidth={false}
-                        selectedIndex={Settings.getIndexOfSetting('priceClasses', menuitem.priceClass, true)}
-                        onChange={this.changeDropdown}
-                        errorMsg={errors.priceClass}/>
+                        value={menuitem.price}
+                        onBlur={this.updateText}
+                        name="price"
+                        errorMsg={errors.price}
+                    />
                 </div>
             </div>
             <TextInput

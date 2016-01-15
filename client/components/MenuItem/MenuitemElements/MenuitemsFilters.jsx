@@ -47,12 +47,22 @@ MenuitemsFilters = React.createClass({
         // Get old values
         var filters = this.state.filters
 
+        if (!filters.weight) filters.weight = {}
+        if (!filters.price) filters.price = {}
+
         if (obj.name === 'min-weight') {
             var nr = Number(obj.value)
             if (obj.value && nr) {
-                filters.weight = {$gt: nr}
+                filters.weight.$gte = nr
             } else {
-                delete filters.weight
+                delete filters.weight.$gte
+            }
+        } else if (obj.name === 'max-weight') {
+            var nr = Number(obj.value)
+            if (obj.value && nr) {
+                filters.weight.$lte = nr
+            } else {
+                delete filters.weight.$lte
             }
         } else if (obj.name === 'freetext') {
             if (obj.value) {
@@ -63,7 +73,25 @@ MenuitemsFilters = React.createClass({
             } else {
                 delete filters.$or
             }
+        } else if (obj.name === 'min-price') {
+            var nr = Number(obj.value)
+            if (obj.value && nr) {
+                filters.price.$gte = nr
+            } else {
+                delete filters.price.$gte
+            }
+        } else if (obj.name === 'max-price') {
+            var nr = Number(obj.value)
+            if (obj.value && nr) {
+                filters.price.$lte = nr
+            } else {
+                delete filters.price.$lte
+            }
         }
+
+        if (_.isEmpty(filters.price)) delete filters.price
+        if (_.isEmpty(filters.weight)) delete filters.weight
+        console.log(filters);
 
         // Save state
         this.setState({filters: filters})
@@ -85,10 +113,6 @@ MenuitemsFilters = React.createClass({
 
         var foodTypes = _.map(Settings.foodTypes, function(type){
             return {text: type, value: type}
-        })
-
-        var priceClasses = _.map(Settings.priceClasses, function(value, key, list){
-            return {text: value, value: key}
         })
 
         return(<div className="padding margin paper mdl-grid">
@@ -120,17 +144,34 @@ MenuitemsFilters = React.createClass({
                     onChange={this.onChangeDropdown}/>
             </div>
             <div className="mdl-cell mdl-cell--2-col">
-                <FilterDropdown
-                    label="Any price"
-                    name="priceClass"
-                    menuItems={priceClasses}
-                    onChange={this.onChangeDropdown}/>
+                <FilterText
+                    label="Min price"
+                    name="min-price"
+                    pattern="[0-9]*.[0-9]*"
+                    patternError="Only enter a number"
+                    onChange={this.onChangeText}/>
+            </div>
+            <div className="mdl-cell mdl-cell--2-col">
+                <FilterText
+                    label="Max price"
+                    name="max-price"
+                    pattern="[0-9]*.[0-9]*"
+                    patternError="Only enter a number"
+                    onChange={this.onChangeText}/>
             </div>
             <div className="mdl-cell mdl-cell--2-col">
                 <FilterText
                     name="min-weight"
                     label="Min weight"
-                    pattern="[0-9]*"
+                    pattern="[0-9]*.[0-9]*"
+                    patternError="Only enter a number"
+                    onChange={this.onChangeText}/>
+            </div>
+            <div className="mdl-cell mdl-cell--2-col">
+                <FilterText
+                    name="max-weight"
+                    label="Max weight"
+                    pattern="[0-9]*.[0-9]*"
                     patternError="Only enter a number"
                     onChange={this.onChangeText}/>
             </div>
