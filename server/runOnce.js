@@ -1,14 +1,14 @@
 // Convert priceClass to freetext price
-Meteor.startup(function(){
-    var items = MenuitemTemplates.find()
-    items.forEach(function(item){
-        var price = Settings.priceClasses[item.priceClass]
-        if (price) {
-            MenuitemTemplates.update(item._id, {$set: {price: price}})
-            MenuitemsInOrder.update({templateId: item._id}, {$set: {price: price}}, {multi: true})
-        }
-    })
-});
+// Meteor.startup(function(){
+//     var items = MenuitemTemplates.find()
+//     items.forEach(function(item){
+//         var price = Settings.priceClasses[item.priceClass]
+//         if (price) {
+//             MenuitemTemplates.update(item._id, {$set: {price: price}})
+//             MenuitemsInOrder.update({templateId: item._id}, {$set: {price: price}}, {multi: true})
+//         }
+//     })
+// });
 
 // Convert weight info to number
 // Meteor.startup(function(){
