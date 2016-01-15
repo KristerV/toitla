@@ -87,6 +87,8 @@ MenuGenerator = class {
         this.order = Orders.findOne(this.orderId)
         if (!this.order) throw new Meteor.Error("MenuGenerator.getRequirements(): no such order exists.")
 
+        if (!this.order.event || !this.order.event.peopleCount)
+            throw new Meteor.Error("People count not specified")
         this.peopleCount = Number(this.order.event.peopleCount)
         this.log("peopleCount",this.peopleCount);
 
