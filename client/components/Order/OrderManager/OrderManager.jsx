@@ -13,6 +13,8 @@ OrderManager = React.createClass({
             </div>
             <div className="mdl-cell mdl-cell--4-col">
                 <OrderAllergiesForm order={order}/>
+            </div>
+            <div className="mdl-cell mdl-cell--8-col">
                 <OrderGeneralInputForm
                     order={order}
                     inputRows={1}

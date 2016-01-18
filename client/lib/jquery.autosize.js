@@ -34,7 +34,7 @@
         var currentScrollPosition = $window.scrollTop();
 
         $(this)
-          .height(0)
+        //   .height(0)
           .height(this.scrollHeight - diff);
 
         $window.scrollTop(currentScrollPosition);

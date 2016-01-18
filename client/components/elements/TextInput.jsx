@@ -49,6 +49,7 @@ TextInput = React.createClass({
                     disabled={this.props.disabled}
                     autofocus={this.props.autofocus}
                     onClick={this.handleClick}
+                    style={{maxHeight: "600px"}}
                     />
         } else {
             return <input
