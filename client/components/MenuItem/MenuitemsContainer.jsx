@@ -68,7 +68,7 @@ MenuitemsContainer = React.createClass({
     onAddItemsToOrder(e) {
         var orderId = this.props.orderId
         var newItems = this.state.checkedIds
-        Meteor.call('menuitemInOrder--addArray', orderId, newItems)
+        Meteor.call('menuitemInOrder--addMenuitemsArray', orderId, newItems)
         FlowRouter.go('order', {orderId: orderId})
     },
 
