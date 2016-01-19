@@ -43,6 +43,7 @@ OrderMenuForm = React.createClass({
             <h4 style={{marginBottom: 0}}>Net Price: {order.price.calculated}€</h4>
             <p style={{marginBottom: 0}}>Net Price PP: {order.price.netPricePerPerson}€</p>
             <p style={{marginBottom: 0}}>Weight PP: {order.price.weightPerPerson}g</p>
+            <p style={{marginBottom: 0}}>Pieces: {order.price.totalPieces}pcs</p>
             <p style={{marginBottom: 0}}>Pieces PP: {order.price.piecesPerPerson}pcs</p>
             <p className="text-hint">PP means Per Person</p>
             <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored w100" onClick={this.emptyOrderFromMenuitems}>remove all foods</button>
