@@ -53,6 +53,7 @@ http@1.1.1
 id-map@1.0.4
 izzilab:material-ui@0.2.4
 jquery@1.11.4
+jss:moment-timezone@0.5.0
 jsx@0.2.3
 juliancwirko:s-alert@3.1.4
 juliancwirko:s-alert-bouncyflip@3.1.3
