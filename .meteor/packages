@@ -13,7 +13,6 @@ raix:handlebar-helpers
 255kb:meteor-status
 reactive-var
 meteorhacks:flow-router
-react
 meteorhacks:flow-layout
 kadira:react-layout
 izzilab:material-ui
@@ -26,6 +25,10 @@ zodiase:mdl
 dburles:collection-helpers
 tmeasday:publish-counts
 meteorhacks:npm
+jsx
+react-meteor-data
+react-runtime@=0.14.3
+react-template-helper@=0.2.4
 
 
 standard-minifiers
