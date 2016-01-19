@@ -8,27 +8,25 @@ Profile = React.createClass({
     },
 
     changeEmail(e) {
-        console.log("change email");
+        this.props.user.changeEmail(e.target.value)
     },
 
     render() {
         if (!Roles.userIsInRole(Meteor.userId(), 'manager') && this.props.user._id !== Meteor.userId())
             return <div>Not allowed</div>
-        console.log(user);
         var user = this.props.user || {}
         user.profile = user.profile || {}
-        if (user.emails && user.emails[0] && user.emails[0].address)
-            var email = user.emails[0].address
-        user.emails = user.emails || {}
+
+        var manager = Meteor.user().isManager()
 
         return(
         <div className="mdl-grid">
-            <button className="margin mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onClick={this.logout}>Log out</button>
             <div className="paper padding mdl-cell mdl-cell--4-col">
                 <TextInput
                     label="Email"
                     onBlur={this.changeEmail}
-                    value={email}
+                    value={user.getEmail()}
+                    disabled={!manager}
                 />
                 <TextInput
                     label="Name"
@@ -65,12 +63,13 @@ Profile = React.createClass({
                     value={user.profile.companyCode}/>
                 <Checkbox
                     label="Olen teavitanud Veterinaar- ja Toiduametit oma koduköögist."
-                    onCheck={user.handleCheckboxChange.bind(user)}
+                    onChange={user.handleCheckboxChange.bind(user)}
                     name="profile.vet"
                     defaultChecked={user.profile.vet}/>
                 <br/>
                 <sub>Ilma etteovõtte või Vet-ametiga kooskõlastamiseta me kahjuks koostööd teha ei saa. Need protsessid ei ole aga üldse keerulised. Õpetuse kallal veel nokitseme, aga võta ühendust info@toitla.com ja me juhendame su mõnusalt läbi.</sub>
             </div>
+            <button className="margin mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onClick={this.logout}>Log out</button>
     </div>)
     }
 })
