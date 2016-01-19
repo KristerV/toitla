@@ -70,9 +70,9 @@ MenuitemsTable = React.createClass({
                 </tbody>
             </table>
             <div className="paper margin padding">
-                {/* temp info */}
+                {/* temp info module for copy-pasting. */}
                 {menuitems.map(function(menuitem, i) {
-                    return <p>{menuitem.title} {menuitem.amount}tk {menuitem.amount * menuitem.price}€</p>
+                    return <p>{menuitem.title} {menuitem.amount}tk {menuitem.amount * menuitem.weight}g</p>
                 }.bind(this))}
             </div>
         </div>)
