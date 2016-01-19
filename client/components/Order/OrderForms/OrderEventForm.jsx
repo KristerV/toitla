@@ -46,7 +46,7 @@ OrderEventForm = React.createClass({
                 name="event.peopleCount"
                 onBlur={this.handlePeopleCountChange}
                 value={order.event.peopleCount}
-                pattern="-?[0-9]*(\.[0-9]+)?"
+                patternTemplate="float"
                 patternError={T("order", "people_count_patternError")}
                 errorMsg={order.errors.event.peopleCount} />
             <TextInput

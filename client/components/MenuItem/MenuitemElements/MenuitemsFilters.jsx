@@ -91,7 +91,6 @@ MenuitemsFilters = React.createClass({
 
         if (_.isEmpty(filters.price)) delete filters.price
         if (_.isEmpty(filters.weight)) delete filters.weight
-        console.log(filters);
 
         // Save state
         this.setState({filters: filters})
@@ -147,7 +146,7 @@ MenuitemsFilters = React.createClass({
                 <FilterText
                     label="Min price"
                     name="min-price"
-                    pattern="[0-9]*.[0-9]*"
+                    patternTemplate="float"
                     patternError="Only enter a number"
                     onChange={this.onChangeText}/>
             </div>
@@ -155,7 +154,7 @@ MenuitemsFilters = React.createClass({
                 <FilterText
                     label="Max price"
                     name="max-price"
-                    pattern="[0-9]*.[0-9]*"
+                    patternTemplate="float"
                     patternError="Only enter a number"
                     onChange={this.onChangeText}/>
             </div>
@@ -163,7 +162,7 @@ MenuitemsFilters = React.createClass({
                 <FilterText
                     name="min-weight"
                     label="Min weight"
-                    pattern="[0-9]*.[0-9]*"
+                    patternTemplate="float"
                     patternError="Only enter a number"
                     onChange={this.onChangeText}/>
             </div>
@@ -171,7 +170,7 @@ MenuitemsFilters = React.createClass({
                 <FilterText
                     name="max-weight"
                     label="Max weight"
-                    pattern="[0-9]*.[0-9]*"
+                    patternTemplate="float"
                     patternError="Only enter a number"
                     onChange={this.onChangeText}/>
             </div>
