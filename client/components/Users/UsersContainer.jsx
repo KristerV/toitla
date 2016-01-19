@@ -10,92 +10,13 @@ UsersContainer = React.createClass({
         }
     },
 
-    getInitialState() {
-        return {}
-    },
-
-    goProfile: function(userId) {
-        FlowRouter.go('profile', {userId: userId})
-    },
-
-    makeManager: function(e) {
-        var userId = $(e.target).parents('[data-userid]').attr('data-userid')
-        var count = this.state[userId]
-        if (!count) count = 0
-        this.setState({[userId]: ++count})
-        if (count === 9) {
-            Meteor.users.findOne(userId).makeManager()
-        }
-    },
-
-    goMenu: function(userId) {
-        FlowRouter.go('menu', {userId: userId})
-    },
-
-    deleteUser(e) {
-        var userId = $(e.target).parents("tr[data-userid]").attr("data-userid")
-        var user = Meteor.users.findOne(userId)
-        var c = confirm("DELETE FOREVER? User: "+user.getEmail())
-        if (!c) return false
-        if (user.menuCount) c = confirm("THIS USER HAS MENU ITEMS, DELETE?")
-        if (!c) return false
-        Meteor.call('Users.deleteUser', userId)
-    },
-
     render() {
-        return(
-            <table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp max-width">
-              <thead>
-                <tr>
-                  <th className="mdl-data-table__cell--non-numeric">Nimi</th>
-                  <th>E-mail</th>
-                  <th>rating</th>
-                  <th>Vet</th>
-                  <th></th>
-                  <th></th>
-                  <th>Viimati online</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.data.users.map(function(user){
-                    var profile = user.profile || {}
-                    if (user.status && user.status.lastLogin)
-                        var lastLogin = moment(user.status.lastLogin.date).format("HH:mm - D.MM.YYYY")
-                    return <tr key={user._id} data-userid={user._id} className={user.isManager() ? 'bg-grey' : null}>
-                        <td className="mdl-data-table__cell--non-numeric" onClick={this.makeManager}>{profile.name}</td>
-                        <td>{user.getEmail()}</td>
-                        <td>
-                            <TextInput
-                                value={user.manualRating}
-                                name="manualRating"
-                                onBlur={user.handleTextFieldChange.bind(user)}
-                                style={{width: "20px"}}/>
-                        </td>
-                        <td>
-                            <label className="mdl-checkbox mdl-js-checkbox">
-                                <input type="checkbox" className="mdl-checkbox__input" checked={profile.vet} readOnly={true}/>
-                            </label>
-                        </td>
-                        <td>
-                            <button className={"mdl-button mdl-js-button mdl-button--raised "+(user.eligible ? "mdl-button--colored" : null)} onClick={this.goProfile.bind(this, user._id)} name={name}>
-                                profile
-                            </button>
-                        </td>
-                        <td>
-                            <button className={"mdl-button mdl-js-button mdl-button--raised "+(user.menuCount ? "mdl-button--colored" : null)} onClick={this.goMenu.bind(this, user._id)} name={name}>
-                                menu - {user.menuCount || 0}
-                            </button>
-                        </td>
-                        <td>{lastLogin}</td>
-                        <td>
-                            <button className="mdl-button mdl-js-button mdl-button--icon" onClick={this.deleteUser}>
-                                <i className="material-icons">delete</i>
-                            </button>
-                        </td>
-                    </tr>
-                }.bind(this))}
-              </tbody>
-            </table>
-        )
+        if (!this.data.subsReady)
+            return <Loader/>
+
+        if (this.props.userId)
+            return <UserProfile/>
+
+        return(<UsersTable users={this.data.users}/>)
     }
 })
