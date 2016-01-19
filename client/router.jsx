@@ -68,7 +68,7 @@ FlowRouter.route('/profile/:userId', {
 	name: 'profile',
 	action: function(params) {
 		ReactLayout.render(Layout, {
-			content: <ProfileContainer userId={params.userId}/>
+			content: <UsersContainer userId={params.userId}/>
 		});
 	}
 });

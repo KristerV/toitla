@@ -28,7 +28,6 @@ UserListItem = React.createClass({
     },
 
     render() {
-        console.log("HHHH");
         var user = this.props.user
         var profile = user.profile || {}
         if (user.status && user.status.lastLogin)

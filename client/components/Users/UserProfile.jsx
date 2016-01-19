@@ -1,5 +1,5 @@
 
-Profile = React.createClass({
+UserProfile = React.createClass({
 
     logout(e) {
         Meteor.logout(function(){
