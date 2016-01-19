@@ -1,13 +1,20 @@
 // Convert price from , to .
-// Meteor.startup(function(){
-//     var items = MenuitemTemplates.find()
-//     items.forEach(function(item){
-//         if (item.price && !Number(item.price) && item.price.indexOf(',') !== -1) {
-//             var newPrice = Number(item.price.replace(/,/g , "."))
-//             MenuitemTemplates.update(item._id, {$set: {price: newPrice}})
-//         }
-//     })
-// });
+Meteor.startup(function(){
+    var items = MenuitemsInOrder.find()
+    items.forEach(function(item){
+        if (item.price && !Number(item.price) && item.price.indexOf(',') !== -1) {
+            var newPrice = Number(item.price.replace(/,/g , "."))
+            MenuitemsInOrder.update(item._id, {$set: {price: newPrice}})
+        }
+    })
+    var items = MenuitemTemplates.find()
+    items.forEach(function(item){
+        if (item.price && !Number(item.price) && item.price.indexOf(',') !== -1) {
+            var newPrice = Number(item.price.replace(/,/g , "."))
+            MenuitemTemplates.update(item._id, {$set: {price: newPrice}})
+        }
+    })
+});
 
 // Convert priceClass to freetext price
 // Meteor.startup(function(){
