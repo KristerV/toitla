@@ -72,7 +72,7 @@ MenuitemsTable = React.createClass({
             <div className="paper margin padding">
                 {/* temp info module for copy-pasting. */}
                 {menuitems.map(function(menuitem, i) {
-                    return <p>{menuitem.title} {menuitem.amount}tk {menuitem.amount * menuitem.weight}g</p>
+                    return <p>{menuitem.title} ({menuitem.weight}g) {menuitem.amount}tk</p>
                 }.bind(this))}
             </div>
         </div>)
