@@ -1,7 +1,20 @@
 UsersTable = React.createClass({
 
+    newUser(e) {
+        var email = prompt("What's the users email?")
+        if (!email) return false
+        Meteor.call("Users--createNewUser", email, function(err, userId){
+            if (err)
+                console.error(err)
+            else
+                FlowRouter.go("profile", {userId: userId})
+        })
+    },
+
     render() {
-        return(<table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp max-width">
+        return(<div>
+        <button className="margin mdl-button mdl-js-button mdl-button--raised mdl-button--accent" onClick={this.newUser}>new user</button>
+        <table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp max-width">
           <thead>
             <tr>
               <th className="mdl-data-table__cell--non-numeric">Nimi</th>
@@ -18,6 +31,6 @@ UsersTable = React.createClass({
                 return <UserListItem user={user}/>
             })}
           </tbody>
-        </table>)
+        </table></div>)
     }
 })
