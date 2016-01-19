@@ -25,7 +25,13 @@ OrderManager = React.createClass({
                 />
             </div>
             <div className="mdl-cell mdl-cell--4-col">
-                <OrderMenuForm order={order}/>
+                {order.submitted ?
+                    <OrderMenuForm order={order}/>
+                :
+                    <div className="paper padding">
+                        <h4>You must submit the order to construct menu</h4>
+                    </div>
+                }
             </div>
             <div className="mdl-cell mdl-cell--12-col">
                 <MenuitemsContainer order={order} layout="table" />
