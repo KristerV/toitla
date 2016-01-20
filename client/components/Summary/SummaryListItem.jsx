@@ -8,7 +8,7 @@ SummaryListItem = React.createClass({
             className += " bg-red"
         return(<tr className={className}>
                 <td>{moment(menuitem.dueDate).format("D.MM.YY")}</td>
-                <td>{menuitem.orderStatus}</td>
+                <td>{Settings.phases[menuitem.orderStatus].label}</td>
                 <td>{menuitem.chefName}</td>
                 <td>{menuitem.totalPieces}</td>
                 <td>{menuitem.totalPrice}</td>
