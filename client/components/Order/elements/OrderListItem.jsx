@@ -28,9 +28,6 @@ OrderListItem = React.createClass({
                 <div className="mdl-cell mdl-cell--4-col">
                     {order.event.eventName}
                 </div>
-                <div className="mdl-cell mdl-cell--1-col">
-                    {order.price.custom}€
-                </div>
                 <div className="mdl-cell mdl-cell--2-col">
                     {date}
                 </div>
