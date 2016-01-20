@@ -35,7 +35,7 @@ OrderListItem = React.createClass({
                     {date}
                 </div>
                 <div className="mdl-cell mdl-cell--1-col">
-                    {order.status.phase}
+                    {Settings.phases[order.status.phase].label}
                 </div>
                 <div className="mdl-cell mdl-cell--1-col">
                 <button className="mdl-button mdl-js-button mdl-button--icon" onClick={this.deleteOrder}>
