@@ -3,8 +3,8 @@ StatsContainer = React.createClass({
     mixins: [ReactMeteorData],
     getMeteorData() {
         var subscription = Meteor.subscribe('orders')
-        var startDate = moment().subtract(1, 'month').toDate()
-        var endDate = moment().add(1, 'month').toDate()
+        var startDate = moment().subtract(37, 'days').toDate()
+        var endDate = moment().add(30, 'days').toDate()
         var orders = Orders.find(
             {
                 'status.phase': {
