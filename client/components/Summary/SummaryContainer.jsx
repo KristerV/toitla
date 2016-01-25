@@ -31,7 +31,6 @@ SummaryContainer = React.createClass({
             var menuitems = _.map(menuitemsObj, function(item){
                 return item
             })
-            console.log(menuitems);
             // menuitems = _.sortBy(menuitems, 'sorter')
             return <SummaryTable menuitems={menuitems}/>
         } else

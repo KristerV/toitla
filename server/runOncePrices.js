@@ -3,8 +3,6 @@ Meteor.startup(function(){
     if (MenuitemTemplates.findOne({priceHistory: {$exists: 1}}))
         return false
 
-    console.log("INSERT PRICE HISTORY");
-
     var prices = [{menuitemId: '262b79bLHQfuEKiCq', price: 0.8, date: new Date('2015-12-27')},
 {menuitemId: '262b79bLHQfuEKiCq', price: 0.8, date: new Date('2016-01-11')},
 {menuitemId: '262b79bLHQfuEKiCq', price: 0.8, date: new Date('2016-01-21')},

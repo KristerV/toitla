@@ -43,7 +43,7 @@ MenuitemInTable = React.createClass({
         }
 
         var priceHistory = _.sortBy(menuitem.priceHistory, (item) => { return item.date }).reverse()
-        if (priceHistory.length > 1) {
+        if (priceHistory.length > 1 && moment(priceHistory[0].date).isAfter(moment().subtract(1, 'month'))) {
             var priceChangeClass = ""
             var lastPrice = priceHistory[1].price
             if (menuitem.price > lastPrice)
