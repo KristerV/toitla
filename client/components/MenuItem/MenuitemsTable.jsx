@@ -60,7 +60,7 @@ MenuitemsTable = React.createClass({
                 <tbody>
                     {menuitems.map(function(menuitem, i) {
                         return <MenuitemInTable
-                                    key={i}
+                                    key={menuitem._id}
                                     menuitem={menuitem}
                                     checkboxes={addMenuitemsMode}
                                     checked={_.contains(this.state.checkedItemIds, menuitem._id)}
@@ -72,7 +72,7 @@ MenuitemsTable = React.createClass({
             <div className="paper margin padding">
                 {/* temp info module for copy-pasting. */}
                 {menuitems.map(function(menuitem, i) {
-                    return <span>{menuitem.title} ({menuitem.weight}g) {menuitem.amount}tk<br/></span>
+                    return <span key={i}>{menuitem.title} ({menuitem.weight}g) {menuitem.amount}tk<br/></span>
                 }.bind(this))}
             </div>
         </div>)
