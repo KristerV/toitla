@@ -18,6 +18,17 @@ MenuitemInGridDetails = React.createClass({
         Meteor.call('menuitemTemplate--updateField', itemId, fieldName, fieldValue)
     },
 
+    updatePrice(e) {
+        this.updateText(e)
+        var fieldName = 'priceHistory'
+        var fieldValue = {
+            date: new Date(),
+            price: $(e.target).val()
+        }
+        var itemId = this.props.menuitem._id
+        Meteor.call('menuitemTemplate--updateField', itemId, fieldName, fieldValue, true)
+    },
+
     updateTextInOrder(e) {
         var fieldName = $(e.target).attr('name')
         var fieldValue = $(e.target).val()
@@ -109,7 +120,7 @@ MenuitemInGridDetails = React.createClass({
                         label="Tükihind (€)"
                         disabled={editDisabled}
                         value={menuitem.price}
-                        onBlur={this.updateText}
+                        onBlur={this.updatePrice}
                         name="price"
                         errorMsg={errors.price}
                     />

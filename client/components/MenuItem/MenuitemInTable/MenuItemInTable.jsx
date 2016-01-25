@@ -71,7 +71,18 @@ MenuitemInTable = React.createClass({
                 /></td>
             : null}
             <td className="mdl-data-table__cell--non-numeric">{menuitem.foodType}</td>
-            <td>{menuitem.price}€</td>
+            <td className="mdl-data-table__cell--non-numeric">
+                <div id={"price-tooltip-"+id}>{menuitem.price}€</div>
+                <div
+                    className="mdl-tooltip"
+                    htmlFor={"price-tooltip-"+id}
+                    style={{whiteSpace: "normal"}}>
+                    {menuitem.priceHistory ? menuitem.priceHistory.map(item => {
+                        console.log(item);
+                        return <p><span className="text-halfsize">{moment(item.date).format("DD.MM.YY")}</span> {item.price}€</p>
+                    }) : <p>none</p>}
+                </div>
+            </td>
             <td>{menuitem.weight}g</td>
             <td><CornerMenu options={options}/></td>
         </tr>)
