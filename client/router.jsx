@@ -2,8 +2,12 @@ FlowRouter.route('/', {
 	action: function(params) {
 		if (!Meteor.userId())
 			ReactLayout.render(Landing, params.query);
-		else
-			FlowRouter.go("orders")
+		else {
+			if (Roles.userIsInRole(Meteor.userId(), 'manager'))
+				FlowRouter.go("stats")
+			else
+				FlowRouter.go("orders")
+		}
 	}
 });
 
