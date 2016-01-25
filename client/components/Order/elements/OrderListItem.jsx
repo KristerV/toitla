@@ -14,7 +14,7 @@ OrderListItem = React.createClass({
         order.event = order.event || {}
         order.contact = order.contact || {}
         order.price = order.price || {}
-        var date = order.event.fromDate ? moment(order.event.fromDate).format("D. MMMM") : null
+        var date = order.event.fromDate ? moment(order.event.fromDate).format("dd D. MMMM") : null
         var className = ""
         if (order.status.phase === "lost") className += "bg-red"
         else if (order.status.phase === "done") className += "bg-green"

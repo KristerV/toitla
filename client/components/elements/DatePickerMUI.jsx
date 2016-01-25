@@ -10,7 +10,7 @@ DatePickerMUI = React.createClass({
 
     getDateFormat: function(date) {
         if (!date) return null
-        return moment(date).format('D. MMMM')
+        return moment(date).format('dd D. MMMM')
     },
 
     render() {
