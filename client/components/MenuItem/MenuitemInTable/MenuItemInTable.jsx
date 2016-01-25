@@ -43,9 +43,9 @@ MenuitemInTable = React.createClass({
         }
 
         var priceHistory = _.sortBy(menuitem.priceHistory, (item) => { return item.date }).reverse()
-        if (!_.isEmpty(priceHistory)) {
+        if (priceHistory.length > 1) {
             var priceChangeClass = ""
-            var lastPrice = priceHistory[priceHistory.length-1].price
+            var lastPrice = priceHistory[1].price
             if (menuitem.price > lastPrice)
                 priceChangeClass = "bg-red"
             else if (menuitem.price < lastPrice)
