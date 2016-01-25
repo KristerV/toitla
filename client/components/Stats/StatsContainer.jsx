@@ -7,9 +7,7 @@ StatsContainer = React.createClass({
         var endDate = moment().add(30, 'days').toDate()
         var orders = Orders.find(
             {
-                'status.phase': {
-                    $nin: ['lost']
-                }, 'event.fromDate': {
+                'event.fromDate': {
                     $gt: startDate,
                     $lt: endDate,
                     $exists: 1

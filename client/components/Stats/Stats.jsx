@@ -9,14 +9,22 @@ Stats = React.createClass({
         var endDate = moment(orders[orders.length-1].event.fromDate)
         while(startDate.diff(endDate, 'days') <= 0) {
             var dateString = startDate.format('DD.MM.YY')
-            data[dateString] = {date: startDate.clone().toDate(), orderCount: 0}
+            data[dateString] = {date: startDate.clone().toDate(), done: 0, inProgress: 0, lost: 0, total: 0}
             startDate.add(1, 'day')
         }
 
         // Fill data into empty objects
         orders.forEach(order => {
             var dateString = moment(order.event.fromDate).format('DD.MM.YY')
-            data[dateString].orderCount++
+            if (order.status.phase === 'lost')
+                data[dateString].lost++
+            else if (order.status.phase === 'done') {
+                data[dateString].done++
+                data[dateString].total++
+            } else {
+                data[dateString].total++
+                data[dateString].inProgress++
+            }
         })
 
         // Convert object to array
@@ -25,7 +33,7 @@ Stats = React.createClass({
         // Find weekly average
         var week = []
         for (var i = 0; i < json.length; i++) {
-            week.push(json[i].orderCount)
+            week.push(json[i].total)
             if (week.length > 7)
                 week.shift()
             var sum = 0
@@ -46,14 +54,23 @@ Stats = React.createClass({
                 type: 'bar',
                 keys: {
                     x: 'date',
-                    value: ['orderCount', 'weekAverage']
+                    value: ['inProgress', 'lost', 'done', 'weekAverage']
                 },
                 types: {
                     weekAverage: 'spline'
                 },
+                groups: [['done', 'inProgress', 'lost']],
                 names: {
-                    orderCount: 'Order count',
-                    weekAverage: '3 a week burndown'
+                    done: 'Done',
+                    inProgress: 'In Progress',
+                    lost: 'Lost',
+                    weekAverage: '3 orders a day (week average burndown)'
+                },
+                colors: {
+                    done: '#00ff00',
+                    inProgress: '#0000ff',
+                    lost: '#ff0000',
+                    weekAverage: '#000000',
                 }
             },
             bar: {
