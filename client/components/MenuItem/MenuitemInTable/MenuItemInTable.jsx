@@ -42,6 +42,19 @@ MenuitemInTable = React.createClass({
             options.push({ label: 'delete', onClick: this.deleteMenuitem})
         }
 
+        var priceHistory = _.sortBy(menuitem.priceHistory, (item) => { return item.date }).reverse()
+        if (!_.isEmpty(priceHistory)) {
+            var priceChangeClass = ""
+            var lastPrice = priceHistory[priceHistory.length-1].price
+            if (menuitem.price > lastPrice)
+                priceChangeClass = "bg-red"
+            else if (menuitem.price < lastPrice)
+                priceChangeClass = "bg-green"
+        }
+        priceHistory = priceHistory.map(item => {
+            return <p><span className="text-halfsize">{moment(item.date).format("DD.MM.YY")}</span> {item.price}€</p>
+        })
+
         return(<tr className="paper padding clickable" onClick={this.props.onClick} data-menuitem-id={id}>
             {this.props.checkboxes ?
                 <td>
@@ -72,15 +85,12 @@ MenuitemInTable = React.createClass({
             : null}
             <td className="mdl-data-table__cell--non-numeric">{menuitem.foodType}</td>
             <td className="mdl-data-table__cell--non-numeric">
-                <div id={"price-tooltip-"+id}>{menuitem.price}€</div>
+                <div id={"price-tooltip-"+id} className={priceChangeClass}>{menuitem.price}€</div>
                 <div
                     className="mdl-tooltip"
                     htmlFor={"price-tooltip-"+id}
                     style={{whiteSpace: "normal"}}>
-                    {menuitem.priceHistory ? menuitem.priceHistory.map(item => {
-                        console.log(item);
-                        return <p><span className="text-halfsize">{moment(item.date).format("DD.MM.YY")}</span> {item.price}€</p>
-                    }) : <p>none</p>}
+                    {priceHistory}
                 </div>
             </td>
             <td>{menuitem.weight}g</td>
