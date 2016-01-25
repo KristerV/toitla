@@ -1,4 +1,4 @@
-/**/
+/*
 Meteor.startup(function(){
     if (MenuitemTemplates.findOne({priceHistory: {$exists: 1}}))
         return false
@@ -598,3 +598,4 @@ Meteor.startup(function(){
         prevId = obj.menuitemId
     })
 });
+*/
