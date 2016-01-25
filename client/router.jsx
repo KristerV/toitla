@@ -20,6 +20,16 @@ FlowRouter.route('/home', {
 	}
 });
 
+FlowRouter.route('/stats', {
+	name: "stats",
+	triggersEnter: [loginRequired, managerOnly],
+	action: function(params) {
+		ReactLayout.render(Layout, {
+			content: <StatsContainer/>
+		});
+	}
+});
+
 FlowRouter.route('/orders', {
 	name: 'orders',
 	triggersEnter: [loginRequired, startIdleMonitor],
@@ -39,7 +49,7 @@ FlowRouter.route('/orders', {
 
 FlowRouter.route('/summary', {
 	name: 'summary',
-	triggersEnter: [loginRequired],
+	triggersEnter: [loginRequired, managerOnly],
 	action: function(params) {
 		ReactLayout.render(Layout, {
 			content: <SummaryContainer/>
@@ -49,7 +59,7 @@ FlowRouter.route('/summary', {
 
 FlowRouter.route('/menus', {
 	name: 'menus',
-	triggersEnter: [loginRequired, startIdleMonitor],
+	triggersEnter: [loginRequired, managerOnly],
 	action: function(params) {
 		ReactLayout.render(Layout, {
 			content: <MenuitemsContainer
@@ -61,7 +71,7 @@ FlowRouter.route('/menus', {
 
 FlowRouter.route('/menus/add-item-to-order/:orderId', {
 	name: 'menus-addItem',
-	triggersEnter: [loginRequired, startIdleMonitor],
+	triggersEnter: [loginRequired, managerOnly],
 	action: function(params) {
 		ReactLayout.render(Layout, {
 			content: <MenuitemsContainer
@@ -84,7 +94,7 @@ FlowRouter.route('/profile/:userId', {
 });
 
 FlowRouter.route('/menu/:userId', {
-	triggersEnter: [loginRequired, startIdleMonitor],
+	triggersEnter: [loginRequired, managerOnly],
 	name: 'menu',
 	action: function(params) {
 		ReactLayout.render(Layout, {
@@ -113,7 +123,7 @@ FlowRouter.route('/login/:token', {
 });
 
 FlowRouter.route('/users/', {
-	triggersEnter: [loginRequired, startIdleMonitor],
+	triggersEnter: [loginRequired, managerOnly],
 	name: 'users',
 	action: function(params) {
 		ReactLayout.render(Layout, {
@@ -123,7 +133,7 @@ FlowRouter.route('/users/', {
 });
 
 FlowRouter.route('/scraper/', {
-	triggersEnter: [loginRequired],
+	triggersEnter: [loginRequired, managerOnly],
 	action: function(params) {
 		ReactLayout.render(Scraper)
 	}
@@ -187,4 +197,9 @@ function startIdleMonitor() {
 	        UserStatus.startMonitor({threshold: 30000,interval:5000,idleOnBlur:true});
 	    } catch(err) {}
 	})
+}
+
+function managerOnly() {
+	if (!Roles.userIsInRole(Meteor.userId(), 'manager'))
+		FlowRouter.go("home")
 }

@@ -21,6 +21,7 @@ Layout = React.createClass({
         var changingLinks = []
         var user = this.data.user || {isManager:function(){return false}}
         if (user.isManager()) {
+            changingLinks.push(<a key={5} className="mdl-navigation__link" href="/stats">Burndown</a>)
             changingLinks.push(<a key={4} className="mdl-navigation__link" href="/summary">Summary</a>)
             changingLinks.push(<a key={2} className="mdl-navigation__link" href="/orders">Orders</a>)
             changingLinks.push(<a key={3} className="mdl-navigation__link" href="/menus">Menus</a>)
