@@ -111,7 +111,7 @@ MenuitemInGridDetails = React.createClass({
                         name="foodType"
                         disabled={editDisabled}
                         autoWidth={false}
-                        selectedIndex={Settings.getIndexOfSetting('foodTypes', menuitem.foodType, true)}
+                        value={menuitem.foodType}
                         onChange={this.changeDropdown}
                         errorMsg={errors.foodType}/>
                 </div>

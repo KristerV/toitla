@@ -33,7 +33,8 @@ FilterDropdown = React.createClass({
                     name={this.props.name}
                     autoWidth={this.props.autoWidth}
                     menuItems={menuitems}
-                    />
+                    value={null}
+                />
                 <div className="dropdown-filter-list">
                     {this.state.activeEntries.map(function(item, i){
                         return <p

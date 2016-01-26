@@ -22,13 +22,6 @@ StatusForm = React.createClass({
         this.props.order.submitForm()
     },
 
-    getPhaseIndex() {
-        if (this.props.order && this.props.order.status)
-            return Settings.getPhaseIndex(this.props.order.status.phase)
-        else
-            return 0
-    },
-
     render() {
         var order = this.props.order
         return (
@@ -37,7 +30,7 @@ StatusForm = React.createClass({
                 <DropDownMUI
                     menuItems={this.props.selectPhases}
                     onChange={this.updatePhase}
-                    selectedIndex={this.getPhaseIndex()}
+                    value={order.status.phase}
                     autoWidth={true}/>
             :
                 <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--primary" onClick={this.submitOrder}>Submit order</button>

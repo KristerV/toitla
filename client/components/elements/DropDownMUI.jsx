@@ -3,6 +3,7 @@
 var {
     DropDownMenu,
     Styles,
+    MenuItem,
 } = MUI;
 var { ThemeManager, LightRawTheme } = Styles;
 
@@ -10,11 +11,11 @@ DropDownMUI = React.createClass({
     childContextTypes: { muiTheme: React.PropTypes.object, },
     getChildContext() { return { muiTheme: ThemeManager.getMuiTheme(LightRawTheme), } },
 
-    onChange(e, i, obj) {
+    onChange(e, i, value) {
         this.props.onChange({
-            value: obj.value,
+            value: value,
             name: this.props.name,
-            text: obj.text,
+            text: e.target.textContent,
         })
     },
 
@@ -43,20 +44,22 @@ DropDownMUI = React.createClass({
         if (disabled)
             divClass += " disabled"
 
-        return(<div style={divStyle} className={divClass}><DropDownMenu
-            displayMember={this.props.displayMember}
-            valueMember={this.props.valueMember || 'value'}
-            autoWidth={this.props.autoWidth}
-            menuItems={this.props.menuItems}
-            menuItemStyle={this.props.menuItemStyle}
-            selectedIndex={this.props.selectedIndex}
-            underlineStyle={underlineStyle}
-            iconStyle={iconStyle}
-            labelStyle={{paddingLeft: "2px", color: "black"}}
-            style={style}
-            disabled={this.props.disabled}
-            onChange={this.onChange}
-            />
+        return(<div style={divStyle} className={divClass}>
+            <DropDownMenu
+                autoWidth={this.props.autoWidth}
+                menuItemStyle={this.props.menuItemStyle}
+                underlineStyle={underlineStyle}
+                iconStyle={iconStyle}
+                labelStyle={{paddingLeft: "2px", color: "black"}}
+                style={style}
+                disabled={this.props.disabled}
+                onChange={this.onChange}
+                value={this.props.value}
+            >
+                {this.props.menuItems.map((item, i) => {
+                    return <MenuItem value={item.value} primaryText={item.text} key={i}/>
+                })}
+            </DropDownMenu>
             <span style={{
                 color: "rgb(222, 50, 38)",
                 position: "relative",

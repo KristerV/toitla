@@ -51,8 +51,8 @@ MenuitemInTable = React.createClass({
             else if (menuitem.price < lastPrice)
                 priceChangeClass = "bg-green"
         }
-        priceHistory = priceHistory.map(item => {
-            return <p><span className="text-halfsize">{moment(item.date).format("DD.MM.YY")}</span> {item.price}€</p>
+        priceHistory = priceHistory.map((item, i) => {
+            return <p key={i}><span className="text-halfsize">{moment(item.date).format("DD.MM.YY")}</span> {item.price}€</p>
         })
 
         return(<tr className="paper padding clickable" onClick={this.props.onClick} data-menuitem-id={id}>
