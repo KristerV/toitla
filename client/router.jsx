@@ -39,7 +39,7 @@ FlowRouter.route('/orders', {
 	triggersEnter: [loginRequired, startIdleMonitor],
 	action: function(params) {
 		ReactLayout.render(Layout, {
-			content: <OrdersContainer/>
+			content: <OrdersListContainer/>
 		});
 		Meteor.setTimeout(function(){
 			if (window.location.href.indexOf("toitla.com:3000") > -1) {
