@@ -205,10 +205,9 @@ function startIdleMonitor() {
 
 function managerOnly() {
 	if (!Roles.userIsInRole(Meteor.userId(), 'manager')) {
-		if (process.env.NODE_ENV === 'development')
+		if (Meteor.isDev)
 			console.warn("NOT PERMITTED");
 		else
 			FlowRouter.go("home")
-
 	}
 }
