@@ -28,6 +28,7 @@ NewOrder = React.createClass({
 
     render() {
         var order = this.props.order
+        if (!order) return <p className="text-white">Form Submitted</p>
         order.errors = order.errors || {}
 
         return(<div className="h100">
