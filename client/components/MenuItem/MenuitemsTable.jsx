@@ -69,12 +69,14 @@ MenuitemsTable = React.createClass({
                     }.bind(this))}
                 </tbody>
             </table>
-            <div className="paper margin padding">
-                {/* temp info module for copy-pasting. */}
-                {menuitems.map(function(menuitem, i) {
-                    return <span key={i}>{menuitem.title} ({menuitem.weight}g) {menuitem.amount}tk<br/></span>
-                }.bind(this))}
-            </div>
+            {FlowRouter.current().route.name === 'order' ?
+                <div className="paper margin padding">
+                    {/* temp info module for copy-pasting. */}
+                    {menuitems.map(function(menuitem, i) {
+                        return <span key={i}>{menuitem.title} ({menuitem.weight}g) {menuitem.amount}tk<br/></span>
+                    }.bind(this))}
+                </div>
+            : null}
         </div>)
     }
 })
