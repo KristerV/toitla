@@ -32,7 +32,7 @@ MenuitemInTable = React.createClass({
         var user = this.data.user
         if (user && user.profile)
             var profileName = user.profile.name
-        var isChef = Roles.userIsInRole(user._id, 'chef') && !Roles.userIsInRole(user._id, 'manager')
+        var isChef = Roles.userIsInRole(Meteor.userId(), 'chef') && !Roles.userIsInRole(Meteor.userId(), 'manager')
         var id = menuitem.templateId || menuitem._id // inorder || template
         errors = menuitem.errors || {}
 
