@@ -48,11 +48,6 @@ UserListItem = React.createClass({
                     style={{width: "20px"}}/>
             </td>
             <td>
-                <label className="mdl-checkbox mdl-js-checkbox">
-                    <input type="checkbox" className="mdl-checkbox__input" checked={profile.vet} readOnly={true}/>
-                </label>
-            </td>
-            <td>
                 <button
                     className={"mdl-button mdl-js-button mdl-button--raised "+(user.eligible ? "mdl-button--colored" : null)}
                     onClick={this.goProfile.bind(this, user._id)}
