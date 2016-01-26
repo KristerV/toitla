@@ -67,7 +67,7 @@ MenuitemsContainer = React.createClass({
             menuitems = MenuitemTemplates.find({_id: this.props.menuitemId}, options)
         } else if (this.props.mode !== "addMenuitemToOrder" && (this.props.orderId || this.props.order)) {
             var orderId = this.props.orderId || this.props.order._id
-            subscription = Meteor.subscribe("menuitems_inorder", {orderId: orderId})
+            subscription = Meteor.subscribe("menuitems_inorder", orderId)
             menuitems = MenuitemsInOrder.find({orderId: orderId, rejected: {$ne: true}}, options)
         } else {
             subscription = Meteor.subscribe("menuitem_templates")

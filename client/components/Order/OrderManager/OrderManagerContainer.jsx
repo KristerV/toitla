@@ -14,6 +14,12 @@ OrderManagerContainer = React.createClass({
     render() {
         if (!this.data.subsReady)
             return <Loader/>
-        return(<OrderManager order={this.data.order}/>)
+
+        if (Roles.userIsInRole(Meteor.userId(), 'manager'))
+            return(<OrderManager order={this.data.order}/>)
+        else if (Roles.userIsInRole(Meteor.userId(), 'chef'))
+            return(<OrderManagerChef order={this.data.order}/>)
+
+        return <h3 className="text-white text-center">You're not allowed here</h3>
     }
 })

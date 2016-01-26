@@ -30,9 +30,10 @@ MenuitemInTable = React.createClass({
     render() {
         var menuitem = this.props.menuitem
         var user = this.data.user
-        var id = menuitem.templateId || menuitem._id // inorder || template
         if (user && user.profile)
             var profileName = user.profile.name
+        var isChef = Roles.userIsInRole(user._id, 'chef') && !Roles.userIsInRole(user._id, 'manager')
+        var id = menuitem.templateId || menuitem._id // inorder || template
         errors = menuitem.errors || {}
 
         var options = []
@@ -75,26 +76,27 @@ MenuitemInTable = React.createClass({
             <td className="wrap mdl-data-table__cell--non-numeric"><Tags activeTags={menuitem.tags} onlyActive={true}/></td>
             {menuitem.amount ?
                 <td><TextInput
-                    style={{width: "30px"}}
+                    style={{width: "35px"}}
                     label="pieces"
                     name="amount"
                     errorMsg={errors.amount}
                     onBlur={this.updateTextInOrder}
                     value={menuitem.amount}
+                    disabled={isChef ? true : false}
                 /></td>
             : null}
             <td className="mdl-data-table__cell--non-numeric">{menuitem.foodType}</td>
             <td className="mdl-data-table__cell--non-numeric">
                 <div id={"price-tooltip-"+id} className={priceChangeClass}>{menuitem.price}€</div>
-                <div
+                {!isChef ? <div
                     className="mdl-tooltip"
                     htmlFor={"price-tooltip-"+id}
                     style={{whiteSpace: "normal"}}>
                     {priceHistory}
-                </div>
+                </div> : null}
             </td>
             <td>{menuitem.weight}g</td>
-            <td><CornerMenu options={options}/></td>
+            {!isChef ? <td><CornerMenu options={options}/></td> : null}
         </tr>)
     }
 })
