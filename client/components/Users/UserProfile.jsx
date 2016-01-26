@@ -3,7 +3,7 @@ UserProfile = React.createClass({
 
     logout(e) {
         Meteor.logout(function(){
-            FlowRouter.go("/")
+            FlowRouter.go('/')
         });
     },
 

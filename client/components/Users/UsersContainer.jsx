@@ -21,6 +21,9 @@ UsersContainer = React.createClass({
         if (this.data.user)
             return <UserProfile user={this.data.user}/>
 
-        return(<UsersTable users={this.data.users}/>)
+        if (this.data.users)
+            return <UsersTable users={this.data.users}/>
+
+        return <h3>Logging out...</h3>
     }
 })
