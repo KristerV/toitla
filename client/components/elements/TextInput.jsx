@@ -39,7 +39,7 @@ TextInput = React.createClass({
         var pattern = this.props.pattern
         if (this.props.patternTemplate === 'float')
             pattern = "[0-9]*\\.?[0-9]*"
-        if (this.props.errorMsg || this.props.patternError)
+        if (this.props.errorMsg)
             var errorClass = 'red-underline'
         if (this.props.rows) {
             return <textarea
