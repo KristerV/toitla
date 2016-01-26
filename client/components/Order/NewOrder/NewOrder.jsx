@@ -34,17 +34,17 @@ NewOrder = React.createClass({
             <NewOrderSection
                 leftContent={<NewOrderSectionText dangerouslySetInnerHTML={T("order", "contact_form", true)}/>}
                 rightContent={<OrderContactForm order={order}/>}
-                rightButtons={<NewOrderFlowButtons label="Next - event details" onClick={this.nextSection}/>}
+                rightButtons={<NewOrderButtons label="Next - event details" onClick={this.nextSection}/>}
             />
             <NewOrderSection
                 leftContent={<NewOrderSectionText dangerouslySetInnerHTML={T("order", "event_form", true)}/>}
                 rightContent={<OrderEventForm order={order}/>}
-                rightButtons={<NewOrderFlowButtons label="Next - allergies" onClick={this.nextSection}/>}
+                rightButtons={<NewOrderButtons label="Next - allergies" onClick={this.nextSection}/>}
             />
             <NewOrderSection
                 leftContent={<NewOrderSectionText dangerouslySetInnerHTML={T("order", "allergies_form", true)}/>}
                 rightContent={<OrderAllergiesForm order={order}/>}
-                rightButtons={<NewOrderFlowButtons label="Next - extra info" onClick={this.nextSection}/>}
+                rightButtons={<NewOrderButtons label="Next - extra info" onClick={this.nextSection}/>}
             />
             <NewOrderSection
                 leftContent={<NewOrderSectionText dangerouslySetInnerHTML={T("order", "extra_form", true)}/>}
@@ -55,7 +55,7 @@ NewOrder = React.createClass({
                     inputLabel={T("order", "extra_form_label")}
                     inputValue={order.extraInfo}
                     inputErrorMsg={order.errors['extraInfo']}
-                    buttons={<NewOrderFlowButtons label="finish" onClick={this.submitForm}/>}
+                    buttons={<NewOrderButtons label="finish" onClick={this.submitForm}/>}
                     />}
             />
         </div>)

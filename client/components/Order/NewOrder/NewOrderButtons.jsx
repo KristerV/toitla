@@ -1,4 +1,4 @@
-NewOrderFlowButtons = React.createClass({
+NewOrderButtons = React.createClass({
     render() {
         return(<div className="mdl-grid">
             <div className={"mdl-cell mdl-cell--12-col"}>
