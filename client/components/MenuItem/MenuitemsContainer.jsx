@@ -2,7 +2,7 @@ MenuitemsContainer = React.createClass({
 
     getInitialState() {
         return {
-            pageLimit: this.props.pageLimitStep
+            pageLimit: this.props.pageLimitStep,
         }
     },
 
@@ -93,6 +93,7 @@ MenuitemsContainer = React.createClass({
     render() {
         var menuitems = this.data.menuitems
         var subsReady = this.data.subsReady
+        var itemCount = menuitems.length
 
         if (!subsReady)
             return <Loader/>
@@ -109,7 +110,9 @@ MenuitemsContainer = React.createClass({
                 :
                 <MenuitemsGrid chefId={this.props.chefId} menuitems={menuitems} mode={this.props.mode} modeAction={modeAction}/>
             }
-            <button className="margin mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onClick={this.increasePageLimit}>Load next {this.props.pageLimitStep}</button>
+            {itemCount >= this.state.pageLimit ?
+                <button className="margin mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onClick={this.increasePageLimit}>Load next {this.props.pageLimitStep}</button>
+            : null}
         </div>)
     }
 })
