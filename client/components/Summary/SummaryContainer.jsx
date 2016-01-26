@@ -3,7 +3,7 @@ SummaryContainer = React.createClass({
     mixins: [ReactMeteorData],
     getMeteorData() {
         var subscription = Meteor.subscribe("menuitems_inorder")
-        var menuitems = MenuitemsInOrder.find({}, {sort: {'dueDate': -1, 'orderId': -1}}).fetch()
+        var menuitems = MenuitemsInOrder.find({}, {sort: {'dueDate': 1, 'orderId': -1}}).fetch()
         return {
             subsReady: subscription.ready(),
             menuitems: menuitems
