@@ -204,6 +204,11 @@ function startIdleMonitor() {
 }
 
 function managerOnly() {
-	if (!Roles.userIsInRole(Meteor.userId(), 'manager'))
-		FlowRouter.go("home")
+	if (!Roles.userIsInRole(Meteor.userId(), 'manager')) {
+		if (process.env.NODE_ENV === 'development')
+			console.warn("NOT PERMITTED");
+		else
+			FlowRouter.go("home")
+
+	}
 }

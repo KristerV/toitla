@@ -2,8 +2,9 @@ Layout = React.createClass({
 
     mixins: [ReactMeteorData],
     getMeteorData() {
+        var sub = Meteor.subscribe("allUserData");
         return {
-            user: Meteor.user(),
+            subsready: sub.ready(),
         }
     },
 
@@ -13,27 +14,28 @@ Layout = React.createClass({
         return true
     },
 
-    goNewOrder(e) {
-        Order.createOrder()
-    },
-
     render() {
-        var changingLinks = []
-        var user = this.data.user || {isManager:function(){return false}}
-        if (user.isManager()) {
-            changingLinks.push(<a key={5} className="mdl-navigation__link" href="/stats">Burndown</a>)
-            changingLinks.push(<a key={4} className="mdl-navigation__link" href="/summary">Summary</a>)
-            changingLinks.push(<a key={2} className="mdl-navigation__link" href="/orders">Orders</a>)
-            changingLinks.push(<a key={3} className="mdl-navigation__link" href="/menus">Menus</a>)
-            changingLinks.push(<a key={1} className="mdl-navigation__link" href="/users">Users</a>)
+        var isManager = Roles.userIsInRole(Meteor.userId(), 'manager')
+        var isChef = Roles.userIsInRole(Meteor.userId(), 'chef')
+
+        var linksObj = {}
+        if (isManager) {
+            linksObj['Burndown'] = '/stats'
+            linksObj['Summary'] = '/summary'
+            linksObj['Orders'] = '/orders'
+            linksObj['Menus'] = '/menus'
+            linksObj['Users'] = '/users'
         }
 
-        var links = <nav className="mdl-navigation">
-            {changingLinks}
-            <a className="mdl-navigation__link" href={"/menu/"+user._id}>My Menu</a>
-            <a className="mdl-navigation__link" href={"/profile/"+user._id}>My Profile</a>
-            <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" onClick={this.goNewOrder}>new order</button>
-        </nav>
+        if (isChef) {
+            linksObj['Orders'] = '/orders'
+            linksObj['My Menu'] = "/menu/"+Meteor.userId()
+            linksObj['My Profile'] = "/profile/"+Meteor.userId()
+        }
+
+        var links = <nav className="mdl-navigation">{_.map(linksObj, (val, key) => {
+            return <a key={val+key} className="mdl-navigation__link" href={val}>{key}</a>
+        })}</nav>
 
         var title = <a className="mdl-navigation__link mdl-layout-title" style={{fontSize: "1.6rem"}} href="/home">Toitla</a>
 

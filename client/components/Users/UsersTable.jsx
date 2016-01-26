@@ -27,8 +27,8 @@ UsersTable = React.createClass({
             </tr>
           </thead>
           <tbody>
-            {this.props.users.map(function(user){
-                return <UserListItem user={user}/>
+            {this.props.users.map(function(user, i){
+                return <UserListItem key={i} user={user}/>
             })}
           </tbody>
         </table></div>)

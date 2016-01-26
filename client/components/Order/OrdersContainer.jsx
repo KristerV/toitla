@@ -32,6 +32,10 @@ OrdersContainer = React.createClass({
         this.setState({showAllOrders: !this.state.showAllOrders})
     },
 
+    goNewOrder(e) {
+        Order.createOrder()
+    },
+
     render() {
         var user = Meteor.user()
         if (!user || !user.isManager()) {
@@ -51,6 +55,7 @@ OrdersContainer = React.createClass({
                 onChange={this.switchShowAll}
                 label="Show all orders"
             />
+            <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" onClick={this.goNewOrder}>new order</button>
             {ordersList}
         </div>)
     }
