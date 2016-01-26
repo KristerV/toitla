@@ -49,13 +49,14 @@ OrdersContainer = React.createClass({
             </div>)
         })
         return(<div className="max-width paper">
+            <button className="mdl-button margin mdl-js-button mdl-button--raised mdl-button--accent" onClick={this.goNewOrder}>new order</button>
             <Checkbox
                 className="margin"
+                style={{display: 'inline'}}
                 defaultChecked={this.state.showAllOrders}
                 onChange={this.switchShowAll}
                 label="Show all orders"
             />
-            <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" onClick={this.goNewOrder}>new order</button>
             {ordersList}
         </div>)
     }

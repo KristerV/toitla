@@ -10,7 +10,8 @@ Checkbox = React.createClass({
         }
         return(<label
                 className={labelClass + this.props.className}
-                id={this.props.id}>
+                id={this.props.id}
+                style={this.props.style}>
             <input
                 type="checkbox"
                 className={inputClass}
