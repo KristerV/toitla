@@ -18,7 +18,7 @@ Stats = React.createClass({
             var dateString = moment(order.event.fromDate).format('DD.MM.YY')
             if (order.status.phase === 'lost')
                 data[dateString].lost++
-            else if (order.status.phase === 'done' || order.status.phase === 'feedback') {
+            else if (order.status.phase === 'done') {
                 data[dateString].done++
                 data[dateString].total++
             } else {
