@@ -48,7 +48,7 @@ OrdersContainer = React.createClass({
                 <OrderListItem order={order}/>
             </div>)
         })
-        return(<div className="max-width paper">
+        return(<div className="max-width paper margin-top">
             <button className="mdl-button margin mdl-js-button mdl-button--raised mdl-button--accent" onClick={this.goNewOrder}>new order</button>
             <Checkbox
                 className="margin"
