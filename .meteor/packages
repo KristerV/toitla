@@ -6,7 +6,6 @@
 
 mquandalle:jade
 less
-msavin:mongol
 alanning:roles
 momentjs:moment
 raix:handlebar-helpers
@@ -51,12 +50,6 @@ raix:push
 
 npm-container
 anti:fake
-constellation:velocity
-constellation:console
-constellation:plugins
-constellation:autopublish
-constellation:subscriptions
-constellation:tiny
 ecmascript
 okgrow:router-autoscroll
 poetic:accounts-passwordless
