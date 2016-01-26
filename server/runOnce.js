@@ -1,10 +1,10 @@
 // Add chefsInOrder to order
-// Meteor.startup(function(){
-//     var items = MenuitemsInOrder.find()
-//     items.forEach(item => {
-//         Orders.update(item.orderId, {$addToSet: {chefsInOrder: item.chefId}})
-//     })
-// });
+Meteor.startup(function(){
+    var items = MenuitemsInOrder.find()
+    items.forEach(item => {
+        Orders.update(item.orderId, {$addToSet: {chefsInOrder: item.chefId}})
+    })
+});
 
 // Add orderStatus to menuiteminorder
 // Meteor.startup(function(){

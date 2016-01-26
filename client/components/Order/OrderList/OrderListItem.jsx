@@ -15,11 +15,16 @@ OrderListItem = React.createClass({
         order.contact = order.contact || {}
         order.price = order.price || {}
         var date = order.event.fromDate ? moment(order.event.fromDate).format("dd D. MMMM") : null
+
+        var myOrder = _.contains(order.chefsInOrder, Meteor.userId())
+
         var className = ""
         if (order.status.phase === "lost") className += "bg-red"
         else if (order.status.phase === "done") className += "bg-green"
         else if (order.status.phase === "unsubmitted") className += "bg-grey"
+        else if (myOrder) className += "bg-yellow"
         else className += "bg-white"
+
         return(<div className={"mdl-grid paper padding clickable " + className}
             onClick={this.goOrder}>
                 <div className="mdl-cell mdl-cell--3-col">

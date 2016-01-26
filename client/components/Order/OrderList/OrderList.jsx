@@ -9,7 +9,7 @@ OrderList = React.createClass({
         var showTitle = Roles.userIsInRole(Meteor.userId(), 'chef') && !Roles.userIsInRole(Meteor.userId(), 'manager')
 
         return(<div className="max-width margin-top">
-            {showTitle ? <h3 className="text-white text-center">Upcoming orders and ones you're participating in.</h3> :null}
+            {showTitle ? <h3 className="text-white text-center">Upcoming orders and ones you're <span className="text-yellow">participating</span> in.</h3> :null}
             <div className="paper">
                 <button className="mdl-button margin mdl-js-button mdl-button--raised mdl-button--accent" onClick={this.goNewOrder}>new order</button>
                 <Checkbox
