@@ -5,7 +5,6 @@ OrderEventForm = React.createClass({
 
     handlePeopleCountChange(e) {
         this.props.order.handleTextFieldChange(e)
-        this.props.order.refreshMenu()
     },
 
     handleFromDateChange(nill, date) {

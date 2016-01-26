@@ -1,30 +1,38 @@
-// Add orderStatus to menuiteminorder
+// Add chefsInOrder to order
 Meteor.startup(function(){
     var items = MenuitemsInOrder.find()
-    items.forEach(function(item){
-        if (!item.orderStatus) {
-            var order = Orders.findOne(item.orderId)
-            if (order)
-                MenuitemsInOrder.update(item._id, {$set: {orderStatus: order.status.phase}})
-            else
-                MenuitemsInOrder.remove(item._id) // remove without order
-        }
+    items.forEach(item => {
+        Orders.update(item.orderId, {$addToSet: {chefsInOrder: item.chefId}})
     })
 });
 
+// Add orderStatus to menuiteminorder
+// Meteor.startup(function(){
+//     var items = MenuitemsInOrder.find()
+//     items.forEach(function(item){
+//         if (!item.orderStatus) {
+//             var order = Orders.findOne(item.orderId)
+//             if (order)
+//                 MenuitemsInOrder.update(item._id, {$set: {orderStatus: order.status.phase}})
+//             else
+//                 MenuitemsInOrder.remove(item._id) // remove without order
+//         }
+//     })
+// });
+
 // Add dueDate to menuiteminorder
-Meteor.startup(function(){
-    var items = MenuitemsInOrder.find()
-    items.forEach(function(item){
-        if (!item.dueDate) {
-            var order = Orders.findOne(item.orderId)
-            if (order)
-                MenuitemsInOrder.update(item._id, {$set: {dueDate: order.event.fromDate}})
-            else
-                MenuitemsInOrder.remove(item._id) // remove without order
-        }
-    })
-});
+// Meteor.startup(function(){
+//     var items = MenuitemsInOrder.find()
+//     items.forEach(function(item){
+//         if (!item.dueDate) {
+//             var order = Orders.findOne(item.orderId)
+//             if (order)
+//                 MenuitemsInOrder.update(item._id, {$set: {dueDate: order.event.fromDate}})
+//             else
+//                 MenuitemsInOrder.remove(item._id) // remove without order
+//         }
+//     })
+// });
 
 // Convert price from , to .
 // Meteor.startup(function(){

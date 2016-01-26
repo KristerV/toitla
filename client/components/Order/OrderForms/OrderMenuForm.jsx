@@ -1,7 +1,6 @@
 OrderMenuForm = React.createClass({
     handleSliderChange(e) {
         this.props.order.updateField(e.target.name, e.target.value)
-        this.props.order.refreshMenu()
     },
     handleCheckboxChange(e) {
         this.props.order.handleChangeCheckbox(e)
