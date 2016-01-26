@@ -1,7 +1,21 @@
 MenuitemsContainer = React.createClass({
 
     getInitialState() {
-        return {}
+        return {
+            pageLimit: this.props.pageLimitStep
+        }
+    },
+
+    getDefaultProps() {
+        return {
+            pageLimitStep: 30
+        }
+    },
+
+    increasePageLimit() {
+        var current = this.state.pageLimit
+        this.setState({pageLimit: current + this.props.pageLimitStep})
+        console.log(this.state.pageLimit);
     },
 
     filtersChange(filters) {
@@ -41,19 +55,23 @@ MenuitemsContainer = React.createClass({
         var subscription
         var menuitems
 
+        var options = {
+            limit: this.state.pageLimit
+        }
+
         if (this.props.chefId) {
             subscription = Meteor.subscribe("menuitem_templates", {chefId: this.props.chefId})
-            menuitems = MenuitemTemplates.find({chefId: this.props.chefId})
+            menuitems = MenuitemTemplates.find({chefId: this.props.chefId}, options)
         } else if (this.props.menuitemId) {
             subscription = Meteor.subscribe("menuitem_templates", {_id: this.props.menuitemId})
-            menuitems = MenuitemTemplates.find({_id: this.props.menuitemId})
+            menuitems = MenuitemTemplates.find({_id: this.props.menuitemId}, options)
         } else if (this.props.mode !== "addMenuitemToOrder" && (this.props.orderId || this.props.order)) {
             var orderId = this.props.orderId || this.props.order._id
             subscription = Meteor.subscribe("menuitems_inorder", {orderId: orderId})
-            menuitems = MenuitemsInOrder.find({orderId: orderId, rejected: {$ne: true}})
+            menuitems = MenuitemsInOrder.find({orderId: orderId, rejected: {$ne: true}}, options)
         } else {
             subscription = Meteor.subscribe("menuitem_templates")
-            menuitems = MenuitemTemplates.find(this.getFind())
+            menuitems = MenuitemTemplates.find(this.getFind(), options)
         }
 
         // HACK: hide loading spinner for OrderMenuForm.jsx when price changes
@@ -91,6 +109,7 @@ MenuitemsContainer = React.createClass({
                 :
                 <MenuitemsGrid chefId={this.props.chefId} menuitems={menuitems} mode={this.props.mode} modeAction={modeAction}/>
             }
+            <button className="margin mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onClick={this.increasePageLimit}>Load next {this.props.pageLimitStep}</button>
         </div>)
     }
 })
