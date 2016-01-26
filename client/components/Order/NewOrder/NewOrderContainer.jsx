@@ -12,6 +12,9 @@ NewOrderContainer = React.createClass({
     },
 
     render() {
-        return(<NewOrder order={this.data.order}/>)
+        if (this.data.subsReady)
+            return(<NewOrder order={this.data.order}/>)
+        else
+            return <Loader/>
     }
 })

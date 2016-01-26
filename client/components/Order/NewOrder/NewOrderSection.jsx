@@ -1,27 +1,17 @@
 NewOrderSection = React.createClass({
-    scrollInProgress: false,
-    componentDidMount() {
-        if (this.scrollInProgress) return
-        this.scrollInProgress = true
-        Meteor.setTimeout(function(){
-            $('body, .mdl-layout__content').animate({
-                scrollTop: $(".order-section").last().offset().top - $(".order-section").last().offsetParent().offset().top
-            }, 600);
-            this.scrollInProgress = false
-        }.bind(this), 50);
-    },
     render() {
 
         var left = <div className="mdl-cell mdl-cell--6-col center-down">
             <div className="center-up">
                 {this.props.leftContent}
+                {this.props.leftButtons}
             </div>
         </div>
 
         var right = <div className="mdl-cell mdl-cell--6-col center-down">
             <div className="center-up">
                 {this.props.rightContent}
-                {this.props.buttons}
+                {this.props.rightButtons}
             </div>
         </div>
 

@@ -155,6 +155,13 @@ FlowRouter.route('/neworder/:orderId', {
 	}
 });
 
+FlowRouter.route('/submitted/', {
+	name: "submitted",
+	action: function(params) {
+		ReactLayout.render(NewOrderSectionThanks)
+	}
+});
+
 FlowRouter.route('/order/:orderId', {
 	triggersEnter: [loginRequired, startIdleMonitor],
 	name: "order",

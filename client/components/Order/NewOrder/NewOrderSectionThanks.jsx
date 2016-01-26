@@ -1,13 +1,13 @@
 NewOrderSectionThanks = React.createClass({
+
+    goHome() {
+        FlowRouter.go('/')
+    },
+
     render() {
-        var order = this.props.order
         return(<NewOrderSection
             bottomContent={<NewOrderSectionText dangerouslySetInnerHTML={T("order", "thanks_form", true)}/>}
-            bottomButtons={<NewOrderFlowButtons
-                    flowIndex={this.props.flowIndex}
-                    secondaryLabel={T("global", "back_home")}
-                    secondaryAction={this.props.primaryAction}
-                />}
+            bottomButtons={<NewOrderFlowButtons label={T("global", "back_home")} onClick={this.goHome} />}
         />)
     }
 })
