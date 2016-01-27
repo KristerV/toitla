@@ -98,7 +98,7 @@ FlowRouter.route('/profile/:userId', {
 });
 
 FlowRouter.route('/menu/:userId', {
-	triggersEnter: [loginRequired, managerOnly],
+	triggersEnter: [loginRequired, startIdleMonitor],
 	name: 'menu',
 	action: function(params) {
 		ReactLayout.render(Layout, {
@@ -213,7 +213,7 @@ function startIdleMonitor() {
 function managerOnly() {
 	if (!Roles.userIsInRole(Meteor.userId(), 'manager')) {
 		if (Meteor.isDev)
-			console.warn("NOT PERMITTED");
+			sAlert.error("Route not allowed")
 		else
 			FlowRouter.go("home")
 	}
