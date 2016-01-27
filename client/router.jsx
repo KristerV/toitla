@@ -197,6 +197,13 @@ FlowRouter.route('/menuitem/:menuitemId', {
 	}
 });
 
+FlowRouter.route('/route-denied', {
+	name: "route-denied",
+	action: function(params) {
+		ReactLayout.render(RouteDenied);
+	}
+});
+
 function loginRequired(context) {
 	if (!Meteor.userId())
 		FlowRouter.go("/login")
@@ -215,6 +222,6 @@ function managerOnly() {
 		if (Meteor.isDev)
 			sAlert.error("Route not allowed")
 		else
-			FlowRouter.go("home")
+			FlowRouter.go("route-denied")
 	}
 }
