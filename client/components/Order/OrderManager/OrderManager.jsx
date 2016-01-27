@@ -34,7 +34,7 @@ OrderManager = React.createClass({
                 }
             </div>
             <div className="mdl-cell mdl-cell--12-col">
-                <MenuitemsContainer order={order} layout="table" />
+                <MenuitemsContainer orderId={order._id} layout="table" />
             </div>
         </div>)
     }

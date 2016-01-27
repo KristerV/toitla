@@ -66,23 +66,17 @@ FlowRouter.route('/menus', {
 	triggersEnter: [loginRequired, managerOnly],
 	action: function(params) {
 		ReactLayout.render(Layout, {
-			content: <MenuitemsContainer
-						filters={true}
-						layout="table"/>
+			content: <MenuitemsContainer filters={true} layout="table"/>
 		});
 	}
 });
 
 FlowRouter.route('/menus/add-item-to-order/:orderId', {
-	name: 'menus-addItem',
+	name: 'menus-addItem', // find and replace if needs changing
 	triggersEnter: [loginRequired, managerOnly],
 	action: function(params) {
 		ReactLayout.render(Layout, {
-			content: <MenuitemsContainer
-						filters={true}
-						layout="table"
-						orderId={params.orderId}
-						mode="addMenuitemToOrder"/>
+			content: <MenuitemsContainer filters={true} layout="table" orderId={params.orderId}/>
 		});
 	}
 });

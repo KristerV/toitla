@@ -27,22 +27,45 @@ MenuitemInTable = React.createClass({
         Meteor.call('menuitemInOrder--removeItem', this.props.menuitem._id)
     },
 
+    toggleConfirm(e) {
+        var itemId = this.props.menuitem._id
+        if (this.props.menuitem.chefConfirmed)
+            Meteor.call('menuitemInOrder--removeConfirm', itemId)
+        else
+            Meteor.call('menuitemInOrder--confirm', itemId)
+    },
+
+    toggleInOrder(e) {
+        var itemId = this.props.menuitem.inorder ? this.props.menuitem._id : this.props.menuitem.inOrderItemId
+        var addMenuitemsMode = FlowRouter.current().route.name === 'menus-addItem'
+        if (itemId) {
+            if (addMenuitemsMode || confirm("Remove food from order?"))
+                Meteor.call('menuitemInOrder--removeItem', itemId)
+        } else
+            Meteor.call('menuitemInOrder--addItem', FlowRouter.getParam("orderId"), this.props.menuitem._id)
+    },
+
     render() {
+        var addMenuitemsMode = FlowRouter.current().route.name === 'menus-addItem'
         var menuitem = this.props.menuitem
+        var chefConfirmMode = menuitem.inorder
+        var id = menuitem.templateId || menuitem._id // inorder || template
+        errors = menuitem.errors || {}
+
+        // User variables
         var user = this.data.user
         if (user && user.profile)
             var profileName = user.profile.name
         var isChef = Roles.userIsInRole(Meteor.userId(), 'chef') && !Roles.userIsInRole(Meteor.userId(), 'manager')
-        var id = menuitem.templateId || menuitem._id // inorder || template
-        errors = menuitem.errors || {}
 
+        // Hidden options
         var options = []
-        if (menuitem.inorder) {
+        if (menuitem.inorder)
             options.push({ label: 'remove from order', onClick: this.removeFromOrder})
-        } else if (!menuitem.published && !menuitem.inorder) {
+        else if (!menuitem.published && !menuitem.inorder)
             options.push({ label: 'delete', onClick: this.deleteMenuitem})
-        }
 
+        // Show price history
         var priceHistory = _.sortBy(menuitem.priceHistory, (item) => { return item.date }).reverse()
         if (priceHistory.length > 1 && moment(priceHistory[0].date).isAfter(moment().subtract(1, 'month'))) {
             var priceChangeClass = ""
@@ -57,11 +80,7 @@ MenuitemInTable = React.createClass({
         })
 
         return(<tr className="paper padding clickable" onClick={this.props.onClick} data-menuitem-id={id}>
-            {this.props.checkboxes ?
-                <td>
-                    <Checkbox name="Tere" id={id} checked={this.props.checked} defaultStyle={this.props.defaultChecbox}/>
-                </td>
-            : null}
+            <td><Checkbox checked={menuitem.inOrderItemId || menuitem.inorder} onChange={this.toggleInOrder} defaultStyle={true}/></td>
             <td className="mdl-data-table__cell--non-numeric">{menuitem.chefName || profileName}</td>
             <td className="wrap mdl-data-table__cell--non-numeric">{menuitem.title}</td>
             <td className="mdl-data-table__cell--non-numeric">
@@ -96,7 +115,14 @@ MenuitemInTable = React.createClass({
                 </div> : null}
             </td>
             <td>{menuitem.weight}g</td>
-            {!isChef ? <td><CornerMenu options={options}/></td> : null}
+            {menuitem.inorder ? <td>
+                <Checkbox
+                    checked={menuitem.chefConfirmed}
+                    onChange={this.toggleConfirm}
+                    defaultStyle={true}
+                    />
+            </td> : null}
+            {/*<td><CornerMenu options={options}/></td>*/}
         </tr>)
     }
 })

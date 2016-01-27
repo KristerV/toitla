@@ -26,7 +26,7 @@ OrderManagerChef = React.createClass({
                 <p className="text-red">{allergies}</p>
             </div>
             <div className="mdl-cell--12-col margin-top">
-                <MenuitemsContainer order={order} layout="table" />
+                <MenuitemsContainer orderId={order._id} layout="table" />
             </div>
         </div>)
     }

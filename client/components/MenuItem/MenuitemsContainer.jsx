@@ -15,7 +15,6 @@ MenuitemsContainer = React.createClass({
     increasePageLimit() {
         var current = this.state.pageLimit
         this.setState({pageLimit: current + this.props.pageLimitStep})
-        console.log(this.state.pageLimit);
     },
 
     filtersChange(filters) {
@@ -27,10 +26,6 @@ MenuitemsContainer = React.createClass({
             and.push({[key]: filters[key]})
         }
         this.setState({filterList: and})
-    },
-
-    checkboxesChanged(menuitemsIds) {
-        this.setState({checkedIds: menuitemsIds})
     },
 
     getFind() {
@@ -59,19 +54,36 @@ MenuitemsContainer = React.createClass({
             limit: this.state.pageLimit
         }
 
-        if (this.props.chefId) {
-            subscription = Meteor.subscribe("menuitem_templates", {chefId: this.props.chefId})
-            menuitems = MenuitemTemplates.find({chefId: this.props.chefId}, options)
-        } else if (this.props.menuitemId) {
-            subscription = Meteor.subscribe("menuitem_templates", {_id: this.props.menuitemId})
-            menuitems = MenuitemTemplates.find({_id: this.props.menuitemId}, options)
-        } else if (this.props.mode !== "addMenuitemToOrder" && (this.props.orderId || this.props.order)) {
-            var orderId = this.props.orderId || this.props.order._id
+        var chefId = this.props.chefId
+        var menuitemId = this.props.menuitemId
+        var orderId = this.props.orderId
+        var addToOrdermode = FlowRouter.current().route.name === 'menus-addItem'
+
+        if (chefId) {
+            subscription = Meteor.subscribe("menuitem_templates", {chefId: chefId})
+            menuitems = MenuitemTemplates.find({chefId: chefId}, options).fetch()
+        } else if (menuitemId) {
+            subscription = Meteor.subscribe("menuitem_templates", {_id: menuitemId})
+            menuitems = MenuitemTemplates.find({_id: menuitemId}, options).fetch()
+        } else if (addToOrdermode && orderId) {
+            subscription = Meteor.subscribe("menuitem_templates")
+            subscription2 = Meteor.subscribe("menuitems_inorder")
+            menuitems = MenuitemTemplates.find(this.getFind(), options).fetch()
+            itemsInOrder = MenuitemsInOrder.find({orderId: orderId, rejected: {$ne: true}}).fetch()
+
+            for (var i = 0; i < menuitems.length; i++) {
+                for (var j = 0; j < itemsInOrder.length; j++) {
+                    if (menuitems[i]._id === itemsInOrder[j].templateId)
+                        menuitems[i].inOrderItemId = itemsInOrder[j]._id
+                }
+            }
+
+        } else if (orderId) {
             subscription = Meteor.subscribe("menuitems_inorder", orderId)
-            menuitems = MenuitemsInOrder.find({orderId: orderId, rejected: {$ne: true}}, options)
+            menuitems = MenuitemsInOrder.find({orderId: orderId, rejected: {$ne: true}}, options).fetch()
         } else {
             subscription = Meteor.subscribe("menuitem_templates")
-            menuitems = MenuitemTemplates.find(this.getFind(), options)
+            menuitems = MenuitemTemplates.find(this.getFind(), options).fetch()
         }
 
         // HACK: hide loading spinner for OrderMenuForm.jsx when price changes
@@ -79,36 +91,25 @@ MenuitemsContainer = React.createClass({
 
         return {
             subsReady: subscription.ready(),
-            menuitems: menuitems.fetch(),
+            menuitems: menuitems,
         }
     },
 
-    onAddItemsToOrder(e) {
-        var orderId = this.props.orderId
-        var newItems = this.state.checkedIds
-        Meteor.call('menuitemInOrder--addMenuitemsArray', orderId, newItems)
-        FlowRouter.go('order', {orderId: orderId})
-    },
 
     render() {
         var menuitems = this.data.menuitems
-        var subsReady = this.data.subsReady
         var itemCount = menuitems.length
 
-        if (!subsReady)
+        if (!this.data.subsReady)
             return <Loader/>
-
-        var modeAction
-        if (this.props.mode === 'addMenuitemToOrder')
-            modeAction = this.onAddItemsToOrder
 
         // Render
         return(<div>
             { this.props.filters ? <MenuitemsFilters onChange={this.filtersChange}/> : null}
             { this.props.layout === 'table' ?
-                <MenuitemsTable menuitems={menuitems} mode={this.props.mode} modeAction={modeAction} checkboxesChanged={this.checkboxesChanged}/>
+                <MenuitemsTable menuitems={menuitems}/>
                 :
-                <MenuitemsGrid chefId={this.props.chefId} menuitems={menuitems} mode={this.props.mode} modeAction={modeAction}/>
+                <MenuitemsGrid chefId={this.props.chefId} menuitems={menuitems}/>
             }
             {itemCount >= this.state.pageLimit ?
                 <button className="margin mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onClick={this.increasePageLimit}>Load next {this.props.pageLimitStep}</button>
