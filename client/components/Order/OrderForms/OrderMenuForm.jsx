@@ -10,6 +10,9 @@ OrderMenuForm = React.createClass({
         if (confirm("Remove all items for sure?"))
             this.props.order.removeAllMenuitems()
     },
+    sendConfirmEmails(e) {
+        Meteor.call('Order--sendConfirmationEmails', this.props.order._id)
+    },
     render() {
         var order = this.props.order
         order.price = order.price || {}
@@ -45,8 +48,9 @@ OrderMenuForm = React.createClass({
             <p style={{marginBottom: 0}}>Pieces: {order.price.totalPieces}pcs</p>
             <p style={{marginBottom: 0}}>Pieces PP: {order.price.piecesPerPerson}pcs</p>
             <p className="text-hint">PP means Per Person</p>
-            <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored w100" onClick={this.emptyOrderFromMenuitems}>remove all foods</button>
             <MenuitemButtonAdd orderId={order._id}/>
+            <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored w100 margin-top" onClick={this.sendConfirmEmails}>Send confirmation emails</button>
+            <button className="mdl-button mdl-js-button w100 margin-top" onClick={this.emptyOrderFromMenuitems}>remove all foods</button>
             <Loader id="calculating-price-loader"/>
         </div>)
     }
