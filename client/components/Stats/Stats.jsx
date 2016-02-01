@@ -54,22 +54,24 @@ Stats = React.createClass({
                 type: 'bar',
                 keys: {
                     x: 'date',
-                    value: ['inProgress', 'lost', 'done', 'weekAverage']
+                    value: ['inProgress', 'lost', 'done', 'weekAverage', 'silent']
                 },
                 types: {
                     weekAverage: 'spline'
                 },
-                groups: [['done', 'inProgress', 'lost']],
+                groups: [['done', 'inProgress', 'lost', 'silent']],
                 names: {
                     done: 'Done',
                     inProgress: 'In Progress',
                     lost: 'Lost',
+                    silent: "Silent",
                     weekAverage: '3 orders a day (week average burndown)'
                 },
                 colors: {
                     done: '#00ff00',
                     inProgress: '#0000ff',
                     lost: '#ff0000',
+                    silent: '#ff6666',
                     weekAverage: '#000000',
                 }
             },
