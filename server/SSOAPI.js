@@ -12,6 +12,10 @@ Meteor.methods({
         check(sig, String);
 
         var user = Meteor.users.findOne(userId)
+
+        if (!user.profile || !user.profile.name)
+            throw new Meteor.Error(401, "Please fill your profile before going to the forum.")
+
         var sso = new discourse_sso(process.env.DISCOURSE_SSO_SECRET);
 
         if (!sso.validate(payload, sig))
