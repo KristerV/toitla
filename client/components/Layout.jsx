@@ -20,6 +20,7 @@ Layout = React.createClass({
 
         var linksObj = {}
         if (isManager) {
+            linksObj['Forums'] = 'http://spice.toitla.com'
             linksObj['Burndown'] = '/stats'
             linksObj['Summary'] = '/summary'
             linksObj['Orders'] = '/orders'
@@ -28,6 +29,7 @@ Layout = React.createClass({
         }
 
         if (isChef) {
+            linksObj['Forums'] = 'http://spice.toitla.com'
             linksObj['Orders'] = '/orders'
             linksObj['My Menu'] = "/menu/"+Meteor.userId()
             linksObj['My Profile'] = "/profile/"+Meteor.userId()
