@@ -198,6 +198,23 @@ FlowRouter.route('/route-denied', {
 	}
 });
 
+FlowRouter.route('/discourse_sso', {
+	name: "discourse_sso",
+	action: function(params) {
+		var sig = params.query.sig
+		var sso = params.query.sso
+		var userId = Meteor.userId()
+		Meteor.call("discourseSSO", userId, sso, sig, function(err, result) {
+			console.log("ROUTER DONE", err, result);
+			if (err || !result)
+				ReactLayout.render(DiscourseSSO, {error: err});
+			else {
+				window.location.replace("http://spice.toitla.com/session/sso_login?"+result)
+			}
+		})
+	}
+});
+
 function loginRequired(context) {
 	if (!Meteor.userId())
 		FlowRouter.go("/login")
