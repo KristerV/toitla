@@ -1,5 +1,6 @@
 Meteor.methods({
     discourseSSO:function(userId, payload, sig){
+        discourse_sso = Npm.require('discourse-sso');
 
         if (!userId)
             throw new Meteor.Error(401, "Not logged in. Please log into Toitla before going to the forum.")

@@ -75,6 +75,9 @@
         }
       }
     },
+    "discourse-sso": {
+      "version": "1.0.3"
+    },
     "weak": {
       "version": "1.0.0",
       "dependencies": {
