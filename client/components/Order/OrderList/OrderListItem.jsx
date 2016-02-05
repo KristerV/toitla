@@ -24,7 +24,8 @@ OrderListItem = React.createClass({
         else if (order.status.phase === "silent") className += "bg-lightred"
         else if (order.status.phase === "done") className += "bg-green"
         else if (order.status.phase === "unsubmitted") className += "bg-grey"
-        else if (myOrder) className += "bg-yellow"
+        // if chef is in order and phase is far enough in the process
+        else if (_.contains(Settings.getVisibleMenuitemsForChef(), order.status.phase)) className += "bg-yellow"
         else className += "bg-white"
 
         return(<div className={"mdl-grid paper padding clickable " + className}
@@ -39,7 +40,7 @@ OrderListItem = React.createClass({
                     {date}
                 </div>
                 <div className="mdl-cell mdl-cell--1-col">
-                    {order.status.phase ? Settings.phases[order.status.phase].label : null}
+                    {Settings.phases[order.status.phase].label}
                 </div>
                 <div className="mdl-cell mdl-cell--1-col">
                 <button className="mdl-button mdl-js-button mdl-button--icon" onClick={this.deleteOrder}>
