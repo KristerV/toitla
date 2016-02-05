@@ -26,7 +26,7 @@ Meteor.methods({
             "nonce": sso.getNonce(payload),
             "external_id": user._id,
             "email": user.getEmail(),
-            "username": user.profile.name.replace(/[^a-z0-9]+/gi, "_"),
+            "username": user.profile.name.replace(/[^a-z0-9öäüõ]+/gi, "_"),
             "name": user.profile.name
         }
 
