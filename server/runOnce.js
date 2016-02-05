@@ -1,12 +1,12 @@
 // Remove orphan menuitems in order
-Meteor.startup(function(){
-    var items = MenuitemsInOrder.find()
-    items.forEach(item => {
-        var order = Orders.findOne(item.orderId)
-        if (!order)
-            MenuitemsInOrder.remove(item._id)
-    })
-});
+// Meteor.startup(function(){
+//     var items = MenuitemsInOrder.find()
+//     items.forEach(item => {
+//         var order = Orders.findOne(item.orderId)
+//         if (!order)
+//             MenuitemsInOrder.remove(item._id)
+//     })
+// });
 
 // Add chefsInOrder to order
 // Meteor.startup(function(){
