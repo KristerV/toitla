@@ -13,6 +13,7 @@ OrderListItem = React.createClass({
         var order = this.props.order
         order.event = order.event || {}
         order.contact = order.contact || {}
+        order.status = order.status || {}
         order.price = order.price || {}
         var date = order.event.fromDate ? moment(order.event.fromDate).format("dd D. MMMM") : null
 
@@ -38,7 +39,7 @@ OrderListItem = React.createClass({
                     {date}
                 </div>
                 <div className="mdl-cell mdl-cell--1-col">
-                    {Settings.phases[order.status.phase].label}
+                    {order.status.phase ? Settings.phases[order.status.phase].label : null}
                 </div>
                 <div className="mdl-cell mdl-cell--1-col">
                 <button className="mdl-button mdl-js-button mdl-button--icon" onClick={this.deleteOrder}>
