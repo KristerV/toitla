@@ -34,7 +34,7 @@ OrderListItem = React.createClass({
                     {order.contact.organization || order.contact.name}
                 </div>
                 <div className="mdl-cell mdl-cell--4-col">
-                    {order.event.eventName}
+                    {order.event.eventName || order.event.eventType}
                 </div>
                 <div className="mdl-cell mdl-cell--2-col">
                     {date}
