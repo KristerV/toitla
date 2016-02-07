@@ -35,30 +35,30 @@ Layout = React.createClass({
             linksObj['My Profile'] = "/profile/"+Meteor.userId()
         }
 
-        var links = <nav className="mdl-navigation">{_.map(linksObj, (val, key) => {
+        var links = _.map(linksObj, (val, key) => {
             return <a key={val+key} className="mdl-navigation__link" href={val}>{key}</a>
-        })}</nav>
+        })
 
         var title = <a className="mdl-navigation__link mdl-layout-title" style={{fontSize: "1.6rem"}} href="/home">Toitla</a>
 
         // wrapper div fixes issue: https://github.com/facebook/react-devtools/issues/273
         return(<div>
-            <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-            <header className="mdl-layout__header">
-                <div className="mdl-layout__header-row">
+            <div className="mdl-layout mdl-js-layout">
+                <header className="mdl-layout__header mdl-layout--no-desktop-drawer-button">
+                    <div className="mdl-layout__header-row">
+                        {title}
+                        <div className="mdl-layout-spacer"></div>
+                        <nav className="mdl-navigation mdl-layout--large-screen-only">{links}</nav>
+                    </div>
+                </header>
+                <div className="mdl-layout__drawer">
                     {title}
-                    <div className="mdl-layout-spacer"></div>
-                    {links}
+                    <nav className="mdl-navigation">{links}</nav>
                 </div>
-            </header>
-            <div className="mdl-layout__drawer">
-                {title}
-                {links}
+                <main className="mdl-layout__content h100 relative">
+                    <div className="page-content h100 relative">{this.props.content}</div>
+                </main>
             </div>
-            <main className="mdl-layout__content h100 relative">
-                <div className="page-content h100 relative">{this.props.content}</div>
-            </main>
-        </div>
         </div>)
 
     }
