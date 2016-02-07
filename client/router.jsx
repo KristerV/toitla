@@ -157,14 +157,23 @@ FlowRouter.route('/submitted/', {
 });
 
 FlowRouter.route('/order/:orderId', {
-	triggersEnter: [loginRequired, startIdleMonitor],
 	name: "order",
+	action: function(params) {
+		FlowRouter.go("orderTab", {orderId: params.orderId, tab: 'one'})
+	}
+});
+
+FlowRouter.route('/order/:orderId/:tab', {
+	triggersEnter: [loginRequired, startIdleMonitor],
+	name: "orderTab",
 	action: function(params) {
 		if (!Meteor.userId())
 			ReactLayout.render(OrderManagerContainer, {orderId: params.orderId})
 		else
 			ReactLayout.render(Layout, {
-			content: <OrderManagerContainer orderId={params.orderId}/>
+				content: <OrderManagerContainer orderId={params.orderId}/>,
+				tabs: ['one', 'two', 'three', 'three', 'three', 'three', 'three', 'three', 'three', 'three'],
+				activeTab: params.tab
 		});
 	}
 });

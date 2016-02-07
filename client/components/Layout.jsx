@@ -40,6 +40,7 @@ Layout = React.createClass({
         })
 
         var title = <a className="mdl-navigation__link mdl-layout-title" style={{fontSize: "1.6rem"}} href="/home">Toitla</a>
+        var currentPath = FlowRouter.current().path
 
         // wrapper div fixes issue: https://github.com/facebook/react-devtools/issues/273
         return(<div>
@@ -48,8 +49,17 @@ Layout = React.createClass({
                     <div className="mdl-layout__header-row">
                         {title}
                         <div className="mdl-layout-spacer"></div>
-                        <nav className="mdl-navigation mdl-layout--large-screen-only">{links}</nav>
+                        <nav className="mdl-navigation">{links}</nav>
                     </div>
+                    {this.props.tabs ?
+                        <div className="">
+                            {_.map(this.props.tabs, function(tab, i){
+                                var newPath = currentPath.replace(this.props.activeTab, tab)
+                                var isActive = tab === this.props.activeTab ? 'is-active' : ""
+                                return <a key={i} href={newPath} className={"mdl-layout__tab "+isActive}>{tab}</a>
+                            }.bind(this))}
+                        </div>
+                    : null}
                 </header>
                 <div className="mdl-layout__drawer">
                     {title}
