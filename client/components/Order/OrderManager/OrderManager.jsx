@@ -25,7 +25,7 @@ OrderManager = React.createClass({
                 />
             </div>
             <div className="mdl-cell mdl-cell--4-col">
-                {order.submitted ?
+                {order.isSubmitted() ?
                     <OrderMenuForm order={order}/>
                 :
                     <div className="paper padding">

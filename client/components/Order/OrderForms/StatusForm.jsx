@@ -26,7 +26,7 @@ StatusForm = React.createClass({
         var order = this.props.order
         return (
             <div className="margin padding paper">
-            {order.status.phase !== 'unsubmitted' ?
+            {order.isSubmitted() ?
                 <DropDownMUI
                     menuItems={this.props.selectPhases}
                     onChange={this.updatePhase}

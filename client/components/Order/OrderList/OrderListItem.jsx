@@ -23,7 +23,7 @@ OrderListItem = React.createClass({
         if (order.status.phase === "lost") className += "bg-red"
         else if (order.status.phase === "silent") className += "bg-lightred"
         else if (order.status.phase === "done") className += "bg-green"
-        else if (order.status.phase === "unsubmitted") className += "bg-grey"
+        else if (!order.isSubmitted()) className += "bg-grey"
         // if chef is in order and phase is far enough in the process
         else if (_.contains(Settings.getVisibleMenuitemsForChef(), order.status.phase)) className += "bg-yellow"
         else className += "bg-white"
