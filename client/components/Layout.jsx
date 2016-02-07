@@ -41,17 +41,18 @@ Layout = React.createClass({
 
         var title = <a className="mdl-navigation__link mdl-layout-title" style={{fontSize: "1.6rem"}} href="/home">Toitla</a>
         var currentPath = FlowRouter.current().path
+        var isTabs = this.props.tabs
 
         // wrapper div fixes issue: https://github.com/facebook/react-devtools/issues/273
         return(<div>
-            <div className="mdl-layout mdl-js-layout">
+            <div className={"mdl-layout mdl-js-layout " + (isTabs ? 'mdl-layout--fixed-header':"")}>
                 <header className="mdl-layout__header mdl-layout--no-desktop-drawer-button">
-                    <div className="mdl-layout__header-row">
+                    <div className="mdl-layout__header-row mdl-layout--large-screen-only">
                         {title}
                         <div className="mdl-layout-spacer"></div>
                         <nav className="mdl-navigation">{links}</nav>
                     </div>
-                    {this.props.tabs ?
+                    {isTabs ?
                         <div className="">
                             {_.map(this.props.tabs, function(tab, i){
                                 var newPath = currentPath.replace(this.props.activeTab, tab)
