@@ -55,9 +55,9 @@ Layout = React.createClass({
                     {isTabs ?
                         <div className="">
                             {_.map(this.props.tabs, function(tab, i){
-                                var newPath = currentPath.replace(this.props.activeTab, tab)
-                                var isActive = tab === this.props.activeTab ? 'is-active' : ""
-                                return <a key={i} href={newPath} className={"mdl-layout__tab "+isActive}>{tab}</a>
+                                var newPath = currentPath.replace(this.props.activeTab, tab.route)
+                                var isActive = tab.route === this.props.activeTab ? 'is-active' : ""
+                                return <a key={i} href={newPath} className={"mdl-layout__tab "+isActive}>{tab.label}</a>
                             }.bind(this))}
                         </div>
                     : null}

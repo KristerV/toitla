@@ -15,8 +15,12 @@ OrderManagerContainer = React.createClass({
         if (!this.data.subsReady)
             return <Loader/>
 
-        if (Roles.userIsInRole(Meteor.userId(), 'manager'))
-            return(<OrderManager order={this.data.order}/>)
+        if (Roles.userIsInRole(Meteor.userId(), 'manager')) {
+            switch (this.props.tab) {
+                case 'info': return(<OrderManagerInfo order={this.data.order}/>);
+                case 'menu': return(<OrderManagerMenu order={this.data.order}/>);
+            }
+        }
         else if (Roles.userIsInRole(Meteor.userId(), 'chef'))
             return(<OrderManagerChef order={this.data.order}/>)
 

@@ -159,7 +159,12 @@ FlowRouter.route('/submitted/', {
 FlowRouter.route('/order/:orderId', {
 	name: "order",
 	action: function(params) {
-		FlowRouter.go("orderTab", {orderId: params.orderId, tab: 'one'})
+		if (Roles.userIsInRole(Meteor.userId(), 'manager'))
+			FlowRouter.go("orderTab", {orderId: params.orderId, tab: Settings.order.tabs[0].route})
+		else
+			ReactLayout.render(Layout, {
+				content: <OrderManagerContainer orderId={params.orderId}/>
+			});
 	}
 });
 
@@ -169,12 +174,13 @@ FlowRouter.route('/order/:orderId/:tab', {
 	action: function(params) {
 		if (!Meteor.userId())
 			ReactLayout.render(OrderManagerContainer, {orderId: params.orderId})
-		else
+		else {
 			ReactLayout.render(Layout, {
-				content: <OrderManagerContainer orderId={params.orderId}/>,
-				tabs: ['one', 'two', 'three', 'three', 'three', 'three', 'three', 'three', 'three', 'three'],
+				content: <OrderManagerContainer orderId={params.orderId} tab={params.tab}/>,
+				tabs: Settings.order.tabs,
 				activeTab: params.tab
-		});
+			});
+		}
 	}
 });
 
