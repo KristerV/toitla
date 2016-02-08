@@ -3,10 +3,13 @@ FlowRouter.route('/', {
 		if (!Meteor.userId())
 			ReactLayout.render(Landing, params.query);
 		else {
-			if (Roles.userIsInRole(Meteor.userId(), 'manager'))
+			if (Roles.userIsInRole(Meteor.userId(), 'manager')) {
+				console.log("ROUTER stats");
 				FlowRouter.go("stats")
-			else
+			} else {
+				console.log("ROUTER orders");
 				FlowRouter.go("orders")
+			}
 		}
 	}
 });
