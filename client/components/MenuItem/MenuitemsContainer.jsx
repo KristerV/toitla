@@ -104,7 +104,7 @@ MenuitemsContainer = React.createClass({
             return <Loader/>
 
         // Render
-        return(<div>
+        return(<div className="max-width">
             { this.props.filters ? <MenuitemsFilters onChange={this.filtersChange}/> : null}
             { this.props.layout === 'table' ?
                 <MenuitemsTable menuitems={menuitems}/>
