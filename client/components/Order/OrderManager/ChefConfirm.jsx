@@ -31,6 +31,7 @@ ChefConfirm = React.createClass({
 
     render() {
         var chef = this.props.chef
+        if (!chef._id) throw new Meteor.Error("Sorry, need chef id in here.. or refactor somehow.")
         var orderId = this.props.orderId
         var confirmed = chef.confirmed
         var declined = chef.declined
