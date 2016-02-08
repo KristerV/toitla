@@ -1,7 +1,7 @@
 MenuitemsTable = React.createClass({
 
     goToOrder() {
-        FlowRouter.go('order', {orderId: FlowRouter.getParam("orderId")})
+        FlowRouter.go('orderTab', {orderId: FlowRouter.getParam("orderId"), tab: 'menu'})
     },
 
     render() {
