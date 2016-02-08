@@ -29,7 +29,7 @@ OrderManagerChef = React.createClass({
                 <p>Allergies</p>
                 <p className="text-red">{allergies}</p>
             </div>
-            <div className="mdl-cell--12-col margin-top">
+            <div className="margin-top max-width">
                 <MenuitemsContainer orderId={order._id} layout="table" />
             </div>
         </div>)
