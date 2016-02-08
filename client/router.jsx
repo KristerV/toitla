@@ -3,13 +3,13 @@ FlowRouter.route('/', {
 		if (!Meteor.userId())
 			ReactLayout.render(Landing, params.query);
 		else {
-			if (Roles.userIsInRole(Meteor.userId(), 'manager')) {
-				console.log("ROUTER stats");
-				FlowRouter.go("stats")
-			} else {
-				console.log("ROUTER orders");
-				FlowRouter.go("orders")
-			}
+			waitForRoles(function(){
+				if (Roles.userIsInRole(Meteor.userId(), 'manager')) {
+					FlowRouter.go("stats")
+				} else {
+					FlowRouter.go("orders")
+				}
+			})
 		}
 	}
 });
@@ -162,12 +162,14 @@ FlowRouter.route('/submitted/', {
 FlowRouter.route('/order/:orderId', {
 	name: "order",
 	action: function(params) {
-		if (Roles.userIsInRole(Meteor.userId(), 'manager'))
-			FlowRouter.go("orderTab", {orderId: params.orderId, tab: Settings.order.tabs[0].route})
-		else
-			ReactLayout.render(Layout, {
-				content: <OrderManagerContainer orderId={params.orderId}/>
-			});
+		waitForRoles(function(){
+			if (Roles.userIsInRole(Meteor.userId(), 'manager'))
+				FlowRouter.go("orderTab", {orderId: params.orderId, tab: Settings.order.tabs[0].route})
+			else
+				ReactLayout.render(Layout, {
+					content: <OrderManagerContainer orderId={params.orderId}/>
+				});
+		})
 	}
 });
 
@@ -247,10 +249,22 @@ function startIdleMonitor() {
 }
 
 function managerOnly() {
-	if (!Roles.userIsInRole(Meteor.userId(), 'manager')) {
-		if (Meteor.isDev)
-			sAlert.error("Route not allowed")
-		else
-			FlowRouter.go("route-denied")
+	waitForRoles(function(){
+		if (!Roles.userIsInRole(Meteor.userId(), 'manager')) {
+			if (Meteor.isDev)
+				sAlert.error("Route not allowed")
+			else
+				FlowRouter.go("route-denied")
+		}
+	})
+}
+
+function waitForRoles(callback) {
+	if (!Roles.subscription.ready()) {
+		Meteor.setTimeout(function(){
+			 waitForRoles
+		}, 100);
+	} else {
+		callback()
 	}
 }
