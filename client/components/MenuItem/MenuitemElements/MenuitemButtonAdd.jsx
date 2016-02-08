@@ -20,7 +20,7 @@ MenuitemButtonAdd = React.createClass({
             if (route === "menu") {
                 buttonLabel = "Create new food"
                 buttonAction = this.newMenuitemTemplate
-            } else if (route === "order") {
+            } else if (route === "orderTab") {
                 buttonLabel = "Add food"
                 buttonAction = this.newMenuitemInOrder
             }
