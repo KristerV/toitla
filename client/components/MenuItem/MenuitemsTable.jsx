@@ -34,7 +34,7 @@ MenuitemsTable = React.createClass({
                     }.bind(this))}
                 </tbody>
             </table>
-            {FlowRouter.current().route.name === 'order' ?
+            {FlowRouter.current().route.name === 'orderTab' ?
                 <div className="paper margin padding">
                     {/* temp info module for copy-pasting. */}
                     {menuitems.map(function(menuitem, i) {
