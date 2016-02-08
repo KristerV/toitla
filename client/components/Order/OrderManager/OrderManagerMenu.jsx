@@ -15,6 +15,7 @@ OrderManagerMenu = React.createClass({
                     </div>
                 }
             </div>
+            <ChefConfirmations order={order}/>
         </div>)
     }
 })

@@ -17,8 +17,6 @@ OrderListItem = React.createClass({
         order.price = order.price || {}
         var date = order.event.fromDate ? moment(order.event.fromDate).format("dd D. MMMM") : null
 
-        var myOrder = _.contains(order.chefsInOrder, Meteor.userId())
-
         var className = ""
         if (order.status.phase === "lost") className += "bg-red"
         else if (order.status.phase === "silent") className += "bg-lightred"
