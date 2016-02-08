@@ -11,7 +11,7 @@ OrderManagerMenu = React.createClass({
                 </div>
             }
             <MenuitemsContainer orderId={order._id} layout="table" />
-            <ChefConfirmations order={order}/>
+            {/*<ChefConfirmations order={order}/>*/}
         </div>)
     }
 })
