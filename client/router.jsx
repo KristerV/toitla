@@ -262,7 +262,7 @@ function managerOnly() {
 function waitForRoles(callback) {
 	if (!Roles.subscription.ready()) {
 		Meteor.setTimeout(function(){
-			 waitForRoles()
+			 waitForRoles(callback)
 		}, 100);
 	} else {
 		callback()
