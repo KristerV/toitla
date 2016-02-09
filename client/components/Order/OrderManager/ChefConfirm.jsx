@@ -25,6 +25,10 @@ ChefConfirm = React.createClass({
         this.updateArray('declined', false)
     },
 
+    emailDetails() {
+        Meteor.call('Order--sendDetailsEmail', this.props.orderId, this.props.chef._id)
+    },
+
     updateArray(field, value) {
         Meteor.call('Order--updateChefsArrayField', this.props.orderId, this.props.chef._id, field, value)
     },
@@ -84,6 +88,7 @@ ChefConfirm = React.createClass({
                 onBlur={this.updateText}
                 value={chef.notes}
             />
+            <button className="mdl-button mdl-js-button mdl-button--colored mdl-button--raised" onClick={this.emailDetails}>Send details email</button>
             <button className="mdl-button mdl-js-button mdl-button--colored" onClick={this.decline}>Cancel confirmation</button>
         </div>
     }

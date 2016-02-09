@@ -1,9 +1,4 @@
 OrderMenuForm = React.createClass({
-    getInitialState() {
-        return {
-            emailButtonActive: true,
-        }
-    },
     handleSliderChange(e) {
         this.props.order.updateField(e.target.name, e.target.value)
     },
@@ -14,10 +9,6 @@ OrderMenuForm = React.createClass({
     emptyOrderFromMenuitems(e) {
         if (confirm("Remove all items for sure?"))
             this.props.order.removeAllMenuitems()
-    },
-    sendConfirmEmails(e) {
-        this.setState({emailButtonActive: false})
-        Meteor.call('Order--sendConfirmationEmails', this.props.order._id)
     },
     render() {
         var order = this.props.order
@@ -33,11 +24,6 @@ OrderMenuForm = React.createClass({
             </div>
             <div className="mdl-cell--6-col">
                 <MenuitemButtonAdd orderId={order._id}/>
-                {this.state.emailButtonActive ?
-                    <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored w100 margin-top" onClick={this.sendConfirmEmails}>Send confirmation emails</button>
-                    :
-                    <button className="mdl-button mdl-js-button mdl-button--raised w100 margin-top">Email sent</button>
-                }
                 <button className="mdl-button mdl-js-button w100 margin-top" onClick={this.emptyOrderFromMenuitems}>remove all foods</button>
                 <Loader id="calculating-price-loader"/>
             </div>

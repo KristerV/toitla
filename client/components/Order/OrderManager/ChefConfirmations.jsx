@@ -1,5 +1,16 @@
 ChefConfirmations = React.createClass({
 
+    getInitialState() {
+        return {
+            emailButtonActive: true,
+        }
+    },
+
+    sendConfirmEmails(e) {
+        this.setState({emailButtonActive: false})
+        Meteor.call('Order--sendConfirmationEmails', this.props.order._id)
+    },
+
     render() {
         var order = this.props.order
         order.chefs = order.chefs || []
@@ -9,6 +20,11 @@ ChefConfirmations = React.createClass({
         }
 
         return(<div className="mdl-grid">
+                {this.state.emailButtonActive ?
+                    <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored w100 margin-top" onClick={this.sendConfirmEmails}>Send confirmation emails</button>
+                    :
+                    <button className="mdl-button mdl-js-button mdl-button--raised w100 margin-top">Email sent</button>
+                }
                 {_.map(order.chefsInOrder, chefId => {
                     var chef = {_id: chefId}
                     order.chefs.forEach(item => {
