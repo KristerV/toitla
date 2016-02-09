@@ -7,9 +7,11 @@ OrderManagerChef = React.createClass({
         if (!_.isEmpty(order.allergies.guests)) {
             var allergies = order.allergies.host + ' - ' + order.allergies.guests.join(" - ")
         }
-
-        return(<div className="margin-top mdl-grid">
-            <div className="paper max-width padding mdl-cell--6-col">
+        return(<div className="margin-top mdl-grid max-width">
+            <div className="margin max-width">
+                <MenuitemsContainer orderId={order._id} layout="table" />
+            </div>
+            <div className="paper padding mdl-cell--5-col margin">
                 <TextInput
                     label={T("order", "event_type")}
                     disabled={true}
@@ -29,8 +31,9 @@ OrderManagerChef = React.createClass({
                 <p>Allergies</p>
                 <p className="text-red">{allergies}</p>
             </div>
-            <div className="margin-top max-width">
-                <MenuitemsContainer orderId={order._id} layout="table" />
+            <div className="mdl-cell--5-col margin">
+                {/*only one chefs item is published*/}
+                <ChefConfirm chef={order.chefs[0]} orderId={order._id}/>
             </div>
         </div>)
     }

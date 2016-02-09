@@ -76,6 +76,7 @@ ChefConfirm = React.createClass({
                 onChange={this.updateDropdown}
                 value={chef.pickupLocation || null}
             />
+            <div className="margin-top"></div>
             <TextInput
                 label="Notes"
                 name="notes"
