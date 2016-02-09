@@ -29,6 +29,10 @@ ChefConfirm = React.createClass({
         Meteor.call('Order--updateChefsArrayField', this.props.orderId, this.props.chef._id, field, value)
     },
 
+    updateDropdown(obj) {
+        this.updateArray(obj.name, obj.value)
+    },
+
     render() {
         var chef = this.props.chef
         if (!chef._id) throw new Meteor.Error("Sorry, need chef id in here.. or refactor somehow.")
@@ -36,6 +40,8 @@ ChefConfirm = React.createClass({
         var confirmed = chef.confirmed
         var declined = chef.declined
         var chefName = this.data.user.profile.name
+        var locations = this.data.user.profile.locations
+        locations.unshift({address: "Pickup location", _id: null})
 
         // Declined
         if (declined) {
@@ -63,11 +69,12 @@ ChefConfirm = React.createClass({
                 onBlur={this.updateText}
                 value={chef.pickupTime}
             />
-            <TextInput
-                label="Pickup place"
-                name="pickupPlace"
-                onBlur={this.updateText}
-                value={chef.pickupPlace}
+            <DropDownMUI
+                autoWidth={true}
+                menuItems={_.map(locations, loc => { return {text: loc.address, value: loc._id} })}
+                name="pickupLocation"
+                onChange={this.updateDropdown}
+                value={chef.pickupLocation || null}
             />
             <TextInput
                 label="Notes"
