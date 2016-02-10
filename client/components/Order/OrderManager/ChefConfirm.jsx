@@ -3,6 +3,7 @@ ChefConfirm = React.createClass({
     getInitialState() {
         return {
             emailButtonActive: true,
+            notesVisible: true, // HACK
         }
     },
 
@@ -41,15 +42,24 @@ ChefConfirm = React.createClass({
     },
 
     updateAddress(obj) {
-        if (!this.props.chef.notes) { // Update notes from profile settings
+        // Update address
+        this.updateArray(obj.name, obj.value)
+
+        // Update notes from profile settings
+        if (!this.props.chef.notes) {
             var notes = ""
             this.data.user.profile.locations.forEach(loc => {
                 if (loc._id === obj.value)
                     notes = loc.notes
             })
             this.updateArray("notes", notes)
+
+             // HACK Force field to update
+            this.setState({notesVisible: false})
+            Meteor.setTimeout(function(){
+                this.setState({notesVisible: true})
+            }.bind(this), 100)
         }
-        this.updateArray(obj.name, obj.value)
     },
 
     render() {
@@ -96,13 +106,15 @@ ChefConfirm = React.createClass({
                 value={chef.pickupLocation || null}
             />
             <div className="margin-top"></div>
-            <TextInput
-                label="Notes"
-                name="notes"
-                rows={1}
-                onBlur={this.updateText}
-                value={chef.notes}
-            />
+            {this.state.notesVisible ?
+                <TextInput
+                    label="Notes"
+                    name="notes"
+                    rows={1}
+                    onBlur={this.updateText}
+                    value={chef.notes}
+                />
+            : null}
             {this.state.emailButtonActive ?
                 <button className="mdl-button mdl-js-button mdl-button--colored mdl-button--raised w100" onClick={this.emailDetails}>Send details email</button>
                 :
