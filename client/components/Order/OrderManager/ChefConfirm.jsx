@@ -1,5 +1,11 @@
 ChefConfirm = React.createClass({
 
+    getInitialState() {
+        return {
+            emailButtonActive: true,
+        }
+    },
+
     mixins: [ReactMeteorData],
     getMeteorData() {
         var subscription = Meteor.subscribe("allUserData")
@@ -26,6 +32,7 @@ ChefConfirm = React.createClass({
     },
 
     emailDetails() {
+        this.setState({emailButtonActive: false})
         Meteor.call('Order--sendDetailsEmail', this.props.orderId, this.props.chef._id)
     },
 
@@ -88,8 +95,12 @@ ChefConfirm = React.createClass({
                 onBlur={this.updateText}
                 value={chef.notes}
             />
-            <button className="mdl-button mdl-js-button mdl-button--colored mdl-button--raised" onClick={this.emailDetails}>Send details email</button>
-            <button className="mdl-button mdl-js-button mdl-button--colored" onClick={this.decline}>Cancel confirmation</button>
+            {this.state.emailButtonActive ?
+                <button className="mdl-button mdl-js-button mdl-button--colored mdl-button--raised w100" onClick={this.emailDetails}>Send details email</button>
+                :
+                <button className="mdl-button mdl-js-button w100">Email sent</button>
+            }
+            <button className="mdl-button mdl-js-button mdl-button--colored w100" onClick={this.decline}>Cancel confirmation</button>
         </div>
     }
 
