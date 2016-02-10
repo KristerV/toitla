@@ -91,10 +91,10 @@ UserProfile = React.createClass({
                         value={loc.address}
                     />
                     <TextInput
-                        label="Google maps link"
-                        name="google"
+                        label="Koordinaadid (google mapsist saab)"
+                        name="latlong"
                         onBlur={this.updateLocationField}
-                        value={loc.google}
+                        value={loc.latlong}
                     />
                     <TextInput
                         label="Lisainfo"
