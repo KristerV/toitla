@@ -6,6 +6,8 @@ FlowRouter.route('/', {
 			waitForRoles(function(){
 				if (Roles.userIsInRole(Meteor.userId(), 'manager')) {
 					FlowRouter.go("stats")
+				} else if (!Meteor.user().profile || !Meteor.user().profile.name) {
+					FlowRouter.go("profile")
 				} else {
 					FlowRouter.go("orders")
 				}
@@ -47,8 +49,6 @@ FlowRouter.route('/orders', {
 		Meteor.setTimeout(function(){
 			if (window.location.href.indexOf("toitla.com:3000") > -1) {
 				sAlert.warning("This server is for development only.")
-			} else if (!Meteor.user().profile || !Meteor.user().profile.name) {
-				sAlert.info('Palun täida oma profiil ära, siis saame sulle tellimusi saata.', {timeout: 10000})
 			}
 		}, 2000);
 	}
@@ -81,6 +81,13 @@ FlowRouter.route('/menus/add-item-to-order/:orderId', {
 		ReactLayout.render(Layout, {
 			content: <MenuitemsContainer filters={true} layout="table" orderId={params.orderId}/>
 		});
+	}
+});
+
+FlowRouter.route('/profile', {
+	triggersEnter: [loginRequired],
+	action: function(params) {
+		FlowRouter.go('profile', {userId: Meteor.userId()})
 	}
 });
 
