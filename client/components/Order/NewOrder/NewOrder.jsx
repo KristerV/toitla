@@ -1,9 +1,5 @@
 NewOrder = React.createClass({
 
-    submitForm(e) {
-        this.props.order.submitForm()
-    },
-
     goHome() {
         FlowRouter.go("/")
     },
