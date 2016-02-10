@@ -40,7 +40,15 @@ ChefConfirm = React.createClass({
         Meteor.call('Order--updateChefsArrayField', this.props.orderId, this.props.chef._id, field, value)
     },
 
-    updateDropdown(obj) {
+    updateAddress(obj) {
+        if (!this.props.chef.notes) { // Update notes from profile settings
+            var notes = ""
+            this.data.user.profile.locations.forEach(loc => {
+                if (loc._id === obj.value)
+                    notes = loc.notes
+            })
+            this.updateArray("notes", notes)
+        }
         this.updateArray(obj.name, obj.value)
     },
 
@@ -84,7 +92,7 @@ ChefConfirm = React.createClass({
                 autoWidth={true}
                 menuItems={_.map(locations, loc => { return {text: loc.address, value: loc._id} })}
                 name="pickupLocation"
-                onChange={this.updateDropdown}
+                onChange={this.updateAddress}
                 value={chef.pickupLocation || null}
             />
             <div className="margin-top"></div>
