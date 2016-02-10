@@ -46,11 +46,6 @@ FlowRouter.route('/orders', {
 		ReactLayout.render(Layout, {
 			content: <OrdersListContainer/>
 		});
-		Meteor.setTimeout(function(){
-			if (window.location.href.indexOf("toitla.com:3000") > -1) {
-				sAlert.warning("This server is for development only.")
-			}
-		}, 2000);
 	}
 });
 

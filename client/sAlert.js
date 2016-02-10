@@ -9,3 +9,10 @@ Meteor.startup(function () {
         offset: 0
     });
 });
+
+Meteor.startup(function(){
+     if (Meteor.isDev) {
+        $('#development-notification').css('display', 'block')
+        $('body').css('background-image', 'none').css('background-color', 'DarkSlateGrey')
+     }
+});
