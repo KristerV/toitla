@@ -14,7 +14,7 @@ MenuitemsTable = React.createClass({
                 <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--accent margin" onClick={this.goToOrder}>Return to order</button>
             : null}
             <div className="paper">
-                <table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                <table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp w100">
                     <thead>
                         <tr>
                             <th>In Order</th>
