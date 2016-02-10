@@ -3,7 +3,6 @@ ChefConfirm = React.createClass({
     getInitialState() {
         return {
             emailButtonActive: true,
-            notesVisible: true, // HACK
         }
     },
 
@@ -53,12 +52,8 @@ ChefConfirm = React.createClass({
                     notes = loc.notes
             })
             this.updateArray("notes", notes)
-
-             // HACK Force field to update
-            this.setState({notesVisible: false})
-            Meteor.setTimeout(function(){
-                this.setState({notesVisible: true})
-            }.bind(this), 100)
+            var chefId = this.props.chef._id
+            $('#' + chefId + ' textarea[name="notes"]').val(notes)
         }
     },
 
@@ -90,7 +85,7 @@ ChefConfirm = React.createClass({
         }
 
         // Confirmed
-        return <div className="paper padding">
+        return <div className="paper padding" id={chef._id}>
             <h5>{chefName}</h5>
             <TextInput
                 label="Pickup time"
@@ -106,15 +101,13 @@ ChefConfirm = React.createClass({
                 value={chef.pickupLocation || null}
             />
             <div className="margin-top"></div>
-            {this.state.notesVisible ?
-                <TextInput
-                    label="Notes"
-                    name="notes"
-                    rows={1}
-                    onBlur={this.updateText}
-                    value={chef.notes}
-                />
-            : null}
+            <TextInput
+                label="Notes"
+                name="notes"
+                rows={1}
+                onBlur={this.updateText}
+                value={chef.notes}
+            />
             {this.state.emailButtonActive ?
                 <button className="mdl-button mdl-js-button mdl-button--colored mdl-button--raised w100" onClick={this.emailDetails}>Send details email</button>
                 :
