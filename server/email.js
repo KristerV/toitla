@@ -1,11 +1,12 @@
 Email = {
-  send: function(from, to, subject, html) {
+  send: function(from, to, subject, html, fromName) {
       HTTP.post('https://mandrillapp.com/api/1.0/messages/send.json',
         {
           "data": {
             "key": process.env.MANDRILL_KEY,
             "message": {
               "from_email": from || 'teavitus@toitla.com',
+              "from_name": 'Toitla',
               "subject": subject,
               "html": html,
               "to": [
