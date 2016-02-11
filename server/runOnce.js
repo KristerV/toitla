@@ -1,10 +1,29 @@
+// Convert chefsInOrder array to chefs detailed objects array
+Meteor.startup(function(){
+    var orders = Orders.find()
+    orders.forEach(order => {
+        if (!order.chefsInOrder) return
+        var chefs = []
+        console.info("CONVERT CHEFS IN ORDER: ", order._id);
+        order.chefsInOrder.forEach(chefInOrder => {
+            var existingChef = _.findWhere(order.chefs, {_id: chefInOrder})
+            if (existingChef) {
+                chefs.push(existingChef)
+            } else {
+                chefs.push({_id: chefInOrder})
+            }
+        });
+        Orders.update(order._id, {$set: {chefs: chefs}, $unset: {chefsInOrder: 1}})
+    })
+});
+
 // Enabling array-addresses for users
 // Meteor.startup(function(){
 //     var items = Meteor.users.find()
 //     items.forEach(user => {
 //         var address = user.profile ? user.profile.address : null
 //         if (!address || user.profile.locations) return
-//         console.log("LOCATION", address, user.profile.name);
+//         console.info("LOCATION", address, user.profile.name);
 //         Meteor.users.update(user._id, {$addToSet: {'profile.locations': {_id: Random.id(), address: address}}})
 //     })
 // });
