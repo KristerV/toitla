@@ -59,9 +59,9 @@ MenuitemInTable = React.createClass({
         var isChef = Roles.userIsInRole(Meteor.userId(), 'chef') && !Roles.userIsInRole(Meteor.userId(), 'manager')
 
         // Row color
-        var trClass = "paper padding clickable  "
-        if (!menuitem.history || menuitem.history.length <= 1)
-            trClass = "bg-green "
+        var trClass = "paper padding clickable "
+        if (menuitem.createdAt && moment(menuitem.createdAt).isAfter(moment().subtract(20, 'days')))
+            trClass += "bg-green "
 
         // Hidden options
         var options = []
