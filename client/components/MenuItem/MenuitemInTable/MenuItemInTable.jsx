@@ -92,8 +92,6 @@ MenuitemInTable = React.createClass({
                 priceHistory.push(<p key={i}><span className="text-halfsize">{date}</span> {item.price}€</p>)
                 weightHistory.push(<p key={i}><span className="text-halfsize">{date}</span> {item.weight}g</p>)
             })
-            priceHistory.reverse()
-            weightHistory.reverse()
         }
 
         return(<tr className={trClass} onClick={this.props.onClick} data-menuitem-id={id}>
