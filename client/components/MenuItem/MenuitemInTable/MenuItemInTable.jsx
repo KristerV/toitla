@@ -58,6 +58,11 @@ MenuitemInTable = React.createClass({
             var profileName = user.profile.name
         var isChef = Roles.userIsInRole(Meteor.userId(), 'chef') && !Roles.userIsInRole(Meteor.userId(), 'manager')
 
+        // Row color
+        var trClass = "paper padding clickable  "
+        if (!menuitem.history || menuitem.history.length <= 1)
+            trClass = "bg-green "
+
         // Hidden options
         var options = []
         if (menuitem.inorder)
@@ -79,7 +84,7 @@ MenuitemInTable = React.createClass({
             return <p key={i}><span className="text-halfsize">{moment(item.date).format("DD.MM.YY")}</span> {item.price}€</p>
         })
 
-        return(<tr className="paper padding clickable" onClick={this.props.onClick} data-menuitem-id={id}>
+        return(<tr className={trClass} onClick={this.props.onClick} data-menuitem-id={id}>
             <td><Checkbox checked={menuitem.inOrderItemId || menuitem.inorder} onChange={this.toggleInOrder} defaultStyle={true}/></td>
             <td className="mdl-data-table__cell--non-numeric">{menuitem.chefName || profileName}</td>
             <td className="wrap mdl-data-table__cell--non-numeric">{menuitem.title}</td>

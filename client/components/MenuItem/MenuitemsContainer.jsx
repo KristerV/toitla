@@ -29,7 +29,8 @@ MenuitemsContainer = React.createClass({
     },
 
     getFind() {
-        var find = {published: true}
+        var find = this.props.find || {}
+        find.published = find.published || true
         var filterList = this.state.filterList
         var checkedIds = this.state.checkedIds
 
@@ -51,7 +52,8 @@ MenuitemsContainer = React.createClass({
         var menuitems
 
         var options = {
-            limit: this.state.pageLimit
+            limit: this.state.pageLimit,
+            sort: {publishDate: -1}
         }
 
         var chefId = this.props.chefId

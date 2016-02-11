@@ -103,10 +103,16 @@ Stats = React.createClass({
     },
 
     render() {
+        var monthAgo = moment().subtract(20, 'days').toDate()
 
-        return(<div className="paper margin-top max-width padding">
-            <p className="text-hint">Refresh to update data</p>
-            <div id="burndown"></div>
+        return(<div className="max-width">
+            <div className="paper margin-top padding">
+                <p className="text-hint">Refresh to update data</p>
+                <div id="burndown"></div>
+            </div>
+            <div className="paper margin-top">
+                <MenuitemsContainer layout="table" find={{publishDate: {$gt: monthAgo}}}/>
+            </div>
         </div>)
     }
 
