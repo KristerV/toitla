@@ -71,18 +71,30 @@ MenuitemInTable = React.createClass({
             options.push({ label: 'delete', onClick: this.deleteMenuitem})
 
         // Show price history
-        var priceHistory = _.sortBy(menuitem.priceHistory, (item) => { return item.date }).reverse()
-        if (priceHistory.length > 1 && moment(priceHistory[0].date).isAfter(moment().subtract(1, 'month'))) {
-            var priceChangeClass = ""
-            var lastPrice = priceHistory[1].price
-            if (menuitem.price > lastPrice)
-                priceChangeClass = "bg-red"
-            else if (menuitem.price < lastPrice)
-                priceChangeClass = "bg-green"
+        var prevMenuitem = menuitem.history[menuitem.history.length - 2]
+        if (prevMenuitem) {
+            var priceClass = ""
+            var weightClass = ""
+            if (moment(prevMenuitem.publishDate).isAfter(moment().subtract(20, 'days'))) {
+                if (menuitem.price > prevMenuitem.price)
+                    priceClass = "bg-red"
+                else if (menuitem.price < prevMenuitem.price)
+                    priceClass = "bg-green"
+                if (menuitem.weight > prevMenuitem.weight)
+                    weightClass = "bg-red"
+                else if (menuitem.weight < prevMenuitem.weight)
+                    weightClass = "bg-green"
+            }
+            var priceHistory = []
+            var weightHistory = []
+            menuitem.history.forEach((item, i) => {
+                var date = moment(item.publishDate).format("DD.MM.YY")
+                priceHistory.push(<p key={i}><span className="text-halfsize">{date}</span> {item.price}€</p>)
+                weightHistory.push(<p key={i}><span className="text-halfsize">{date}</span> {item.weight}g</p>)
+            })
+            priceHistory.reverse()
+            weightHistory.reverse()
         }
-        priceHistory = priceHistory.map((item, i) => {
-            return <p key={i}><span className="text-halfsize">{moment(item.date).format("DD.MM.YY")}</span> {item.price}€</p>
-        })
 
         return(<tr className={trClass} onClick={this.props.onClick} data-menuitem-id={id}>
             <td><Checkbox checked={menuitem.inOrderItemId || menuitem.inorder} onChange={this.toggleInOrder} defaultStyle={true}/></td>
@@ -110,8 +122,8 @@ MenuitemInTable = React.createClass({
                 /></td>
             : null}
             <td className="mdl-data-table__cell--non-numeric">{menuitem.foodType}</td>
-            <td className="mdl-data-table__cell--non-numeric">
-                <div id={"price-tooltip-"+id} className={priceChangeClass}>{menuitem.price}€</div>
+            <td className={"mdl-data-table__cell--non-numeric " + priceClass}>
+                <div id={"price-tooltip-"+id}>{menuitem.price}€</div>
                 {!isChef ? <div
                     className="mdl-tooltip"
                     htmlFor={"price-tooltip-"+id}
@@ -119,7 +131,15 @@ MenuitemInTable = React.createClass({
                     {priceHistory}
                 </div> : null}
             </td>
-            <td>{menuitem.weight}g</td>
+            <td className={weightClass}>
+                <div id={"weight-tooltip-"+id}>{menuitem.weight}g</div>
+                {!isChef ? <div
+                    className="mdl-tooltip"
+                    htmlFor={"weight-tooltip-"+id}
+                    style={{whiteSpace: "normal"}}>
+                    {weightHistory}
+                </div> : null}
+            </td>
             {menuitem.inorder ? <td>
                 <Checkbox
                     checked={menuitem.chefConfirmed}
