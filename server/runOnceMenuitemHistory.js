@@ -1,3 +1,4 @@
+
 Meteor.startup(function(){
 
 var insertItems = [ { _id: '262b79bLHQfuEKiCq',
@@ -1550,7 +1551,11 @@ var insertItems = [ { _id: '262b79bLHQfuEKiCq',
             console.log("NOW ", menuitem.price, menuitem.weight);
             console.log("THEN", item.price, item.weight);
             item.publishDate = new Date("2016-01-27")
-            MenuitemTemplates.update(item._id, {$addToSet: {history: item}})
+            var update = {$addToSet: {history: item}}
+            var set = {publishDate: new Date("2016-01-27")}
+            if (!menuitem.publishDate)
+                update.$set = set
+            MenuitemTemplates.update(item._id, {$set: set})
         } else
             skipped++
     })

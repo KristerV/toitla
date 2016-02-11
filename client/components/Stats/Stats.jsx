@@ -113,7 +113,10 @@ Stats = React.createClass({
             </div>
             <h3 className="text-white text-center">Menu item changes in last 20 days</h3>
             <div className="paper margin-top margin-bottom">
-                <MenuitemsContainer layout="table" find={{publishDate: {$gt: monthAgo}}}/>
+                <MenuitemsContainer layout="table" find={{$or: [
+                    {publishDate: {$gt: monthAgo}},
+                    {createdAt: {$gt: monthAgo}}
+                ]}}/>
             </div>
         </div>)
     }

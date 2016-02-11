@@ -21,7 +21,7 @@ Layout = React.createClass({
         var linksObj = {}
         if (isManager) {
             linksObj['Forums'] = 'http://spice.toitla.com'
-            linksObj['Burndown'] = '/stats'
+            linksObj['Stats'] = '/stats'
             linksObj['Summary'] = '/summary'
             linksObj['Orders'] = '/orders'
             linksObj['Menus'] = '/menus'
