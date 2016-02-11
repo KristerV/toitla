@@ -1,3 +1,14 @@
+// Add publish date to all menuitem templates
+Meteor.startup(function(){
+    var items = MenuitemTemplates.find()
+    items.forEach(item => {
+        if (!item.publishDate) {
+            item.publishDate = new Date()
+            MenuitemTemplates.update(item._id, {$addToSet: {history: item}})
+        }
+    })
+});
+
 // Convert chefsInOrder array to chefs detailed objects array
 // Meteor.startup(function(){
 //     var orders = Orders.find()
