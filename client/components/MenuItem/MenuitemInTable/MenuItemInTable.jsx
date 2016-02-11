@@ -71,7 +71,8 @@ MenuitemInTable = React.createClass({
             options.push({ label: 'delete', onClick: this.deleteMenuitem})
 
         // Show price history
-        var prevMenuitem = menuitem.history[menuitem.history.length - 2]
+        var history = _.sortBy(menuitem.history, item => { return item.publishDate })
+        var prevMenuitem = history[0]
         if (prevMenuitem) {
             var priceClass = ""
             var weightClass = ""
