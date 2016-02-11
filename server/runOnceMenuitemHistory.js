@@ -1,4 +1,4 @@
-
+/*
 Meteor.startup(function(){
 
 var insertItems = [ { _id: '262b79bLHQfuEKiCq',
@@ -1563,3 +1563,4 @@ var insertItems = [ { _id: '262b79bLHQfuEKiCq',
     console.log("skipped", skipped);
 
 });
+*/
