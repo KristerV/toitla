@@ -1,3 +1,8 @@
+FlowRouter.goSilent = function(a, b) {
+	var path = FlowRouter.path(a, b)
+	FlowRouter.redirect(path);
+}
+
 FlowRouter.route('/', {
 	action: function(params) {
 		if (!Meteor.userId())
@@ -5,11 +10,11 @@ FlowRouter.route('/', {
 		else {
 			waitForRoles(function(){
 				if (Roles.userIsInRole(Meteor.userId(), 'manager')) {
-					FlowRouter.go("stats")
+					FlowRouter.goSilent("stats")
 				} else if (!Meteor.user().profile || !Meteor.user().profile.name) {
-					FlowRouter.go("profile")
+					FlowRouter.goSilent("profile")
 				} else {
-					FlowRouter.go("orders")
+					FlowRouter.goSilent("orders")
 				}
 			})
 		}
@@ -82,7 +87,7 @@ FlowRouter.route('/menus/add-item-to-order/:orderId', {
 FlowRouter.route('/profile', {
 	triggersEnter: [loginRequired],
 	action: function(params) {
-		FlowRouter.go('profile', {userId: Meteor.userId()})
+		FlowRouter.goSilent('profile', {userId: Meteor.userId()})
 	}
 });
 
@@ -166,7 +171,7 @@ FlowRouter.route('/order/:orderId', {
 	action: function(params) {
 		waitForRoles(function(){
 			if (Roles.userIsInRole(Meteor.userId(), 'manager'))
-				FlowRouter.go("orderTab", {orderId: params.orderId, tab: Settings.order.tabs[0].route})
+				FlowRouter.goSilent("orderTab", {orderId: params.orderId, tab: Settings.order.tabs[0].route})
 			else
 				ReactLayout.render(Layout, {
 					content: <OrderManagerContainer orderId={params.orderId}/>
@@ -239,7 +244,7 @@ FlowRouter.route('/discourse_sso', {
 
 function loginRequired(context) {
 	if (!Meteor.userId())
-		FlowRouter.go("/login")
+		FlowRouter.goSilent("/login")
 }
 
 function startIdleMonitor() {
@@ -256,7 +261,7 @@ function managerOnly() {
 			if (Meteor.isDev)
 				sAlert.error("Route not allowed")
 			else
-				FlowRouter.go("route-denied")
+				FlowRouter.goSilent("route-denied")
 		}
 	})
 }
