@@ -1,13 +1,13 @@
 // Enabling array-addresses for users
-Meteor.startup(function(){
-    var items = Meteor.users.find()
-    items.forEach(user => {
-        var address = user.profile ? user.profile.address : null
-        if (!address || user.profile.locations) return
-        console.log("LOCATION", address, user.profile.name);
-        Meteor.users.update(user._id, {$addToSet: {'profile.locations': {_id: Random.id(), address: address}}})
-    })
-});
+// Meteor.startup(function(){
+//     var items = Meteor.users.find()
+//     items.forEach(user => {
+//         var address = user.profile ? user.profile.address : null
+//         if (!address || user.profile.locations) return
+//         console.log("LOCATION", address, user.profile.name);
+//         Meteor.users.update(user._id, {$addToSet: {'profile.locations': {_id: Random.id(), address: address}}})
+//     })
+// });
 
 // Remove orphan menuitems in order
 // Meteor.startup(function(){
