@@ -1,4 +1,4 @@
-/*
+
 Meteor.startup(function(){
 
 var insertItems = [ { _id: '262b79bLHQfuEKiCq',
@@ -1555,7 +1555,7 @@ var insertItems = [ { _id: '262b79bLHQfuEKiCq',
             var set = {publishDate: new Date("2016-01-27")}
             if (!menuitem.publishDate)
                 update.$set = set
-            MenuitemTemplates.update(item._id, {$set: set})
+            MenuitemTemplates.update(item._id, update)
         } else
             skipped++
     })
@@ -1563,4 +1563,3 @@ var insertItems = [ { _id: '262b79bLHQfuEKiCq',
     console.log("skipped", skipped);
 
 });
-*/
