@@ -106,11 +106,13 @@ Stats = React.createClass({
         var monthAgo = moment().subtract(20, 'days').toDate()
 
         return(<div className="max-width">
+            <h3 className="text-white text-center">Burndown to 3 orders a day</h3>
             <div className="paper margin-top padding">
                 <p className="text-hint">Refresh to update data</p>
                 <div id="burndown"></div>
             </div>
-            <div className="paper margin-top">
+            <h3 className="text-white text-center">Menu item changes in last 20 days</h3>
+            <div className="paper margin-top margin-bottom">
                 <MenuitemsContainer layout="table" find={{publishDate: {$gt: monthAgo}}}/>
             </div>
         </div>)

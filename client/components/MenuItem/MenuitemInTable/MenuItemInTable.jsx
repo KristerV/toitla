@@ -80,9 +80,9 @@ MenuitemInTable = React.createClass({
                     priceClass = "bg-red"
                 else if (menuitem.price < prevMenuitem.price)
                     priceClass = "bg-green"
-                if (menuitem.weight > prevMenuitem.weight)
+                if (menuitem.weight < prevMenuitem.weight)
                     weightClass = "bg-red"
-                else if (menuitem.weight < prevMenuitem.weight)
+                else if (menuitem.weight > prevMenuitem.weight)
                     weightClass = "bg-green"
             }
             var priceHistory = []
