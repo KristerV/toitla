@@ -25,14 +25,9 @@ ChefConfirmations = React.createClass({
                     :
                     <button className="mdl-button mdl-js-button mdl-button--raised w100 margin-top">Email sent</button>
                 }
-                {_.map(order.chefsInOrder, chefId => {
-                    var chef = {_id: chefId}
-                    order.chefs.forEach(item => {
-                        if (item._id === chefId)
-                            chef = item
-                    })
-                    return <div className="mdl-cell mdl-cell--4-cell" key={chefId}>
-                        <ChefConfirm chef={chef} orderId={order._id}/>
+                {_.map(order.chefs, item => {
+                    return <div className="mdl-cell mdl-cell--4-cell" key={item._id}>
+                        <ChefConfirm chef={item} orderId={order._id}/>
                     </div>
                 })}
             </div>)
