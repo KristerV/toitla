@@ -57,9 +57,11 @@ Stats = React.createClass({
                     value: ['inProgress', 'lost', 'done', 'weekAverage', 'silent']
                 },
                 types: {
-                    weekAverage: 'spline'
+                    weekAverage: 'spline',
+                    lost: 'step',
+                    silent: 'step',
                 },
-                groups: [['done', 'inProgress', 'lost', 'silent']],
+                groups: [['done', 'inProgress'], ['lost', 'silent']],
                 names: {
                     done: 'Done',
                     inProgress: 'In Progress',
