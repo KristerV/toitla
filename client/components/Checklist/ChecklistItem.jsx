@@ -1,12 +1,24 @@
 ChecklistItem = React.createClass({
 
+    isDisabled() {
+        var text = this.props.item.text
+        console.log("text",text);
+        console.log("this.props.datapath",this.props.datapath);
+        var setting = Settings.findByKey(this.props.docId, 'name', this.props.datapath)
+        console.log("setting",setting);
+        if (setting)
+            var isLocked = _.contains(setting.reserved, text)
+        console.log("isLocked",isLocked);
+        return isLocked || this.props.disabled
+    },
+
     removeItem(e) {
-        if (!this.props.disabled)
+        if (!this.isDisabled())
             Meteor.call('Settings--removeItemFromChecklist', this.props.collectionName, this.props.docId, this.props.datapath, this.props.item._id)
     },
 
     updateText(e) {
-        if (!this.props.disabled)
+        if (!this.isDisabled())
             Meteor.call('Settings--updateItemInChecklist', this.props.collectionName, this.props.docId, this.props.datapath, this.props.item._id, 'text', e.target.value)
     },
 
@@ -28,16 +40,21 @@ ChecklistItem = React.createClass({
                 <TextInput
                     value={item.text}
                     onBlur={this.updateText}
-                    disabled={this.props.disabled}
+                    disabled={this.isDisabled()}
                 />
             </div>
-            {!this.props.disabled ?
+            {!this.isDisabled() ?
                 <div className="inblock" style={{width: "40px"}}>
                     <button className="mdl-button mdl-js-button mdl-button--icon" onClick={this.removeItem}>
                         <i style={{opacity: "0.4"}} className="material-icons" data-remove_id={item._id}>remove</i>
                     </button>
                 </div>
-            : null}
+            :
+                <div className="inblock" style={{width: "40px"}}>
+                    <button className="mdl-button mdl-js-button mdl-button--icon">
+                        <i style={{opacity: "0.1"}} className="material-icons">locked</i>
+                    </button>
+                </div>}
         </div>
     }
 })
