@@ -1,3 +1,29 @@
+// Convert statuses in orders
+Meteor.startup(function(){
+    Orders.find().forEach(order => {
+        if (_.isObject(order.status)) {
+            var currentPhase = order.status.phase
+            var checked = true
+            var newStatus = []
+            for (var key in Settings.phases) {
+                if (key !== 'unsubmitted') {
+                    var specialCase = false
+                    if (_.contains(['lost', 'done', 'silent'], key)) {
+                        newStatus.push({text: Settings.phases[key].label, checked: checked, _id: Random.id()})
+                        specialCase = true
+                    }
+                    if (key === currentPhase) checked = false
+                    if (!specialCase) {
+                        newStatus.push({text: Settings.phases[key].label, checked: checked, _id: Random.id()})
+                    }
+
+                }
+            }
+            Orders.update(order._id, {$set: {status: newStatus}})
+        }
+    })
+});
+
 // Remove whitespace from emails
 // Meteor.startup(function(){
 //     Meteor.users.find().forEach(user => {
