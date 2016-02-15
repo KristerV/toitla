@@ -1548,8 +1548,8 @@ var insertItems = [ { _id: '262b79bLHQfuEKiCq',
         var menuitem = MenuitemTemplates.findOne({_id: item._id, price: {$ne: item.price}, weight: {$ne: item.weight}})
         if (menuitem) {
             changed++
-            console.log("NOW ", menuitem.price, menuitem.weight);
-            console.log("THEN", item.price, item.weight);
+            console.info("NOW ", menuitem.price, menuitem.weight);
+            console.info("THEN", item.price, item.weight);
             item.publishDate = new Date("2016-01-27")
             var update = {$addToSet: {history: item}}
             var set = {publishDate: new Date("2016-01-27")}
@@ -1559,8 +1559,8 @@ var insertItems = [ { _id: '262b79bLHQfuEKiCq',
         } else
             skipped++
     })
-    console.log("changed", changed);
-    console.log("skipped", skipped);
+    console.info("changed", changed);
+    console.info("skipped", skipped);
 
 });
 */

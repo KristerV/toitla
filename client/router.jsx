@@ -242,7 +242,6 @@ FlowRouter.route('/discourse_sso', {
 		var sso = params.query.sso
 		var userId = Meteor.userId()
 		Meteor.call("discourseSSO", userId, sso, sig, function(err, result) {
-			console.log("ROUTER DONE", err, result);
 			if (err || !result)
 				ReactLayout.render(DiscourseSSO, {error: err});
 			else {
