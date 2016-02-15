@@ -1,3 +1,15 @@
+// Remove whitespace from emails
+Meteor.startup(function(){
+    Meteor.users.find().forEach(user => {
+        var email = user.emails[0].address
+        var newemail = email.replace(/ /g,'')
+        if (email !== newemail) {
+            console.log("update email", email)
+            Meteor.users.update(user._id, {$set: {'emails.0.address': newemail}})
+        }
+    })
+});
+
 // Add publish date to all menuitem templates
 // Meteor.startup(function(){
 //     var items = MenuitemTemplates.find()
