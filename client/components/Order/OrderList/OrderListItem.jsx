@@ -31,14 +31,17 @@ OrderListItem = React.createClass({
                 <div className="mdl-cell mdl-cell--3-col">
                     {order.contact.organization || order.contact.name}
                 </div>
-                <div className="mdl-cell mdl-cell--4-col">
+                <div className="mdl-cell mdl-cell--3-col">
                     {order.event.eventName || order.event.eventType}
                 </div>
                 <div className="mdl-cell mdl-cell--2-col">
                     {date}
                 </div>
-                <div className="mdl-cell mdl-cell--1-col">
-                    {Settings.phases[order.status.phase].label}
+                <div className="mdl-cell mdl-cell--2-col">
+                    {order.status.map(stat => {
+                        var color = stat.checked ? 'blue' : 'lightgrey'
+                        return <div key={stat._id} style={{display: "inline-block", width: "6px", height: "6px", borderRadius: "100%", backgroundColor: color, marginRight: "2px"}}></div>
+                    })}
                 </div>
                 <div className="mdl-cell mdl-cell--1-col">
                 <button className="mdl-button mdl-js-button mdl-button--icon" onClick={this.deleteOrder}>
