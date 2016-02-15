@@ -1,11 +1,13 @@
 ChecklistItem = React.createClass({
 
     removeItem(e) {
-        Meteor.call('Settings--removeItemFromChecklist', this.props.collectionName, this.props.docId, this.props.datapath, this.props.item._id)
+        if (!this.props.disabled)
+            Meteor.call('Settings--removeItemFromChecklist', this.props.collectionName, this.props.docId, this.props.datapath, this.props.item._id)
     },
 
     updateText(e) {
-        Meteor.call('Settings--updateItemInChecklist', this.props.collectionName, this.props.docId, this.props.datapath, this.props.item._id, 'text', e.target.value)
+        if (!this.props.disabled)
+            Meteor.call('Settings--updateItemInChecklist', this.props.collectionName, this.props.docId, this.props.datapath, this.props.item._id, 'text', e.target.value)
     },
 
     updateChecked(e) {
@@ -26,14 +28,16 @@ ChecklistItem = React.createClass({
                 <TextInput
                     value={item.text}
                     onBlur={this.updateText}
-                    disabled={false}
+                    disabled={this.props.disabled}
                 />
             </div>
-            <div className="inblock" style={{width: "40px"}}>
-                <button className="mdl-button mdl-js-button mdl-button--icon" onClick={this.removeItem}>
-                    <i style={{opacity: "0.4"}} className="material-icons" data-remove_id={item._id}>remove</i>
-                </button>
-            </div>
+            {!this.props.disabled ?
+                <div className="inblock" style={{width: "40px"}}>
+                    <button className="mdl-button mdl-js-button mdl-button--icon" onClick={this.removeItem}>
+                        <i style={{opacity: "0.4"}} className="material-icons" data-remove_id={item._id}>remove</i>
+                    </button>
+                </div>
+            : null}
         </div>
     }
 })

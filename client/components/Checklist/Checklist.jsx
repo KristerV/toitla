@@ -25,6 +25,7 @@ Checklist = React.createClass({
 
     render() {
         var checklist = this.data.checklist
+        var disabled = this.props.disabled
         if (!checklist)
             return <Loader/>
         return(<div className="paper padding text-center">
@@ -39,9 +40,10 @@ Checklist = React.createClass({
     },
 
     getAddButton(i) {
-        return <button className="relative z1 h0 mdl-button mdl-js-button mdl-button--icon block center" onClick={this.addItem}>
-            <i style={{opacity: "0.4"}} className="material-icons" data-index={i}>add</i>
-        </button>
+        if (!this.props.disabled)
+            return <button className="relative z1 h0 mdl-button mdl-js-button mdl-button--icon block center" onClick={this.addItem}>
+                <i style={{opacity: "0.4"}} className="material-icons" data-index={i}>add</i>
+            </button>
     }
 
 })
