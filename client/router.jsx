@@ -44,6 +44,16 @@ FlowRouter.route('/stats', {
 	}
 });
 
+FlowRouter.route('/settings', {
+	name: "settings",
+	triggersEnter: [loginRequired, managerOnly],
+	action: function(params) {
+		ReactLayout.render(Layout, {
+			content: <SettingsContainer/>
+		});
+	}
+});
+
 FlowRouter.route('/orders', {
 	name: 'orders',
 	triggersEnter: [loginRequired, startIdleMonitor],
