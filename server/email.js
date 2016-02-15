@@ -43,6 +43,7 @@ Meteor.methods({
 
   },
   sendEmailLogin: function(email) {
-    Accounts.sendLoginEmail(email)
+      email = email.replace(/ /g,'')
+      Accounts.sendLoginEmail(email)
   }
 });
