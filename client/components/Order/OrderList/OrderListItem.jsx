@@ -38,10 +38,7 @@ OrderListItem = React.createClass({
                     {date}
                 </div>
                 <div className="mdl-cell mdl-cell--2-col">
-                    {order.status.map(stat => {
-                        var color = stat.checked ? 'blue' : 'lightgrey'
-                        return <div key={stat._id} style={{display: "inline-block", width: "6px", height: "6px", borderRadius: "100%", backgroundColor: color, marginRight: "2px"}}></div>
-                    })}
+                    <StatusBar statuses={order.status}/>
                 </div>
                 <div className="mdl-cell mdl-cell--1-col">
                 <button className="mdl-button mdl-js-button mdl-button--icon" onClick={this.deleteOrder}>
