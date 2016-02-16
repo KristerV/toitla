@@ -16,9 +16,9 @@ Stats = React.createClass({
         // Fill data into empty objects
         orders.forEach(order => {
             var dateString = moment(order.event.fromDate).format('DD.MM.YY')
-            if (order.status.phase === 'lost')
+            if (order.result && order.result.result === 'lost')
                 data[dateString].lost++
-            else if (order.status.phase === 'done') {
+            else if (order.result && order.result.result === 'done') {
                 data[dateString].done++
                 data[dateString].total++
             } else {
@@ -54,26 +54,23 @@ Stats = React.createClass({
                 type: 'bar',
                 keys: {
                     x: 'date',
-                    value: ['inProgress', 'lost', 'done', 'weekAverage', 'silent']
+                    value: ['inProgress', 'lost', 'done', 'weekAverage']
                 },
                 types: {
                     weekAverage: 'spline',
                     lost: 'step',
-                    silent: 'step',
                 },
-                groups: [['done', 'inProgress'], ['lost', 'silent']],
+                groups: [['done', 'inProgress']],
                 names: {
                     done: 'Done',
                     inProgress: 'In Progress',
                     lost: 'Lost',
-                    silent: "Silent",
                     weekAverage: '3 orders a day (week average burndown)'
                 },
                 colors: {
                     done: '#00ff00',
                     inProgress: '#0000ff',
                     lost: '#ff0000',
-                    silent: '#ff6666',
                     weekAverage: '#000000',
                 }
             },
