@@ -8,9 +8,11 @@ OrderManagerChef = React.createClass({
             var allergies = order.allergies.host + ' - ' + order.allergies.guests.join(" - ")
         }
         return(<div className="margin-top mdl-grid max-width">
-            <div className="margin max-width">
-                <MenuitemsContainer orderId={order._id} layout="table" />
-            </div>
+            {order.showMenuToChef() ?
+                <div className="margin max-width">
+                    <MenuitemsContainer orderId={order._id} layout="table" />
+                </div>
+            : null}
             <div className="paper padding mdl-cell--5-col margin">
                 <TextInput
                     label={T("order", "event_type")}
@@ -31,10 +33,12 @@ OrderManagerChef = React.createClass({
                 <p>Allergies</p>
                 <p className="text-red">{allergies}</p>
             </div>
-            <div className="mdl-cell--5-col margin">
-                {/*only one chefs item is published*/}
-                <ChefConfirm chef={order.chefs[0]} orderId={order._id}/>
-            </div>
+            {order.showMenuToChef() ?
+                <div className="mdl-cell--5-col margin">
+                    {/*only one chefs item is published*/}
+                    <ChefConfirm chef={order.chefs[0]} orderId={order._id}/>
+                </div>
+            : null}
         </div>)
     }
 })

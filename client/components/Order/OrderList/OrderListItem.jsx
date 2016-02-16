@@ -18,12 +18,7 @@ OrderListItem = React.createClass({
         var date = order.event.fromDate ? moment(order.event.fromDate).format("dd D. MMMM") : null
 
         var className = ""
-        if (order.status.phase === "lost") className += "bg-red"
-        else if (order.status.phase === "silent") className += "bg-lightred"
-        else if (order.status.phase === "done") className += "bg-green"
-        else if (!order.isSubmitted()) className += "bg-grey"
-        // if chef is in order and phase is far enough in the process
-        else if (_.contains(Settings.getVisibleMenuitemsForChef(), order.status.phase)) className += "bg-yellow"
+        if (!order.isSubmitted()) className += "bg-grey"
         else className += "bg-white"
 
         return(<div className={"mdl-grid paper padding clickable " + className}
