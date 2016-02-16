@@ -64,16 +64,6 @@ FlowRouter.route('/orders', {
 	}
 });
 
-FlowRouter.route('/summary', {
-	name: 'summary',
-	triggersEnter: [loginRequired, managerOnly],
-	action: function(params) {
-		ReactLayout.render(Layout, {
-			content: <SummaryContainer/>
-		});
-	}
-});
-
 FlowRouter.route('/menus', {
 	name: 'menus',
 	triggersEnter: [loginRequired, managerOnly],

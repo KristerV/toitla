@@ -23,7 +23,6 @@ Layout = React.createClass({
             linksObj['Settings'] = '/settings'
             linksObj['Forums'] = 'http://spice.toitla.com'
             linksObj['Stats'] = '/stats'
-            linksObj['Summary'] = '/summary'
             linksObj['Orders'] = '/orders'
             linksObj['Menus'] = '/menus'
             linksObj['Users'] = '/users'
