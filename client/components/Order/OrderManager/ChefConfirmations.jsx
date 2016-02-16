@@ -15,8 +15,8 @@ ChefConfirmations = React.createClass({
         var order = this.props.order
         order.chefs = order.chefs || []
 
-        if (!order.isPhaseAchieved('chefConfirm')) {
-            return <p className="padding margin text-white text-hint">Chef confirming can start with "Chefs confirm" status.</p>
+        if (!order.isStatusChecked('Chefs confirmed')) {
+            return <p className="padding margin text-white text-hint">Chef confirming can start by ticking "Chefs confirmed" in the status tab.</p>
         }
 
         return(<div className="mdl-grid">
