@@ -5,7 +5,6 @@ OrderManagerInfo = React.createClass({
         order.errors = order.errors || {}
         return(<div className="mdl-grid">
             <div className="mdl-cell mdl-cell--4-col">
-                <StatusForm order={order}/>
                 <OrderContactForm order={order}/>
             </div>
             <div className="mdl-cell mdl-cell--4-col">
