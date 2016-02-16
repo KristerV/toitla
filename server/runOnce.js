@@ -1,7 +1,7 @@
 // Convert statuses in orders
 Meteor.startup(function(){
     Orders.find().forEach(order => {
-        if (_.isObject(order.status)) {
+        if (!_.isArray(order.status) && _.isObject(order.status)) {
             var currentPhase = order.status.phase
             var checked = true
             var newStatus = []
