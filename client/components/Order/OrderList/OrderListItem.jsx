@@ -18,7 +18,8 @@ OrderListItem = React.createClass({
         var date = order.event.fromDate ? moment(order.event.fromDate).format("dd D. MMMM") : null
 
         var className = ""
-        if (!order.isSubmitted()) className += "bg-grey"
+        if (order.highlightForChef(Meteor.userId())) className += "bg-yellow"
+        else if (!order.isSubmitted()) className += "bg-grey"
         else className += "bg-white"
 
         return(<div className={"mdl-grid paper padding clickable " + className}
