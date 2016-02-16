@@ -28,7 +28,7 @@ Checklist = React.createClass({
         var disabled = this.props.disabled
         if (!checklist)
             return <Loader/>
-        return(<div className="paper padding text-center">
+        return(<div className="text-center margin-top">
             {this.getAddButton(0)}
             {checklist.map((item, i) => {
                 return <div key={item._id}>

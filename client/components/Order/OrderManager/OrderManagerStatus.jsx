@@ -20,12 +20,14 @@ OrderManagerStatus = React.createClass({
         return(<div className="max-width margin-top mdl-grid">
             <div className="mdl-cell mdl-cell--4-col">
                 <h3 className="text-white text-center">Status</h3>
-                <Checklist
-                    disabled={true}
-                    collectionName="orders"
-                    docId={order._id}
-                    datapath="status"
-                />
+                <div className="paper padding">
+                    <Checklist
+                        disabled={true}
+                        collectionName="orders"
+                        docId={order._id}
+                        datapath="status"
+                    />
+                </div>
             </div>
             <div className="mdl-cell mdl-cell--4-col">
                 <h3 className="text-white text-center">Result</h3>

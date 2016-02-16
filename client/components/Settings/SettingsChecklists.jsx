@@ -7,11 +7,13 @@ SettingsChecklists = React.createClass({
             {Settings.checklists.map(checklist => {
                 return <div key={checklist.name} className="mdl-cell mdl-cell--6-col">
                     <h3 className="text-white text-center">{checklist.label}</h3>
-                    <Checklist
-                        collectionName="settings"
-                        docId="checklists"
-                        datapath={checklist.name}
-                        />
+                    <div className="paper padding">
+                        <Checklist
+                            collectionName="settings"
+                            docId="checklists"
+                            datapath={checklist.name}
+                            />
+                    </div>
                 </div>
             })}
         </div>
