@@ -32,7 +32,7 @@ Checklist = React.createClass({
             {this.getAddButton(0)}
             {checklist.map((item, i) => {
                 return <div key={item._id}>
-                    <ChecklistItem {...this.props} item={item} key={item._id}/>
+                    <ChecklistItem {...this.props} item={item}/>
                     {this.getAddButton(i+1)}
                 </div>
             })}
