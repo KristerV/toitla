@@ -12,7 +12,7 @@ OrdersListContainer = React.createClass({
 
         var find = {}
         if (!this.state.showAllOrders)
-            find["status.phase"] = {$nin: ['done', 'lost', 'silent']}
+            find.result = {$exists: 0}
 
         var options = {sort: {"event.fromDate": 1, "event.fromTime": 1}}
 
