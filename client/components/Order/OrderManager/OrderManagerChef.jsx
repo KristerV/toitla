@@ -26,10 +26,6 @@ OrderManagerChef = React.createClass({
                     label={T("order", "from_time")}
                     disabled={true}
                     value={moment(order.event.fromTime).format('HH:mm')}/>
-                <TextInput
-                    label="Order phase"
-                    disabled={true}
-                    value={order.status.phase}/>
                 <p>Allergies</p>
                 <p className="text-red">{allergies}</p>
             </div>

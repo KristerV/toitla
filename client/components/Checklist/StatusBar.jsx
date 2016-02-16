@@ -20,7 +20,7 @@ StatusBar = React.createClass({
         }
 
         return <div>
-            {statuses.map(stat => {
+            {statuses ? statuses.map(stat => {
                 var size = 1
                 if (stat.checked) {
                     var color = 'rgb(63, 81, 181)'
@@ -29,7 +29,7 @@ StatusBar = React.createClass({
                     size = doubleSize
                 }
                 return this.getDot(stat, color, size)
-            })}
+            }) : null}
             {resultDot}
         </div>
     },

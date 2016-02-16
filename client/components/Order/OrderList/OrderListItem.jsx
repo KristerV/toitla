@@ -13,7 +13,7 @@ OrderListItem = React.createClass({
         var order = this.props.order
         order.event = order.event || {}
         order.contact = order.contact || {}
-        order.status = order.status || {}
+        order.status = order.status || []
         order.price = order.price || {}
         var date = order.event.fromDate ? moment(order.event.fromDate).format("dd D. MMMM") : null
 
