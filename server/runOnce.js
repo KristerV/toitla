@@ -3,20 +3,28 @@ Meteor.startup(function(){
     Orders.find().forEach(order => {
         if (!_.isArray(order.status) && _.isObject(order.status)) {
             var currentPhase = order.status.phase
-            var checked = true
-            var newStatus = []
 
+            // Process is at end
             if (_.contains(['lost', 'done', 'silent'], currentPhase)) {
-                Orders.update(order._id, {$set: {result: {
-                    result: currentPhase,
-                    reason: '',
-                    foodLeft: 0
-                }}})
+                console.log("Convert finished order status");
+                Orders.update(order._id, {$set: {
+                    result: {
+                        result: currentPhase,
+                        reason: '',
+                        foodLeft: 0
+                    },
+                    status: [{text: 'Submitted', checked: true, _id: Random.id()}]
+                }})
+
+            // Process is still going
             } else {
+                console.log("Convert order status");
+                var checked = true
+                var newStatus = []
                 for (var key in Settings.phases) {
                     if (!_.contains(['unsubmitted', 'lost', 'done', 'silent'], key)) {
-                        if (key === currentPhase) checked = false
                         newStatus.push({text: Settings.phases[key].label, checked: checked, _id: Random.id()})
+                        if (key === currentPhase) checked = false
                     }
                 }
                 Orders.update(order._id, {$set: {status: newStatus}})
