@@ -1,7 +1,7 @@
 StatusBar = React.createClass({
     render() {
         var statuses = this.props.statuses
-        var result = this.props.result.result
+        var result = this.props.result ? this.props.result.result : {}
         var doubleSize = 1.8
         var id = Random.id()
 
