@@ -53,7 +53,7 @@ Layout = React.createClass({
                         <nav className="mdl-navigation">{links}</nav>
                     </div>
                 </header>
-                <div className={"mdl-tabs mdl-js-tabs mdl-js-ripple-effect " + (this.props.tabs ? "mdl-layout__header" : "")}>
+                <div className={"mdl-tabs mdl-js-tabs mdl-js-ripple-effect " + (this.props.tabs ? "mdl-layout__header" : "")} style={{minHeight: '0'}}>
                     <div className="mdl-tabs__tab-bar" style={{height: "auto", borderBottom: "none"}}>
                         {_.map(this.props.tabs, function(tab, i){
                             var newPath = currentPath.replace(this.props.activeTab, tab.route)
@@ -61,10 +61,8 @@ Layout = React.createClass({
                             return <a key={i} href={newPath} className={"mdl-layout__tab "+isActive}>{tab.label}</a>
                         }.bind(this))}
                     </div>
-                    <div className="text-center absolute center w100">
-                        <div style={{position: 'relative', top: '7px'}}>
-                            {this.props.navbarBottom}
-                        </div>
+                    <div className="text-center absolute w100">
+                        {this.props.navbarBottom}
                     </div>
                 </div>
                 <div className="mdl-layout__drawer">
