@@ -6,10 +6,10 @@ Meteor.startup(function(){
 
             // Process is at end
             if (_.contains(['lost', 'done', 'silent'], currentPhase)) {
-                console.log("Convert finished order status");
+                console.info("Convert finished order status");
                 Orders.update(order._id, {$set: {
                     result: {
-                        result: currentPhase,
+                        result: currentPhase === 'done' ? 'done' : 'lost',
                         reason: '',
                         foodLeft: 0
                     },
@@ -18,7 +18,7 @@ Meteor.startup(function(){
 
             // Process is still going
             } else {
-                console.log("Convert order status");
+                console.info("Convert order status");
                 var checked = true
                 var newStatus = []
                 for (var key in Settings.phases) {

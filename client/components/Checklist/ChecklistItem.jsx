@@ -3,7 +3,6 @@ ChecklistItem = React.createClass({
     isDisabled() {
         var text = this.props.item.text
         var setting = Settings.findByKey('checklists', 'name', this.props.datapath)
-        console.log("setting",setting);
         if (setting)
             var isLocked = _.contains(setting.reserved, text)
         return isLocked || this.props.disabled

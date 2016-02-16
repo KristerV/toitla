@@ -38,7 +38,7 @@ TextInput = React.createClass({
     getInputType(id) {
         var pattern = this.props.pattern
         if (this.props.patternTemplate === 'float')
-            pattern = "[0-9]*\\.?[0-9]*"
+            pattern = "-?[0-9]*\\.?[0-9]*"
         if (this.props.errorMsg)
             var errorClass = 'red-underline'
         if (this.props.rows) {
