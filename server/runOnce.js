@@ -7,7 +7,11 @@ Meteor.startup(function(){
             var newStatus = []
 
             if (_.contains(['lost', 'done', 'silent'], currentPhase)) {
-                Orders.update(order._id, {$set: {result: currentPhase}})
+                Orders.update(order._id, {$set: {result: {
+                    result: currentPhase,
+                    reason: '',
+                    foodLeft: 0
+                }}})
             } else {
                 for (var key in Settings.phases) {
                     if (!_.contains(['unsubmitted', 'lost', 'done', 'silent'], key)) {
