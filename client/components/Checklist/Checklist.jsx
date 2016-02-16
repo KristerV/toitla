@@ -8,6 +8,8 @@ Checklist = React.createClass({
     getMeteorData() {
         var subscription = Meteor.subscribe(this.props.collectionName)
         var collection = Mongo.Collection.get(this.props.collectionName)
+        if (!collection)
+            throw new Meteor.Error(500, "No such collection exists");
         var doc = collection.findOne(this.props.docId)
         if (doc)
             var checklist = doc[this.props.datapath]

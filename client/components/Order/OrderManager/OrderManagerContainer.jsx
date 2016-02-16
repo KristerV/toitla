@@ -17,9 +17,10 @@ OrderManagerContainer = React.createClass({
 
         if (Roles.userIsInRole(Meteor.userId(), 'manager')) {
             switch (this.props.tab) {
-                case 'status': return(<OrderManagerStatus order={this.data.order}/>);
-                case 'info': return(<OrderManagerInfo order={this.data.order}/>);
-                case 'menu': return(<OrderManagerMenu order={this.data.order}/>);
+                case 'status': return(<OrderManagerStatus order={this.data.order}/>)
+                case 'info': return(<OrderManagerInfo order={this.data.order}/>)
+                case 'menu': return(<OrderManagerMenu order={this.data.order}/>)
+                case 'equipment': return(<OrderManagerEquipment order={this.data.order}/>)
             }
         }
         else if (Roles.userIsInRole(Meteor.userId(), 'chef'))
