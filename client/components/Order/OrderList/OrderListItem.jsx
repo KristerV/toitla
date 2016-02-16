@@ -38,7 +38,7 @@ OrderListItem = React.createClass({
                     {date}
                 </div>
                 <div className="mdl-cell mdl-cell--2-col">
-                    <StatusBar statuses={order.status}/>
+                    <StatusBar statuses={order.status} result={order.result}/>
                 </div>
                 <div className="mdl-cell mdl-cell--1-col">
                 <button className="mdl-button mdl-js-button mdl-button--icon" onClick={this.deleteOrder}>

@@ -5,21 +5,18 @@ Meteor.startup(function(){
             var currentPhase = order.status.phase
             var checked = true
             var newStatus = []
-            for (var key in Settings.phases) {
-                if (key !== 'unsubmitted') {
-                    var specialCase = false
-                    if (_.contains(['lost', 'done', 'silent'], key)) {
-                        newStatus.push({text: Settings.phases[key].label, checked: checked, _id: Random.id()})
-                        specialCase = true
-                    }
-                    if (key === currentPhase) checked = false
-                    if (!specialCase) {
-                        newStatus.push({text: Settings.phases[key].label, checked: checked, _id: Random.id()})
-                    }
 
+            if (_.contains(['lost', 'done', 'silent'], currentPhase)) {
+                Orders.update(order._id, {$set: {result: currentPhase}})
+            } else {
+                for (var key in Settings.phases) {
+                    if (!_.contains(['unsubmitted', 'lost', 'done', 'silent'], key)) {
+                        if (key === currentPhase) checked = false
+                        newStatus.push({text: Settings.phases[key].label, checked: checked, _id: Random.id()})
+                    }
                 }
+                Orders.update(order._id, {$set: {status: newStatus}})
             }
-            Orders.update(order._id, {$set: {status: newStatus}})
         }
     })
 });
