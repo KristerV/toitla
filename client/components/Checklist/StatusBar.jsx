@@ -12,30 +12,32 @@ StatusBar = React.createClass({
         }
         return <div>
             {this.props.statuses.map(stat => {
+                console.log(stat.text, stat.checked);
+                var dotStyleClone = _.clone(dotStyle)
                 if (stat.checked) {
                     switch (stat.text) {
                         case 'Ready for event':
-                            dotStyle.backgroundColor = 'green'
+                            dotStyleClone.backgroundColor = 'green'
                             break
                         case 'Done':
-                            dotStyle.backgroundColor = 'green'
+                            dotStyleClone.backgroundColor = 'green'
                             break
                         case 'Lost':
-                            dotStyle.backgroundColor = 'red'
+                            dotStyleClone.backgroundColor = 'red'
                             break
                         case 'Silent':
-                            dotStyle.backgroundColor = 'red'
+                            dotStyleClone.backgroundColor = 'red'
                             break
                         default:
-                            dotStyle.backgroundColor = 'blue'
+                            dotStyleClone.backgroundColor = 'blue'
                     }
                 } else {
-                    dotStyle.backgroundColor = 'lightgrey'
+                    dotStyleClone.backgroundColor = 'lightgrey'
                 }
 
                 var id = "stat-tooltip-" + stat._id + "-" + stat.text
                 return <div key={stat._id} id={id} style={containerStyle}>
-                    <div style={dotStyle}></div>
+                    <div style={dotStyleClone}></div>
                     <div
                         className="mdl-tooltip"
                         htmlFor={id}
