@@ -61,6 +61,11 @@ Layout = React.createClass({
                             return <a key={i} href={newPath} className={"mdl-layout__tab "+isActive}>{tab.label}</a>
                         }.bind(this))}
                     </div>
+                    <div className="text-center absolute center w100">
+                        <div style={{position: 'relative', top: '7px'}}>
+                            {this.props.navbarBottom}
+                        </div>
+                    </div>
                 </div>
                 <div className="mdl-layout__drawer">
                     {title}

@@ -23,7 +23,7 @@ StatusBar = React.createClass({
             {statuses.map(stat => {
                 var size = 1
                 if (stat.checked) {
-                    var color = 'blue'
+                    var color = 'rgb(63, 81, 181)'
                 }
                 if (stat.text === 'Ready for event') {
                     size = doubleSize
@@ -37,7 +37,7 @@ StatusBar = React.createClass({
     getDot(stat, color, size) {
         var id = "stat-tooltip-" + stat._id + "-" + stat.text
         size = size || 1
-        color = color || 'lightgrey'
+        color = color || 'rgba(0,0,0,0.2)'
         var dotStyle = {
             display: "inline-block",
             width: (6 * size) + "px",

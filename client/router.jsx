@@ -200,6 +200,7 @@ FlowRouter.route('/order/:orderId/:tab', {
 			ReactLayout.render(Layout, {
 				content: <OrderManagerContainer orderId={params.orderId} tab={params.tab}/>,
 				tabs: Settings.order.tabs,
+				navbarBottom: <StatusBarContainer orderId={params.orderId}/>,
 				activeTab: params.tab
 			});
 		}
