@@ -11,8 +11,10 @@ NewOrder = React.createClass({
             if (err)
                 console.error(err)
             else if (result) {
-                $('body, .mdl-layout__content').animate({
-                    scrollTop: $("section:nth-of-type("+nextIndex+")").offset().top
+                var scrollTop = $("section:nth-of-type("+nextIndex+")").offset().top
+                console.log("scrollTop",scrollTop);
+                $('html, body, .mdl-layout__content').animate({
+                    scrollTop: scrollTop
                 }, 500);
             }
         })
