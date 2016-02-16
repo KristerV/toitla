@@ -5,6 +5,7 @@ StatusBar = React.createClass({
             width: "6px",
             height: "6px",
             borderRadius: "100%",
+            verticalAlign: "middle",
         }
         var containerStyle = {
             display: 'inline-block',
@@ -15,24 +16,13 @@ StatusBar = React.createClass({
                 console.log(stat.text, stat.checked);
                 var dotStyleClone = _.clone(dotStyle)
                 if (stat.checked) {
-                    switch (stat.text) {
-                        case 'Ready for event':
-                            dotStyleClone.backgroundColor = 'green'
-                            break
-                        case 'Done':
-                            dotStyleClone.backgroundColor = 'green'
-                            break
-                        case 'Lost':
-                            dotStyleClone.backgroundColor = 'red'
-                            break
-                        case 'Silent':
-                            dotStyleClone.backgroundColor = 'red'
-                            break
-                        default:
-                            dotStyleClone.backgroundColor = 'blue'
-                    }
+                    dotStyleClone.backgroundColor = 'blue'
                 } else {
                     dotStyleClone.backgroundColor = 'lightgrey'
+                }
+                if (stat.text === 'Ready for event') {
+                    dotStyleClone.width = "10px"
+                    dotStyleClone.height = "10px"
                 }
 
                 var id = "stat-tooltip-" + stat._id + "-" + stat.text
