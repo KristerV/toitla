@@ -44,6 +44,7 @@ ChecklistItem = React.createClass({
                     onBlur={this.updateText}
                     disabled={this.isDisabled()}
                     ref="mytext"
+                    onEnter={this.props.onEnter}
                 />
             </div>
             {!this.isDisabled() ?

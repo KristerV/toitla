@@ -17,6 +17,11 @@ TextInput = React.createClass({
         e.stopPropagation()
     },
 
+    handleEnterPress(e) {
+        if (e.key === 'Enter')
+            this.props.onEnter(e)
+    },
+
     render() {
         var _id = this.props._id || this.props.id || this.props.label
         var style = this.props.style || {}
@@ -72,6 +77,7 @@ TextInput = React.createClass({
                     disabled={this.props.disabled}
                     autofocus={this.props.autofocus}
                     onClick={this.handleClick}
+                    onKeyPress={this.handleEnterPress}
                     />
         }
     }

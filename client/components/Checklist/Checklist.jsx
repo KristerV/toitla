@@ -26,7 +26,7 @@ Checklist = React.createClass({
     },
 
     addItem(e) {
-        var index = Number($(e.target).attr('data-index'))
+        var index = Number($(e.target).parents('[data-index]').attr('data-index'))
         Meteor.call('Settings--addItemToChecklist', this.props.collectionName, this.props.docId, this.props.datapath, index)
     },
 
@@ -39,9 +39,10 @@ Checklist = React.createClass({
             <CornerMenu options={[{label: "Reset checklist", onClick: this.resetChecklist}]}/>
             {this.getAddButton(0)}
             {checklist.map((item, i) => {
-                return <div key={item._id}>
-                    <ChecklistItem {...this.props} item={item}/>
-                    {this.getAddButton(i+1)}
+                i++
+                return <div key={item._id} data-index={i}>
+                    <ChecklistItem {...this.props} item={item} onEnter={this.addItem}/>
+                    {this.getAddButton(i)}
                 </div>
             })}
         </div>)
@@ -50,7 +51,7 @@ Checklist = React.createClass({
     getAddButton(i) {
         if (!this.props.disabled)
             return <button className="relative z1 h0 mdl-button mdl-js-button mdl-button--icon block center" onClick={this.addItem}>
-                <i style={{opacity: "0.4"}} className="material-icons" data-index={i}>add</i>
+                <i style={{opacity: "0.4"}} className="material-icons">add</i>
             </button>
     }
 
