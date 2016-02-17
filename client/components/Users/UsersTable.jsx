@@ -22,7 +22,6 @@ UsersTable = React.createClass({
                     <tr>
                       <th className="mdl-data-table__cell--non-numeric">Nimi</th>
                       <th>E-mail</th>
-                      <th>rating</th>
                       <th></th>
                       <th></th>
                       <th>Viimati online</th>

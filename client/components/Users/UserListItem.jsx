@@ -41,13 +41,6 @@ UserListItem = React.createClass({
             </td>
             <td>{user.getEmail()}</td>
             <td>
-                <TextInput
-                    value={user.manualRating}
-                    name="manualRating"
-                    onBlur={user.handleTextFieldChange.bind(user)}
-                    style={{width: "20px"}}/>
-            </td>
-            <td>
                 <button
                     className={"mdl-button mdl-js-button mdl-button--raised "+(user.eligible ? "mdl-button--colored" : null)}
                     onClick={this.goProfile.bind(this, user._id)}
