@@ -1,5 +1,11 @@
 ChecklistItem = React.createClass({
 
+    componentDidMount() {
+        var input = this.refs.mytext.refs.textinput
+        if (!input.value)
+            ReactDOM.findDOMNode(input).focus();
+    },
+
     isDisabled() {
         var text = this.props.item.text
         var setting = Settings.findByKey('checklists', 'name', this.props.datapath)
@@ -37,6 +43,7 @@ ChecklistItem = React.createClass({
                     value={item.text}
                     onBlur={this.updateText}
                     disabled={this.isDisabled()}
+                    ref="mytext"
                 />
             </div>
             {!this.isDisabled() ?

@@ -18,7 +18,7 @@ TextInput = React.createClass({
     },
 
     render() {
-        var _id = this.props._id || this.props.label
+        var _id = this.props._id || this.props.id || this.props.label
         var style = this.props.style || {}
 
         var patternError = this.props.patternError
@@ -49,7 +49,7 @@ TextInput = React.createClass({
                     pattern={pattern}
                     id={id}
                     key={3}
-                    ref={this.props.ref || "textarea"}
+                    ref="textarea"
                     defaultValue={this.props.value}
                     rows={this.props.rows}
                     onBlur={this.props.onBlur}
@@ -66,7 +66,7 @@ TextInput = React.createClass({
                     pattern={pattern}
                     id={id}
                     key={4}
-                    ref={this.props.ref}
+                    ref="textinput"
                     defaultValue={this.props.value}
                     onBlur={this.props.onBlur}
                     disabled={this.props.disabled}

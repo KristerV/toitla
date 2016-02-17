@@ -35,7 +35,11 @@ LoginForm = React.createClass({
     },
 
     componentDidMount() {
-        ReactDOM.findDOMNode(this.refs.email).focus();
+        var node = ReactDOM.findDOMNode(this.refs.email.refs.textinput)
+        // $(node).focus();
+
+        // var mdl = $('.mdl-js-textfield')
+        // console.log(mdl);
     },
 
     render() {

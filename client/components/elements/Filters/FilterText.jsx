@@ -14,7 +14,6 @@ FilterText = React.createClass({
         return(<form onSubmit={this.submitForm}>
             <TextInput
                 label={this.props.label}
-                ref="input"
                 _id={this.props.name}
                 name={this.props.name}
                 onBlur={this.filterChange}
