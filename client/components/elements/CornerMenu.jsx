@@ -13,13 +13,20 @@ CornerMenu = React.createClass({
         option.onClick(e)
     },
 
+    // Example this.props.options:
+    // [{label: 'remove from order', onClick: this.removeFromOrder}]
+
     render() {
         var rand = Random.id()
 
         // Render
         return(
-        <div className="mdl-container__menu">
-            <button id={"cornerMenuIcon-"+rand} className="mdl-button mdl-js-button mdl-button--icon" onClick={this.handleClick}>
+        <div className="mdl-container__menu" style={{position: 'relative'}}>
+            <button
+                style={{position: 'absolute', right: "0"}}
+                id={"cornerMenuIcon-"+rand}
+                className="mdl-button mdl-js-button mdl-button--icon"
+                onClick={this.handleClick}>
                 <i className="material-icons">more_vert</i>
             </button>
 

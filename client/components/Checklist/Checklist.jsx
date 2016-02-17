@@ -4,6 +4,11 @@ Checklist = React.createClass({
         Meteor.call('Settings--startChecklist', this.props.collectionName, this.props.docId, this.props.datapath)
     },
 
+    resetChecklist() {
+        if (confirm("Delete all current entries and start over?"))
+            Meteor.call('Settings--resetChecklist', this.props.collectionName, this.props.docId, this.props.datapath)
+    },
+
     mixins: [ReactMeteorData],
     getMeteorData() {
         var subscription = Meteor.subscribe(this.props.collectionName)
@@ -31,6 +36,7 @@ Checklist = React.createClass({
         if (!checklist)
             return <Loader/>
         return(<div className="text-center margin-top">
+            <CornerMenu options={[{label: "Reset checklist", onClick: this.resetChecklist}]}/>
             {this.getAddButton(0)}
             {checklist.map((item, i) => {
                 return <div key={item._id}>
