@@ -114,7 +114,10 @@ FlowRouter.route('/menu/:userId', {
 FlowRouter.route('/login/', {
 	name: 'login',
 	action: function(params) {
-		ReactLayout.render(LoginForm)
+		if (Meteor.userId())
+			FlowRouter.go('/')
+		else
+			ReactLayout.render(LoginForm)
 	}
 });
 
