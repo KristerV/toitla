@@ -45,6 +45,7 @@ ChecklistItem = React.createClass({
                     disabled={this.isDisabled()}
                     ref="mytext"
                     onEnter={this.props.onEnter}
+                    style={this.isDisabled() ? {padding: "5px 0"} : {}}
                 />
             </div>
             {!this.isDisabled() ?
