@@ -12,7 +12,6 @@ NewOrder = React.createClass({
                 console.error(err)
             else if (result) {
                 var scrollTop = $("section:nth-of-type("+nextIndex+")").offset().top
-                console.log("scrollTop",scrollTop);
                 $('html, body, .mdl-layout__content').animate({
                     scrollTop: scrollTop
                 }, 500);

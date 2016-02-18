@@ -36,7 +36,6 @@ Checklist = React.createClass({
 
     render() {
         var checklist = this.data.checklist
-        console.log("checklist",checklist);
         var disabled = this.props.disabled
         if (!checklist)
             return <Loader/>

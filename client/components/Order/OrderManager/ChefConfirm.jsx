@@ -88,7 +88,7 @@ ChefConfirm = React.createClass({
         return <div className="paper padding" id={chef._id}>
             <h5>{chefName}</h5>
             <TextInput
-                label="Pickup time"
+                label="Ready by"
                 name="pickupTime"
                 onBlur={this.updateText}
                 value={chef.pickupTime}
