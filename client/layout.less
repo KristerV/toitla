@@ -54,3 +54,13 @@
 .demo-card-wide > .mdl-card__menu {
   color: #fff;
 }
+
+@media print {
+    body > div:not(#printable-content) {
+        display: none;
+    }
+}
+@page {
+    size: A4;
+    padding: 0;
+}

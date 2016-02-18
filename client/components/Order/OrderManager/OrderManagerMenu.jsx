@@ -2,7 +2,7 @@ OrderManagerMenu = React.createClass({
 
     render() {
         var order = this.props.order || {}
-        return(<div className="max-width">
+        return(<div className="max-width margin-top">
             {order.isSubmitted() ?
                 <OrderMenuForm order={order}/>
             :
