@@ -67,24 +67,35 @@ ChefConfirm = React.createClass({
         var locations = this.data.user.profile.locations
         locations.unshift({address: "Pickup location", _id: null})
 
+        var status
+
         // Declined
         if (declined) {
-            return <div className="paper padding">
-                <h5>{chefName}</h5>
-                <h5 className="text-red">Declined</h5>
-                <button className="mdl-cell mdl-cell--6-col mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect" onClick={this.accept}>Accept instead</button>
+            status = <div>
+                <h3 className="text-red text-center">Declined</h3>
+                <button className="mdl-cell mdl-cell--6-col mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect w100" onClick={this.accept}>Accept instead</button>
             </div>
 
         // Waiting response
         } else if (!confirmed && !declined) {
-            return <div className="mdl-grid paper">
-                <h5 className="mdl-cell mdl-cell--12-col">{chefName}</h5>
+            status = <div className="mdl-grid">
                 <button className="mdl-cell mdl-cell--6-col mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" onClick={this.decline}>Decline</button>
                 <button className="mdl-cell mdl-cell--6-col mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect" onClick={this.accept}>Accept</button>
             </div>
-        }
 
         // Confirmed
+        } else {
+            status = <div>
+                <h4 className="text-green text-center">Accepted</h4>
+                {this.state.emailButtonActive ?
+                    <button className="mdl-button mdl-js-button mdl-button--colored mdl-button--raised w100" onClick={this.emailDetails}>Send details email</button>
+                    :
+                    <button className="mdl-button mdl-js-button w100">Email sent</button>
+                }
+                <button className="mdl-button mdl-js-button mdl-button--colored w100" onClick={this.decline}>Cancel confirmation</button>
+            </div>
+        }
+
         return <div className="paper padding" id={chef._id}>
             <h5>{chefName}</h5>
             <TextInput
@@ -108,12 +119,7 @@ ChefConfirm = React.createClass({
                 onBlur={this.updateText}
                 value={chef.notes}
             />
-            {this.state.emailButtonActive ?
-                <button className="mdl-button mdl-js-button mdl-button--colored mdl-button--raised w100" onClick={this.emailDetails}>Send details email</button>
-                :
-                <button className="mdl-button mdl-js-button w100">Email sent</button>
-            }
-            <button className="mdl-button mdl-js-button mdl-button--colored w100" onClick={this.decline}>Cancel confirmation</button>
+            {status}
         </div>
     }
 
