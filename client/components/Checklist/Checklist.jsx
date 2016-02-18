@@ -11,7 +11,10 @@ Checklist = React.createClass({
 
     mixins: [ReactMeteorData],
     getMeteorData() {
-        var subscription = Meteor.subscribe(this.props.collectionName)
+        var subs = this.props.collectionName
+        if (subs === 'users')
+            subs = 'allUserData'
+        var subscription = Meteor.subscribe(subs)
         var collection = Mongo.Collection.get(this.props.collectionName)
         if (!collection)
             throw new Meteor.Error(500, "No such collection exists");
@@ -33,6 +36,7 @@ Checklist = React.createClass({
 
     render() {
         var checklist = this.data.checklist
+        console.log("checklist",checklist);
         var disabled = this.props.disabled
         if (!checklist)
             return <Loader/>

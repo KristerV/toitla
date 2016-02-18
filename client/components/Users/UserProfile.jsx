@@ -118,6 +118,14 @@ UserProfile = React.createClass({
                     name="profile.waze"
                     value={profile.address}/>*/}
             <button className="margin mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onClick={this.logout}>Log out</button>
+            {Roles.userIsInRole(Meteor.userId(), 'manager') ?
+                <div className="mdl-cell--5-col">
+                    <h3 className="text-white text-center">Chef On-Boarding</h3>
+                    <div className="paper padding">
+                        <Checklist collectionName="users" docId={user._id} datapath="chefOnBoarding"/>
+                    </div>
+                </div>
+            : null}
     </div>)
     }
 })
