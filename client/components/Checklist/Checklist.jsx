@@ -36,7 +36,7 @@ Checklist = React.createClass({
         var disabled = this.props.disabled
         if (!checklist)
             return <Loader/>
-        return(<div className="text-center margin-top">
+        return(<div className="text-center margin-top w100">
             <CornerMenu options={[{label: "Reset checklist", onClick: this.resetChecklist}]}/>
             {this.getAddButton(0)}
             {checklist.map((item, i) => {
