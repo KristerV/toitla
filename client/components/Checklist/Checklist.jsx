@@ -27,6 +27,7 @@ Checklist = React.createClass({
 
     addItem(e) {
         var index = Number($(e.target).parents('[data-index]').attr('data-index'))
+        if (!index) index = 0 // zero plus button is different
         Meteor.call('Settings--addItemToChecklist', this.props.collectionName, this.props.docId, this.props.datapath, index)
     },
 
