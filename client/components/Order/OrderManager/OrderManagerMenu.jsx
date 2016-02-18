@@ -12,6 +12,12 @@ OrderManagerMenu = React.createClass({
             }
             <MenuitemsContainer orderId={order._id} layout="table" />
             <ChefConfirmations order={order}/>
+            <div className="mdl-cell--5-col margin-bottom">
+                <h3 className="text-white text-center">Menu Building Checklist</h3>
+                <div className="paper padding">
+                    <Checklist collectionName="orders" docId={order._id} datapath="menuComposition"/>
+                </div>
+            </div>
         </div>)
     }
 })
