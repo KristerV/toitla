@@ -1,5 +1,11 @@
 OrderManagerSigns = React.createClass({
 
+    getInitialState() {
+        return {
+            printMainCard: true
+        }
+    },
+
     mixins: [ReactMeteorData],
     getMeteorData() {
         var subscription = Meteor.subscribe("menuitems_inorder", this.props.orderId)
@@ -9,6 +15,10 @@ OrderManagerSigns = React.createClass({
             menuitems: menuitems.fetch(),
             subsReady: subscription.ready()
         }
+    },
+
+    changeMainCardPrint(e) {
+        this.setState({printMainCard: e.target.checked})
     },
 
     render() {
@@ -40,11 +50,17 @@ OrderManagerSigns = React.createClass({
 
         return(<div className="sign-layout max-width margin-top margin-bottom">
             <h3 className="text-center text-white">Printing center</h3>
-            <div className="center" style={{width: "200px"}}>
-                <button className="w100 mdl-button mdl-button--raised mdl-button--accent" onClick={G.print}>open printing dialog</button>
+            <div className="center paper padding" style={{width: "200px"}}>
+                <Checkbox
+                    onChange={this.changeMainCardPrint}
+                    label="Print main card"
+                    checked={this.state.printMainCard}
+                />
+                <button className="w100 mdl-button mdl-button--raised mdl-button--accent" onClick={G.print}>Print menu</button>
             </div>
             <div id="printable-container">
                 <div id="printable-content">
+                    {this.state.printMainCard ? <SignToitla/> : null}
                     {pages}
                 </div>
             </div>
