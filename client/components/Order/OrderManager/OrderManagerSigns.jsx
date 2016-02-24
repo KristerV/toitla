@@ -36,11 +36,13 @@ OrderManagerSigns = React.createClass({
         var pages = []
         var nrPerPage = rows * cols
         var nrPages = Math.ceil(menuitems.length / nrPerPage)
+        let counter = 0
         for (var i = 0; i < nrPages; i++) {
             var pageContent = []
             for (var j = 0; j < nrPerPage; j++) {
-                var item = menuitems[i+j]
+                var item = menuitems[counter++]
                 if (!item) break
+                console.log("item._id",item._id)
                 pageContent.push(<div key={item._id} style={{width: signWidth, height: signHeight, display: "inline-block"}}>
                     <Sign menuitem={item} backFace={backFace}/>
                 </div>)
