@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <file url="PROJECT" libraries="{c3-DefinitelyTyped, jQuery-2.0.0, mandrill-api-DefinitelyTyped, meteor-DefinitelyTyped, meteor-packages-auto-import-browser, meteor-roles-DefinitelyTyped, react-DefinitelyTyped, react-props-decorators-DefinitelyTyped, react-select-DefinitelyTyped, underscore-DefinitelyTyped}" />
+    <includedPredefinedLibrary name="ECMAScript 6" />
+    <includedPredefinedLibrary name="Meteor project library" />
+  </component>
+</project>
