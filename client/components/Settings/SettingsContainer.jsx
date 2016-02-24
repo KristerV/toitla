@@ -1,7 +1,11 @@
 SettingsContainer = React.createClass({
     render() {
-        return(<div>
-                <SettingsChecklists/>
-            </div>)
+
+        switch (this.props.tab) {
+            case "checklists": return <SettingsChecklists/>
+            case "driver": return <SettingsDriver/>
+        }
+
+        return<h2 className="text-white text-center">Hmm, no such tab: {this.props.tab}</h2>
     }
 })

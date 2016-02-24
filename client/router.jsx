@@ -48,8 +48,18 @@ FlowRouter.route('/settings', {
 	name: "settings",
 	triggersEnter: [loginRequired, managerOnly],
 	action: function(params) {
+		FlowRouter.goSilent("settingsTab", {tab: 'checklists'})
+	}
+});
+
+FlowRouter.route('/settings/:tab', {
+	name: "settingsTab",
+	triggersEnter: [loginRequired, managerOnly],
+	action: function(params) {
 		ReactLayout.render(Layout, {
-			content: <SettingsContainer/>
+			content: <SettingsContainer tab={params.tab}/>,
+			tabs: Settings.settings.tabs,
+			activeTab: params.tab
 		});
 	}
 });
