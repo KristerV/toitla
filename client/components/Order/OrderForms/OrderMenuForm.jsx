@@ -13,6 +13,7 @@ OrderMenuForm = React.createClass({
     render() {
         var order = this.props.order
         order.price = order.price || {}
+        let allergies = order.getAllergies()
         return(<div className="paper mdl-grid margin-top">
             <div className="mdl-cell--6-col padding">
                 <h4 style={{marginBottom: 0}}>Net Price: {order.price.calculated}€</h4>
@@ -26,6 +27,7 @@ OrderMenuForm = React.createClass({
                 <MenuitemButtonAdd orderId={order._id}/>
                 <button className="mdl-button mdl-js-button w100 margin-top" onClick={this.emptyOrderFromMenuitems}>remove all foods</button>
                 <Loader id="calculating-price-loader"/>
+                {allergies ? <p className="text-red"><b>Allergies</b>: {allergies}</p> : null}
             </div>
         </div>)
     }

@@ -19,6 +19,8 @@ ChefConfirmations = React.createClass({
             return <p className="padding margin text-white text-hint">Chef confirming can start by ticking "Open Confirmations for Chefs" in the status tab.</p>
         }
 
+        const allergies = order.getAllergies()
+
         return(<div className="mdl-grid">
                 {this.state.emailButtonActive ?
                     <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored w100 margin-top" onClick={this.sendConfirmEmails}>Send confirmation emails</button>
@@ -27,7 +29,7 @@ ChefConfirmations = React.createClass({
                 }
                 {_.map(order.chefs, item => {
                     return <div className="mdl-cell mdl-cell--4-cell" key={item._id}>
-                        <ChefConfirm chef={item} orderId={order._id}/>
+                        <ChefConfirm chef={item} orderId={order._id} allergies={allergies}/>
                     </div>
                 })}
             </div>)

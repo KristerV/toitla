@@ -107,6 +107,7 @@ ChefConfirm = React.createClass({
                 onBlur={this.updateText}
                 value={chef.notes}
             />
+            {this.props.allergies ? <p className="text-red"><b>Allergies</b>: {this.props.allergies}</p> : null}
             {status}
         </div>
     }
