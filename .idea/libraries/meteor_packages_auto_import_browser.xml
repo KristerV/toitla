@@ -215,6 +215,7 @@
         <item url="file://$USER_HOME$/.meteor/packages/zodiase_mdl-assets/1.1.1/web.browser/packages/zodiase_mdl-assets/dist/material.teal-lime.min.css" />
         <item url="file://$USER_HOME$/.meteor/packages/zodiase_mdl-assets/1.1.1/web.browser/packages/zodiase_mdl-assets/dist/material.yellow-deep_orange.min.css" />
         <item url="file://$USER_HOME$/.meteor/packages/zodiase_mdl-assets/1.1.1/web.browser/packages/zodiase_mdl-assets/dist/material.cyan-yellow.min.css" />
+        <item url="file://$USER_HOME$/.meteor/packages/chuangbo_marked/0.3.5_1/web.browser/packages/chuangbo_marked.js" />
         <item url="file://$USER_HOME$/.meteor/packages/255kb_meteor-status/1.4.3/web.browser/client/i18n.js" />
         <item url="file://$USER_HOME$/.meteor/packages/255kb_meteor-status/1.4.3/web.browser/client/meteor-status.css" />
         <item url="file://$USER_HOME$/.meteor/packages/255kb_meteor-status/1.4.3/web.browser/client/meteor-status.js" />
@@ -696,6 +697,7 @@
       <root url="file://$USER_HOME$/.meteor/packages/zodiase_mdl-assets/1.1.1/web.browser/packages/zodiase_mdl-assets/dist/material.teal-lime.min.css" />
       <root url="file://$USER_HOME$/.meteor/packages/zodiase_mdl-assets/1.1.1/web.browser/packages/zodiase_mdl-assets/dist/material.yellow-deep_orange.min.css" />
       <root url="file://$USER_HOME$/.meteor/packages/zodiase_mdl-assets/1.1.1/web.browser/packages/zodiase_mdl-assets/dist/material.cyan-yellow.min.css" />
+      <root url="file://$USER_HOME$/.meteor/packages/chuangbo_marked/0.3.5_1/web.browser/packages/chuangbo_marked.js" />
       <root url="file://$USER_HOME$/.meteor/packages/255kb_meteor-status/1.4.3/web.browser/client/i18n.js" />
       <root url="file://$USER_HOME$/.meteor/packages/255kb_meteor-status/1.4.3/web.browser/client/meteor-status.css" />
       <root url="file://$USER_HOME$/.meteor/packages/255kb_meteor-status/1.4.3/web.browser/client/meteor-status.js" />
