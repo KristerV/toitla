@@ -56,7 +56,7 @@ OrderManagerDriver = React.createClass({
                  name="driver.info"
                  />*/}
                 <Toitla/>
-                <Markdown>{marked(order.driver.info)}</Markdown>
+                <Markdown>{order.driver.info}</Markdown>
             </div>
         </div>)
     }

@@ -2,22 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f16f286a-3c31-42fa-b329-53a935292b8d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/meteor_packages_auto_import_browser.xml" afterPath="$PROJECT_DIR$/.idea/libraries/meteor_packages_auto_import_browser.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/toitla.iml" afterPath="$PROJECT_DIR$/.idea/toitla.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.meteor/packages" afterPath="$PROJECT_DIR$/.meteor/packages" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.meteor/versions" afterPath="$PROJECT_DIR$/.meteor/versions" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/components/Order/OrderManager/OrderManagerContainer.jsx" afterPath="$PROJECT_DIR$/client/components/Order/OrderManager/OrderManagerContainer.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/components/Settings/SettingsDriver.jsx" afterPath="$PROJECT_DIR$/client/components/Settings/SettingsDriver.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/components/Users/UserProfile.jsx" afterPath="$PROJECT_DIR$/client/components/Users/UserProfile.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/components/elements.less" afterPath="$PROJECT_DIR$/client/components/elements.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/router.jsx" afterPath="$PROJECT_DIR$/client/router.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/Roles.js" afterPath="$PROJECT_DIR$/lib/Roles.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/models/Order/collection.js" afterPath="$PROJECT_DIR$/lib/models/Order/collection.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/models/Order/helpers.js" afterPath="$PROJECT_DIR$/lib/models/Order/helpers.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/components/Order/OrderManager/OrderManagerDriver.jsx" afterPath="$PROJECT_DIR$/client/components/Order/OrderManager/OrderManagerDriver.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/components/elements/Markdown.jsx" afterPath="$PROJECT_DIR$/client/components/elements/Markdown.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/G.js" afterPath="$PROJECT_DIR$/lib/G.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/models/Order/methods.js" afterPath="$PROJECT_DIR$/lib/models/Order/methods.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/models/Settings/extends.js" afterPath="$PROJECT_DIR$/lib/models/Settings/extends.js" />
     </list>
     <ignored path="toitla.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,81 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="OrderManagerDriver.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/components/Order/OrderManager/OrderManagerDriver.jsx">
+      <file leaf-file-name="methods.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/models/Order/methods.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="46" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Driver.jsx" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/client/components/Order/OrderManager/Driver.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.21732955">
-              <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="markdown.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/components/elements/markdown.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.65384614">
-              <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Markdown.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/components/elements/Markdown.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OrderManagerContainer.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/components/Order/OrderManager/OrderManagerContainer.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="37" column="45" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="router.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/router.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="201" column="31" selection-start-line="201" selection-start-column="31" selection-end-line="201" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Roles.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/Roles.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="34" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="collection.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/models/Order/collection.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="37" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.6619318">
+              <caret line="212" column="17" selection-start-line="212" selection-start-column="17" selection-end-line="212" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -136,11 +55,8 @@
         <option value="$PROJECT_DIR$/client/components/elements/Button.jsx" />
         <option value="$PROJECT_DIR$/lib/Form.js" />
         <option value="$PROJECT_DIR$/lib/models/Order/helpers.js" />
-        <option value="$PROJECT_DIR$/lib/models/Settings/extends.js" />
         <option value="$PROJECT_DIR$/client/components/Users/UserProfile.jsx" />
         <option value="$PROJECT_DIR$/client/index.js" />
-        <option value="$PROJECT_DIR$/lib/models/Order/methods.js" />
-        <option value="$PROJECT_DIR$/client/components/Order/OrderManager/OrderManagerDriver.jsx" />
         <option value="$PROJECT_DIR$/client/components/elements/Toitla.jsx" />
         <option value="$PROJECT_DIR$/client/components/Settings/SettingsDriver.jsx" />
         <option value="$PROJECT_DIR$/client/components/RouteDenied.jsx" />
@@ -149,9 +65,13 @@
         <option value="$PROJECT_DIR$/lib/Roles.js" />
         <option value="$PROJECT_DIR$/client/components/Order/OrderManager/OrderManagerContainer.jsx" />
         <option value="$PROJECT_DIR$/client/components/elements/markdown.less" />
-        <option value="$PROJECT_DIR$/client/components/elements/Markdown.jsx" />
         <option value="$PROJECT_DIR$/client/components/elements.less" />
         <option value="$PROJECT_DIR$/client/components/Order/OrderManager/Driver.jsx" />
+        <option value="$PROJECT_DIR$/lib/G.js" />
+        <option value="$PROJECT_DIR$/lib/models/Settings/extends.js" />
+        <option value="$PROJECT_DIR$/client/components/Order/OrderManager/OrderManagerDriver.jsx" />
+        <option value="$PROJECT_DIR$/client/components/elements/Markdown.jsx" />
+        <option value="$PROJECT_DIR$/lib/models/Order/methods.js" />
       </list>
     </option>
   </component>
@@ -265,6 +185,46 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="toitla" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="toitla" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Settings" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="toitla" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="toitla" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="client" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -319,7 +279,7 @@
     <property name="HbShouldOpenHtmlAsHb" value="enabled" />
     <property name="js.meteor.project" value="true" />
     <property name="js.meteor.library.was.enabled" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="markdo&#9;FILE&#9;file:///home/krister/code/toitla/client/components/elements/Markdown.jsx&#10;elemen.les&#9;FILE&#9;file:///home/krister/code/toitla/client/components/elements.less&#10;roles&#9;FILE&#9;file:///home/krister/code/toitla/lib/Roles.js&#10;router&#9;FILE&#9;file:///home/krister/code/toitla/client/router.jsx&#10;order/coll&#9;FILE&#9;file:///home/krister/code/toitla/lib/models/Order/collection.js&#10;ordermanagerdriv&#9;FILE&#9;file:///home/krister/code/toitla/client/components/Order/OrderManager/OrderManagerDriver.jsx&#10;settings&#9;FILE&#9;file:///home/krister/code/toitla/client/components/Settings/SettingsDriver.jsx&#10;profil&#9;FILE&#9;file:///home/krister/code/toitla/client/components/Users/UserProfile.jsx&#10;profilejsx&#9;FILE&#9;file:///home/krister/code/toitla/client/components/Users/UserProfile.jsx&#10;sett/ext&#9;FILE&#9;file:///home/krister/code/toitla/lib/models/Settings/extends.js&#10;chefconfi&#9;FILE&#9;file:///home/krister/code/toitla/client/components/Order/OrderManager/ChefConfirm.jsx&#10;clien/comp/confirm&#9;FILE&#9;file:///home/krister/code/toitla/client/components/Order/OrderManager/ChefConfirmations.jsx&#10;settings/metho&#9;FILE&#9;file:///home/krister/code/toitla/lib/models/Settings/methods.js&#10;checklist&#9;FILE&#9;file:///home/krister/code/toitla/client/components/Checklist/Checklist.jsx&#10;button&#9;FILE&#9;file:///home/krister/code/toitla/client/components/elements/Button.jsx&#10;order/methods&#9;FILE&#9;file:///home/krister/code/toitla/lib/models/Order/methods.js&#10;order/helper&#9;FILE&#9;file:///home/krister/code/toitla/lib/models/Order/helpers.js&#10;formjs&#9;FILE&#9;file:///home/krister/code/toitla/lib/Form.js&#10;order/container&#9;FILE&#9;file:///home/krister/code/toitla/client/components/Order/OrderManager/OrderManagerContainer.jsx&#10;set/ext&#9;FILE&#9;file:///home/krister/code/toitla/lib/models/Settings/extends.js&#10;sett/help&#9;FILE&#9;file:///home/krister/code/toitla/lib/models/Settings/helpers.js&#10;settin/collec&#9;FILE&#9;file:///home/krister/code/toitla/lib/models/Settings/collection.js&#10;settings/ext&#9;FILE&#9;file:///home/krister/code/toitla/lib/models/Settings/extends.js&#10;container&#9;FILE&#9;file:///home/krister/code/toitla/client/components/Order/NewOrder/NewOrderContainer.jsx&#10;textinput&#9;FILE&#9;file:///home/krister/code/toitla/client/components/elements/TextInput.jsx&#10;sett/coll&#9;FILE&#9;file:///home/krister/code/toitla/lib/models/Settings/collection.js&#10;keymap&#9;ACTION&#9;ChangeKeymap" />
+    <property name="SearchEverywhereHistoryKey" value="lib/models/Order/methods.js:190&#9;FILE&#9;file:///home/krister/code/toitla/lib/models/Order/methods.js&#10;markdo&#9;FILE&#9;file:///home/krister/code/toitla/client/components/elements/Markdown.jsx&#10;managdriv&#9;FILE&#9;file:///home/krister/code/toitla/client/components/Order/OrderManager/OrderManagerDriver.jsx&#10;g.js&#9;FILE&#9;file:///home/krister/code/toitla/lib/G.js&#10;order/metho&#9;FILE&#9;file:///home/krister/code/toitla/lib/models/Order/methods.js&#10;ordermanadriv&#9;FILE&#9;file:///home/krister/code/toitla/client/components/Order/OrderManager/OrderManagerDriver.jsx&#10;markdown&#9;FILE&#9;file:///home/krister/code/toitla/client/components/elements/Markdown.jsx&#10;elemen.les&#9;FILE&#9;file:///home/krister/code/toitla/client/components/elements.less&#10;roles&#9;FILE&#9;file:///home/krister/code/toitla/lib/Roles.js&#10;router&#9;FILE&#9;file:///home/krister/code/toitla/client/router.jsx&#10;order/coll&#9;FILE&#9;file:///home/krister/code/toitla/lib/models/Order/collection.js&#10;ordermanagerdriv&#9;FILE&#9;file:///home/krister/code/toitla/client/components/Order/OrderManager/OrderManagerDriver.jsx&#10;settings&#9;FILE&#9;file:///home/krister/code/toitla/client/components/Settings/SettingsDriver.jsx&#10;profil&#9;FILE&#9;file:///home/krister/code/toitla/client/components/Users/UserProfile.jsx&#10;profilejsx&#9;FILE&#9;file:///home/krister/code/toitla/client/components/Users/UserProfile.jsx&#10;sett/ext&#9;FILE&#9;file:///home/krister/code/toitla/lib/models/Settings/extends.js&#10;chefconfi&#9;FILE&#9;file:///home/krister/code/toitla/client/components/Order/OrderManager/ChefConfirm.jsx&#10;clien/comp/confirm&#9;FILE&#9;file:///home/krister/code/toitla/client/components/Order/OrderManager/ChefConfirmations.jsx&#10;settings/metho&#9;FILE&#9;file:///home/krister/code/toitla/lib/models/Settings/methods.js&#10;checklist&#9;FILE&#9;file:///home/krister/code/toitla/client/components/Checklist/Checklist.jsx&#10;button&#9;FILE&#9;file:///home/krister/code/toitla/client/components/elements/Button.jsx&#10;order/methods&#9;FILE&#9;file:///home/krister/code/toitla/lib/models/Order/methods.js&#10;order/helper&#9;FILE&#9;file:///home/krister/code/toitla/lib/models/Order/helpers.js&#10;formjs&#9;FILE&#9;file:///home/krister/code/toitla/lib/Form.js&#10;order/container&#9;FILE&#9;file:///home/krister/code/toitla/client/components/Order/OrderManager/OrderManagerContainer.jsx&#10;set/ext&#9;FILE&#9;file:///home/krister/code/toitla/lib/models/Settings/extends.js&#10;sett/help&#9;FILE&#9;file:///home/krister/code/toitla/lib/models/Settings/helpers.js&#10;settin/collec&#9;FILE&#9;file:///home/krister/code/toitla/lib/models/Settings/collection.js&#10;settings/ext&#9;FILE&#9;file:///home/krister/code/toitla/lib/models/Settings/extends.js&#10;container&#9;FILE&#9;file:///home/krister/code/toitla/client/components/Order/NewOrder/NewOrderContainer.jsx&#10;textinput&#9;FILE&#9;file:///home/krister/code/toitla/client/components/elements/TextInput.jsx&#10;sett/coll&#9;FILE&#9;file:///home/krister/code/toitla/lib/models/Settings/collection.js&#10;keymap&#9;ACTION&#9;ChangeKeymap" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.smartKeys" />
     <property name="settings.editor.splitter.proportion" value="0.2572283" />
     <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
@@ -659,14 +619,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/models/Settings/extends.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="65" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/components/Users/UserProfile.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -699,54 +651,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/models/Order/methods.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.63778406">
-          <caret line="218" column="42" selection-start-line="218" selection-start-column="42" selection-end-line="218" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/models/Order/collection.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="37" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Roles.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="34" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/router.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="201" column="31" selection-start-line="201" selection-start-column="31" selection-end-line="201" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/components/Order/OrderManager/OrderManagerContainer.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="45" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/components/Order/OrderManager/OrderManagerDriver.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="46" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/components/elements.less">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.07522124">
@@ -755,26 +659,90 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/components/Order/OrderManager/Driver.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21732955">
+          <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/components/elements/markdown.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.65384614">
+        <state vertical-scroll-proportion="0.025073746">
           <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/components/Order/OrderManager/OrderManagerContainer.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.68607956">
+          <caret line="37" column="45" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/router.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3565341">
+          <caret line="201" column="31" selection-start-line="201" selection-start-column="31" selection-end-line="201" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Roles.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28977272">
+          <caret line="12" column="34" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/models/Order/collection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.265625">
+          <caret line="12" column="37" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/models/Settings/extends.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09659091">
+          <caret line="4" column="52" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/G.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8068182">
+          <caret line="79" column="18" selection-start-line="79" selection-start-column="18" selection-end-line="79" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/components/elements/Markdown.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.3622159">
+          <caret line="15" column="57" selection-start-line="15" selection-start-column="57" selection-end-line="15" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/components/Order/OrderManager/Driver.jsx">
+    <entry file="file://$PROJECT_DIR$/client/components/Order/OrderManager/OrderManagerDriver.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21732955">
-          <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.734375">
+          <caret line="58" column="44" selection-start-line="58" selection-start-column="44" selection-end-line="58" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/models/Order/methods.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6619318">
+          <caret line="212" column="17" selection-start-line="212" selection-start-column="17" selection-end-line="212" selection-end-column="17" />
           <folding />
         </state>
       </provider>
