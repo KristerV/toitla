@@ -43,18 +43,6 @@ ChefConfirm = React.createClass({
     updateAddress(obj) {
         // Update address
         this.updateArray(obj.name, obj.value)
-
-        // Update notes from profile settings
-        if (!this.props.chef.notes) {
-            var notes = ""
-            this.data.user.profile.locations.forEach(loc => {
-                if (loc._id === obj.value)
-                    notes = loc.notes
-            })
-            this.updateArray("notes", notes)
-            var chefId = this.props.chef._id
-            $('#' + chefId + ' textarea[name="notes"]').val(notes)
-        }
     },
 
     render() {
