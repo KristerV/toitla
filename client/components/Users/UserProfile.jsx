@@ -97,7 +97,7 @@ UserProfile = React.createClass({
                         value={loc.latlong}
                     />
                     <TextInput
-                        label="Lisainfo"
+                        label="Juhised autojuhile"
                         name="notes"
                         onBlur={this.updateLocationField}
                         value={loc.notes}

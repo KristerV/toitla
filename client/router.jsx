@@ -194,19 +194,25 @@ FlowRouter.route('/order/:orderId', {
 });
 
 FlowRouter.route('/order/:orderId/:tab', {
-	triggersEnter: [loginRequired, startIdleMonitor],
 	name: "orderTab",
 	action: function(params) {
-		if (!Meteor.userId())
-			ReactLayout.render(OrderManagerContainer, {orderId: params.orderId})
-		else {
-			ReactLayout.render(Layout, {
-				content: <OrderManagerContainer orderId={params.orderId} tab={params.tab}/>,
-				tabs: Settings.order.tabs,
-				navbarBottom: <StatusBarContainer orderId={params.orderId}/>,
-				activeTab: params.tab
-			});
+
+		// Driver may see info
+		// params.tab === 'driver' && !Meteor.userId()
+		if (Roles.isDriver()) {
+			ReactLayout.render(OrderManagerContainer, {orderId: params.orderId, tab: 'driver'})
+			return
 		}
+
+		loginRequired()
+		managerOnly()
+
+		ReactLayout.render(Layout, {
+			content: <OrderManagerContainer orderId={params.orderId} tab={params.tab}/>,
+			tabs: Settings.order.tabs,
+			navbarBottom: <StatusBarContainer orderId={params.orderId}/>,
+			activeTab: params.tab
+		});
 	}
 });
 

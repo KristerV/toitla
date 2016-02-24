@@ -2,7 +2,8 @@ OrderManagerContainer = React.createClass({
 
     mixins: [ReactMeteorData],
     getMeteorData() {
-        var subscription = Meteor.subscribe("orders", this.props.orderId)
+        let driver = this.props.tab === 'driver' && !Meteor.userId()
+        var subscription = Meteor.subscribe("orders", this.props.orderId, driver)
         var order = Orders.findOne(this.props.orderId)
 
         return {
@@ -15,6 +16,7 @@ OrderManagerContainer = React.createClass({
         if (!this.data.subsReady)
             return <Loader/>
 
+        // Manager
         if (Roles.userIsInRole(Meteor.userId(), 'manager')) {
             switch (this.props.tab) {
                 case 'status': return(<OrderManagerStatus order={this.data.order}/>)
@@ -22,10 +24,20 @@ OrderManagerContainer = React.createClass({
                 case 'menu': return(<OrderManagerMenu order={this.data.order}/>)
                 case 'signs': return(<OrderManagerSigns order={this.data.order}/>)
                 case 'equipment': return(<OrderManagerEquipment order={this.data.order}/>)
+                case 'driver': return(<OrderManagerDriver order={this.data.order}/>)
             }
         }
+
+        // Chef
         else if (Roles.userIsInRole(Meteor.userId(), 'chef'))
             return(<OrderManagerChef order={this.data.order}/>)
+
+        // Anonymous
+        else {
+            switch (this.props.tab) {
+                case 'driver': return(<Driver order={this.data.order}/>)
+            }
+        }
 
         return <h3 className="text-white text-center">You're not allowed here</h3>
     }

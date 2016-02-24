@@ -20,11 +20,12 @@ SettingsDriver = React.createClass({
 			return <Loader/>
 
 		const driver = this.data.driver
-        driver.message = driver.message || {}
+		driver.message = driver.message || {}
 
 		return <div className="max-width margin-top mdl-grid">
 			<h3 className="text-white text-center w100">Driver settings</h3>
 			<div className="paper padding">
+				<p className="text-hint">Markdown supported</p>
 				<TextInput
 					rows={1}
 					label="Intro"
