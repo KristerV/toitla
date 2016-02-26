@@ -33,5 +33,5 @@ Accounts.sendLoginEmail = function (address) {
 
     html += '<p>All the best, Toitla</p>'
 
-    Meteor.call('sendEmail', null, address, 'Toitla login link', html)
+    Email.send(Settings.system_email, address, 'Toitla login link', html)
 };
