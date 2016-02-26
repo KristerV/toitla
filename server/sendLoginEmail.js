@@ -33,5 +33,10 @@ Accounts.sendLoginEmail = function (address) {
 
     html += '<p>All the best, Toitla</p>'
 
-    Email.send(Settings.system_email, address, 'Toitla login link', html)
+    Email.send({
+        from: Settings.system_email,
+        to: address,
+        subject: 'Toitla login link',
+        html: html
+    })
 };
