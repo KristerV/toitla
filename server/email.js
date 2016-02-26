@@ -1,15 +1,18 @@
 Meteor.methods({
-    sendEmail: function (from, to, subject, html) {
+    sendEmail: function (from, to, subject, html, bccFleep) {
         check([from, to], [Match.OneOf(String, null)])
         check([html, subject], [String])
         if (Meteor.userId()) {
-            Email.send({
+            let email = {
                 from: from || Settings.system_email,
-                to: to,
-                bcc: Settings.toitla.fleepConvo,
                 subject: subject,
                 html: html
-            })
+            }
+            if (to)
+                email.to = to
+            if (bccFleep)
+                email.bcc = Settings.toitla.fleepConvo
+            Email.send(email)
         } else {
             throw new Meteor.Error("You're not allowed to send email")
         }
