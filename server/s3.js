@@ -1,6 +1,7 @@
+console.log("Meteor.settings",Meteor.settings)
 S3.config = {
-    key: process.env.S3_KEY,
-    secret: process.env.S3_SECRET,
+    key: Meteor.settings.S3_KEY,
+    secret: Meteor.settings.S3_SECRET,
     bucket: 'toitla',
     region: 'eu-west-1'
 };
