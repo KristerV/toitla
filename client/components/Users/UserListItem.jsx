@@ -36,6 +36,9 @@ UserListItem = React.createClass({
                 key={user._id}
                 data-userid={user._id}
                 className={user.isManager() ? 'bg-grey' : null}>
+            <td className="mdl-data-table__cell--non-numeric">
+                <ProfileImage user={user} />
+            </td>
             <td className="mdl-data-table__cell--non-numeric" onClick={this.makeManager}>
                 {profile.name}
             </td>
