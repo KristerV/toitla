@@ -1,6 +1,6 @@
 S3.config = {
-    key: 'AKIAJFCP43VI7O2Q4XEQ',
-    secret: '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',
+    key: process.env.S3_KEY,
+    secret: process.env.S3_SECRET,
     bucket: 'toitla',
     region: 'eu-west-1'
 };
