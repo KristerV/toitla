@@ -43,7 +43,7 @@ UserProfile = React.createClass({
             <div className="mdl-grid">
                 <div className="paper padding mdl-cell mdl-cell--4-col">
                     <ProfileImage user={user}/>
-                    <FileUpload path="images/profile" onComplete={this.uploadComplete}/>
+                    <FileUpload path="uploads/images/profile" onComplete={this.uploadComplete}/>
                 </div>
                 <div className="paper padding mdl-cell mdl-cell--4-col">
                     <TextInput
