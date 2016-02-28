@@ -1,8 +1,7 @@
-
 UserProfile = React.createClass({
 
     logout(e) {
-        Meteor.logout(function(){
+        Meteor.logout(function () {
             FlowRouter.go('/')
         });
     },
@@ -29,6 +28,10 @@ UserProfile = React.createClass({
         }
     },
 
+    uploadComplete(path, filename) {
+        Meteor.call('User--updateProfileImage', this.props.user._id, path, filename)
+    },
+
     render() {
         var isManager = Roles.userIsInRole(Meteor.userId(), 'manager')
         if (!isManager && this.props.user._id !== Meteor.userId())
@@ -36,96 +39,109 @@ UserProfile = React.createClass({
         var user = this.props.user || {}
         var profile = user.profile || {}
 
-        return(
-        <div className="mdl-grid">
-            <div className="paper padding mdl-cell mdl-cell--4-col">
-                <TextInput
-                    label="Email"
-                    onBlur={this.changeEmail}
-                    value={user.getEmail()}
-                    disabled={!isManager}
-                />
-                <TextInput
-                    label="Name"
-                    onBlur={user.handleTextFieldChange.bind(user)}
-                    name="profile.name"
-                    value={profile.name}
-                />
-                <TextInput
-                    label="Telefoni number"
-                    onBlur={user.handleTextFieldChange.bind(user)}
-                    name="profile.tel"
-                    value={profile.tel}/>
-                <TextInput
-                    label="Koduleht"
-                    onBlur={user.handleTextFieldChange.bind(user)}
-                    name="profile.homepage"
-                    value={profile.homepage}/>
-            </div>
-            <div className="paper padding mdl-cell mdl-cell--4-col">
-                <TextInput
-                    label="Ettevõtte nimi"
-                    onBlur={user.handleTextFieldChange.bind(user)}
-                    name="profile.companyName"
-                    value={profile.companyName}/>
-                <TextInput
-                    label="Ettevõtte registrikood"
-                    onBlur={user.handleTextFieldChange.bind(user)}
-                    name="profile.companyCode"
-                    value={profile.companyCode}/>
-                <Checkbox
-                    label="Olen teavitanud Veterinaar- ja Toiduametit oma koduköögist."
-                    onChange={user.handleCheckboxChange.bind(user)}
-                    name="profile.vet"
-                    defaultChecked={profile.vet}/>
-                <br/>
-                <sub>Ilma etteovõtte või Vet-ametiga kooskõlastamiseta me kahjuks koostööd teha ei saa. Need protsessid ei ole aga üldse keerulised. Õpetuse kallal veel nokitseme, aga võta ühendust info@toitla.com ja me juhendame su mõnusalt läbi.</sub>
-            </div>
-            {_.map(profile.locations, (loc, i) => {
-                i++
-                return <div className="paper padding mdl-cell mdl-cell--4-col" key={loc._id} data-location-id={loc._id}>
-                    <TextInput
-                        label="Aadress"
-                        name="address"
-                        onBlur={this.updateLocationField}
-                        value={loc.address}
-                    />
-                    <TextInput
-                        label="Koordinaadid (google mapsist saab)"
-                        name="latlong"
-                        onBlur={this.updateLocationField}
-                        value={loc.latlong}
-                    />
-                    <TextInput
-                        label="Juhised autojuhile"
-                        name="notes"
-                        onBlur={this.updateLocationField}
-                        value={loc.notes}
-                        rows={1}
-                    />
-                    <button className="margin mdl-button mdl-js-button mdl-button--colored" onClick={this.removeLocation}>Remove address</button>
+        return (
+            <div className="mdl-grid">
+                <div className="paper padding mdl-cell mdl-cell--4-col">
+                    <ProfileImage user={user}/>
+                    <FileUpload path="images/profile" onComplete={this.uploadComplete}/>
                 </div>
-            })}
-            <button className="margin mdl-button mdl-js-button mdl-button--raised mdl-button--accent" onClick={this.newLocation}>New address</button>
-                {/*<TextInput
-                    label="Aadress"
-                    onBlur={user.handleTextFieldChange.bind(user)}
-                    name="profile.address"
-                    value={profile.address}/>
-                <TextInput
-                    label="Waze link"
-                    onBlur={user.handleTextFieldChange.bind(user)}
-                    name="profile.waze"
-                    value={profile.address}/>*/}
-            <button className="margin mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onClick={this.logout}>Log out</button>
-            {Roles.userIsInRole(Meteor.userId(), 'manager') ?
-                <div className="mdl-cell--5-col">
-                    <h3 className="text-white text-center">Chef On-Boarding</h3>
-                    <div className="paper padding">
-                        <Checklist collectionName="users" docId={user._id} datapath="chefOnBoarding"/>
+                <div className="paper padding mdl-cell mdl-cell--4-col">
+                    <TextInput
+                        label="Email"
+                        onBlur={this.changeEmail}
+                        value={user.getEmail()}
+                        disabled={!isManager}
+                    />
+                    <TextInput
+                        label="Name"
+                        onBlur={user.handleTextFieldChange.bind(user)}
+                        name="profile.name"
+                        value={profile.name}
+                    />
+                    <TextInput
+                        label="Telefoni number"
+                        onBlur={user.handleTextFieldChange.bind(user)}
+                        name="profile.tel"
+                        value={profile.tel}/>
+                    <TextInput
+                        label="Koduleht"
+                        onBlur={user.handleTextFieldChange.bind(user)}
+                        name="profile.homepage"
+                        value={profile.homepage}/>
+                </div>
+                <div className="paper padding mdl-cell mdl-cell--4-col">
+                    <TextInput
+                        label="Ettevõtte nimi"
+                        onBlur={user.handleTextFieldChange.bind(user)}
+                        name="profile.companyName"
+                        value={profile.companyName}/>
+                    <TextInput
+                        label="Ettevõtte registrikood"
+                        onBlur={user.handleTextFieldChange.bind(user)}
+                        name="profile.companyCode"
+                        value={profile.companyCode}/>
+                    <Checkbox
+                        label="Olen teavitanud Veterinaar- ja Toiduametit oma koduköögist."
+                        onChange={user.handleCheckboxChange.bind(user)}
+                        name="profile.vet"
+                        defaultChecked={profile.vet}/>
+                    <br/>
+                    <sub>Ilma etteovõtte või Vet-ametiga kooskõlastamiseta me kahjuks koostööd teha ei saa. Need
+                        protsessid ei ole aga üldse keerulised. Õpetuse kallal veel nokitseme, aga võta ühendust
+                        info@toitla.com ja me juhendame su mõnusalt läbi.</sub>
+                </div>
+                {_.map(profile.locations, (loc, i) => {
+                    i++
+                    return <div className="paper padding mdl-cell mdl-cell--4-col" key={loc._id}
+                                data-location-id={loc._id}>
+                        <TextInput
+                            label="Aadress"
+                            name="address"
+                            onBlur={this.updateLocationField}
+                            value={loc.address}
+                        />
+                        <TextInput
+                            label="Koordinaadid (google mapsist saab)"
+                            name="latlong"
+                            onBlur={this.updateLocationField}
+                            value={loc.latlong}
+                        />
+                        <TextInput
+                            label="Juhised autojuhile"
+                            name="notes"
+                            onBlur={this.updateLocationField}
+                            value={loc.notes}
+                            rows={1}
+                        />
+                        <button className="margin mdl-button mdl-js-button mdl-button--colored"
+                                onClick={this.removeLocation}>Remove address
+                        </button>
                     </div>
-                </div>
-            : null}
-    </div>)
+                })}
+                <button className="margin mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
+                        onClick={this.newLocation}>New address
+                </button>
+                {/*<TextInput
+                 label="Aadress"
+                 onBlur={user.handleTextFieldChange.bind(user)}
+                 name="profile.address"
+                 value={profile.address}/>
+                 <TextInput
+                 label="Waze link"
+                 onBlur={user.handleTextFieldChange.bind(user)}
+                 name="profile.waze"
+                 value={profile.address}/>*/}
+                <button className="margin mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                        onClick={this.logout}>Log out
+                </button>
+                {Roles.userIsInRole(Meteor.userId(), 'manager') ?
+                    <div className="mdl-cell--5-col">
+                        <h3 className="text-white text-center">Chef On-Boarding</h3>
+                        <div className="paper padding">
+                            <Checklist collectionName="users" docId={user._id} datapath="chefOnBoarding"/>
+                        </div>
+                    </div>
+                    : null}
+            </div>)
     }
 })
