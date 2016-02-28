@@ -55,7 +55,7 @@ Imgix = React.createClass({
     getUrl() {
         let path = G.rmBothSlashes(this.props.path)
         let filename = this.props.filename
-        return `https://toitla.imgix.net/${path}/${filename}?fit=crop&crop=faces,entropy`
+        return `https://toitla.imgix.net/${path}/${filename}?fit=crop&crop=faces,entropy&fm=png`
     },
 
     render() {
