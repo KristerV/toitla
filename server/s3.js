@@ -1,6 +1,6 @@
 S3.config = {
-    key: '***REMOVED***',
-    secret: '***REMOVED***',
+    key: process.env.S3_KEY,
+    secret: process.env.S3_SECRET,
     bucket: 'toitla',
     region: 'eu-west-1'
 };
