@@ -258,6 +258,7 @@
         <item url="file://$USER_HOME$/.meteor/packages/blaze-tools/1.0.4/web.browser/tokens.js" />
         <item url="file://$USER_HOME$/.meteor/packages/blaze-tools/1.0.4/web.browser/tojs.js" />
         <item url="file://$USER_HOME$/.meteor/packages/blaze-tools/1.0.4/web.browser/preamble.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/lepozepo_s3/5.1.6/web.browser/client/functions.coffee" />
         <item url="file://$USER_HOME$/.meteor/packages/callback-hook/1.0.4/web.browser/hook.js" />
         <item url="file://$USER_HOME$/.meteor/packages/check/1.1.0/web.browser/match.js" />
         <item url="file://$USER_HOME$/.meteor/packages/dburles_collection-helpers/1.0.4/web.browser/collection-helpers.js" />
@@ -740,6 +741,7 @@
       <root url="file://$USER_HOME$/.meteor/packages/blaze-tools/1.0.4/web.browser/tokens.js" />
       <root url="file://$USER_HOME$/.meteor/packages/blaze-tools/1.0.4/web.browser/tojs.js" />
       <root url="file://$USER_HOME$/.meteor/packages/blaze-tools/1.0.4/web.browser/preamble.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/lepozepo_s3/5.1.6/web.browser/client/functions.coffee" />
       <root url="file://$USER_HOME$/.meteor/packages/callback-hook/1.0.4/web.browser/hook.js" />
       <root url="file://$USER_HOME$/.meteor/packages/check/1.1.0/web.browser/match.js" />
       <root url="file://$USER_HOME$/.meteor/packages/dburles_collection-helpers/1.0.4/web.browser/collection-helpers.js" />
