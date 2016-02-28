@@ -1,78 +1,97 @@
 @import url(https://fonts.googleapis.com/css?family=Indie+Flower|Amatic+SC|Overlock|Tangerine|Marck+Script|Patrick+Hand+SC);
 
 .sign-page {
-    width: 21cm;
-    height: 29.7cm;
-    line-height: 0;
-    margin-top: 1em;
-    p, h1, h2, h3, h4, h5, h6 {
-        font-family: 'Indie Flower', cursive;
-        // font-family: 'Amatic SC', cursive;
-        // font-family: 'Tangerine', cursive;
-        // font-family: 'Marck Script', cursive;
-        // font-family: 'Patrick Hand SC', cursive;
-    }
+	width: 21cm;
+	height: 29.7cm;
+	line-height: 0;
+	margin-top: 1em;
+	p, h1, h2, h3, h4, h5, h6 {
+		font-family: 'Indie Flower', cursive;
+		// font-family: 'Amatic SC', cursive;
+		// font-family: 'Tangerine', cursive;
+		// font-family: 'Marck Script', cursive;
+		// font-family: 'Patrick Hand SC', cursive;
+	}
 }
 
 .sign {
-    background-color: white;
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    page-break-after: always;
-    p {
-        font-size: 6mm;
-    }
+	background-color: white;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	page-break-after: always;
+	p {
+		font-size: 6mm;
+	}
 
-    .sign-face {
-        display: flex;
-        flex-direction: column;
-        align-content: space-around;
-        justify-content: space-between;
-        height: 50%;
-        overflow: hidden;
-        position: relative;
-        padding: 0 1cm;
-    }
+	.sign-face {
+		display: flex;
+		flex-direction: column;
+		align-content: space-around;
+		justify-content: space-between;
+		height: 50%;
+		overflow: hidden;
+		position: relative;
+		padding: 0 1cm;
+	}
 
-    .sign-toitla {
-        width: 1cm;
-        margin: 8mm;
-    }
-
-    .sign-tag {
-        display: inline-block;
-        margin-right: 5mm;
-    }
-
-    .sign-ingredients {
-        font-size: 3mm;
-        font-family: Overlock, Roboto, Arial;
-    }
-
-    .sign-cut {
+	.sign-toitla {
         position: absolute;
-        bottom: 0;
         right: 0;
-        width: 10px;
-        height: 10px;
-        border-bottom: 1px solid rgba(0,0,0,0.3);
-        border-right: 1px solid rgba(0,0,0,0.3);
+		width: 1.3cm;
+		margin: 8mm;
+        transform: rotate(10deg);
+	}
+
+    .sign-profile {
+        position: absolute;
+        top: 0.5cm;
+        left: 0;
+        transform: rotate(-10deg);
+        .sign-profile-image {
+            width: 2.2cm;
+            margin-left: 0.8cm;
+        }
+        p {
+            padding: 0.3cm;
+            white-space: nowrap;
+            text-align: center;
+        }
     }
 
-    .mainsign-toitla {
-        width: 1cm;
-        margin: 8mm;
-    }
+	.sign-tag {
+		display: inline-block;
+		margin-right: 5mm;
+	}
 
-    .mainsign-toitla {
-        width: 5cm;
-    }
+	.sign-ingredients {
+		font-size: 3mm;
+		font-family: Overlock, Roboto, Arial;
+	}
+
+	.sign-cut {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		width: 10px;
+		height: 10px;
+		border-bottom: 1px solid rgba(0,0,0,0.3);
+		border-right: 1px solid rgba(0,0,0,0.3);
+	}
+
+	.mainsign-toitla {
+		width: 1cm;
+		margin: 8mm;
+	}
+
+	.mainsign-toitla {
+		width: 5cm;
+	}
 }
 
 @media print {
-    .sign-page {
-        margin-top: 0;
-        margin-bottom: -2px;
-    }
+	.sign-page {
+		margin-top: 0;
+		margin-bottom: -2px;
+	}
 }

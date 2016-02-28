@@ -4,16 +4,24 @@ Sign = React.createClass({
         var item = this.props.menuitem
         var backFace = this.props.backFace
         return(<div key={item._id} className="sign" style={this.props.style}>
+
             {backFace ?
                 <div className="sign-face">
                     <div className="sign-cut"></div>
                 </div>
             : null}
+
             <div className="sign-face text-center" style={backFace ? {} : {height: "100%"}}>
                 <div>
                     <img className="sign-toitla" src="/icons/black-toitla.svg"/>
-                    {/*<p>{item.chefName}</p>*/}
+                    <div className="sign-profile">
+                        <div className="sign-profile-image">
+                            <ProfileImageContainer userId={item.chefId} dpr={3}/>
+                        </div>
+                        <p>{item.chefName}</p>
+                    </div>
                 </div>
+                <div className="sign-spacer"></div>
                 <div>
                     <h3 className="sign-title">{item.title}</h3>
                 </div>
