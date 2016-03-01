@@ -12,10 +12,10 @@ OrdersListContainer = React.createClass({
 
         var find = {}
         if (!this.state.showAllOrders)
-            find.result = {$or: [{$exists: 0}, {result: null}]}
+            find.$or = [{'result.result': null}, {result: {$exists: 0}}]
 
         var options = {sort: {"event.fromDate": 1, "event.fromTime": 1}}
-
+        
         return {
             orders: Orders.find(find, options).fetch(),
             subsReady: subscription.ready()
