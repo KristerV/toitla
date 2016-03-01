@@ -12,7 +12,7 @@ OrdersListContainer = React.createClass({
 
         var find = {}
         if (!this.state.showAllOrders)
-            find.result = {$exists: 0}
+            find.result = {$or: [{$exists: 0}, {result: null}]}
 
         var options = {sort: {"event.fromDate": 1, "event.fromTime": 1}}
 
