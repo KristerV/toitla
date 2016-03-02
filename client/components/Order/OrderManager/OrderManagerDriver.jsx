@@ -54,7 +54,7 @@ OrderManagerDriver = React.createClass({
             <div className="padding paper mdl-cell mdl-cell--6-col waypoint-ordering">
                 <h5>Waypoints ordering</h5>
                 <p className="text-hint">Click to move waypoint up</p>
-                {order.chefs.map(item => {
+                {order.chefs ? order.chefs.map(item => {
                     let chef = _.findWhere(this.data.users, {_id: item._id})
                     let name = chef.profile.name
                     let location = _.findWhere(chef.profile.locations, {_id: item.pickupLocation})
@@ -75,7 +75,7 @@ OrderManagerDriver = React.createClass({
                         className="w100"
                         onClick={this.raiseWaypoint}
                     />
-                })}
+                }) : null}
             </div>
             <div className="padding paper mdl-cell mdl-cell--6-col">
                 <h5>Start and finish</h5>
