@@ -29,7 +29,7 @@ Meteor.methods({
             sett = sett ? sett + ': ' : ''
             var order = Orders.findOne(orderId)
             var date = moment(order.event.fromDate).format('DD.MM.YYYY')
-            let html = `${date} - ${sett}${url}`
+            let html = `<p><b>${date}</b> - ${sett}${url}</p>`
             Meteor.call('sendEmail', null, null, 'driver link', html, true)
         }
     }
