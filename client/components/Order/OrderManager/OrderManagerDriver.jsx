@@ -3,11 +3,16 @@ OrderManagerDriver = React.createClass({
     mixins: [ReactMeteorData],
     getMeteorData() {
         var subscription = Meteor.subscribe("settings")
+        var subscription2 = Meteor.subscribe("allUserData")
+
         var driverSettings = Settings.findOne('driver')
+        var chefIds = _.pluck(this.props.order.chefs, '_id')
+        var users = Meteor.users.find({_id: {$in: chefIds}}).fetch()
 
         return {
+            users: users,
             driverSettings: driverSettings,
-            subsReady: subscription.ready()
+            subsReady: subscription.ready() && subscription2.ready()
         }
     },
 
@@ -33,13 +38,47 @@ OrderManagerDriver = React.createClass({
         Meteor.call('sendDriverLink', G.getFullUrl(), this.props.order._id)
     },
 
+    raiseWaypoint(e) {
+        let index = $(e.target).index('.waypoint-ordering button')
+        Meteor.call('Order--moveChefUp', this.props.order._id, index)
+    },
+
     render() {
         var order = this.props.order || {}
         order.driver = order.driver || {}
         var sms = this.data.driverSettings ? this.data.driverSettings.sms : null
-        return(<div className="max-width margin-top">
-            <h3 className="text-white text-center">Message to Driver</h3>
-            <div className="padding paper">
+        return(<div className="max-width margin-top mdl-grid">
+            <div className="mdl-cell mdl-cell--12-col">
+                <h3 className="text-white text-center">Message to Driver</h3>
+            </div>
+            <div className="padding paper mdl-cell mdl-cell--6-col waypoint-ordering">
+                <h5>Waypoints ordering</h5>
+                <p className="text-hint">Click to move waypoint up</p>
+                {order.chefs.map(item => {
+                    let chef = _.findWhere(this.data.users, {_id: item._id})
+                    let name = chef.profile.name
+                    let location = _.findWhere(chef.profile.locations, {_id: item.pickupLocation})
+
+                    let text
+                    if (!item.confirmed)
+                        text = `Not confirmed (${name})`
+                    else if (!item.pickupLocation)
+                        text = `No pickup location (${name})`
+                    else
+                        text = `${location.address} (${name})`
+
+                    return <Button
+                        key={item._id}
+                        label={text}
+                        multiline={true}
+                        accent={!item.confirmed || !item.pickupLocation}
+                        className="w100"
+                        onClick={this.raiseWaypoint}
+                    />
+                })}
+            </div>
+            <div className="padding paper mdl-cell mdl-cell--6-col">
+                <h5>Start and finish</h5>
                 <Checkbox
                     label="First stop is Toitla office"
                     onChange={order.handleChangeCheckbox.bind(order)}
@@ -58,10 +97,14 @@ OrderManagerDriver = React.createClass({
                      value={order.driver.finishLatlong}
                      name="driver.finishLatlong"
                  />
+            </div>
+            <div className="padding paper mdl-cell mdl-cell--6-col">
+                <h5>Actions</h5>
                 <Button
                     label="rebuild text"
                     onClick={this.resetText}
                     raised={true}
+                    colored={true}
                 />
                 <SingleClickButton
                     accent={true}
@@ -73,13 +116,7 @@ OrderManagerDriver = React.createClass({
                 />
                 <p className="margin-top">{sms ? `${sms}: ${G.getFullUrl()}` : `Driver Link: ${G.getFullUrl()}`} </p>
             </div>
-            <div className="padding paper margin-top margin-bottom">
-                {/*<TextInput
-                 rows={1}
-                 onBlur={this.updateText}
-                 value={order.driver.info}
-                 name="driver.info"
-                 />*/}
+            <div className="padding paper margin-top margin-bottom mdl-cell mdl-cell--12-col">
                 <Toitla/>
                 <Markdown>{order.driver.info}</Markdown>
             </div>
