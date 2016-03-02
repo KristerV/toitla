@@ -1,7 +1,7 @@
 Button = React.createClass({
 
     render() {
-        var className = "mdl-button mdl-js-button"
+        var className = "mdl-button mdl-js-button " + this.props.className
         if (this.props.className)
             className += " " + this.props.className
         if (this.props.raised)

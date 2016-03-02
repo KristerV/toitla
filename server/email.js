@@ -21,5 +21,16 @@ Meteor.methods({
     sendEmailLogin: function (email) {
         email = email.replace(/ /g, '')
         Accounts.sendLoginEmail(email)
+    },
+    sendDriverLink: function(url, orderId) {
+        check([url, orderId], [String])
+        if (Roles.isManager(this.userId)) {
+            var sett = Settings.findOne('driver').sms
+            sett = sett ? sett + ': ' : ''
+            var order = Orders.findOne(orderId)
+            var date = moment(order.event.fromDate).format('DD.MM.YYYY')
+            let html = `${date} - ${sett}${url}`
+            Meteor.call('sendEmail', null, null, 'driver link', html, true)
+        }
     }
 });
