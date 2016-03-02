@@ -1,5 +1,16 @@
 OrderManagerDriver = React.createClass({
 
+    mixins: [ReactMeteorData],
+    getMeteorData() {
+        var subscription = Meteor.subscribe("settings")
+        var driverSettings = Settings.findOne('driver')
+
+        return {
+            driverSettings: driverSettings,
+            subsReady: subscription.ready()
+        }
+    },
+
     resetText() {
         this.props.order.resetDriverInfo((err, result) => {
             if (err)
@@ -18,9 +29,14 @@ OrderManagerDriver = React.createClass({
             this.props.order.resetDriverInfo()
     },
 
+    sendLinkToFleep() {
+        Meteor.call('sendDriverLink', G.getFullUrl(), this.props.order._id)
+    },
+
     render() {
         var order = this.props.order || {}
         order.driver = order.driver || {}
+        var sms = this.data.driverSettings ? this.data.driverSettings.sms : null
         return(<div className="max-width margin-top">
             <h3 className="text-white text-center">Message to Driver</h3>
             <div className="padding paper">
@@ -47,6 +63,15 @@ OrderManagerDriver = React.createClass({
                     onClick={this.resetText}
                     raised={true}
                 />
+                <SingleClickButton
+                    accent={true}
+                    raised={true}
+                    label="Send link to fleep"
+                    labelDisabled="Link sent to fleep"
+                    onClick={this.sendLinkToFleep}
+                    className="margin-left"
+                />
+                <p className="margin-top">{sms ? `${sms}: ${G.getFullUrl()}` : `Driver Link: ${G.getFullUrl()}`} </p>
             </div>
             <div className="padding paper margin-top margin-bottom">
                 {/*<TextInput

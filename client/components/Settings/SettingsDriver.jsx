@@ -26,6 +26,14 @@ SettingsDriver = React.createClass({
 			<h3 className="text-white text-center w100">Driver settings</h3>
 			<div className="paper padding">
 				<p className="text-hint">Markdown supported</p>
+				<h3>SMS text before link</h3>
+                <TextInput
+                    label="SMS intro"
+                    name="message.sms"
+                    value={driver.message.sms}
+                    onBlur={this.updateText}
+                />
+				<h3>Instructions texts</h3>
 				<TextInput
 					rows={1}
 					label="Intro"
