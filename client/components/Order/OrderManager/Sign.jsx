@@ -16,7 +16,7 @@ Sign = React.createClass({
                     <img className="sign-toitla" src="/icons/black-toitla.svg"/>
                     <div className="sign-profile">
                         <div className="sign-profile-image">
-                            <ProfileImageContainer userId={item.chefId} dpr={3}/>
+                            <ProfileImageContainer userId={item.chefId} dpr={3} disablePlaceholder={true}/>
                         </div>
                         <p>{item.chefName}</p>
                     </div>
