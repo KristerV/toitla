@@ -36,28 +36,28 @@
 	}
 
 	.sign-toitla {
-        position: absolute;
-        right: 0;
+		position: absolute;
+		right: 0;
 		width: 1.3cm;
 		margin: 8mm;
-        transform: rotate(10deg);
+		transform: rotate(10deg);
 	}
 
-    .sign-profile {
-        position: absolute;
-        top: 0.5cm;
-        left: 0;
-        transform: rotate(-10deg);
-        .sign-profile-image {
-            width: 2.2cm;
-            margin-left: 0.8cm;
-        }
-        p {
-            padding: 0.3cm;
-            white-space: nowrap;
-            text-align: center;
-        }
-    }
+	.sign-profile {
+		position: absolute;
+		top: 0.5cm;
+		left: 0;
+		transform: rotate(-10deg);
+		.sign-profile-image {
+			width: 2.2cm;
+			margin-left: 0.8cm;
+		}
+		p {
+			padding: 0.3cm;
+			white-space: nowrap;
+			text-align: center;
+		}
+	}
 
 	.sign-tag {
 		display: inline-block;
@@ -83,6 +83,35 @@
 		width: 1cm;
 		margin: 8mm;
 	}
+
+	.mainsign-toitla-profile {
+        width: 3cm;
+        padding-bottom: 23cm;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+	}
+
+    .loop(@counter) when (@counter >= 0) {
+        .mainsign-toitla-profile-@{counter} {
+            @deg: 5deg;
+            &:nth-child(4n) {
+                transform: translate(-50%, -25%) rotate(@deg * (@counter + 0.5));
+            }
+            &:nth-child(4n+1) {
+                transform: translate(-50%, -25%) rotate(-@deg * (@counter + 0.5));
+            }
+            &:nth-child(4n+2) {
+                transform: translate(-50%, -7%) rotate(@deg * (@counter + 0.5) - 7);
+            }
+            &:nth-child(4n+3) {
+                transform: translate(-50%, -7%) rotate(-@deg * (@counter + 0.5) - 7);
+            }
+        }
+        .loop((@counter - 1));    // next iteration
+    }
+
+    .loop(30);
 
 	.mainsign-toitla {
 		width: 5cm;

@@ -26,6 +26,15 @@ OrderManagerSigns = React.createClass({
             return <Loader/>
         var menuitems = this.data.menuitems
 
+        let chefsUniq = []
+        chefs = []
+        menuitems.forEach(item => {
+            if (!_.contains(chefsUniq, item.chefId)) {
+                chefs.push({_id: item.chefId, name: item.chefName})
+                chefsUniq.push(item.chefId)
+            }
+        })
+
         var rows = 1
         var cols = 2
         var backFace = true
@@ -61,7 +70,7 @@ OrderManagerSigns = React.createClass({
             </div>
             <div id="printable-container">
                 <div id="printable-content">
-                    {this.state.printMainCard ? <SignToitla/> : null}
+                    {this.state.printMainCard ? <SignToitla chefs={chefs}/> : null}
                     {pages}
                 </div>
             </div>
