@@ -46,6 +46,8 @@ ChefConfirm = React.createClass({
     },
 
     render() {
+        if (!this.data.subsReady)
+            return <Loader/>
         var chef = this.props.chef
         if (!chef._id) throw new Meteor.Error("Sorry, need chef id in here.. or refactor somehow.")
         var orderId = this.props.orderId
@@ -53,6 +55,10 @@ ChefConfirm = React.createClass({
         var declined = chef.declined
         var chefName = this.data.user.profile.name
         var locations = this.data.user.profile.locations
+        if (!locations) {
+            sAlert.error(`User ${chefName} does not have an address`)
+            return <Loader/>
+        }
         locations.unshift({address: "Pickup location", _id: null})
 
         var status
