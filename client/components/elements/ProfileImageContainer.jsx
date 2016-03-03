@@ -13,7 +13,7 @@ ProfileImageContainer = React.createClass({
 
     render() {
         if (this.data.subsReady)
-            return (<ProfileImage user={this.data.user} dpr={this.props.dpr}/>)
+            return (<ProfileImage {...this.props} user={this.data.user}/>)
         else
             return(<Loader/>)
     }
