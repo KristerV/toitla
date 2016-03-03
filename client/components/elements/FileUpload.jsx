@@ -36,7 +36,6 @@ FileUpload = React.createClass({
     },
 
     render() {
-        return<p>error</p>
         let uploading = this.data.images[0]
         return (<div>
             {uploading ?
