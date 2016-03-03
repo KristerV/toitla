@@ -28,7 +28,9 @@ Imgix = React.createClass({
         let path = G.rmBothSlashes(this.props.path)
         let filename = this.props.filename
         let dpr = this.props.dpr ? `&dpr=${this.props.dpr}` : ""
-        return `https://toitla.imgix.net/${path}/${filename}?fit=crop&crop=faces,entropy&fm=png${dpr}`
+        let fit = this.props.fit ? `&fit=${this.props.fit}` : `&fit=crop`
+        let facepad = this.props.facepad ? `&facepad=${this.props.facepad}` : ""
+        return `https://toitla.imgix.net/${path}/${filename}?${fit}${facepad}&crop=faces,entropy&fm=png${dpr}`
     },
 
     render() {
