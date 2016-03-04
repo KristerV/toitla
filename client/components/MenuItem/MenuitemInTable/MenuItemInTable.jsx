@@ -51,6 +51,7 @@ MenuitemInTable = React.createClass({
         var chefConfirmMode = menuitem.inorder
         var id = menuitem.templateId || menuitem._id // inorder || template
         errors = menuitem.errors || {}
+        menuitem.image = menuitem.image || {}
 
         // User variables
         var user = this.data.user
@@ -95,8 +96,20 @@ MenuitemInTable = React.createClass({
             })
         }
 
+        const windowSize = Math.min($(window).height(), $(window).width())
+        let imageTipWidth = (windowSize * 0.7) + "px"
+
         return(<tr className={trClass} onClick={this.props.onClick} data-menuitem-id={id}>
             <td><Checkbox checked={menuitem.inOrderItemId || menuitem.inorder} onChange={this.toggleInOrder} defaultStyle={true}/></td>
+            <td className="mdl-data-table__cell--non-numeric" style={{padding: "3px"}}>
+                <Imgix id={"image-tooltip-"+id} path={menuitem.image.path} filename={menuitem.image.filename} disablePlaceholder={true}/>
+                <div
+                    className="mdl-tooltip mdl-tooltip--right"
+                    style={{height: imageTipWidth, width: imageTipWidth, maxWidth: "500px", maxHeight: "500px"}}
+                    htmlFor={"image-tooltip-"+id}>
+                    <Imgix id={"image-tooltip-"+id} path={menuitem.image.path} filename={menuitem.image.filename}/>
+                </div>
+            </td>
             <td className="mdl-data-table__cell--non-numeric">{menuitem.chefName || profileName}</td>
             <td className="wrap mdl-data-table__cell--non-numeric">{menuitem.title}</td>
             <td className="mdl-data-table__cell--non-numeric">
