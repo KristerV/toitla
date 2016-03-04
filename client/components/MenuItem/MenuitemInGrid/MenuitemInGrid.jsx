@@ -33,8 +33,15 @@ MenuitemInGrid = React.createClass({
         Meteor.call("menuitemInOrder--switchItem", this.props.menuitem._id)
     },
 
+    uploadComplete(path, filename) {
+        var itemId = this.props.menuitem._id
+        Meteor.call('menuitemTemplate--updateField', itemId, 'image.path', path)
+        Meteor.call('menuitemTemplate--updateField', itemId, 'image.filename', filename)
+    },
+
     render() {
         var menuitem = this.props.menuitem
+        menuitem.image = menuitem.image || {}
         var menuitemKey = this.props.menuitemKey
         var extraSections = []
         var isManager = Roles.userIsInRole(Meteor.userId(), 'manager')
@@ -73,11 +80,16 @@ MenuitemInGrid = React.createClass({
             options.push({ label: 'delete', onClick: this.deleteMenuitem})
         }
 
+        console.log("menuitem",menuitem)
+
         // Render
         return(
         <div className="MenuitemGrid mdl-shadow--2dp paper mdl-cell mdl-cell--4-col">
             <CornerMenu options={options}/>
-            <MenuitemInGridFoodThumbnail menuitem={menuitem}/>
+            <section>
+                <Imgix path={menuitem.image.path} filename={menuitem.image.filename}/>
+                {menuitem.published ? null : <FileUpload path="uploads/images/menuitems" onComplete={this.uploadComplete}/>}
+            </section>
             <MenuitemInGridDetails menuitem={menuitem}/>
             {extraSections}
         </div>)

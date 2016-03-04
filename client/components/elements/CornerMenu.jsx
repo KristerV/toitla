@@ -21,7 +21,7 @@ CornerMenu = React.createClass({
 
         // Render
         return(
-        <div className="mdl-container__menu" style={{position: 'relative'}}>
+        <div className="mdl-container__menu" style={{position: 'relative', padding: '0'}}>
             <button
                 style={{position: 'absolute', right: "0"}}
                 id={"cornerMenuIcon-"+rand}

@@ -25,6 +25,8 @@ Imgix = React.createClass({
     },
 
     getUrl() {
+        if (!this.props.path || !this.props.filename)
+            return null
         let path = G.rmBothSlashes(this.props.path)
         let filename = this.props.filename
         let dpr = this.props.dpr ? `&dpr=${this.props.dpr}` : ""
@@ -34,14 +36,12 @@ Imgix = React.createClass({
     },
 
     render() {
-        let path = G.rmBothSlashes(this.props.path)
-        let filename = this.props.filename
-
-        if (!path || !filename)
+        const url = this.getUrl()
+        if (!url)
             return <i style={{fontSize: "4em", margin: "2em 0"}} className="material-icons text-center w100">camera_alt</i>
 
         if (this.state.showImage)
-            return (<ImgixImage src={this.getUrl()} circle={this.props.circle}/>)
+            return (<ImgixImage src={url} circle={this.props.circle}/>)
         else
             return<div>refreshing</div>
         // in case want to switch back
