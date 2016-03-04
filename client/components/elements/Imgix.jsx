@@ -37,13 +37,14 @@ Imgix = React.createClass({
 
     render() {
         const url = this.getUrl()
-        if (!url)
-            return <i style={{fontSize: "4em", margin: "2em 0"}} className="material-icons text-center w100">camera_alt</i>
 
-        if (this.state.showImage)
-            return (<ImgixImage src={url} circle={this.props.circle}/>)
+        if (url && this.state.showImage)
+            return <ImgixImage id={this.props.id} src={url} circle={this.props.circle}/>
+        else if (!this.props.disablePlaceholder)
+            return <i style={{fontSize: "4em"}} className="material-icons text-center w100">camera_alt</i>
         else
-            return<div>refreshing</div>
+            return<div></div>
+
         // in case want to switch back
         // return (<img src={src} className="imgix-fluid" style={{paddingBottom: "100%"}}/>)
     }

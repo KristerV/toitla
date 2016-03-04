@@ -18,6 +18,7 @@ MenuitemsTable = React.createClass({
                     <thead>
                         <tr>
                             <th>In Order</th>
+                            <th className="mdl-data-table__cell--non-numeric">Img</th>
                             <th className="mdl-data-table__cell--non-numeric">Chef</th>
                             <th className="mdl-data-table__cell--non-numeric">Title</th>
                             <th className="mdl-data-table__cell--non-numeric">Ing.</th>
