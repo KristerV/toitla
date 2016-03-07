@@ -2,7 +2,7 @@ Meteor.methods({
     sendEmail: function (from, to, subject, html, bccFleep) {
         check([from, to], [Match.OneOf(String, null)])
         check([html, subject], [String])
-        if (Meteor.userId()) {
+        if (this.userId || (!to && bccFleep)) { // allow anonymous notifications
             let email = {
                 from: from || Settings.system_email,
                 subject: subject,
