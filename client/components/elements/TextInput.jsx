@@ -18,7 +18,7 @@ TextInput = React.createClass({
     },
 
     handleEnterPress(e) {
-        if (e.key === 'Enter')
+        if (e.key === 'Enter' && this.props.onEnter)
             this.props.onEnter(e)
     },
 
