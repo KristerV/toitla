@@ -19,6 +19,7 @@ OrderListItem = React.createClass({
 
         var className = ""
         if (order.highlightForChef(Meteor.userId())) className += "bg-yellow"
+        else if (moment().diff(order.createdAt, 'days') < 2) className += "bg-lightred"
         else if (!order.isSubmitted()) className += "bg-grey"
         else className += "bg-white"
 
