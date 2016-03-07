@@ -33,6 +33,8 @@ Accounts.sendLoginEmail = function (address) {
 
     html += '<p>All the best, Toitla</p>'
 
+    console.log("address",address)
+
     Email.send({
         from: Settings.system_email,
         to: address,
