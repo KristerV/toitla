@@ -2,7 +2,7 @@ OrdersListContainer = React.createClass({
 
     getInitialState() {
         return {
-            showAllOrders: false,
+            showOnlyCompleted: false,
         }
     },
 
@@ -11,8 +11,8 @@ OrdersListContainer = React.createClass({
         var subscription = Meteor.subscribe("orders")
 
         var find = {}
-        if (this.state.showAllOrders)
-            find.result = {$exists: 1}
+        if (this.state.showOnlyCompleted)
+            find.$and = [{'result.result': {$ne: null}}, {result: {$exists: 1}}]
         else
             find.$or = [{'result.result': null}, {result: {$exists: 0}}]
 
@@ -25,12 +25,12 @@ OrdersListContainer = React.createClass({
     },
 
     switchShowAll() {
-        this.setState({showAllOrders: !this.state.showAllOrders})
+        this.setState({showOnlyCompleted: !this.state.showOnlyCompleted})
     },
 
     render() {
         if (this.data.subsReady)
-            return <OrderList orders={this.data.orders} switchShowAll={this.switchShowAll} showAllOrders={this.state.showAllOrders}/>
+            return <OrderList orders={this.data.orders} switchShowAll={this.switchShowAll} showOnlyCompleted={this.state.showOnlyCompleted}/>
         else
             return <Loader/>
     }
