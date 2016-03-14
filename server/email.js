@@ -12,7 +12,6 @@ Meteor.methods({
                 email.to = to
             if (bccFleep)
                 email.bcc = Settings.toitla.fleepConvo
-            console.log("email.to",email.to)
             Email.send(email)
         } else {
             throw new Meteor.Error("You're not allowed to send email")
