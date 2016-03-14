@@ -9,7 +9,6 @@ SignToitla = React.createClass({
                     </div>
                     <div className="mainsign-profiles">
                         {this.props.chefs ? this.props.chefs.map((user, i) => {
-                            console.log("user._id",user._id)
                             return <div className={`mainsign-toitla-profile mainsign-toitla-profile-${i}`} key={user._id}>
                                 <ProfileImageContainer userId={user._id} dpr={3} disablePlaceholder={true}/>
                                 <p>{user.name}</p>

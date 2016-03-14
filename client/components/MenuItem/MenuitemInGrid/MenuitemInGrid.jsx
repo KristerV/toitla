@@ -80,8 +80,6 @@ MenuitemInGrid = React.createClass({
             options.push({ label: 'delete', onClick: this.deleteMenuitem})
         }
 
-        console.log("menuitem",menuitem)
-
         // Render
         return(
         <div className="MenuitemGrid mdl-shadow--2dp paper mdl-cell mdl-cell--4-col">
