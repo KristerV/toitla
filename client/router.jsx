@@ -1,3 +1,5 @@
+
+
 FlowRouter.goSilent = function(a, b) {
 	var path = FlowRouter.path(a, b)
 	FlowRouter.redirect(path);
@@ -268,9 +270,9 @@ function loginRequired(context) {
 
 function startIdleMonitor() {
 	Deps.autorun(function(c){
-	    try {
-	        UserStatus.startMonitor({threshold: 30000,interval:5000,idleOnBlur:true});
-	    } catch(err) {}
+		try {
+			UserStatus.startMonitor({threshold: 30000,interval:5000,idleOnBlur:true});
+		} catch(err) {}
 	})
 }
 
