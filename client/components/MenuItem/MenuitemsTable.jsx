@@ -27,7 +27,6 @@ MenuitemsTable = React.createClass({
                             <th className="mdl-data-table__cell--non-numeric">Type</th>
                             <th>Price</th>
                             <th>Weight</th>
-                            {FlowRouter.current().route.name === 'order' ? <th>Confirm</th> : null}
                         </tr>
                     </thead>
                     <tbody>
