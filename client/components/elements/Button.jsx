@@ -11,7 +11,7 @@ Button = React.createClass({
         if (this.props.accent)
             className += " mdl-button--accent"
 
-        return (<button className={className} onClick={this.props.onClick}>{this.props.label}</button>)
+        return (<button className={className} onClick={this.props.onClick} style={this.props.style}>{this.props.label}</button>)
     }
 
 })
