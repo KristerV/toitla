@@ -11,7 +11,9 @@ OrdersListContainer = React.createClass({
         var subscription = Meteor.subscribe("orders")
 
         var find = {}
-        if (!this.state.showAllOrders)
+        if (this.state.showAllOrders)
+            find.result = {$exists: 1}
+        else
             find.$or = [{'result.result': null}, {result: {$exists: 0}}]
 
         var options = {sort: {"event.fromDate": 1, "event.fromTime": 1}}
