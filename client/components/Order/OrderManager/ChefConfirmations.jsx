@@ -15,8 +15,8 @@ ChefConfirmations = React.createClass({
         var order = this.props.order
         order.chefs = order.chefs || []
 
-        if (!order.isStatusChecked('Open Confirmations for Chefs')) {
-            return <p className="padding margin text-white text-hint">Chef confirming can start by ticking "Open Confirmations for Chefs" in the status tab.</p>
+        if (!order.isStatusChecked(Settings.checklistReserved.openChefConfirmations)) {
+            return <p className="padding margin text-white text-hint">Chef confirming can start by ticking "{Settings.checklistReserved.openChefConfirmations}" in the status tab.</p>
         }
 
         const allergies = order.getAllergies()
