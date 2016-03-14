@@ -152,14 +152,6 @@ MenuitemInTable = React.createClass({
                     {weightHistory}
                 </div> : null}
             </td>
-            {menuitem.inorder ? <td>
-                <Checkbox
-                    checked={menuitem.chefConfirmed}
-                    onChange={this.toggleConfirm}
-                    defaultStyle={true}
-                    />
-            </td> : null}
-            {/*<td><CornerMenu options={options}/></td>*/}
         </tr>)
     }
 })
