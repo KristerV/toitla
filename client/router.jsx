@@ -1,4 +1,6 @@
-
+FlowRouter.triggers.enter([
+    function(){ G.setDocumentTitle("Toitla") }
+])
 
 FlowRouter.goSilent = function(a, b) {
 	var path = FlowRouter.path(a, b)
