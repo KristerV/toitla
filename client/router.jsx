@@ -1,6 +1,4 @@
-FlowRouter.triggers.enter([
-    function(){ G.setDocumentTitle("Toitla") }
-])
+FlowRouter.triggers.enter([function(){ G.setDocumentTitle("Toitla") }, logTawk ])
 
 FlowRouter.goSilent = function(a, b) {
 	var path = FlowRouter.path(a, b)
@@ -297,4 +295,12 @@ function waitForRoles(callback) {
 	} else {
 		callback()
 	}
+}
+
+function logTawk() {
+    if (!window.Tawk_API) {
+        Meteor.setTimeout(logTawk, 1000)
+    } else {
+        window.Tawk_API.setAttributes({'current-route': G.getFullUrl()})
+    }
 }
