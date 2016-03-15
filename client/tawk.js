@@ -13,16 +13,10 @@ function tawkTimeout() {
     const name = user.getName()
     const email = user.getEmail()
     if (email && window.Tawk_API) {
-        window.Tawk_API.setAttributes({
-            name: name,
-            email: email,
-            'user-id': Meteor.userId()
-        })
-        // .visitor doesn't actually update server data, keeping it here maybe update will help
-        window.Tawk_API.visitor = {
-            name: name,
-            email: email
-        }
+        console.log("SET STUFF")
+        window.Tawk_API.setAttributes({name: name})
+        window.Tawk_API.setAttributes({email1: email}) // just email doesn't work
+        window.Tawk_API.setAttributes({'user-id': Meteor.userId()})
     } else {
         Meteor.setTimeout(tawkTimeout, 1000)
     }
