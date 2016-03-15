@@ -10,10 +10,9 @@ var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 
 function tawkTimeout() {
     const user = Meteor.user()
-    const name = user.getName()
-    const email = user.getEmail()
-    if (email && window.Tawk_API) {
-        console.log("SET STUFF")
+    if (user && user.getEmail() && window.Tawk_API) {
+        const name = user.getName()
+        const email = user.getEmail()
         window.Tawk_API.setAttributes({name: name})
         window.Tawk_API.setAttributes({email1: email}) // just email doesn't work
         window.Tawk_API.setAttributes({'user-id': Meteor.userId()})
