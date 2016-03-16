@@ -6,27 +6,31 @@ Landing = React.createClass({
         FlowRouter.go('/login')
     },
     render() {
-        return (<div>
+        return (<div className="landing">
             <section className="mdl-grid landing-hero text-center">
                 <div className="mdl-cell mdl-cell--6-col">
                     Tekst ja nupp
                 </div>
                 <div className="mdl-cell mdl-cell--6-col">
                     <div className="paper center padding">
-                        Tekst
+                        <TextInput label="üks" />
+                        <TextInput label="kaks" />
+                        <TextInput label="kolm" />
+                        <TextInput label="neli" />
+                        <Button/>
                     </div>
                 </div>
             </section>
             <section>
+                <h1>Degusteerimine</h1>
+            </section>
+            <section>
                 <h1>We've served XX events</h1>
                 <p>Ranging from 10 to 160 people</p>
+                <h3>Clients include</h3>
             </section>
             <section>
-                <h1>GALLERY</h1>
-            </section>
-            <section>
-                ...and more
-                Skype, Microsoft, US Embassy, Fleep, This, That, Me, You
+                <h1>Event1</h1>
             </section>
             <section>
                 Fans
@@ -49,23 +53,16 @@ Landing = React.createClass({
                         <div className="mdl-cell mdl-cell--6-col">PILT</div>
                         <div className="mdl-cell mdl-cell--6-col">Pikk tekst kuidas töötab</div>
                     </div>
-                    <div className="mdl-cell mdl-cell--4-col mdl-grid">
-                        <div className="mdl-cell mdl-cell--6-col">PILT</div>
-                        <div className="mdl-cell mdl-cell--6-col">Pikk tekst kuidas töötab</div>
-                    </div>
-                    <div className="mdl-cell mdl-cell--4-col mdl-grid">
-                        <div className="mdl-cell mdl-cell--6-col">PILT</div>
-                        <div className="mdl-cell mdl-cell--6-col">Pikk tekst kuidas töötab</div>
-                    </div>
-                    <div className="mdl-cell mdl-cell--4-col mdl-grid">
-                        <div className="mdl-cell mdl-cell--6-col">PILT</div>
-                        <div className="mdl-cell mdl-cell--6-col">Pikk tekst kuidas töötab</div>
-                    </div>
-                    <div className="mdl-cell mdl-cell--4-col mdl-grid">
-                        <div className="mdl-cell mdl-cell--6-col">PILT</div>
-                        <div className="mdl-cell mdl-cell--6-col">Pikk tekst kuidas töötab</div>
-                    </div>
                 </div>
+            </section>
+            <section>
+                <h1>Kokad</h1>
+            </section>
+            <section>
+                <h1>Meie</h1>
+            </section>
+            <section>
+                <h2>Footer</h2>
             </section>
         </div>)
     }
