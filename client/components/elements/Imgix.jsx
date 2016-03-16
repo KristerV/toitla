@@ -38,9 +38,12 @@ Imgix = React.createClass({
     render() {
         const url = this.getUrl()
 
-        if (url && this.state.showImage)
-            return <ImgixImage id={this.props.id} src={url} circle={this.props.circle}/>
-        else if (!this.props.disablePlaceholder)
+        if (url && this.state.showImage) {
+            if (this.props.height)
+                return <div style={{height: this.props.height, position: "relative"}}><ImgixImage {...this.props} src={url}/></div>
+            else
+                return <ImgixImage {...this.props} src={url}/>
+        } else if (!this.props.disablePlaceholder)
             return <i style={{fontSize: "4em"}} className="material-icons text-center w100">camera_alt</i>
         else
             return<div></div>

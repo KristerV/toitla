@@ -7,7 +7,7 @@ Landing = React.createClass({
     },
     render() {
         return (<div className="landing">
-            <section className="mdl-grid text-center landing-hero shadow-bottom">
+            <section className="mdl-grid text-center bg-temp shadow-bottom">
                 <div className="mdl-cell mdl-cell--6-col text-white">
                     <Toitla white={true} shadow={true} size={1.4}/>
                     <h3 style={{fontFamily: "GH"}} className="text-shadow">{T.landing.description()}</h3>
@@ -23,20 +23,32 @@ Landing = React.createClass({
                     </div>
                 </div>
             </section>
+
             <section>
-                <h1>Degusteerimine</h1>
+                <div className="landing-degustation center mdl-grid paper no-padding">
+                    <div className="mdl-cell mdl-cell--8-col no-margin bg-temp"></div>
+                    <div className="mdl-cell mdl-cell--4-col text-center">
+                        <h5>{T.landing.degustation_title()}</h5>
+                        <Button label={T.landing.degustation_button()} raised={true}/>
+                    </div>
+                </div>
             </section>
-            <section>
-                <h1>We've served XX events</h1>
+
+            <section className="text-center">
+                <h1>We've served 72 events</h1>
                 <p>Ranging from 10 to 160 people</p>
-                <h3>Clients include</h3>
+                <h3 className="text-hint">Clients include</h3>
+                <Imgix path="/images/landing/clients" filename="us_embassy.png" width="100px" height="100px" square={true} />
             </section>
+
             <section>
                 <h1>Event1</h1>
             </section>
+
             <section>
                 Fans
             </section>
+
             <section>
                 <h1>How to order</h1>
                 <ol>
@@ -48,6 +60,7 @@ Landing = React.createClass({
                     <p className="text-hint">Love to hear about your experience</p>
                 </ol>
             </section>
+
             <section>
                 <h1>Features</h1>
                 <div className="mdl-grid">
@@ -57,12 +70,15 @@ Landing = React.createClass({
                     </div>
                 </div>
             </section>
+
             <section>
                 <h1>Kokad</h1>
             </section>
+
             <section>
                 <h1>Meie</h1>
             </section>
+
             <section>
                 <h2>Footer</h2>
             </section>
