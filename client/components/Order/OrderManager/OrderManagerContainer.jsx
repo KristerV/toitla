@@ -16,6 +16,8 @@ OrderManagerContainer = React.createClass({
         if (!this.data.subsReady)
             return <Loader/>
 
+        G.setDocumentTitle(this.data.order.getClientName())
+
         // Manager
         if (Roles.userIsInRole(Meteor.userId(), 'manager')) {
             switch (this.props.tab) {

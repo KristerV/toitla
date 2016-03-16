@@ -43,6 +43,14 @@ OrderManagerDriver = React.createClass({
         Meteor.call('Order--moveChefUp', this.props.order._id, index)
     },
 
+    updateChefVisibility(e) {
+        orderId = this.props.order._id
+        arrayId = e.target.name
+        field = 'hideFromDriver'
+        value = !e.target.checked
+        Meteor.call("Order--updateChefsArrayField", orderId, arrayId, field, value);
+    },
+
     render() {
         var order = this.props.order || {}
         order.driver = order.driver || {}
@@ -53,7 +61,7 @@ OrderManagerDriver = React.createClass({
             </div>
             <div className="padding paper mdl-cell mdl-cell--6-col waypoint-ordering">
                 <h5>Waypoints ordering</h5>
-                <p className="text-hint">Click to move waypoint up</p>
+                <p className="text-hint">Click to move waypoint up, deselect checkbox to hide.</p>
                 {order.chefs ? order.chefs.map(item => {
                     let chef = _.findWhere(this.data.users, {_id: item._id})
                     let name = chef.profile.name
@@ -67,14 +75,21 @@ OrderManagerDriver = React.createClass({
                     else
                         text = `${location.address} (${name})`
 
-                    return <Button
-                        key={item._id}
-                        label={text}
-                        multiline={true}
-                        accent={!item.confirmed || !item.pickupLocation}
-                        className="w100"
-                        onClick={this.raiseWaypoint}
-                    />
+                    return <div key={item._id}>
+                        <Checkbox
+                            style={{width: "10%"}}
+                            defaultChecked={!item.hideFromDriver}
+                            onChange={this.updateChefVisibility}
+                            name={item._id}
+                        />
+                        <Button
+                            label={text}
+                            multiline={true}
+                            accent={!item.confirmed || !item.pickupLocation}
+                            style={{width: "90%"}}
+                            onClick={this.raiseWaypoint}
+                        />
+                    </div>
                 }) : null}
             </div>
             <div className="padding paper mdl-cell mdl-cell--6-col">

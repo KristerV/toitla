@@ -46,7 +46,7 @@ Checklist = React.createClass({
                 i++
                 return <div key={item._id} data-index={i}>
                     <ChecklistItem {...this.props} item={item} onEnter={this.addItem}/>
-                    {this.getAddButton(i)}
+                    {/*this.getAddButton(i)*/}
                 </div>
             })}
         </div>)
