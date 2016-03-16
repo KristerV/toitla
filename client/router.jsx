@@ -1,3 +1,5 @@
+FlowRouter.triggers.enter([function(){ G.setDocumentTitle("Toitla") }, logTawk ])
+
 FlowRouter.goSilent = function(a, b) {
 	var path = FlowRouter.path(a, b)
 	FlowRouter.redirect(path);
@@ -268,9 +270,9 @@ function loginRequired(context) {
 
 function startIdleMonitor() {
 	Deps.autorun(function(c){
-	    try {
-	        UserStatus.startMonitor({threshold: 30000,interval:5000,idleOnBlur:true});
-	    } catch(err) {}
+		try {
+			UserStatus.startMonitor({threshold: 30000,interval:5000,idleOnBlur:true});
+		} catch(err) {}
 	})
 }
 
@@ -293,4 +295,12 @@ function waitForRoles(callback) {
 	} else {
 		callback()
 	}
+}
+
+function logTawk() {
+    if (!window.Tawk_API) {
+        Meteor.setTimeout(logTawk, 1000)
+    } else {
+        window.Tawk_API.setAttributes({'current-route': G.getFullUrl()})
+    }
 }

@@ -15,9 +15,9 @@ OrderList = React.createClass({
                 <Checkbox
                     className="margin"
                     style={{display: 'inline'}}
-                    defaultChecked={this.props.showAllOrders}
+                    defaultChecked={this.props.showOnlyCompleted}
                     onChange={this.props.switchShowAll}
-                    label="Show completed orders"
+                    label="Show only completed orders"
                 />
                 {orders.map(order => {
                     return <div key={order._id}>

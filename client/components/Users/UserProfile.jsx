@@ -100,12 +100,15 @@ UserProfile = React.createClass({
                             onBlur={this.updateLocationField}
                             value={loc.address}
                         />
-                        <TextInput
-                            label="Koordinaadid (google mapsist saab)"
-                            name="latlong"
-                            onBlur={this.updateLocationField}
-                            value={loc.latlong}
-                        />
+                        {isManager ?
+                            <TextInput
+                                label="Koordinaadid (google mapsist saab)"
+                                name="latlong"
+                                onBlur={this.updateLocationField}
+                                value={loc.latlong}
+                            /> 
+                            : null
+                        }
                         <TextInput
                             label="Juhised autojuhile"
                             name="notes"
