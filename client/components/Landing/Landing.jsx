@@ -6,17 +6,17 @@ Landing = React.createClass({
         FlowRouter.go('/login')
     },
     render() {
+        console.log("RENDER")
         return (<div className="landing">
             <section className="mdl-grid landing-hero text-center">
                 <div className="mdl-cell mdl-cell--6-col">
                     Tekst ja nupp
                 </div>
                 <div className="mdl-cell mdl-cell--6-col">
-                    <div className="paper center padding">
-                        <TextInput label="üks" />
-                        <TextInput label="kaks" />
-                        <TextInput label="kolm" />
-                        <TextInput label="neli" />
+                    <div className="paper center padding" style={{maxWidth: "300px"}}>
+                        <TextInput label={T.order.form.nrPeople()} />
+                        <TextInput label={T.order.form.duration()} />
+                        <TextInput label={T.order.form.contact_email()} />
                         <Button/>
                     </div>
                 </div>
