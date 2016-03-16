@@ -15,15 +15,15 @@ OrderManagerChef = React.createClass({
             : null}
             <div className="paper padding mdl-cell--5-col margin">
                 <TextInput
-                    label={T("order", "event_type")}
+                    label={T_deprecated("order", "event_type")}
                     disabled={true}
                     value={order.event.eventType}/>
                 <TextInput
-                    label={T("order", "from_date")}
+                    label={T_deprecated("order", "from_date")}
                     disabled={true}
                     value={moment(order.event.fromDate).format('DD. MMMM YYYY')}/>
                 <TextInput
-                    label={T("order", "from_time")}
+                    label={T_deprecated("order", "from_time")}
                     disabled={true}
                     value={moment(order.event.fromTime).format('HH:mm')}/>
                 <p>Allergies</p>
