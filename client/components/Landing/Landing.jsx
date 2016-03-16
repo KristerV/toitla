@@ -6,18 +6,20 @@ Landing = React.createClass({
         FlowRouter.go('/login')
     },
     render() {
-        console.log("RENDER")
         return (<div className="landing">
-            <section className="mdl-grid landing-hero text-center">
-                <div className="mdl-cell mdl-cell--6-col">
-                    Tekst ja nupp
+            <section className="mdl-grid text-center landing-hero shadow-bottom">
+                <div className="mdl-cell mdl-cell--6-col text-white">
+                    <Toitla white={true} shadow={true} size={1.4}/>
+                    <h3 style={{fontFamily: "GH"}} className="text-shadow">{T.landing.description()}</h3>
+                    <Button label={T.landing.main_button()} raised={true}/>
                 </div>
                 <div className="mdl-cell mdl-cell--6-col">
                     <div className="paper center padding" style={{maxWidth: "300px"}}>
+                        <h4 className="text-center">{T.order.form.initial_heading()}</h4>
                         <TextInput label={T.order.form.nrPeople()} />
                         <TextInput label={T.order.form.duration()} />
                         <TextInput label={T.order.form.contact_email()} />
-                        <Button/>
+                        <Button label={T.order.form.initial_button()} accent={true} raised={true} />
                     </div>
                 </div>
             </section>
