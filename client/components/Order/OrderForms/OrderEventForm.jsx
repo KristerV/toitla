@@ -24,7 +24,7 @@ OrderEventForm = React.createClass({
         order.errors.event = order.errors.event || {}
 
         // Delay between today and possible to order
-        var minimumDate = !Roles.isManager() ? moment().add(Settings.minimum_days_notice, 'days').toDate() : null
+        var minimumDate = Roles.isManager() ? new Date(0) : moment().add(Settings.minimum_days_notice, 'days').toDate()
 
         return(<div className="paper margin padding">
             <Loader ifNot={order.event}/>
