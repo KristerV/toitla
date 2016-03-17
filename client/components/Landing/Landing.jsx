@@ -6,6 +6,7 @@ Landing = React.createClass({
         FlowRouter.go('/login')
     },
     render() {
+        var clientLogos = Settings.landing.client_logos
         return (<div className="landing">
             <section className="mdl-grid text-center bg-temp shadow-bottom">
                 <div className="mdl-cell mdl-cell--6-col text-white">
@@ -34,11 +35,16 @@ Landing = React.createClass({
                 </div>
             </section>
 
-            <section className="text-center">
-                <h1>We've served 72 events</h1>
-                <p>Ranging from 10 to 160 people</p>
-                <h3 className="text-hint">Clients include</h3>
-                <Imgix path="/images/landing/clients" filename="us_embassy.png" width="100px" height="100px" square={true} />
+            <section className="text-center max-width">
+                <h2>We've served <span style={{fontSize: "2em"}}>72</span> events</h2>
+                <h4>Our largest event was <span style={{fontSize: "2em"}}>160</span> people</h4>
+                <div className="mdl-grid text-center">
+                    {clientLogos.map(filename => {
+                        return <div className="mdl-cell--2-col center" style={{padding: "0 2em"}}>
+                            <Imgix path="/images/landing/clients" filename={filename} fit="clip"/>
+                        </div>
+                    })}
+                </div>
             </section>
 
             <section>
