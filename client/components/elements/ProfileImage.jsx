@@ -13,7 +13,10 @@ ProfileImage = React.createClass({
                     facepad="2"
                 />)
         } else if (!this.props.disablePlaceholder)
-            return <i className="material-icons">account_circle</i>
+            return <div>
+                <i className="material-icons">account_circle</i>
+                <p className="text-hint">Pilt lõigatakse näo suuruseks automaatselt - võid laadida ükskõik kui suure pildi.</p>
+            </div>
         else
             return <div></div>
     }
