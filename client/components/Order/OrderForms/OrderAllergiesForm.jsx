@@ -19,19 +19,19 @@ OrderAllergiesForm = React.createClass({
 
         if (!_.isEmpty(order.allergies.guests)) {
             var guestsAllergies = <div>
-                <h5>{T_deprecated("order", "allergies_guests_submitted")}</h5>
+                <h5>{T.order.allergies_guests_submitted()}</h5>
                 <p>{order.allergies.guests.join(" - ")}</p>
             </div>
         }
 
         return(<div className="paper margin padding">
             <TextInput
-                label={T_deprecated("order", "allergies_label")}
+                label={T.order.allergies_label()}
                 name="allergies.host"
                 onBlur={this.handleTextFieldChange}
                 value={order.allergies.host}
                 errorMsg={order.errors['allergies.host']} />
-            <h5>{T_deprecated("order", "or_share_link")}</h5>
+            <h5>{T.order.or_share_link()}</h5>
             <a target="_blank" href={shareLink}>{shareLink}</a>
             {guestsAllergies}
         </div>)
