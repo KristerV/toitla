@@ -12,7 +12,12 @@ OrderManagerChef = React.createClass({
                 <div className="margin max-width">
                     <MenuitemsContainer orderId={order._id} layout="table" />
                 </div>
-            : null}
+            :
+                <div style={{width: "300px"}}>
+                    <h3>You have not yet been included in this order.</h3>
+                    <p>Why am I seeing this order? Because other chefs wanted to know whether any orders were coming up - for planning their time.</p>
+                </div>
+            }
             <div className="paper padding mdl-cell--5-col margin">
                 <TextInput
                     label={T_deprecated("order", "event_type")}

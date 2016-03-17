@@ -44,6 +44,7 @@ UserProfile = React.createClass({
                 <div className="paper padding mdl-cell mdl-cell--4-col">
                     <ProfileImage user={user}/>
                     <FileUpload path="uploads/images/profile" onComplete={this.uploadComplete}/>
+                    <p className="text-hint">Pilt lõigatakse näo suuruseks automaatselt - võid laadida ükskõik kui suure pildi.</p>
                 </div>
                 <div className="paper padding mdl-cell mdl-cell--4-col">
                     <TextInput
