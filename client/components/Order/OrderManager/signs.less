@@ -1,16 +1,26 @@
 @import url(https://fonts.googleapis.com/css?family=Indie+Flower|Amatic+SC|Overlock|Tangerine|Marck+Script|Patrick+Hand+SC);
+@a4height: 29.7cm;
+@a4width: 21cm;
 
 .sign-page {
-    height: 21cm;
-    width: 29.7cm;
+    width: @a4width;
+    height: @a4height;
     line-height: 0;
     margin-top: 1em;
+    box-sizing: border-box;
+    border: 1px solid transparent; // for some reason removes blank page after main sign
+
     p, h1, h2, h3, h4, h5, h6 {
         font-family: 'Indie Flower', cursive;
         // font-family: 'Amatic SC', cursive;
         // font-family: 'Tangerine', cursive;
         // font-family: 'Marck Script', cursive;
         // font-family: 'Patrick Hand SC', cursive;
+    }
+
+    &.landscape {
+        height: @a4width;
+        width: @a4height;
     }
 }
 
@@ -34,6 +44,10 @@
         overflow: hidden;
         position: relative;
         padding: 0 0.5cm;
+    }
+
+    .sign-title {
+        margin: 0;
     }
 
     .sign-toitla {
@@ -61,14 +75,32 @@
         }
     }
 
+    .sign-backface {
+        h1 {
+            margin-top: 0;
+        }
+    }
+
     .sign-tag {
         display: inline-block;
         margin-right: 5mm;
     }
 
     .sign-ingredients {
-        font-size: 5mm;
+        font-size: 4mm;
         font-family: Overlock, Roboto, Arial;
+    }
+
+    .sign-socialicon-container {
+        text-align: center;
+    }
+
+    .sign-socialicon {
+        width: 0.6cm;
+        height: 0.6cm;
+        display: inline-block;
+        opacity: 0.4;
+        margin: 0 3mm;
     }
 
     .sign-cut {
@@ -81,21 +113,21 @@
         border-right: 1px solid rgba(0, 0, 0, 0.3);
     }
 
+    .sign-cut-upper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 10px;
+        height: 10px;
+        border-top: 1px solid rgba(0, 0, 0, 0.3);
+        border-left: 1px solid rgba(0, 0, 0, 0.3);
+    }
+
     .mainsign-toitla {
-        //width: 1cm;
-        //margin: 8mm;
     }
 
     .mainsign-title {
         margin-top: 1cm;
-    }
-
-    .mainsign-toitla-profile {
-        width: 3cm;
-        padding-bottom: 23cm;
-        position: absolute;
-        top: 50%;
-        left: 50%;
     }
 
     .mainsign-toitla-accompanytext {
@@ -103,29 +135,17 @@
         top: 1cm;
     }
 
-    .loop(@counter) when (@counter >= 0) {
-        .mainsign-toitla-profile-@{counter} {
-            @deg: 5deg;
-            &:nth-child(4n) {
-                transform: translate(-50%, -25%) rotate(@deg * (@counter + 0.5));
-            }
-            &:nth-child(4n+1) {
-                transform: translate(-50%, -25%) rotate(-@deg * (@counter + 0.5));
-            }
-            &:nth-child(4n+2) {
-                transform: translate(-50%, -7%) rotate(@deg * (@counter + 0.5));
-            }
-            &:nth-child(4n+3) {
-                transform: translate(-50%, -7%) rotate(-@deg * (@counter + 0.5));
-            }
-        }
-        .loop((@counter - 1)); // next iteration
-    }
-
-    .loop(30);
-
     .mainsign-toitla {
         width: 5cm;
+    }
+
+    .mainsign-toitla-profile {
+        margin: 2mm;
+        padding: 2mm;
+        box-sizing: border-box;
+        width: 20%;
+        display: inline-block;
+        vertical-align: top;
     }
 }
 
@@ -133,6 +153,19 @@
     .sign-page {
         margin-top: 0;
         margin-bottom: -2px;
+        &:first-child {
+            top: 0;
+        }
+        &.landscape {
+            transform: rotate(90deg);
+            position: absolute;
+            transform-origin: top left;
+            left: 100%;
+        }
+    }
+
+    .sign-page.landscape + .sign-page {
+        margin-top: @a4height;
     }
 
     * {
