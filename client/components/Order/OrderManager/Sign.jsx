@@ -6,8 +6,19 @@ Sign = React.createClass({
         return(<div key={item._id} className="sign" style={this.props.style}>
 
             {backFace ?
-                <div className="sign-face">
-                    <div className="sign-cut"></div>
+                <div className="sign-face rotate180 sign-backface">
+                    {/*this.getTags()*/}
+                    <div className="spacer"></div>
+                    <div>
+                        <div className="sign-socialicon-container">
+                            <div className="sign-socialicon"><Imgix path="images/social_icons" filename="instagram.png" fit="clip"/></div>
+                            <div className="sign-socialicon"><Imgix path="images/social_icons" filename="facebook.png" fit="clip"/></div>
+                            <div className="sign-socialicon"><Imgix path="images/social_icons" filename="twitter.png" fit="clip"/></div>
+                        </div>
+                        <h1 className="text-center">#toitla</h1>
+                    </div>
+                    <p className="sign-ingredients text-center"><b>Koostisosad</b>: {item.ingredients}</p>
+                    <div className="sign-cut-upper"></div>
                 </div>
             : null}
 
@@ -21,13 +32,8 @@ Sign = React.createClass({
                         <p>{item.chefName}</p>
                     </div>
                 </div>
-                <div>
-                    <h3 className="sign-title">{item.title}</h3>
-                </div>
-                <div>
-                    {/*this.getTags()*/}
-                    <p className="sign-ingredients"><b>Koostisosad</b>: {item.ingredients}</p>
-                </div>
+                <h3 className="sign-title">{item.title}</h3>
+                <div className="spacer"></div>
                 <div className="sign-cut"></div>
             </div>
         </div>)

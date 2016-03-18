@@ -35,8 +35,8 @@ OrderManagerSigns = React.createClass({
             }
         })
 
-        var rows = 1
-        var cols = 3
+        var rows = 2
+        var cols = 2
         var backFace = true
 
         var signWidth = (100 / cols) + "%"
