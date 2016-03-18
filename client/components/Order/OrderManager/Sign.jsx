@@ -27,7 +27,7 @@ Sign = React.createClass({
                 <div>
                     <div className="sign-profile">
                         <div className="sign-profile-image">
-                            <ProfileImageContainer userId={item.chefId} dpr={3} disablePlaceholder={true}/>
+                            <ProfileImageContainer userId={item.chefId} dpr={3} disablePlaceholder={true} exp="2" bri="10"/>
                         </div>
                         <p>{item.chefName.replace(/ .*/, "")}</p>
                     </div>
