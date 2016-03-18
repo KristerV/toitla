@@ -12,8 +12,8 @@ Sign = React.createClass({
             : null}
 
             <div className="sign-face text-center" style={backFace ? {} : {height: "100%"}}>
+                <img className="sign-toitla" src="/icons/black-toitla.svg"/>
                 <div>
-                    <img className="sign-toitla" src="/icons/black-toitla.svg"/>
                     <div className="sign-profile">
                         <div className="sign-profile-image">
                             <ProfileImageContainer userId={item.chefId} dpr={3} disablePlaceholder={true}/>
@@ -21,15 +21,13 @@ Sign = React.createClass({
                         <p>{item.chefName}</p>
                     </div>
                 </div>
-                <div className="sign-spacer"></div>
                 <div>
                     <h3 className="sign-title">{item.title}</h3>
                 </div>
                 <div>
-                    {this.getTags()}
+                    {/*this.getTags()*/}
                     <p className="sign-ingredients"><b>Koostisosad</b>: {item.ingredients}</p>
                 </div>
-                <div className="sign-spacer"></div>
                 <div className="sign-cut"></div>
             </div>
         </div>)
