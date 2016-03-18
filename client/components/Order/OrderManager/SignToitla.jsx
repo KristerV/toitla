@@ -9,7 +9,7 @@ SignToitla = React.createClass({
                         {this.props.chefs ? this.props.chefs.map((user, i) => {
 
                             return <div className="mainsign-toitla-profile center" key={user._id}>
-                                <ProfileImageContainer userId={user._id} dpr={3} disablePlaceholder={true}/>
+                                <ProfileImageContainer userId={user._id} dpr={3} disablePlaceholder={true} exp="2" bri="10"/>
                                 <p style={{marginTop: "2mm"}}>{user.name.replace(/ .*/, "")}</p>
                             </div>
 
