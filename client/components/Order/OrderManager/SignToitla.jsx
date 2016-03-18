@@ -10,7 +10,7 @@ SignToitla = React.createClass({
 
                             return <div className="mainsign-toitla-profile center" key={user._id}>
                                 <ProfileImageContainer userId={user._id} dpr={3} disablePlaceholder={true}/>
-                                <p style={{marginTop: "2mm"}}>{user.name}</p>
+                                <p style={{marginTop: "2mm"}}>{user.name.replace(/ .*/, "")}</p>
                             </div>
 
                         }) : null}
