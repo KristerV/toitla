@@ -25,14 +25,16 @@ Imgix = React.createClass({
     },
 
     getUrl() {
-        if (!this.props.path || !this.props.filename)
+        if (!this.props.filename)
             return null
-        let path = G.rmBothSlashes(this.props.path)
+        let path = ''
+        if (this.props.path)
+            path = G.rmBothSlashes(this.props.path) + '/'
         let filename = this.props.filename
         let dpr = this.props.dpr ? `&dpr=${this.props.dpr}` : ""
         let fit = this.props.fit ? `&fit=${this.props.fit}` : `&fit=crop`
         let facepad = this.props.facepad ? `&facepad=${this.props.facepad}` : ""
-        return `https://toitla.imgix.net/${path}/${filename}?${fit}${facepad}&crop=faces,entropy&fm=png${dpr}`
+        return `https://toitla.imgix.net/${path}${filename}?${fit}${facepad}&crop=faces,entropy&fm=png${dpr}&auto=enhance`
     },
 
     render() {
