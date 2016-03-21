@@ -77,7 +77,7 @@ Landing = React.createClass({
                 <h1>Some of our servings</h1>
                 <div className="mdl-grid max-width">
                     {settings.eventImages.map((fullpath, i) => {
-                        return <div className="mdl-cell mdl-cell--4-col paper" key={i}>
+                        return <div className="mdl-cell mdl-cell--4-col no-margin" key={i}>
                             <Imgix filename={fullpath} />
                         </div>
                     })}
