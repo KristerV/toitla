@@ -1,7 +1,6 @@
 Meteor.startup(() => {
     imgix.onready(function() {
-        var self = {props: {}}
-        self.fluid = imgix.fluid({
+        imgix.fluid({
             updateOnResizeDown: false,
             pixelStep: 10,
             debounce: 200,
