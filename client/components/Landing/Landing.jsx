@@ -98,11 +98,18 @@ Landing = React.createClass({
 
             <section>
                 <h1>Features</h1>
-                <div className="mdl-grid">
-                    <div className="mdl-cell mdl-cell--4-col mdl-grid">
-                        <div className="mdl-cell mdl-cell--6-col">PILT</div>
-                        <div className="mdl-cell mdl-cell--6-col">Pikk tekst kuidas töötab</div>
-                    </div>
+                <div className="mdl-grid text-left max-width">
+                    {Settings.landing.features.map((item, i) => {
+                        return <div key={i} className="mdl-cell mdl-cell--6-col mdl-grid paper no-padding">
+                            <div className="mdl-cell mdl-cell--4-col no-margin">
+                                <Imgix filename={item.img} />
+                            </div>
+                            <div className="mdl-cell mdl-cell--8-col">
+                                <p><b>{item.title}</b></p>
+                                <p>{item.text}</p>
+                            </div>
+                        </div>
+                    })}
                 </div>
             </section>
 
