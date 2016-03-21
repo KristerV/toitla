@@ -20,6 +20,18 @@ Landing = React.createClass({
         }
     },
 
+    goToForm() {
+        console.log("Landing.goToForm")
+        $('html, body').animate({
+            scrollTop: $("#orderNow").offset().top - 50
+        }, 500);
+    },
+
+    openChat(e) {
+        e.preventDefault()
+        Tawk_API.maximize();
+    },
+
     render() {
         var settings = this.data.subsReady ? this.data.settings : {}
         settings.eventImages = settings.eventImages || []
@@ -40,7 +52,7 @@ Landing = React.createClass({
                     <h3 style={{fontFamily: "GH"}} className="text-shadow">{T.landing.description()}</h3>
                     <Button label={T.landing.main_button()} raised={true}/>
                 </div>
-                <div className="mdl-cell mdl-cell--6-col">
+                <div className="mdl-cell mdl-cell--6-col" id="orderNow">
                     <div className="paper center padding" style={{maxWidth: "300px"}}>
                         <h4>{T.order.form.initial_heading()}</h4>
                         <TextInput label={T.order.form.nrPeople()} />
@@ -86,14 +98,15 @@ Landing = React.createClass({
 
             <section>
                 <h1>How to order</h1>
-                <ol>
+                <ol className="center how-to-order" style={{maxWidth: "400px"}}>
                     <li>Fill form</li>
-                    <p className="text-hint">We construct the menu</p>
-                    <li>Confirm / change menu</li>
-                    <p className="text-hint">We serve at your event</p>
-                    <li>Bill / Feedback</li>
-                    <p className="text-hint">Love to hear about your experience</p>
+                    <p className="text-hint">The form asks all the information we need to build you a custom menu.</p>
+                    <li>Confirm menu or make changes</li>
+                    <p className="text-hint">If you're satisfied with the menu we're all set and will be serving at your event.</p>
+                    <li>Bill and feedback</li>
+                    <p className="text-hint">We'll send the bill and would love to hear any feedback you may have.</p>
                 </ol>
+                {this.getOrderNowButton()}
             </section>
 
             <section>
@@ -140,8 +153,14 @@ Landing = React.createClass({
             </section>
 
             <section>
-                <h2>Footer</h2>
+                <h1>More questions?</h1>
+                <p><a onClick={this.openChat} href="#" >Click here</a> to chat with us or email us at <a target="_blank" href="mailto:team@toitla.com">team@toitla.com</a></p>
+                {this.getOrderNowButton()}
             </section>
         </div>)
+    },
+
+    getOrderNowButton() {
+        return <Button label="Order Now" accent={true} raised={true} onClick={this.goToForm} large={true} />
     }
 })
