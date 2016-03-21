@@ -10,16 +10,29 @@ Landing = React.createClass({
     getMeteorData() {
         var subscription = Meteor.subscribe("settings")
         var settings = Settings.findOne('landing')
+        var sub2 = Meteor.subscribe('allUserData')
+        var users = Meteor.users.find().fetch()
 
         return {
             settings: settings,
-            subsReady: subscription.ready()
+            subsReady: subscription.ready() && sub2.ready(),
+            users: users
         }
     },
 
     render() {
         var settings = this.data.subsReady ? this.data.settings : {}
         settings.eventImages = settings.eventImages || []
+
+        var admins = []
+        var chefs = []
+        this.data.users.forEach(user => {
+            if (Roles.isManager(user._id))
+                admins.push(user)
+            else if (user.profile && user.profile.image && user.profile.image.filename && user.eligible)
+                chefs.push(user)
+        })
+
         return (<div className="landing">
             <section className="mdl-grid text-center bg-temp shadow-bottom">
                 <div className="mdl-cell mdl-cell--6-col text-white">
@@ -72,10 +85,6 @@ Landing = React.createClass({
             </section>
 
             <section>
-                Fans
-            </section>
-
-            <section>
                 <h1>How to order</h1>
                 <ol>
                     <li>Fill form</li>
@@ -99,10 +108,28 @@ Landing = React.createClass({
 
             <section>
                 <h1>Kokad</h1>
+                <p>Meil on kindlad kokad, keda hoiame ja kelle kvaliteeti kontrollime. Hetkel on neid üle 15-ne.</p>
+                <div className="mdl-grid max-width">
+                    {chefs.map((user, i) => {
+                        return <div className="mdl-cell mdl-cell--3-col" key={i}>
+                            <ProfileImage user={user}/>
+                            <p>{user.profile.name}</p>
+                        </div>
+                    })}
+                </div>
             </section>
 
             <section>
                 <h1>Meie</h1>
+                <p>Alustasime oktoober 2014 blaablaa</p>
+                <div className="mdl-grid max-width">
+                    {admins.map((user, i) => {
+                        return <div className="mdl-cell mdl-cell--3-col" key={i}>
+                            <ProfileImage user={user}/>
+                            <p>{user.profile.name}</p>
+                        </div>
+                    })}
+                </div>
             </section>
 
             <section>
