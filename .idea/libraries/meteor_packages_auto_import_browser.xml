@@ -249,8 +249,6 @@
         <item url="file://$USER_HOME$/.meteor/packages/mongo-id/1.0.1/web.browser/id.js" />
         <item url="file://$USER_HOME$/.meteor/packages/npm-bcrypt/0.7.8_2/web.browser/packages/npm-bcrypt.js" />
         <item url="file://$USER_HOME$/.meteor/packages/observe-sequence/1.0.7/web.browser/observe_sequence.js" />
-        <item url="file://$USER_HOME$/.meteor/packages/basgrani_bas-meteor-imgix/0.1.1_2/web.browser/imgix.js/dist/imgix.jquery.min.js" />
-        <item url="file://$USER_HOME$/.meteor/packages/basgrani_bas-meteor-imgix/0.1.1_2/web.browser/imgix.js/dist/imgix.min.js" />
         <item url="file://$USER_HOME$/.meteor/packages/ordered-dict/1.0.4/web.browser/ordered_dict.js" />
         <item url="file://$USER_HOME$/.meteor/packages/perak_c3/1.0.3/web.browser/packages/perak_c3.js" />
         <item url="file://$USER_HOME$/.meteor/packages/perak_c3/1.0.3/web.browser/packages/perak_c3/c3/c3.css" />
@@ -763,8 +761,6 @@
       <root url="file://$USER_HOME$/.meteor/packages/mongo-id/1.0.1/web.browser/id.js" />
       <root url="file://$USER_HOME$/.meteor/packages/npm-bcrypt/0.7.8_2/web.browser/packages/npm-bcrypt.js" />
       <root url="file://$USER_HOME$/.meteor/packages/observe-sequence/1.0.7/web.browser/observe_sequence.js" />
-      <root url="file://$USER_HOME$/.meteor/packages/basgrani_bas-meteor-imgix/0.1.1_2/web.browser/imgix.js/dist/imgix.jquery.min.js" />
-      <root url="file://$USER_HOME$/.meteor/packages/basgrani_bas-meteor-imgix/0.1.1_2/web.browser/imgix.js/dist/imgix.min.js" />
       <root url="file://$USER_HOME$/.meteor/packages/ordered-dict/1.0.4/web.browser/ordered_dict.js" />
       <root url="file://$USER_HOME$/.meteor/packages/perak_c3/1.0.3/web.browser/packages/perak_c3.js" />
       <root url="file://$USER_HOME$/.meteor/packages/perak_c3/1.0.3/web.browser/packages/perak_c3/c3/c3.css" />
