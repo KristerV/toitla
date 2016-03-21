@@ -108,11 +108,11 @@ Landing = React.createClass({
                 <h1>How to order</h1>
                 <ol className="center how-to-order" style={{maxWidth: "400px"}}>
                     <li>Fill form</li>
-                    <p className="text-hint">The form asks all the information we need to build you a custom menu.</p>
+                    <h6 className="text-hint">The form asks all the information we need to build you a custom menu.</h6>
                     <li>Confirm menu or make changes</li>
-                    <p className="text-hint">If you're satisfied with the menu we're all set and will be serving at your event.</p>
+                    <h6 className="text-hint">If you're satisfied with the menu we're all set and will be serving at your event.</h6>
                     <li>Bill and feedback</li>
-                    <p className="text-hint">We'll send the bill and would love to hear any feedback you may have.</p>
+                    <h6 className="text-hint">We'll send the bill and would love to hear any feedback you may have.</h6>
                 </ol>
                 {this.getOrderNowButton()}
             </section>
@@ -126,7 +126,7 @@ Landing = React.createClass({
                                 <Imgix filename={item.img} />
                             </div>
                             <div className="mdl-cell mdl-cell--8-col">
-                                <p><b>{item.title}</b></p>
+                                <h5>{item.title}</h5>
                                 <p>{item.text}</p>
                             </div>
                         </div>
@@ -136,12 +136,12 @@ Landing = React.createClass({
 
             <section>
                 <h1>Kokad</h1>
-                <p>Kokad valitakse ja valideeritakse käsitsi. Hetkel on neid üle 15-ne.</p>
+                <h5>Kokad valitakse ja valideeritakse käsitsi. Hetkel on neid üle 15-ne.</h5>
                 <div className="mdl-grid max-width">
                     {chefs.map((user, i) => {
                         return <div className="mdl-cell mdl-cell--2-col padding center" key={i}>
                             <ProfileImage user={user}/>
-                            <p>{user.profile.name}</p>
+                            <h5>{user.profile.name.replace(/ .*/, "")}</h5>
                         </div>
                     })}
                 </div>
@@ -149,20 +149,20 @@ Landing = React.createClass({
 
             <section>
                 <h1>Meie</h1>
-                <p>Alustasime oktoober 2014 blaablaa</p>
+                <h5>Alustasime oktoober 2014 blaablaa</h5>
                 <div className="mdl-grid max-width">
                     {admins.map((user, i) => {
                         return <div className="mdl-cell mdl-cell--2-col padding center" key={i}>
                             <ProfileImage user={user}/>
-                            <p>{user.profile.name}</p>
+                            <h5>{user.profile.name.replace(/ .*/, "")}</h5>
                         </div>
                     })}
                 </div>
             </section>
 
             <section>
-                <h1>More questions?</h1>
-                <p><a onClick={this.openChat} href="#" >Click here</a> to chat with us or email us at <a target="_blank" href="mailto:team@toitla.com">team@toitla.com</a></p>
+                <h2>More questions?</h2>
+                <h6><a onClick={this.openChat} href="#" >Click here</a> to chat with us or email us at <a target="_blank" href="mailto:team@toitla.com">team@toitla.com</a></h6>
                 {this.getOrderNowButton()}
             </section>
         </div>)
