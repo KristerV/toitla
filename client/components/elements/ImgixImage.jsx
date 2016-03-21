@@ -11,6 +11,7 @@ ImgixImage = React.createClass({
 
     render() {
         var width = this.props.width || "100%"
+        var padBott = this.props.height ? this.props.height+"px" : "100%"
         return<div
             id={this.props.id}
             data-src={this.props.src}
@@ -18,7 +19,7 @@ ImgixImage = React.createClass({
             style={{width: width,
                 backgroundSize: "contain",
                 backgroundRepeat: 'no-repeat',
-                paddingBottom: "100%",
+                paddingBottom: padBott,
                 backgroundPosition: "center"
                 }}
         ></div>
