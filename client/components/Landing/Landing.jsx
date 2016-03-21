@@ -6,6 +6,11 @@ Landing = React.createClass({
         FlowRouter.go('/login')
     },
 
+    componentDidMount() {
+        // HACK: fire imgix lazyload, as otherwise it may not load images
+        $('body').scrollTop($('body').offset().top + 1)
+    },
+
     mixins: [ReactMeteorData],
     getMeteorData() {
         var subscription = Meteor.subscribe("settings")
