@@ -16,6 +16,7 @@ Meteor.startup(() => {
                     params.h = `${min}`
                 }
 
+
                 return params;
             }
         });

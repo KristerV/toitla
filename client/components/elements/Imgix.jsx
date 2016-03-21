@@ -52,7 +52,7 @@ Imgix = React.createClass({
 
         if (url && this.state.showImage) {
             if (this.props.height)
-                return <div style={{height: this.props.height, position: "relative"}}><ImgixImage {...this.props} src={url}/></div>
+                return <ImgixImage {...this.props} src={url}/>
             else
                 return <ImgixImage {...this.props} src={url}/>
         } else if (!this.props.disablePlaceholder)

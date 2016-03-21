@@ -65,7 +65,9 @@ Landing = React.createClass({
 
             <section>
                 <div className="landing-degustation center mdl-grid paper no-padding">
-                    <div className="mdl-cell mdl-cell--8-col no-margin bg-temp"></div>
+                    <div className="mdl-cell mdl-cell--8-col no-margin">
+                        <Imgix path="images/landing/features" filename="surprise.jpg" height={230}/>
+                    </div>
                     <div className="mdl-cell mdl-cell--4-col">
                         <h5>{T.landing.degustation_title()}</h5>
                         <Button label={T.landing.degustation_button()} raised={true}/>
