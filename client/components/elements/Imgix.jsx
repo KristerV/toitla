@@ -27,14 +27,24 @@ Imgix = React.createClass({
     getUrl() {
         if (!this.props.filename)
             return null
+
+        // URL
         let path = ''
         if (this.props.path)
             path = G.rmBothSlashes(this.props.path) + '/'
         let filename = this.props.filename
-        let dpr = this.props.dpr ? `&dpr=${this.props.dpr}` : ""
-        let fit = this.props.fit ? `&fit=${this.props.fit}` : `&fit=crop`
-        let facepad = this.props.facepad ? `&facepad=${this.props.facepad}` : ""
-        return `https://toitla.imgix.net/${path}${filename}?${fit}${facepad}&crop=faces,entropy&fm=png${dpr}&auto=enhance`
+
+        // Params
+        var params = 'crop=faces,entropy&fm=png&auto=enhance'
+        params += this.props.dpr ? `&dpr=${this.props.dpr}` : ""
+        params += this.props.fit ? `&fit=${this.props.fit}` : `&fit=crop`
+        params += this.props.facepad ? `&facepad=${this.props.facepad}` : ""
+        if (this.props.shape === 'circle')
+            params += `&mask=ellipse&shape=square`
+        else if (this.props.shape === 'square')
+            params += `&shape=square`
+
+        return `https://toitla.imgix.net/${path}${filename}?${params}`
     },
 
     render() {
@@ -49,9 +59,6 @@ Imgix = React.createClass({
             return <i style={{fontSize: "4em"}} className="material-icons text-center w100">camera_alt</i>
         else
             return<div></div>
-
-        // in case want to switch back
-        // return (<img src={src} className="imgix-fluid" style={{paddingBottom: "100%"}}/>)
     }
 
 })

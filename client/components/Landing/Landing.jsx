@@ -108,12 +108,12 @@ Landing = React.createClass({
 
             <section>
                 <h1>Kokad</h1>
-                <p>Meil on kindlad kokad, keda hoiame ja kelle kvaliteeti kontrollime. Hetkel on neid üle 15-ne.</p>
+                <p>Kokad valitakse ja valideeritakse käsitsi. Hetkel on neid üle 15-ne.</p>
                 <div className="mdl-grid max-width">
                     {chefs.map((user, i) => {
-                        return <div className="mdl-cell mdl-cell--3-col" key={i}>
+                        return <div className="mdl-cell mdl-cell--2-col padding" key={i}>
                             <ProfileImage user={user}/>
-                            <p>{user.profile.name}</p>
+                            <p className="text-center">{user.profile.name}</p>
                         </div>
                     })}
                 </div>
@@ -124,9 +124,9 @@ Landing = React.createClass({
                 <p>Alustasime oktoober 2014 blaablaa</p>
                 <div className="mdl-grid max-width">
                     {admins.map((user, i) => {
-                        return <div className="mdl-cell mdl-cell--3-col" key={i}>
+                        return <div className="mdl-cell mdl-cell--2-col padding" key={i}>
                             <ProfileImage user={user}/>
-                            <p>{user.profile.name}</p>
+                            <p className="text-center">{user.profile.name}</p>
                         </div>
                     })}
                 </div>
