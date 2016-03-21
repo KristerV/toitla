@@ -5,7 +5,21 @@ Landing = React.createClass({
     goLogin() {
         FlowRouter.go('/login')
     },
+
+    mixins: [ReactMeteorData],
+    getMeteorData() {
+        var subscription = Meteor.subscribe("settings")
+        var settings = Settings.findOne('landing')
+
+        return {
+            settings: settings,
+            subsReady: subscription.ready()
+        }
+    },
+
     render() {
+        var settings = this.data.subsReady ? this.data.settings : {}
+        settings.eventImages = settings.eventImages || []
         return (<div className="landing">
             <section className="mdl-grid text-center bg-temp shadow-bottom">
                 <div className="mdl-cell mdl-cell--6-col text-white">
@@ -39,7 +53,7 @@ Landing = React.createClass({
                 <h4>Our largest event was <span style={{fontSize: "2em"}}>160</span> people</h4>
                 <div className="text-center max-width">
                     {Settings.landing.client_logos.map(filename => {
-                        return <div className="center" style={{padding: "0 2em" ,width: "8em", height: "6em", display: "inline-block"}}>
+                        return <div key={filename} className="center" style={{padding: "0 2em" ,width: "8em", height: "6em", display: "inline-block"}}>
                             <Imgix path="/images/landing/clients" filename={filename} fit="clip"/>
                         </div>
                     })}
@@ -47,7 +61,14 @@ Landing = React.createClass({
             </section>
 
             <section>
-                <h1>Event1</h1>
+                <h1 className="text-center">Some of our servings</h1>
+                <div className="mdl-grid max-width">
+                    {settings.eventImages.map((fullpath, i) => {
+                        return <div className="mdl-cell mdl-cell--4-col paper" key={i}>
+                            <Imgix filename={fullpath} />
+                        </div>
+                    })}
+                </div>
             </section>
 
             <section>
