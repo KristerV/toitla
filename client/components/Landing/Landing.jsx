@@ -40,7 +40,6 @@ Landing = React.createClass({
     render() {
         var settings = this.data.settings || {}
         settings.eventImages = settings.eventImages || []
-        console.log("settings.eventImages", settings.eventImages)
 
         var admins = []
         var chefs = []
