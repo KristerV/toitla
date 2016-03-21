@@ -21,9 +21,14 @@ Landing = React.createClass({
     },
 
     goToForm() {
-        console.log("Landing.goToForm")
         $('html, body').animate({
             scrollTop: $("#orderNow").offset().top - 50
+        }, 500);
+    },
+
+    goToHowTo() {
+        $('html, body').animate({
+            scrollTop: $("#howto").offset().top
         }, 500);
     },
 
@@ -50,7 +55,7 @@ Landing = React.createClass({
                 <div className="mdl-cell mdl-cell--6-col text-white">
                     <Toitla white={true} shadow={true} size={1.4}/>
                     <h3 style={{fontFamily: "GH"}} className="text-shadow">{T.landing.description()}</h3>
-                    <Button label={T.landing.main_button()} raised={true}/>
+                    <Button label={T.landing.main_button()} raised={true} colored={true} onClick={this.goToHowTo}/>
                 </div>
                 <div className="mdl-cell mdl-cell--6-col" id="orderNow">
                     <div className="paper center padding" style={{maxWidth: "300px"}}>
@@ -98,7 +103,7 @@ Landing = React.createClass({
                 </div>
             </section>
 
-            <section>
+            <section id="howto">
                 <h1>How to order</h1>
                 <ol className="center how-to-order" style={{maxWidth: "400px"}}>
                     <li>Fill form</li>
