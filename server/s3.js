@@ -25,7 +25,7 @@ Meteor.startup(() => {
             if (data) {
                 var images = []
                 data.Contents.forEach(item => {
-                    if (item.Key !== 'images/landing/events/' && item.Key !== 'images/landing/events/?')
+                    if (item.Key !== 'images/landing/events/')
                         images.push(item.Key.replace(/ /g, "%20"))
                 })
                 Settings.upsert('landing', {$set: {eventImages: images}})

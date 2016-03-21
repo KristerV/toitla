@@ -38,8 +38,9 @@ Landing = React.createClass({
     },
 
     render() {
-        var settings = this.data.subsReady ? this.data.settings : {}
+        var settings = this.data.settings || {}
         settings.eventImages = settings.eventImages || []
+        console.log("settings.eventImages", settings.eventImages)
 
         var admins = []
         var chefs = []
@@ -51,8 +52,7 @@ Landing = React.createClass({
         })
 
         return (<div className="landing text-center">
-            <section className="mdl-grid shadow-bottom relative imgix-fluid imgix-fluid-bg"
-                     data-src={Settings.landing.mainImage}>
+            <section className="mdl-grid shadow-bottom relative imgix-fluid imgix-fluid-bg" data-src={Settings.landing.mainImage}>
                 <div className="mdl-cell mdl-cell--6-col text-white">
                     <Toitla white={true} shadow={true} size={1.4}/>
                     <h3 style={{fontFamily: "GH"}} className="text-shadow">{T.landing.description()}</h3>

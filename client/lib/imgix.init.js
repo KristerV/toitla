@@ -4,9 +4,9 @@ Meteor.startup(() => {
         self.fluid = imgix.fluid({
             updateOnResizeDown: false,
             pixelStep: 10,
-            debounce: 1000,
+            debounce: 200,
             lazyLoad: true,
-            lazyLoadOffsetVertical: 500,
+            lazyLoadOffsetVertical: 1000,
             autoInsertCSSBestPractices: false,
             onChangeParamOverride: function(w, h, params, element) {
 
