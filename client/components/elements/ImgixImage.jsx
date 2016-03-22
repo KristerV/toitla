@@ -15,7 +15,7 @@ ImgixImage = React.createClass({
         return<div
             id={this.props.id}
             data-src={this.props.src}
-            className="imgix-fluid imgix-fluid-bg"
+            className={"imgix-fluid imgix-fluid-bg " + this.props.className}
             style={{width: width,
                 backgroundSize: "contain",
                 backgroundRepeat: 'no-repeat',
