@@ -33,9 +33,15 @@ Landing = React.createClass({
         }, 500);
     },
 
-    goToHowTo() {
+    goToWorks() {
         $('html, body').animate({
-            scrollTop: $("#howto").offset().top
+            scrollTop: $("#how-it-works").offset().top
+        }, 500);
+    },
+
+    goToGuide() {
+        $('html, body').animate({
+            scrollTop: $("#how-to-order").offset().top
         }, 500);
     },
 
@@ -60,20 +66,33 @@ Landing = React.createClass({
 
         return (<div className="landing text-center">
             <section className="mdl-grid shadow-bottom relative imgix-fluid imgix-fluid-bg" data-src={Settings.landing.mainImage}>
-                <div className="mdl-cell mdl-cell--6-col text-white">
+                <div className="mdl-cell mdl-cell--6-col text-white center">
                     <Toitla white={true} shadow={true} size={1.4}/>
                     <h3 style={{fontFamily: "GH"}} className="text-shadow">{T.landing.hero.description()}</h3>
-                    <Button label={T.landing.ordernow_button()} raised={true} colored={true} onClick={this.goToHowTo}/>
-                </div>
-                <div className="mdl-cell mdl-cell--6-col" id="orderNow">
-                    <div className="paper center padding" style={{maxWidth: "300px"}}>
-                        <h4>{T.order.form.initial_heading()}</h4>
-                        <TextInput label={T.order.form.nrPeople()} />
-                        <TextInput label={T.order.form.duration()} />
-                        <TextInput label={T.order.form.contact_email()} />
-                        <Button label={T.order.form.initial_button()} accent={true} raised={true} />
+                    <div className="mdl-grid center">
+                        <div className="mdl-cell mdl-cell--6-col">
+                            <Button
+                                label={T.landing.hero.moreinfo()}
+                                raised={true}
+                                colored={true}
+                                onClick={this.goToWorks}
+                                large={true}
+                                className="w100"/>
+                        </div>
+                        <div className="mdl-cell mdl-cell--6-col">
+                            {this.getOrderNowButton({w100: true})}
+                        </div>
                     </div>
                 </div>
+                {/*<div className="mdl-cell mdl-cell--6-col" id="orderNow">
+                 <div className="paper center padding" style={{maxWidth: "300px"}}>
+                 <h4>{T.order.form.initial_heading()}</h4>
+                 <TextInput label={T.order.form.nrPeople()} />
+                 <TextInput label={T.order.form.duration()} />
+                 <TextInput label={T.order.form.contact_email()} />
+                 <Button label={T.order.form.initial_button()} accent={true} raised={true} />
+                 </div>
+                 </div>*/}
             </section>
 
             <section>
@@ -85,6 +104,38 @@ Landing = React.createClass({
                         <h5>{T.landing.sampleBox.title()}</h5>
                         <Button label={T.landing.sampleBox.button()} raised={true}/>
                     </div>
+                </div>
+            </section>
+
+            <section className="mdl-grid max-width" id="how-it-works">
+                <div className="mdl-cell--4-col padding box center">
+                    <div style={{height: "230px", width: "230px"}}  className="center">
+                        <Imgix filename={"images/landing/features/homechef.png"} shape="circle"/>
+                    </div>
+                    <h2>{T.landing.point.first()}</h2>
+                    <h5>{T.landing.point.first_text()}</h5>
+                </div>
+                <div className="mdl-cell--4-col padding box center">
+                    <div style={{height: "230px", width: "230px"}}  className="center">
+                        <Imgix filename={"images/landing/events/IMG_8961.jpg"} shape="circle"/>
+                    </div>
+                    <h2>{T.landing.point.second()}</h2>
+                    <h5>{T.landing.point.second_text()}</h5>
+                </div>
+                <div className="mdl-cell--4-col padding box center">
+                    <div style={{height: "230px", width: "230px"}}  className="center">
+                        <Imgix filename={"images/landing/features/service.jpg"} shape="circle"/>
+                    </div>
+                    <h2>{T.landing.point.third()}</h2>
+                    <h5>{T.landing.point.third_text()}</h5>
+                </div>
+                <div className="center margin-top">
+                    <Button
+                        label={T.landing.point.button()}
+                        raised={true}
+                        colored={true}
+                        onClick={this.goToGuide}
+                    />
                 </div>
             </section>
 
@@ -111,7 +162,7 @@ Landing = React.createClass({
                 </div>
             </section>
 
-            <section id="howto">
+            <section id="how-to-order">
                 <h1>{T.landing.howto.title()}</h1>
                 <ol className="center how-to-order" style={{maxWidth: "400px"}}>
                     <li>{T.landing.howto.first()}</li>
@@ -175,7 +226,11 @@ Landing = React.createClass({
         </div>)
     },
 
-    getOrderNowButton() {
-        return <Button label={T.landing.ordernow_button()} accent={true} raised={true} onClick={this.goToForm} large={true} />
+    getOrderNowButton(obj) {
+        obj = obj || {}
+        var className = ""
+        if (obj.w100)
+            className += " w100"
+        return <Button label={T.landing.ordernow_button()} className={className} accent={true} raised={true} onClick={this.goToForm} large={true} />
     }
 })

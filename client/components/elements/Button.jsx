@@ -12,8 +12,8 @@ Button = React.createClass({
         if (this.props.accent)
             className += " mdl-button--accent"
         if (this.props.large) {
-            style.fontSize = "1.5em"
-            style.padding = "0.7em 1.4em"
+            style.fontSize = "1.3em"
+            style.padding = "0.3em 1.4em"
             style.height = "auto"
         }
 
