@@ -29,33 +29,33 @@ OrderEventForm = React.createClass({
         return(<div className="paper margin padding">
             <Loader ifNot={order.event}/>
             <TextInput
-                label={T.order.event_name()}
+                label={T.order.form.event.name()}
                 name="event.eventName"
                 onBlur={this.handleTextFieldChange}
                 value={order.event.eventName}
                 errorMsg={order.errors.event.eventName} />
             <TextInput
-                label={T.order.event_type()}
+                label={T.order.form.event.event_type()}
                 name="event.eventType"
                 onBlur={this.handleTextFieldChange}
                 value={order.event.eventType}
                 errorMsg={order.errors.event.eventType} />
             <TextInput
-                label={T.order.people_count()}
+                label={T.order.form.event.nrPeople()}
                 name="event.peopleCount"
                 onBlur={this.handlePeopleCountChange}
                 value={order.event.peopleCount}
                 patternTemplate="float"
-                patternError={T.order.people_count_patternError()}
+                patternError={T.order.form.event.nrPeople_patternError()}
                 errorMsg={order.errors.event.peopleCount} />
             <TextInput
-                label={T.order.location()}
+                label={T.order.form.event.location()}
                 name="event.location"
                 onBlur={this.handleTextFieldChange}
                 value={order.event.location}
                 errorMsg={order.errors.event.location} />
             <DatePickerMUI
-                label={T.order.from_date()}
+                label={T.order.form.event.date()}
                 minDate={minimumDate}
                 onChange={this.handleFromDateChange}
                 name="event.fromDate"
@@ -63,7 +63,7 @@ OrderEventForm = React.createClass({
                 autoOk={true}
                 errorMsg={order.errors.event.fromDate} />
             <TimePickerMUI
-                label={T.order.from_time()}
+                label={T.order.form.event.time()}
                 onChange={this.handleFromTimeChange}
                 value={order.event.fromTime}
                 name="event.fromTime"
