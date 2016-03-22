@@ -22,7 +22,6 @@ mizzao:user-status
 http
 zodiase:mdl
 dburles:collection-helpers
-tmeasday:publish-counts
 meteorhacks:npm
 jsx
 react-meteor-data
