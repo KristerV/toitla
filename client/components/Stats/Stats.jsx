@@ -104,18 +104,36 @@ Stats = React.createClass({
     render() {
         var monthAgo = moment().subtract(20, 'days').toDate()
 
+        var analSessions = {}
+
+        this.props.analytics.forEach(a => {
+            if (!analSessions[a.sessionId])
+                analSessions[a.sessionId] = []
+            analSessions[a.sessionId].push(a)
+        })
+
+        var analRows = []
+        _.each(analSessions, (anal, sessionId) => {
+            var columns = []
+            var username = ''
+            var date = moment(anal[0].date).format('D.MM.YYYY')
+            _.each(anal, a => {
+                username = a.username || a.userId || a.guestId
+                columns.push(<span key={Random.id()}><a href={a.url}>{a.event}</a> <span className="text-hint">&rang;</span> </span>)
+            })
+            analRows.push(<p key={sessionId}><span>{username} {date}</span> {columns}</p>)
+        })
+        analRows.reverse()
+
         return(<div className="max-width">
             <h3 className="text-white text-center">Burndown to 3 orders a day</h3>
             <div className="paper margin-top padding">
                 <p className="text-hint">Refresh to update data</p>
                 <div id="burndown"></div>
             </div>
-            <h3 className="text-white text-center">Menu item changes in last 20 days</h3>
-            <div className="paper margin-top margin-bottom">
-                <MenuitemsContainer layout="table" find={{$or: [
-                    {publishDate: {$gt: monthAgo}},
-                    {createdAt: {$gt: monthAgo}}
-                ]}}/>
+            <h3 className="text-white text-center">User tracking</h3>
+            <div className="paper margin-top margin-bottom padding">
+                {analRows}
             </div>
         </div>)
     }
