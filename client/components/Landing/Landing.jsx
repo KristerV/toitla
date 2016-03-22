@@ -8,7 +8,8 @@ Landing = React.createClass({
 
     componentDidMount() {
         // HACK: fire imgix lazyload, as otherwise it may not load images
-        $('body').scrollTop($('body').offset().top + 1)
+        // Disabled to demo for imgix team
+        // $('body').scrollTop($('body').offset().top + 1)
     },
 
     mixins: [ReactMeteorData],
