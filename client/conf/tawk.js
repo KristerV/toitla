@@ -1,5 +1,6 @@
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
+    if (Meteor.isDev) return
     var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
     s1.async=true;
     s1.src='https://embed.tawk.to/56e533621e82531d569423c6/default';
@@ -9,6 +10,7 @@ var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 })();
 
 function tawkTimeout() {
+    if (Meteor.isDev) return
     const user = Meteor.user()
     if (user && user.getEmail() && window.Tawk_API) {
         const name = user.getName()
