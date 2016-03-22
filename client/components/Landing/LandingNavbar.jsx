@@ -1,11 +1,10 @@
 LandingNavbar = React.createClass({
 
     changeLanguage() {
-        console.log("LANG")
-        var current = localStorage.getItem('locale')
-        var now = current === 'et' ? 'en' : 'et'
-        localStorage.setItem('locale', now)
-        window.location.reload()
+        var now = localStorage.getItem('locale') === 'et' ? 'en' : 'et'
+        Meteor.call('User--setLanguage', now, function(){
+            window.location.reload()
+        })
     },
 
     goHome() {
