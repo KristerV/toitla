@@ -91,17 +91,17 @@ Landing = React.createClass({
                  </div>*/}
             </section>
 
-            <section>
-                <div className="landing-degustation center mdl-grid paper no-padding">
-                    <div className="mdl-cell mdl-cell--8-col no-margin">
-                        <Imgix path="images/landing/features" filename="surprise.jpg" height={230}/>
-                    </div>
-                    <div className="mdl-cell mdl-cell--4-col">
-                        <h5>{T.landing.sampleBox.title()}</h5>
-                        <Button label={T.landing.sampleBox.button()} raised={true}/>
-                    </div>
-                </div>
-            </section>
+            {/*<section>
+             <div className="landing-degustation center mdl-grid paper no-padding">
+             <div className="mdl-cell mdl-cell--8-col no-margin">
+             <Imgix path="images/landing/features" filename="surprise.jpg" height={230}/>
+             </div>
+             <div className="mdl-cell mdl-cell--4-col">
+             <h5>{T.landing.sampleBox.title()}</h5>
+             <Button label={T.landing.sampleBox.button()} raised={true}/>
+             </div>
+             </div>
+             </section>*/}
 
             <section className="mdl-grid max-width" id="how-it-works">
                 <div className="mdl-cell--4-col padding box center">
