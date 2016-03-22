@@ -1,7 +1,4 @@
 Landing = React.createClass({
-    goNewOrder() {
-        Order.createOrder()
-    },
     goLogin() {
         FlowRouter.go('/login')
     },
@@ -28,9 +25,7 @@ Landing = React.createClass({
     },
 
     goToForm() {
-        $('html, body').animate({
-            scrollTop: $("#orderNow").offset().top - 50
-        }, 500);
+        Order.createOrder()
     },
 
     goToWorks() {
@@ -223,6 +218,9 @@ Landing = React.createClass({
                 <h6 dangerouslySetInnerHTML={T.landing.final.text({dangerous: true})}></h6>
                 {this.getOrderNowButton()}
             </section>
+
+            <div style={{paddingBottom: "6em"}}></div>
+            <p className="text-hint no-margin" style={{paddingBottom: "1em"}}>© Toitla OÜ</p>
         </div>)
     },
 
