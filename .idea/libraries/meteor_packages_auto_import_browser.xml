@@ -302,7 +302,6 @@
         <item url="file://$USER_HOME$/.meteor/packages/templating-tools/1.0.0/web.browser/html-scanner.js" />
         <item url="file://$USER_HOME$/.meteor/packages/templating-tools/1.0.0/web.browser/throw-compile-error.js" />
         <item url="file://$USER_HOME$/.meteor/packages/templating-tools/1.0.0/web.browser/code-generation.js" />
-        <item url="file://$USER_HOME$/.meteor/packages/tmeasday_publish-counts/0.7.3/web.browser/client/publish-counts.js" />
         <item url="file://$USER_HOME$/.meteor/packages/tracker/1.0.9/web.browser/deprecated.js" />
         <item url="file://$USER_HOME$/.meteor/packages/tracker/1.0.9/web.browser/tracker.js" />
         <item url="file://$USER_HOME$/.meteor/packages/zodiase_mdl-assets/1.1.2/web.browser/packages/zodiase_mdl-assets/dist/material.cyan-yellow.min.css" />
@@ -814,7 +813,6 @@
       <root url="file://$USER_HOME$/.meteor/packages/templating-tools/1.0.0/web.browser/html-scanner.js" />
       <root url="file://$USER_HOME$/.meteor/packages/templating-tools/1.0.0/web.browser/throw-compile-error.js" />
       <root url="file://$USER_HOME$/.meteor/packages/templating-tools/1.0.0/web.browser/code-generation.js" />
-      <root url="file://$USER_HOME$/.meteor/packages/tmeasday_publish-counts/0.7.3/web.browser/client/publish-counts.js" />
       <root url="file://$USER_HOME$/.meteor/packages/tracker/1.0.9/web.browser/deprecated.js" />
       <root url="file://$USER_HOME$/.meteor/packages/tracker/1.0.9/web.browser/tracker.js" />
       <root url="file://$USER_HOME$/.meteor/packages/zodiase_mdl-assets/1.1.2/web.browser/packages/zodiase_mdl-assets/dist/material.cyan-yellow.min.css" />

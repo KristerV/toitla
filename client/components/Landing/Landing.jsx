@@ -13,15 +13,17 @@ Landing = React.createClass({
 
     mixins: [ReactMeteorData],
     getMeteorData() {
-        var subscription = Meteor.subscribe("settings")
+        var sub1 = Meteor.subscribe("settings")
         var settings = Settings.findOne('landing')
+
         var sub2 = Meteor.subscribe('allUserData')
         var users = Meteor.users.find().fetch()
 
+
         return {
+            subsReady: sub1.ready() && sub2.ready(),
             settings: settings,
-            subsReady: subscription.ready() && sub2.ready(),
-            users: users
+            users: users,
         }
     },
 
@@ -87,8 +89,8 @@ Landing = React.createClass({
             </section>
 
             <section>
-                <h2 dangerouslySetInnerHTML={T.landing.score.nr_events({dangerous: true})}></h2>
-                <h4 dangerouslySetInnerHTML={T.landing.score.nr_people({dangerous: true})}></h4>
+                <h2 dangerouslySetInnerHTML={T.landing.score.nr_events({dangerous: true, nr: settings.ordersCount})}></h2>
+                <h4 dangerouslySetInnerHTML={T.landing.score.nr_people({dangerous: true, nr: settings.mostPeople})}></h4>
                 <div className="max-width">
                     {Settings.landing.client_logos.map(filename => {
                         return <div key={filename} className="center" style={{padding: "0 2em" ,width: "8em", height: "6em", display: "inline-block"}}>
