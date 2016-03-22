@@ -35,3 +35,40 @@ body {
         font-size: 2rem;
     }
 }
+
+.landing-navbar {
+    color: white;
+    text-align: right;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9;
+    & > * {
+        display: inline-block;
+        cursor: pointer;
+        margin-right: 1em;
+        padding: 0.3em 0.4em;
+
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none;   /* Chrome/Safari/Opera */
+        -khtml-user-select: none;    /* Konqueror */
+        -moz-user-select: none;      /* Firefox */
+        -ms-user-select: none;       /* IE/Edge */
+        user-select: none;           /* non-prefixed version, currently
+                                  not supported by any browser */
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .border {
+        border-radius: 3px;
+        border: 1px solid white;
+        padding: 0.3em 0.8em;
+        &:hover {
+            text-decoration: none;
+            background-color: rgba(255,255,255,0.3);
+        }
+    }
+}

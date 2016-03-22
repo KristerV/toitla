@@ -29,6 +29,7 @@ NewOrder = React.createClass({
         order.errors = order.errors || {}
 
         return(<div className="h100">
+            <LandingNavbar/>
             <NewOrderSection
                 leftContent={<NewOrderSectionText dangerouslySetInnerHTML={T.order.neworder.contact({dangerous: true})}/>}
                 rightContent={<OrderContactForm order={order}/>}
