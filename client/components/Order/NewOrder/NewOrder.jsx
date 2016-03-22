@@ -5,7 +5,7 @@ NewOrder = React.createClass({
     },
 
     nextSection(e) {
-        var currentIndex = $(e.target).parents('section').index()
+        var currentIndex = $(e.target).parents('section').index() - 1
         var nextIndex = currentIndex + 2
         Meteor.call('NewOrderSections.nextSection', this.props.order._id, currentIndex, (err, result) => {
             if (err)
