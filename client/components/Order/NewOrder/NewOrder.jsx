@@ -30,30 +30,29 @@ NewOrder = React.createClass({
 
         return(<div className="h100">
             <NewOrderSection
-                leftContent={<NewOrderSectionText dangerouslySetInnerHTML={T_deprecated("order", "contact_form", true)}/>}
+                leftContent={<NewOrderSectionText dangerouslySetInnerHTML={T.order.neworder.contact({dangerous: true})}/>}
                 rightContent={<OrderContactForm order={order}/>}
-                rightButtons={<NewOrderButtons label="Next - event details" onClick={this.nextSection}/>}
+                rightButtons={<NewOrderButtons label={T.order.neworder.buttons.contact()} onClick={this.nextSection}/>}
             />
             <NewOrderSection
-                leftContent={<NewOrderSectionText dangerouslySetInnerHTML={T_deprecated("order", "event_form", true)}/>}
+                leftContent={<NewOrderSectionText dangerouslySetInnerHTML={T.order.neworder.event({dangerous: true})}/>}
                 rightContent={<OrderEventForm order={order}/>}
-                rightButtons={<NewOrderButtons label="Next - allergies" onClick={this.nextSection}/>}
+                rightButtons={<NewOrderButtons label={T.order.neworder.buttons.event()} onClick={this.nextSection}/>}
             />
             <NewOrderSection
-                leftContent={<NewOrderSectionText dangerouslySetInnerHTML={T_deprecated("order", "allergies_form", true)}/>}
+                leftContent={<NewOrderSectionText dangerouslySetInnerHTML={T.order.neworder.allergies({dangerous: true})}/>}
                 rightContent={<OrderAllergiesForm order={order}/>}
-                rightButtons={<NewOrderButtons label="Next - extra info" onClick={this.nextSection}/>}
+                rightButtons={<NewOrderButtons label={T.order.neworder.buttons.allergies()} onClick={this.nextSection}/>}
             />
             <NewOrderSection
-                leftContent={<NewOrderSectionText dangerouslySetInnerHTML={T_deprecated("order", "extra_form", true)}/>}
+                leftContent={<NewOrderSectionText dangerouslySetInnerHTML={T.order.neworder.extra({dangerous: true})}/>}
                 rightContent={<OrderGeneralInputForm
                     order={order}
                     inputRows={1}
                     inputName="extraInfo"
-                    inputLabel={T.order.extra_form_label()}
                     inputValue={order.extraInfo}
                     inputErrorMsg={order.errors['extraInfo']}
-                    buttons={<NewOrderButtons label="finish" onClick={this.submitForm}/>}
+                    buttons={<NewOrderButtons label={T.order.neworder.buttons.extra()} onClick={this.submitForm}/>}
                     />}
             />
         </div>)

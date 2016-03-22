@@ -6,8 +6,8 @@ NewOrderSectionThanks = React.createClass({
 
     render() {
         return(<NewOrderSection
-            bottomContent={<NewOrderSectionText dangerouslySetInnerHTML={T_deprecated("order", "thanks_form", true)}/>}
-            bottomButtons={<NewOrderButtons label={T.global.back_home()} onClick={this.goHome} />}
+            bottomContent={<NewOrderSectionText dangerouslySetInnerHTML={T.order.neworder.submitted.thanks({dangerous: true})}/>}
+            bottomButtons={<NewOrderButtons label={T.order.neworder.submitted.button()} onClick={this.goHome} />}
         />)
     }
 })
