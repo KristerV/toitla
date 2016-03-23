@@ -3,6 +3,8 @@ StatsContainer = React.createClass({
     mixins: [ReactMeteorData],
     getMeteorData() {
         var subscription = Meteor.subscribe('orders')
+        var sub2 = Meteor.subscribe('analytics')
+
         var startDate = moment().subtract(37, 'days').toDate()
         var endDate = moment().add(30, 'days').toDate()
         var orders = Orders.find(
@@ -18,14 +20,15 @@ StatsContainer = React.createClass({
                 }
             }).fetch()
         return {
-            subsReady: subscription.ready(),
-            orders: orders
+            subsReady: subscription.ready() && sub2.ready(),
+            orders: orders,
+            analytics: Analytics.find().fetch()
         }
     },
 
     render() {
         if (this.data.subsReady)
-            return (<Stats orders={this.data.orders}/>)
+            return (<Stats orders={this.data.orders} analytics={this.data.analytics}/>)
         else
             return <Loader/>
     }
