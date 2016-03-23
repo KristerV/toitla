@@ -25,30 +25,40 @@ Imgix = React.createClass({
     },
 
     getUrl() {
-        if (!this.props.path || !this.props.filename)
+        if (!this.props.filename)
             return null
-        let path = G.rmBothSlashes(this.props.path)
+
+        // URL
+        let path = ''
+        if (this.props.path)
+            path = G.rmBothSlashes(this.props.path) + '/'
         let filename = this.props.filename
-        let dpr = this.props.dpr ? `&dpr=${this.props.dpr}` : ""
-        let fit = this.props.fit ? `&fit=${this.props.fit}` : `&fit=crop`
-        let facepad = this.props.facepad ? `&facepad=${this.props.facepad}` : ""
-        let exp = this.props.exp ? `&exp=${this.props.exp}` : ""
-        let bri = this.props.bri ? `&bri=${this.props.bri}` : ""
-        return `https://toitla.imgix.net/${path}/${filename}?${fit}${facepad}&crop=faces,entropy&fm=png${dpr}${exp}${bri}`
+
+        // Params
+        var params = 'crop=faces,entropy&fm=png&auto=enhance'
+        params += this.props.dpr ? `&dpr=${this.props.dpr}` : ""
+        params += this.props.fit ? `&fit=${this.props.fit}` : `&fit=crop`
+        params += this.props.facepad ? `&facepad=${this.props.facepad}` : ""
+        if (this.props.shape === 'circle')
+            params += `&mask=ellipse&shape=square`
+        else if (this.props.shape === 'square')
+            params += `&shape=square`
+
+        return `https://toitla.imgix.net/${path}${filename}?${params}`
     },
 
     render() {
         const url = this.getUrl()
 
-        if (url && this.state.showImage)
-            return <ImgixImage {...this.props} src={url}/>
-        else if (!this.props.disablePlaceholder)
+        if (url && this.state.showImage) {
+            if (this.props.height)
+                return <ImgixImage {...this.props} src={url}/>
+            else
+                return <ImgixImage {...this.props} src={url}/>
+        } else if (!this.props.disablePlaceholder)
             return <i style={{fontSize: "4em"}} className="material-icons text-center w100">camera_alt</i>
         else
             return<div></div>
-
-        // in case want to switch back
-        // return (<img src={src} className="imgix-fluid" style={{paddingBottom: "100%"}}/>)
     }
 
 })

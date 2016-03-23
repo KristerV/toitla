@@ -18,7 +18,6 @@ OrderManagerInfo = React.createClass({
                     order={order}
                     inputRows={1}
                     inputName="extraInfo"
-                    inputLabel={T("order", "extra_form_label")}
                     inputValue={order.extraInfo}
                     inputErrorMsg={order.errors['extraInfo']}
                 />

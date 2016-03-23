@@ -40,6 +40,7 @@ LoginForm = React.createClass({
 
     render() {
         return(<div className="mdl-grid">
+            <LandingNavbar/>
             <div className="mdl-cell mdl-cell--4-cell max-width">
                 <h4 className="text-white text-center">Chefs only zone</h4>
                 <form className="paper padding text-center" onSubmit={this.sendLink}>

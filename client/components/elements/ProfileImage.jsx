@@ -7,7 +7,7 @@ ProfileImage = React.createClass({
             return (<Imgix
                     path={profile.image.path}
                     filename={profile.image.filename}
-                    circle={true}
+                    shape="circle"
                     dpr={this.props.dpr}
                     fit="facearea"
                     facepad="2"
