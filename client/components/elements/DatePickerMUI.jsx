@@ -1,5 +1,3 @@
-injectTapEventPlugin();
-
 var {
     DatePicker,
     Styles,
@@ -30,6 +28,7 @@ DatePickerMUI = React.createClass({
             autoOk={props.autoOk}
             textFieldStyle={style}
             formatDate={props.formatDate || this.getDateFormat}
-            errorText={props.errorMsg} />)
+            errorText={props.errorMsg}
+        />)
     }
 })

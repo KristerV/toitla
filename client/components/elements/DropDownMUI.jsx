@@ -1,5 +1,3 @@
-// injectTapEventPlugin()
-
 var {
     DropDownMenu,
     Styles,
