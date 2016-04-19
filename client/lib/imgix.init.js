@@ -5,7 +5,7 @@ Meteor.startup(() => {
             pixelStep: 10,
             debounce: 200,
             lazyLoad: true,
-            lazyLoadOffsetVertical: 20000,
+            lazyLoadOffsetVertical: 2000,
             autoInsertCSSBestPractices: false,
             onChangeParamOverride: function(w, h, params, element) {
 
@@ -14,7 +14,6 @@ Meteor.startup(() => {
                     params.w = `${min}`
                     params.h = `${min}`
                 }
-
 
                 return params;
             }
