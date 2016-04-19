@@ -35,7 +35,8 @@ Imgix = React.createClass({
         let filename = this.props.filename
 
         // Params
-        var params = 'crop=faces,entropy&fm=png&auto=enhance'
+        var params = 'crop=faces,entropy&auto=enhance'
+        params += this.props.format ? `&fm=${this.props.format}` : "&fm=jpg"
         params += this.props.dpr ? `&dpr=${this.props.dpr}` : ""
         params += this.props.fit ? `&fit=${this.props.fit}` : `&fit=crop`
         params += this.props.facepad ? `&facepad=${this.props.facepad}` : ""

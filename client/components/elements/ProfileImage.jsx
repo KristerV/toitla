@@ -13,6 +13,7 @@ ProfileImage = React.createClass({
                     facepad="2"
                     bri={this.props.bri}
                     exp={this.props.exp}
+                    format="png"
                 />)
         } else if (!this.props.disablePlaceholder)
             return <i className="material-icons">account_circle</i>

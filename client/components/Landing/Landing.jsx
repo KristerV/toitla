@@ -106,21 +106,21 @@ Landing = React.createClass({
             <section className="mdl-grid max-width" id="how-it-works">
                 <div className="mdl-cell--4-col padding box center">
                     <div style={{height: "230px", width: "230px"}}  className="center">
-                        <Imgix filename={"images/landing/features/homechef.jpg"} shape="circle"/>
+                        <Imgix filename={"images/landing/features/homechef.jpg"} shape="circle" format="png"/>
                     </div>
                     <h2>{T.landing.point.first()}</h2>
                     <h5>{T.landing.point.first_text()}</h5>
                 </div>
                 <div className="mdl-cell--4-col padding box center">
                     <div style={{height: "230px", width: "230px"}}  className="center">
-                        <Imgix filename={"images/landing/events/IMG_8961.jpg"} shape="circle"/>
+                        <Imgix filename={"images/landing/events/IMG_8961.jpg"} shape="circle" format="png"/>
                     </div>
                     <h2>{T.landing.point.second()}</h2>
                     <h5>{T.landing.point.second_text()}</h5>
                 </div>
                 <div className="mdl-cell--4-col padding box center">
                     <div style={{height: "230px", width: "230px"}}  className="center">
-                        <Imgix filename={"images/landing/features/service.jpg"} shape="circle"/>
+                        <Imgix filename={"images/landing/features/service.jpg"} shape="circle" format="png"/>
                     </div>
                     <h2>{T.landing.point.third()}</h2>
                     <h5>{T.landing.point.third_text()}</h5>
@@ -154,7 +154,7 @@ Landing = React.createClass({
                 <div className="max-width">
                     {Settings.landing.client_logos.map(filename => {
                         return <div key={filename} className="center" style={{padding: "0 2em" ,width: "8em", height: "6em", display: "inline-block"}}>
-                            <Imgix path="/images/landing/clients" filename={filename} fit="clip"/>
+                            <Imgix path="/images/landing/clients" filename={filename} fit="clip" format="png"/>
                         </div>
                     })}
                 </div>
