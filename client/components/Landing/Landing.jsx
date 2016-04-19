@@ -64,7 +64,7 @@ Landing = React.createClass({
             <section className="mdl-grid shadow-bottom relative imgix-fluid imgix-fluid-bg" data-src={Settings.landing.mainImage}>
                 <div className="mdl-cell mdl-cell--6-col text-white center">
                     <Toitla white={true} shadow={true} size={1.4}/>
-                    <h3 style={{fontFamily: "GH"}} className="text-shadow">{T.landing.hero.description()}</h3>
+                    <h3 style={{fontFamily: "GH"}} className="text-shadow landing-title">{T.landing.hero.description()}</h3>
                     <div className="mdl-grid center">
                         <div className="mdl-cell mdl-cell--6-col">
                             <Button
@@ -108,22 +108,22 @@ Landing = React.createClass({
                     <div style={{height: "230px", width: "230px"}}  className="center">
                         <Imgix filename={"images/landing/features/homechef.jpg"} shape="circle" format="png"/>
                     </div>
-                    <h2>{T.landing.point.first()}</h2>
-                    <h5>{T.landing.point.first_text()}</h5>
+                    <h3>{T.landing.point.first()}</h3>
+                    <h6>{T.landing.point.first_text()}</h6>
                 </div>
                 <div className="mdl-cell--4-col padding box center">
                     <div style={{height: "230px", width: "230px"}}  className="center">
                         <Imgix filename={"images/landing/events/IMG_8961.jpg"} shape="circle" format="png"/>
                     </div>
-                    <h2>{T.landing.point.second()}</h2>
-                    <h5>{T.landing.point.second_text()}</h5>
+                    <h3>{T.landing.point.second()}</h3>
+                    <h6>{T.landing.point.second_text()}</h6>
                 </div>
                 <div className="mdl-cell--4-col padding box center">
                     <div style={{height: "230px", width: "230px"}}  className="center">
                         <Imgix filename={"images/landing/features/service.jpg"} shape="circle" format="png"/>
                     </div>
-                    <h2>{T.landing.point.third()}</h2>
-                    <h5>{T.landing.point.third_text()}</h5>
+                    <h3>{T.landing.point.third()}</h3>
+                    <h6>{T.landing.point.third_text()}</h6>
                 </div>
                 <div className="center margin-top">
                     <Button
@@ -175,7 +175,7 @@ Landing = React.createClass({
             </section>
 
             <section>
-                <h1>Features</h1>
+                <h1>{T.landing.features.title()}</h1>
                 <div className="mdl-grid text-left max-width">
                     {Settings.landing.features.map((item, i) => {
                         return <div key={i} className="mdl-cell mdl-cell--6-col mdl-grid paper no-padding">
@@ -193,7 +193,7 @@ Landing = React.createClass({
 
             <section>
                 <h1>{T.landing.users.chefs()}</h1>
-                <h5>{T.landing.users.chefs_text()}</h5>
+                <p>{T.landing.users.chefs_text()}</p>
                 <div className="mdl-grid max-width">
                     {chefs.map((user, i) => {
                         return <div className="mdl-cell mdl-cell--2-col padding center" key={i}>
@@ -206,7 +206,7 @@ Landing = React.createClass({
 
             <section>
                 <h1>{T.landing.users.team()}</h1>
-                <h5>{T.landing.users.team_text()}</h5>
+                <p>{T.landing.users.team_text()}</p>
                 <div className="mdl-grid max-width">
                     {admins.map((user, i) => {
                         return <div className="mdl-cell mdl-cell--2-col padding center" key={i}>
