@@ -165,7 +165,7 @@ Landing = React.createClass({
 
             <section>
                 <h1>{T.landing.score.gallery()}</h1>
-                <div className="mdl-grid max-width">
+                <div className="mdl-grid max-width no-padding full-cell-width">
                     {settings.eventImages.map((fullpath, i) => {
                         return <div className="mdl-cell mdl-cell--4-col no-margin" key={i}>
                             <Imgix filename={fullpath} style={{padding: "1px", margin: "-1px"}}/>
