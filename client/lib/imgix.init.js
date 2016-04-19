@@ -5,7 +5,7 @@ Meteor.startup(() => {
             pixelStep: 10,
             debounce: 200,
             lazyLoad: true,
-            lazyLoadOffsetVertical: 1000,
+            lazyLoadOffsetVertical: 2000,
             autoInsertCSSBestPractices: false,
             onChangeParamOverride: function(w, h, params, element) {
 
