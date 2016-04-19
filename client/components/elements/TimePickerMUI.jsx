@@ -1,3 +1,5 @@
+injectTapEventPlugin();
+
 var {
     TimePicker,
     Styles,
