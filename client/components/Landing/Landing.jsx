@@ -109,21 +109,21 @@ Landing = React.createClass({
                         <Imgix filename={"images/landing/features/homechef.jpg"} shape="circle" format="png"/>
                     </div>
                     <h3>{T.landing.point.first()}</h3>
-                    <h6>{T.landing.point.first_text()}</h6>
+                    <h5>{T.landing.point.first_text()}</h5>
                 </div>
                 <div className="mdl-cell--4-col padding box center">
                     <div style={{height: "230px", width: "230px"}}  className="center">
                         <Imgix filename={"images/landing/events/IMG_8961.jpg"} shape="circle" format="png"/>
                     </div>
                     <h3>{T.landing.point.second()}</h3>
-                    <h6>{T.landing.point.second_text()}</h6>
+                    <h5>{T.landing.point.second_text()}</h5>
                 </div>
                 <div className="mdl-cell--4-col padding box center">
                     <div style={{height: "230px", width: "230px"}}  className="center">
                         <Imgix filename={"images/landing/features/service.jpg"} shape="circle" format="png"/>
                     </div>
                     <h3>{T.landing.point.third()}</h3>
-                    <h6>{T.landing.point.third_text()}</h6>
+                    <h5>{T.landing.point.third_text()}</h5>
                 </div>
                 <div className="center margin-top">
                     <Button

@@ -19,7 +19,7 @@ OrderAllergiesForm = React.createClass({
 
         if (!_.isEmpty(order.allergies.guests)) {
             var guestsAllergies = <div>
-                <h5>{T.order.form.guests_submitted()}</h5>
+                <h5>{T.order.form.allergies.guests_submitted()}</h5>
                 <p>{order.allergies.guests.join(" - ")}</p>
             </div>
         }
