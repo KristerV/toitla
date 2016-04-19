@@ -1,4 +1,3 @@
-injectTapEventPlugin();
 
 var {
     TimePicker,
@@ -31,6 +30,7 @@ TimePickerMUI = React.createClass({
             onChange={props.onChange}
             defaultTime={props.value}
             textFieldStyle={style}
-            errorText={props.errorMsg} />)
+            errorText={props.errorMsg}
+        />)
     }
 })
