@@ -106,7 +106,7 @@ Landing = React.createClass({
             <section className="mdl-grid max-width" id="how-it-works">
                 <div className="mdl-cell--4-col padding box center">
                     <div style={{height: "230px", width: "230px"}}  className="center">
-                        <Imgix filename={"images/landing/features/homechef.png"} shape="circle"/>
+                        <Imgix filename={"images/landing/features/homechef.jpg"} shape="circle"/>
                     </div>
                     <h2>{T.landing.point.first()}</h2>
                     <h5>{T.landing.point.first_text()}</h5>
@@ -135,6 +135,19 @@ Landing = React.createClass({
                 </div>
             </section>
 
+            <section id="how-to-order">
+                <h1>{T.landing.howto.title()}</h1>
+                <ol className="center how-to-order" style={{maxWidth: "400px"}}>
+                    <li>{T.landing.howto.first()}</li>
+                    <h6 className="text-hint">{T.landing.howto.first_sub()}</h6>
+                    <li>{T.landing.howto.second()}</li>
+                    <h6 className="text-hint">{T.landing.howto.second_sub()}</h6>
+                    <li>{T.landing.howto.third()}</li>
+                    <h6 className="text-hint">{T.landing.howto.third_sub()}</h6>
+                </ol>
+                {this.getOrderNowButton()}
+            </section>
+
             <section>
                 <h2 dangerouslySetInnerHTML={T.landing.score.nr_events({dangerous: true, nr: settings.ordersCount})}></h2>
                 <h4 dangerouslySetInnerHTML={T.landing.score.nr_people({dangerous: true, nr: settings.mostPeople})}></h4>
@@ -156,19 +169,6 @@ Landing = React.createClass({
                         </div>
                     })}
                 </div>
-            </section>
-
-            <section id="how-to-order">
-                <h1>{T.landing.howto.title()}</h1>
-                <ol className="center how-to-order" style={{maxWidth: "400px"}}>
-                    <li>{T.landing.howto.first()}</li>
-                    <h6 className="text-hint">{T.landing.howto.first_sub()}</h6>
-                    <li>{T.landing.howto.second()}</li>
-                    <h6 className="text-hint">{T.landing.howto.second_sub()}</h6>
-                    <li>{T.landing.howto.third()}</li>
-                    <h6 className="text-hint">{T.landing.howto.third_sub()}</h6>
-                </ol>
-                {this.getOrderNowButton()}
             </section>
 
             <section>
