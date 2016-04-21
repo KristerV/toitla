@@ -18,6 +18,6 @@ Meteor.startup(() => {
                     return params;
                 }
             });
-        }, 1000)
+        }, 500)
     });
 })
