@@ -23,11 +23,10 @@ Imgix = React.createClass({
 	},
 
 	componentDidMount() {this.updateSize()},
-	componentDidUpdate() {},
+	componentDidUpdate() {this.updateSize()},
 
 	updateSize() {
 		let node = ReactDOM.findDOMNode(this)
-		console.log("node.scrollHeight", node.scrollHeight, node.parentNode.scrollHeight)
 		this.setState({
 			width: node.scrollWidth,
 			height: node.scrollHeight || node.parentNode.scrollHeight,
@@ -35,7 +34,6 @@ Imgix = React.createClass({
 	},
 
 	render() {
-		console.log("this.state", this.state)
 		let url = this.getUrl()
 
 		let customParams = {
