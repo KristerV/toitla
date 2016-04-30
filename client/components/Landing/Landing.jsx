@@ -1,11 +1,8 @@
+import React from 'react'
+
 Landing = React.createClass({
     goLogin() {
         FlowRouter.go('/login')
-    },
-
-    componentDidMount() {
-        // HACK: fire imgix lazyload, as otherwise it may not load images
-        $('body').scrollTop($('body').offset().top + 1)
     },
 
     mixins: [ReactMeteorData],
@@ -157,7 +154,7 @@ Landing = React.createClass({
                                 key={filename}
                                 className="center"
                                 style={{ padding: "0 2em" , width: "8em", height: "6em", display: "inline-block" }}>
-                        <Imgix path="/images/landing/clients" filename={filename} fit="clip" format="png"/>
+                        <Imgix path="/images/landing/clients" filename={filename} fit="clamp" format="png"/>
                         </div>
                     })}
                 </div>
@@ -167,7 +164,7 @@ Landing = React.createClass({
                 <h1>{T.landing.score.gallery()}</h1>
                 <div className="mdl-grid max-width no-padding full-cell-width">
                     {settings.eventImages.map((fullpath, i) => {
-                        return <div className="mdl-cell mdl-cell--4-col no-margin" key={i}>
+                        return <div className="mdl-cell mdl-cell--4-col no-margin" key={i} style={{minHeight: "300px"}}>
                             <Imgix filename={fullpath} style={{padding: "1px", margin: "-1px"}}/>
                         </div>
                     })}
