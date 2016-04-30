@@ -58,7 +58,7 @@ Landing = React.createClass({
 
         return (<div className="landing text-center">
             <LandingNavbar/>
-            <section className="mdl-grid shadow-bottom relative imgix-fluid imgix-fluid-bg" data-src={Settings.landing.mainImage}>
+            <section className="mdl-grid shadow-bottom relative title-section">
                 <div className="mdl-cell mdl-cell--6-col text-white center">
                     <Toitla white={true} shadow={true} size={1.4}/>
                     <h3 style={{fontFamily: "GH"}} className="text-shadow landing-title">{T.landing.hero.description()}</h3>

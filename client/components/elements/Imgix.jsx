@@ -23,7 +23,6 @@ Imgix = React.createClass({
 	},
 
 	componentDidMount() {this.updateSize()},
-	componentDidUpdate() {this.updateSize()},
 
 	updateSize() {
 		let node = ReactDOM.findDOMNode(this)
