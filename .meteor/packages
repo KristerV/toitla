@@ -25,11 +25,8 @@ dburles:collection-helpers
 meteorhacks:npm
 jsx
 react-meteor-data
-react-runtime@=0.14.3
-react-template-helper@=0.2.4
 
 
-standard-minifiers
 meteor-base
 mobile-experience
 mongo
@@ -62,3 +59,5 @@ meteorhacks:kadira
 okgrow:analytics
 meteorhacks:kadira-profiler
 kadira:debug
+standard-minifier-css
+standard-minifier-js

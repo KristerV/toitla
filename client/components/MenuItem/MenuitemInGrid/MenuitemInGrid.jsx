@@ -84,7 +84,7 @@ MenuitemInGrid = React.createClass({
         return(
         <div className="MenuitemGrid mdl-shadow--2dp paper mdl-cell mdl-cell--4-col">
             <CornerMenu options={options}/>
-            <section>
+            <section style={{minHeight: "230px"}}>
                 <Imgix path={menuitem.image.path} filename={menuitem.image.filename}/>
                 {menuitem.published ? null : <FileUpload path="uploads/images/menuitems" onComplete={this.uploadComplete}/>}
             </section>
