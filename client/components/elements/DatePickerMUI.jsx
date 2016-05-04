@@ -21,7 +21,7 @@ DatePickerMUI = React.createClass({
         }
         return(<DatePicker
             name={props.name}
-            floatingLabelText={props.label}
+            placeholder={props.label}
             minDate={props.minDate}
             onChange={props.onChange}
             defaultDate={props.defaultDate}

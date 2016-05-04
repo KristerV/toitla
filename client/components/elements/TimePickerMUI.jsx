@@ -25,7 +25,7 @@ TimePickerMUI = React.createClass({
         }
         return(<TimePicker
             name={props.name}
-            floatingLabelText={props.label}
+            placeholder={props.label}
             format="24hr"
             onChange={props.onChange}
             defaultTime={props.value}
