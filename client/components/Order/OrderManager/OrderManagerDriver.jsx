@@ -2,12 +2,14 @@ OrderManagerDriver = React.createClass({
 
     mixins: [ReactMeteorData],
     getMeteorData() {
+        var chefIds = _.pluck(this.props.order.chefs, '_id')
+        var find = {_id: {$in: chefIds}}
+
         var subscription = Meteor.subscribe("settings")
-        var subscription2 = Meteor.subscribe("allUserData", {_id: {$in: chefIds}})
+        var subscription2 = Meteor.subscribe("allUserData", find)
 
         var driverSettings = Settings.findOne('driver')
-        var chefIds = _.pluck(this.props.order.chefs, '_id')
-        var users = Meteor.users.find().fetch()
+        var users = Meteor.users.find(find).fetch()
 
         return {
             users: users,
@@ -52,6 +54,8 @@ OrderManagerDriver = React.createClass({
     },
 
     render() {
+        if (!this.data.subsReady)
+            return <Loader/>
         var order = this.props.order || {}
         order.driver = order.driver || {}
         var sms = this.data.driverSettings ? this.data.driverSettings.sms : null
