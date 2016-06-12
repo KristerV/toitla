@@ -22,7 +22,7 @@ StatsContainer = React.createClass({
         return {
             subsReady: subscription.ready() && sub2.ready(),
             orders: orders,
-            analytics: Analytics.find().fetch()
+            analytics: Analytics.find({}).fetch()
         }
     },
 

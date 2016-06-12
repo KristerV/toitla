@@ -62,15 +62,16 @@ MenuitemsContainer = React.createClass({
         var addToOrdermode = FlowRouter.current().route.name === 'menus-addItem'
 
         if (chefId) {
-            subscription = Meteor.subscribe("menuitem_templates", {chefId: chefId})
-            menuitems = MenuitemTemplates.find({chefId: chefId}, options).fetch()
+            options.chefId = chefId
+            subscription = Meteor.subscribe("menuitem_templates", {chefId: chefId}, options)
+            menuitems = MenuitemTemplates.find().fetch()
         } else if (menuitemId) {
-            subscription = Meteor.subscribe("menuitem_templates", {_id: menuitemId})
-            menuitems = MenuitemTemplates.find({_id: menuitemId}, options).fetch()
+            subscription = Meteor.subscribe("menuitem_templates", {_id: menuitemId}, options)
+            menuitems = MenuitemTemplates.find().fetch()
         } else if (addToOrdermode && orderId) {
             subscription = Meteor.subscribe("menuitem_templates")
-            subscription2 = Meteor.subscribe("menuitems_inorder")
-            menuitems = MenuitemTemplates.find(this.getFind(), options).fetch()
+            subscription2 = Meteor.subscribe("menuitems_inorder", this.getFind(), options)
+            menuitems = MenuitemTemplates.find().fetch()
             itemsInOrder = MenuitemsInOrder.find({orderId: orderId, rejected: {$ne: true}}).fetch()
 
             for (var i = 0; i < menuitems.length; i++) {
@@ -81,8 +82,9 @@ MenuitemsContainer = React.createClass({
             }
 
         } else if (orderId) {
-            subscription = Meteor.subscribe("menuitems_inorder", orderId)
-            menuitems = MenuitemsInOrder.find({orderId: orderId, rejected: {$ne: true}}, options).fetch()
+            var find = {orderId: orderId, rejected: {$ne: true}}
+            subscription = Meteor.subscribe("menuitems_inorder", find, options)
+            menuitems = MenuitemsInOrder.find().fetch()
         } else {
             subscription = Meteor.subscribe("menuitem_templates")
             menuitems = MenuitemTemplates.find(this.getFind(), options).fetch()

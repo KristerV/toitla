@@ -2,7 +2,7 @@ StatusBarContainer = React.createClass({
 
     mixins: [ReactMeteorData],
     getMeteorData() {
-        var subscription = Meteor.subscribe("orders")
+        var subscription = Meteor.subscribe("orders", this.props.orderId)
         return {
             subsReady: subscription.ready(),
             order: Orders.findOne(this.props.orderId)

@@ -3,11 +3,11 @@ OrderManagerDriver = React.createClass({
     mixins: [ReactMeteorData],
     getMeteorData() {
         var subscription = Meteor.subscribe("settings")
-        var subscription2 = Meteor.subscribe("allUserData")
+        var subscription2 = Meteor.subscribe("allUserData", {_id: {$in: chefIds}})
 
         var driverSettings = Settings.findOne('driver')
         var chefIds = _.pluck(this.props.order.chefs, '_id')
-        var users = Meteor.users.find({_id: {$in: chefIds}}).fetch()
+        var users = Meteor.users.find().fetch()
 
         return {
             users: users,

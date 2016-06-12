@@ -1,13 +1,5 @@
 Layout = React.createClass({
 
-    mixins: [ReactMeteorData],
-    getMeteorData() {
-        var sub = Meteor.subscribe("allUserData");
-        return {
-            subsready: sub.ready(),
-        }
-    },
-
     shouldComponentUpdate() {
         $('.mdl-layout__drawer.is-visible').removeClass('is-visible')
         $('.mdl-layout__obfuscator.is-visible').removeClass('is-visible')
