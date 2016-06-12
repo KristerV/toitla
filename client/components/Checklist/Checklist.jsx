@@ -14,7 +14,7 @@ Checklist = React.createClass({
         var subs = this.props.collectionName
         if (subs === 'users')
             subs = 'allUserData'
-        var subscription = Meteor.subscribe(subs)
+        var subscription = Meteor.subscribe(subs, this.props.docId)
         var collection = Mongo.Collection.get(this.props.collectionName)
         if (!collection)
             throw new Meteor.Error(500, "No such collection exists");
