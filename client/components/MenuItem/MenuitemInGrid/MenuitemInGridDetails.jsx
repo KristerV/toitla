@@ -4,7 +4,7 @@ MenuitemInGridDetails = React.createClass({
     mixins: [ReactMeteorData],
     getMeteorData() {
         var chefId = this.props.menuitem.chefId
-        var subscription = Meteor.subscribe("allUserData", {_id: chefId}, {fields: {profile: 1}})
+        var subscription = Meteor.subscribe("allUserData", {_id: chefId})
         var user = Meteor.users.findOne()
         return {
             subsReady: subscription.ready(),
