@@ -1,4 +1,6 @@
 import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import React from 'react';
 DropDownMUI = React.createClass({
@@ -36,7 +38,8 @@ DropDownMUI = React.createClass({
         if (disabled)
             divClass += " disabled"
 
-        return(<div style={divStyle} className={divClass}>
+        return(<MuiThemeProvider>
+            <div style={divStyle} className={divClass}>
             <DropDownMenu
                 autoWidth={this.props.autoWidth}
                 menuItemStyle={this.props.menuItemStyle}
@@ -60,6 +63,6 @@ DropDownMUI = React.createClass({
                 display: "block",
                 paddingLeft: "2px",
             }}>{this.props.errorMsg}</span>
-        </div>)
+        </div></MuiThemeProvider>)
     }
 })

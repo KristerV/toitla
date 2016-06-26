@@ -1,4 +1,5 @@
 import TimePicker from 'material-ui/TimePicker';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import React from 'react';
 TimePickerMUI = React.createClass({
@@ -17,7 +18,7 @@ TimePickerMUI = React.createClass({
         if (!props.autoWidth) {
             style.width = '100%'
         }
-        return(<TimePicker
+        return(<MuiThemeProvider><TimePicker
             name={props.name}
             placeholder={props.label}
             format="24hr"
@@ -25,6 +26,6 @@ TimePickerMUI = React.createClass({
             defaultTime={props.value}
             textFieldStyle={style}
             errorText={props.errorMsg}
-        />)
+        /></MuiThemeProvider>)
     }
 })
