@@ -1,3 +1,4 @@
+import React from 'react';
 Markdown = React.createClass({
     propTypes: {
         children: React.PropTypes.string,

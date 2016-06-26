@@ -1,3 +1,4 @@
+import React from 'react';
 Layout = React.createClass({
 
     shouldComponentUpdate() {
@@ -44,7 +45,7 @@ Layout = React.createClass({
                         <nav className="mdl-navigation">{links}</nav>
                     </div>
                 </header>
-                <div className={"mdl-tabs mdl-js-tabs mdl-js-ripple-effect " + (this.props.tabs ? "mdl-layout__header" : "")} style={{minHeight: '0'}}>
+                <div className={"mdl-tabs mdl-js-tabs mdl-js-ripple-effect " + (this.props.tabs ? "mdl-layout__header" : "")} style={{minHeight: '0px'}}>
                     <div className="mdl-tabs__tab-bar" style={{height: "auto", borderBottom: "none"}}>
                         {_.map(this.props.tabs, function(tab, i){
                             var newPath = currentPath.replace(this.props.activeTab, tab.route)

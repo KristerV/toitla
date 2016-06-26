@@ -1,3 +1,4 @@
+import React from 'react';
 OrderManagerMenu = React.createClass({
 
     render() {

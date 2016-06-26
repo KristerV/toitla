@@ -13,7 +13,6 @@ raix:handlebar-helpers
 reactive-var
 meteorhacks:flow-router
 meteorhacks:flow-layout
-izzilab:material-ui
 accounts-password
 mizzao:timesync
 dburles:mongo-collection-instances

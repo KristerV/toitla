@@ -1,3 +1,4 @@
+import React from 'react';
 OrderList = React.createClass({
 
     goNewOrder(e) {

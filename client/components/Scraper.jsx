@@ -1,4 +1,5 @@
 
+import React from 'react';
 Scraper = React.createClass({
 
     getInitialState() {

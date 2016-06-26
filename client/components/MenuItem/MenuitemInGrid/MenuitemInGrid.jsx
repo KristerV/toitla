@@ -1,3 +1,4 @@
+import React from 'react';
 MenuitemInGrid = React.createClass({
 
     updateText(e) {

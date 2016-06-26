@@ -1,5 +1,4 @@
-import React from 'react'
-
+import React from 'react';
 Landing = React.createClass({
     goLogin() {
         FlowRouter.go('/login')

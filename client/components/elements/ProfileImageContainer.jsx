@@ -1,3 +1,4 @@
+import React from 'react';
 ProfileImageContainer = React.createClass({
 
     mixins: [ReactMeteorData],

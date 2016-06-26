@@ -1,3 +1,4 @@
+import React from 'react';
 NewOrderButtons = React.createClass({
     render() {
         return(<div className="mdl-grid">

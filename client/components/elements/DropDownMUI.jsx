@@ -1,13 +1,7 @@
-var {
-    DropDownMenu,
-    Styles,
-    MenuItem,
-} = MUI;
-var { ThemeManager, LightRawTheme } = Styles;
+import DropDownMenu from 'material-ui/DropDownMenu';
 
+import React from 'react';
 DropDownMUI = React.createClass({
-    childContextTypes: { muiTheme: React.PropTypes.object, },
-    getChildContext() { return { muiTheme: ThemeManager.getMuiTheme(LightRawTheme), } },
 
     onChange(e, i, value) {
         this.props.onChange({

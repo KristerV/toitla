@@ -1,13 +1,7 @@
+import TimePicker from 'material-ui/TimePicker';
 
-var {
-    TimePicker,
-    Styles,
-} = MUI;
-var { ThemeManager, LightRawTheme } = Styles;
-
+import React from 'react';
 TimePickerMUI = React.createClass({
-    childContextTypes: { muiTheme: React.PropTypes.object, },
-    getChildContext() { return { muiTheme: ThemeManager.getMuiTheme(LightRawTheme), } },
 
     getTimeFormat: function(date) {
         if (!date) {

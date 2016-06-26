@@ -1,3 +1,4 @@
+import React from 'react';
 OrderManagerStatus = React.createClass({
 
     submitOrder() {

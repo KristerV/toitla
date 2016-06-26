@@ -1,3 +1,4 @@
+import React from 'react';
 NewOrderSectionText = React.createClass({
     render() {
         var element

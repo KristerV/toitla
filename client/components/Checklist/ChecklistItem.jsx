@@ -1,3 +1,4 @@
+import React from 'react';
 ChecklistItem = React.createClass({
 
     componentDidMount() {

@@ -1,3 +1,4 @@
+import React from 'react';
 MenuitemsGrid = React.createClass({
     render() {
         var singleItem = this.props.menuitems.length > 0 ? this.props.menuitems[0] : {}

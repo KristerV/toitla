@@ -1,3 +1,4 @@
+import React from 'react';
 NewOrderSectionThanks = React.createClass({
 
     goHome() {

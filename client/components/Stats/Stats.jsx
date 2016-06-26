@@ -1,3 +1,4 @@
+import React from 'react';
 Stats = React.createClass({
 
     componentDidMount() {

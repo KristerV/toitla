@@ -1,3 +1,4 @@
+import React from 'react';
 NewOrderSection = React.createClass({
     render() {
 

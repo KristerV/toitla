@@ -1,3 +1,4 @@
+import React from 'react';
 OrderManagerInfo = React.createClass({
 
     render() {

@@ -1,3 +1,4 @@
+import React from 'react';
 OrderGeneralInputForm = React.createClass({
     handleTextFieldChange(e) {
         this.props.order.handleTextFieldChange(e)

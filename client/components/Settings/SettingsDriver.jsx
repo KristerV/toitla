@@ -1,3 +1,4 @@
+import React from 'react';
 SettingsDriver = React.createClass({
 
 	mixins: [ReactMeteorData],

@@ -1,4 +1,5 @@
 
+import React from 'react';
 MenuitemInGridDetails = React.createClass({
 
     mixins: [ReactMeteorData],

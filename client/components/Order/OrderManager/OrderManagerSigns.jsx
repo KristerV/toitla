@@ -1,3 +1,4 @@
+import React from 'react';
 OrderManagerSigns = React.createClass({
 
     getInitialState() {

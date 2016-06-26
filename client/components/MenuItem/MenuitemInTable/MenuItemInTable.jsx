@@ -1,3 +1,4 @@
+import React from 'react';
 MenuitemInTable = React.createClass({
 
     mixins: [ReactMeteorData],

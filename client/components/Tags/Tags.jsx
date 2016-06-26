@@ -1,3 +1,4 @@
+import React from 'react';
 Tags = React.createClass({
 
     switchTag(e) {

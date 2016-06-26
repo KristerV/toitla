@@ -1,3 +1,4 @@
+import React from 'react';
 OrderManagerDriver = React.createClass({
 
     mixins: [ReactMeteorData],

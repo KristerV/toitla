@@ -1,3 +1,4 @@
+import React from 'react';
 Checkbox = React.createClass({
     render() {
         var labelClass = "mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect "

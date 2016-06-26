@@ -1,3 +1,4 @@
+import React from 'react';
 SignToitla = React.createClass({
 
     render() {
