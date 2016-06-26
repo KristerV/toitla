@@ -1,3 +1,4 @@
+import React from 'react';
 SettingsContainer = React.createClass({
     render() {
 

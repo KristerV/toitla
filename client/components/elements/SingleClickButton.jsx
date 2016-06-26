@@ -1,3 +1,4 @@
+import React from 'react';
 SingleClickButton = React.createClass({
 
     getInitialState() {

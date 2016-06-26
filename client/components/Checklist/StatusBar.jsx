@@ -1,3 +1,4 @@
+import React from 'react';
 StatusBar = React.createClass({
     render() {
         var statuses = this.props.statuses

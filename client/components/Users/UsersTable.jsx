@@ -1,3 +1,4 @@
+import React from 'react';
 UsersTable = React.createClass({
 
     newUser(e) {

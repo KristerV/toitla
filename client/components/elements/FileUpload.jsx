@@ -1,3 +1,4 @@
+import React from 'react';
 FileUpload = React.createClass({
 
     mixins: [ReactMeteorData],

@@ -1,3 +1,4 @@
+import React from 'react';
 OrderResult = React.createClass({
 
     handleClickResult(e) {

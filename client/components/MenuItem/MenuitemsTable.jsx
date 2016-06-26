@@ -1,3 +1,4 @@
+import React from 'react';
 MenuitemsTable = React.createClass({
 
     goToOrder() {

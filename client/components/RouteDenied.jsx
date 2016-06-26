@@ -1,3 +1,4 @@
+import React from 'react';
 RouteDenied = React.createClass({
 
     goHome(e) {

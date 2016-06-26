@@ -1,3 +1,4 @@
+import React from 'react';
 MenuitemInGridButtonSection = React.createClass({
     render() {
         var buttonClass = "w100 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"

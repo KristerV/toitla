@@ -1,3 +1,4 @@
+import React from 'react';
 ProfileImage = React.createClass({
 
     render() {

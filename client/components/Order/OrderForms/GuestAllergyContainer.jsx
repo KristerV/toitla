@@ -1,3 +1,4 @@
+import React from 'react';
 GuestAllergyContainer = React.createClass({
 
     mixins: [ReactMeteorData],

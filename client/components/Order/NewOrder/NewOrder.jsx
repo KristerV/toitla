@@ -1,3 +1,4 @@
+import React from 'react';
 NewOrder = React.createClass({
 
     goHome() {

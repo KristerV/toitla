@@ -1,3 +1,4 @@
+import React from 'react';
 MenuitemsFilters = React.createClass({
 
     mixins: [ReactMeteorData],

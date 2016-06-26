@@ -1,3 +1,4 @@
+import React from 'react';
 OrderMenuForm = React.createClass({
     handleSliderChange(e) {
         this.props.order.updateField(e.target.name, e.target.value)

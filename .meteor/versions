@@ -43,7 +43,6 @@ html-tools@1.0.10
 htmljs@1.0.10
 http@1.1.7
 id-map@1.0.8
-izzilab:material-ui@0.2.6
 jquery@1.11.9
 jss:moment-timezone@0.5.0
 jsx@0.2.4
@@ -101,9 +100,7 @@ raix:handlebar-helpers@0.2.5
 raix:push@3.0.2
 random@1.0.10
 rate-limit@1.0.5
-react@0.14.6
 react-meteor-data@0.2.9
-react-runtime@0.14.5
 reactive-dict@1.1.8
 reactive-var@1.0.10
 reload@1.1.10

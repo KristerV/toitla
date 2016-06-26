@@ -1,3 +1,4 @@
+import React from 'react';
 StatsContainer = React.createClass({
 
     mixins: [ReactMeteorData],

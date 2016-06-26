@@ -1,3 +1,4 @@
+import React from 'react';
 UserListItem = React.createClass({
 
     goProfile: function() {

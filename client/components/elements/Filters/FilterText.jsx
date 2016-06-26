@@ -1,3 +1,4 @@
+import React from 'react';
 FilterText = React.createClass({
     filterChange(e) {
         this.update(e.target.value)

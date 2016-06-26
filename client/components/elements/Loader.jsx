@@ -1,3 +1,4 @@
+import React from 'react';
 Loader = React.createClass({
     render(){
         var show = !this.props.ifNot

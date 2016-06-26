@@ -1,3 +1,4 @@
+import React from 'react';
 MenuitemButtonAdd = React.createClass({
 
     newMenuitemTemplate() {

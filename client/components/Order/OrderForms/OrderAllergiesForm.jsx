@@ -1,3 +1,4 @@
+import React from 'react';
 OrderAllergiesForm = React.createClass({
     handleTextFieldChange(e) {
         this.props.order.handleTextFieldChange(e)

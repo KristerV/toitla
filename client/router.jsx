@@ -1,3 +1,6 @@
+import React from 'react'
+import {mount} from 'react-mounter'
+
 FlowRouter.triggers.enter([function () {
     G.setDocumentTitle("Toitla")
     Analytics.event(FlowRouter.current().route.name || FlowRouter.current().path)
@@ -11,7 +14,7 @@ FlowRouter.goSilent = function (a, b) {
 FlowRouter.route('/', {
     action: function (params) {
         if (!Meteor.userId())
-            ReactLayout.render(Landing, params.query);
+            mount(Landing, params.query);
         else {
             waitForRoles(function () {
                 if (Roles.userIsInRole(Meteor.userId(), 'manager')) {
@@ -30,11 +33,11 @@ FlowRouter.route('/home', {
     name: "home",
     action: function (params) {
         if (Meteor.userId()) {
-            ReactLayout.render(Layout, {
+            mount(Layout, {
                 content: <Landing/>
             });
         } else {
-            ReactLayout.render(Landing, params.query);
+            mount(Landing, params.query);
         }
     }
 });
@@ -43,7 +46,7 @@ FlowRouter.route('/stats', {
     name: "stats",
     triggersEnter: [loginRequired, managerOnly],
     action: function (params) {
-        ReactLayout.render(Layout, {
+        mount(Layout, {
             content: <StatsContainer/>
         });
     }
@@ -61,7 +64,7 @@ FlowRouter.route('/settings/:tab', {
     name: "settingsTab",
     triggersEnter: [loginRequired, managerOnly],
     action: function (params) {
-        ReactLayout.render(Layout, {
+        mount(Layout, {
             content: <SettingsContainer tab={params.tab}/>,
             tabs: Settings.settings.tabs,
             activeTab: params.tab
@@ -73,7 +76,7 @@ FlowRouter.route('/orders', {
     name: 'orders',
     triggersEnter: [loginRequired, startIdleMonitor],
     action: function (params) {
-        ReactLayout.render(Layout, {
+        mount(Layout, {
             content: <OrdersListContainer/>
         });
     }
@@ -83,7 +86,7 @@ FlowRouter.route('/menus', {
     name: 'menus',
     triggersEnter: [loginRequired, managerOnly],
     action: function (params) {
-        ReactLayout.render(Layout, {
+        mount(Layout, {
             content: <MenuitemsContainer filters={true} layout="table"/>
         });
     }
@@ -93,7 +96,7 @@ FlowRouter.route('/menus/add-item-to-order/:orderId', {
     name: 'menus-addItem', // find and replace if needs changing
     triggersEnter: [loginRequired, managerOnly],
     action: function (params) {
-        ReactLayout.render(Layout, {
+        mount(Layout, {
             content: <MenuitemsContainer filters={true} layout="table" orderId={params.orderId}/>
         });
     }
@@ -110,7 +113,7 @@ FlowRouter.route('/profile/:userId', {
     triggersEnter: [loginRequired, startIdleMonitor],
     name: 'profile',
     action: function (params) {
-        ReactLayout.render(Layout, {
+        mount(Layout, {
             content: <UsersContainer userId={params.userId}/>
         });
     }
@@ -120,7 +123,7 @@ FlowRouter.route('/menu/:userId', {
     triggersEnter: [loginRequired, startIdleMonitor],
     name: 'menu',
     action: function (params) {
-        ReactLayout.render(Layout, {
+        mount(Layout, {
             content: <MenuitemsContainer chefId={params.userId}/>
         });
     }
@@ -132,7 +135,7 @@ FlowRouter.route('/login/', {
         if (Meteor.userId())
             FlowRouter.go('/')
         else
-            ReactLayout.render(LoginForm)
+            mount(LoginForm)
     }
 });
 
@@ -152,7 +155,7 @@ FlowRouter.route('/users/', {
     triggersEnter: [loginRequired, managerOnly],
     name: 'users',
     action: function (params) {
-        ReactLayout.render(Layout, {
+        mount(Layout, {
             content: <UsersContainer/>
         });
     }
@@ -161,7 +164,7 @@ FlowRouter.route('/users/', {
 FlowRouter.route('/scraper/', {
     triggersEnter: [loginRequired, managerOnly],
     action: function (params) {
-        ReactLayout.render(Scraper)
+        mount(Scraper)
     }
 });
 
@@ -169,9 +172,9 @@ FlowRouter.route('/neworder/:orderId', {
     name: "neworder",
     action: function (params) {
         if (!Meteor.userId())
-            ReactLayout.render(NewOrderContainer, {orderId: params.orderId})
+            mount(NewOrderContainer, {orderId: params.orderId})
         else
-            ReactLayout.render(Layout, {
+            mount(Layout, {
                 content: <NewOrderContainer orderId={params.orderId}/>
             });
     }
@@ -180,7 +183,7 @@ FlowRouter.route('/neworder/:orderId', {
 FlowRouter.route('/submitted/', {
     name: "submitted",
     action: function (params) {
-        ReactLayout.render(NewOrderSectionThanks)
+        mount(NewOrderSectionThanks)
     }
 });
 
@@ -191,7 +194,7 @@ FlowRouter.route('/order/:orderId', {
             if (Roles.userIsInRole(Meteor.userId(), 'manager'))
                 FlowRouter.goSilent("orderTab", {orderId: params.orderId, tab: Settings.order.tabs[0].route})
             else
-                ReactLayout.render(Layout, {
+                mount(Layout, {
                     content: <OrderManagerContainer orderId={params.orderId}/>
                 });
         })
@@ -205,14 +208,14 @@ FlowRouter.route('/order/:orderId/:tab', {
         // Driver may see info
         // params.tab === 'driver' && !Meteor.userId()
         if (Roles.isDriver()) {
-            ReactLayout.render(OrderManagerContainer, {orderId: params.orderId, tab: 'driver'})
+            mount(OrderManagerContainer, {orderId: params.orderId, tab: 'driver'})
             return
         }
 
         loginRequired()
         managerOnly()
 
-        ReactLayout.render(Layout, {
+        mount(Layout, {
             content: <OrderManagerContainer orderId={params.orderId} tab={params.tab}/>,
             tabs: Settings.order.tabs,
             navbarBottom: <StatusBarContainer orderId={params.orderId}/>,
@@ -225,9 +228,9 @@ FlowRouter.route('/allergy/:allergyId', {
     name: "guestAllergy",
     action: function (params) {
         if (!Meteor.userId())
-            ReactLayout.render(GuestAllergyContainer, {allergyId: params.allergyId})
+            mount(GuestAllergyContainer, {allergyId: params.allergyId})
         else
-            ReactLayout.render(Layout, {
+            mount(Layout, {
                 content: <GuestAllergyContainer allergyId={params.allergyId}/>
             });
     }
@@ -237,7 +240,7 @@ FlowRouter.route('/menuitem/:menuitemId', {
     triggersEnter: [loginRequired, startIdleMonitor],
     name: "menuitem",
     action: function (params) {
-        ReactLayout.render(Layout, {
+        mount(Layout, {
             content: <MenuitemsContainer menuitemId={params.menuitemId}/>
         });
     }
@@ -246,7 +249,7 @@ FlowRouter.route('/menuitem/:menuitemId', {
 FlowRouter.route('/route-denied', {
     name: "route-denied",
     action: function (params) {
-        ReactLayout.render(RouteDenied);
+        mount(RouteDenied);
     }
 });
 
@@ -258,7 +261,7 @@ FlowRouter.route('/discourse_sso', {
         var userId = Meteor.userId()
         Meteor.call("discourseSSO", userId, sso, sig, function (err, result) {
             if (err || !result)
-                ReactLayout.render(DiscourseSSO, {error: err});
+                mount(DiscourseSSO, {error: err});
             else {
                 window.location.replace("http://spice.toitla.com/session/sso_login?" + result)
             }

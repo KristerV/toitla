@@ -1,12 +1,7 @@
-var {
-    DatePicker,
-    Styles,
-} = MUI;
-var { ThemeManager, LightRawTheme } = Styles;
+import DatePicker from 'material-ui/DatePicker';
 
+import React from 'react';
 DatePickerMUI = React.createClass({
-    childContextTypes: { muiTheme: React.PropTypes.object, },
-    getChildContext() { return { muiTheme: ThemeManager.getMuiTheme(LightRawTheme), } },
 
     getDateFormat: function(date) {
         if (!date) return null

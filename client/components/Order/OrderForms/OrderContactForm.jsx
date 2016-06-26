@@ -1,3 +1,4 @@
+import React from 'react';
 OrderContactForm = React.createClass({
     handleTextFieldChange(e) {
         this.props.order.handleTextFieldChange(e)

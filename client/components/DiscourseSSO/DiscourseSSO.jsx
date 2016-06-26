@@ -1,3 +1,4 @@
+import React from 'react';
 DiscourseSSO = React.createClass({
 
     render() {

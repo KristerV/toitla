@@ -1,3 +1,4 @@
+import React from 'react';
 UserProfile = React.createClass({
 
     logout(e) {

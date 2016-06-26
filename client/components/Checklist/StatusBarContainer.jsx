@@ -1,3 +1,4 @@
+import React from 'react';
 StatusBarContainer = React.createClass({
 
     mixins: [ReactMeteorData],

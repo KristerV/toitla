@@ -1,3 +1,4 @@
+import React from 'react';
 OrderGeneralInfoForm = React.createClass({
 
     render() {

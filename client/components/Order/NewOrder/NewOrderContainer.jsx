@@ -1,3 +1,4 @@
+import React from 'react';
 NewOrderContainer = React.createClass({
 
     mixins: [ReactMeteorData],

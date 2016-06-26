@@ -1,3 +1,4 @@
+import React from 'react';
 OrderManagerChef = React.createClass({
 
     render() {

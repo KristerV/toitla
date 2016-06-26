@@ -1,3 +1,4 @@
+import React from 'react';
 Sign = React.createClass({
 
     render() {
