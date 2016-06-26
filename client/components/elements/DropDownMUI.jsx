@@ -9,7 +9,7 @@ DropDownMUI = React.createClass({
         this.props.onChange({
             value: value,
             name: this.props.name,
-            text: e.target.textContent,
+            text: value, // e.target doesn't exist
         })
     },
 
