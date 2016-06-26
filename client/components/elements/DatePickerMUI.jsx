@@ -1,4 +1,5 @@
 import DatePicker from 'material-ui/DatePicker';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import React from 'react';
 DatePickerMUI = React.createClass({
@@ -14,7 +15,7 @@ DatePickerMUI = React.createClass({
         if (!props.autoWidth) {
             style.width = '100%'
         }
-        return(<DatePicker
+        return(<MuiThemeProvider><DatePicker
             name={props.name}
             placeholder={props.label}
             minDate={props.minDate}
@@ -24,6 +25,6 @@ DatePickerMUI = React.createClass({
             textFieldStyle={style}
             formatDate={props.formatDate || this.getDateFormat}
             errorText={props.errorMsg}
-        />)
+        /></MuiThemeProvider>)
     }
 })
