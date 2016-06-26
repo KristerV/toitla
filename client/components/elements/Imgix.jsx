@@ -1,5 +1,6 @@
 import React from 'react'
 import ImgixOfficial from 'react-imgix'
+import ReactDOM from 'react-dom'
 
 Imgix = React.createClass({
 
