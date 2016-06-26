@@ -9,7 +9,8 @@
     "react": "^15.1.0",
     "react-addons-pure-render-mixin": "^15.1.0",
     "react-dom": "^15.1.0",
-    "react-imgix": "4.0.0"
+    "react-imgix": "4.0.0",
+    "react-mounter": "^1.2.0"
   },
   "devDependencies": {},
   "scripts": {
