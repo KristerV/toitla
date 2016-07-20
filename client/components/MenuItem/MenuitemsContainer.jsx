@@ -27,6 +27,7 @@ MenuitemsContainer = React.createClass({
             and.push({[key]: filters[key]})
         }
         this.setState({filterList: and})
+
     },
 
     getFind() {
@@ -70,8 +71,9 @@ MenuitemsContainer = React.createClass({
             subscription = Meteor.subscribe("menuitem_templates", {_id: menuitemId}, options)
             menuitems = MenuitemTemplates.find().fetch()
         } else if (addToOrdermode && orderId) {
-            subscription = Meteor.subscribe("menuitem_templates")
-            subscription2 = Meteor.subscribe("menuitems_inorder", this.getFind(), options)
+			let find = this.getFind()
+            subscription = Meteor.subscribe("menuitem_templates", find, options)
+            subscription2 = Meteor.subscribe("menuitems_inorder", find, options)
             menuitems = MenuitemTemplates.find().fetch()
             itemsInOrder = MenuitemsInOrder.find({orderId: orderId, rejected: {$ne: true}}).fetch()
 
