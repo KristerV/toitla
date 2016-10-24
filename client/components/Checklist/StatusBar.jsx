@@ -1,35 +1,36 @@
 import React from 'react';
 StatusBar = React.createClass({
     render() {
-        var statuses = this.props.statuses
-        var result = this.props.result ? this.props.result.result : {}
-        var doubleSize = 1.8
-        var id = Random.id()
+        var statuses = this.props.statuses;
+        var result = this.props.result ? this.props.result.result : {};
+        var doubleSize = 1.8;
+        var id = Random.id();
+        var resultDot;
 
         switch (result) {
             case 'done':
                 resultDot = this.getDot({_id: id, text: 'Done', checked: true}, 'green', doubleSize)
-                break
+                break;
             case 'lost':
                 resultDot = this.getDot({_id: id, text: 'Lost', checked: true}, 'red', doubleSize)
-                break
+                break;
             case 'silent':
                 resultDot = this.getDot({_id: id, text: 'Silent', checked: true}, 'red', doubleSize)
-                break
+                break;
             default:
                 resultDot = this.getDot({_id: id, text: 'Not finished yet'}, null, doubleSize)
         }
 
         return <div>
             {statuses ? statuses.map(stat => {
-                var size = 1
+                var size = 1;
                 if (stat.checked) {
-                    var color = 'rgb(63, 81, 181)'
+                    var color = stat.color || 'rgb(63, 81, 181)';
                 }
                 if (stat.text === 'Ready for event') {
-                    size = doubleSize
+                    size = doubleSize;
                 }
-                return this.getDot(stat, color, size)
+                return this.getDot(stat, color, size);
             }) : null}
             {resultDot}
         </div>
