@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Indie+Flower|Amatic+SC|Overlock|Tangerine|Marck+Script|Patrick+Hand+SC);
+@import url(https://fonts.googleapis.com/css?family=Rock+Salt|Amatic+SC|Overlock|Tangerine|Marck+Script|Patrick+Hand+SC);
 @a6width: 10.5cm;
 @a6height: 14.8cm;
 
@@ -11,8 +11,8 @@
     border: 1px solid transparent; // for some reason removes blank page after main sign
     float: left;
 
-    p, h1, h2, h3, h4, h5, h6 {
-        font-family: 'Indie Flower', cursive;
+    p, h1, h2, h3, h4, h5, h6, .font-rock-salt {
+        font-family: 'Rock Salt', cursive;
     }
 
     &.landscape {
@@ -29,7 +29,7 @@
     page-break-after: always;
     vertical-align: top;
     p {
-        font-size: 6mm;
+        font-size: 0.6cm;
     }
 
     .sign-face {
@@ -50,8 +50,8 @@
     .sign-toitla {
         position: absolute;
         right: 0;
-        width: 1.7cm;
-        margin: 8mm;
+        width: 2.5cm;
+        margin: 0.8cm;
         transform: rotate(10deg);
     }
 
@@ -60,11 +60,17 @@
         transform: rotate(-10deg);
         left: 1cm;
         margin-top: 0.4cm;
-        transform-origin: 0% 40%;
+        transform-origin: 0 40%;
         .sign-profile-image {
-            width: 2.2cm;
-            height: 2.2cm;
+            margin-left: 0.75cm;
+            margin-top: 0.15cm;
+            width: 2.5cm;
+            height: 2.5cm;
             transform: translateX(-50%);
+        }
+        .sign-profile-name {
+            margin-left: 1cm;
+            margin-top: 0.15cm;
         }
         p {
             width: 100%;
@@ -81,16 +87,22 @@
 
     .sign-tag {
         display: inline-block;
-        margin-right: 5mm;
+        margin-right: 0.5cm;
     }
 
     .sign-ingredients {
-        font-size: 4mm;
+        text-align: left;
+        font-size: 0.4cm;
         font-family: Overlock, Roboto, Arial, sans-serif;
+        height: 37.5%;
+    }
+
+    .sign-social {
+        margin-top: 0.8cm;
     }
 
     .sign-socialicon-container {
-        text-align: center;
+        font-size: 0.4cm;
     }
 
     .sign-socialicon {
@@ -98,7 +110,15 @@
         height: 0.6cm;
         display: inline-block;
         opacity: 0.4;
-        margin: 0 3mm;
+        margin: 0 0.3cm 0.4cm;
+    }
+
+    .margin-left-0 {
+        margin-left: 0 !important;
+    }
+
+    .font-bold {
+        font-weight: bolder;
     }
 
     .sign-cut {
