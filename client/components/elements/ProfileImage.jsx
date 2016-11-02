@@ -2,13 +2,13 @@ import React from 'react';
 ProfileImage = React.createClass({
 
     render() {
-        var user = this.props.user || {}
-        var profile = user.profile || {}
+        var user = this.props.user || {};
+        var profile = user.profile || {};
         if (profile.image) {
             return (<Imgix
                     path={profile.image.path}
                     filename={profile.image.filename}
-                    shape="circle"
+                    shape={this.props.shape || 'circle'}
                     dpr={this.props.dpr}
                     fit="facearea"
                     facepad="2"
