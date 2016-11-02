@@ -4,7 +4,6 @@
   "description": "",
   "main": "none.js",
   "dependencies": {
-    "bcrypt": "^0.8.7",
     "material-ui": "^0.15.1",
     "meteor-node-stubs": "^0.2.3",
     "moment": "^2.13.0",
