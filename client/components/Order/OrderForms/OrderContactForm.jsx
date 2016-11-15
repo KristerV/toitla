@@ -4,18 +4,15 @@ OrderContactForm = React.createClass({
         this.props.order.handleTextFieldChange(e)
     },
     render() {
-        if (!this.props.order)
-            return(<Loader/>)
-        var order = this.props.order
-        order.errors = order.errors || {}
-        order.errors.contact = order.errors.contact || {}
+        if (!this.props.order) {
+            return(<Loader/>);
+        }
+
+        var order = this.props.order;
+        order.errors = order.errors || {};
+        order.errors.contact = order.errors.contact || {};
+
         return(<div className="paper margin padding">
-            <TextInput
-                label={T.order.form.contact.organization()}
-                name="contact.organization"
-                onBlur={this.handleTextFieldChange}
-                value={order.contact.organization}
-                errorMsg={order.errors.contact.organization} />
             <TextInput
                 label={T.order.form.contact.name()}
                 name="contact.name"
@@ -41,4 +38,4 @@ OrderContactForm = React.createClass({
             <Loader ifNot={order.contact}/>
         </div>)
     }
-})
+});

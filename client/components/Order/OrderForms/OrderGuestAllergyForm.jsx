@@ -14,7 +14,7 @@ OrderGuestAllergyForm = React.createClass({
         var order = this.props.order
         order.event = order.event || {}
         return(<div className="paper margin padding">
-            <h3>{order.event.eventName}</h3>
+            <h3>{order.event.eventType || order.event.eventName}</h3>
             <p>{T.order.form.allergies_guest.text()}</p>
             <TextInput
                 name="guestAllergyInput"

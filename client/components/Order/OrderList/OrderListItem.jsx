@@ -27,10 +27,10 @@ OrderListItem = React.createClass({
         return(<div className={"mdl-grid paper padding clickable " + className}
             onClick={this.goOrder}>
                 <div className="mdl-cell mdl-cell--3-col">
-                    {order.contact.organization || order.contact.name}
+                    {order.payment.organization || order.contact.organization || order.contact.name}
                 </div>
                 <div className="mdl-cell mdl-cell--3-col">
-                    {order.event.eventName || order.event.eventType}
+                    {order.event.eventType || order.event.eventName}
                 </div>
                 <div className="mdl-cell mdl-cell--2-col">
                     {date}

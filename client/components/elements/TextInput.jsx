@@ -60,7 +60,7 @@ TextInput = React.createClass({
                     rows={this.props.rows}
                     onBlur={this.props.onBlur}
                     disabled={this.props.disabled}
-                    autofocus={this.props.autofocus}
+                    autoFocus={this.props.autofocus}
                     onClick={this.handleClick}
                     style={{maxHeight: "600px"}}
                     />
@@ -76,7 +76,7 @@ TextInput = React.createClass({
                     defaultValue={this.props.value}
                     onBlur={this.props.onBlur}
                     disabled={this.props.disabled}
-                    autofocus={this.props.autofocus}
+                    autoFocus={this.props.autofocus}
                     onClick={this.handleClick}
                     onKeyPress={this.handleEnterPress}
                     />

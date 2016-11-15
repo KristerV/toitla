@@ -30,12 +30,6 @@ OrderEventForm = React.createClass({
         return(<div className="paper margin padding">
             <Loader ifNot={order.event}/>
             <TextInput
-                label={T.order.form.event.name()}
-                name="event.eventName"
-                onBlur={this.handleTextFieldChange}
-                value={order.event.eventName}
-                errorMsg={order.errors.event.eventName} />
-            <TextInput
                 label={T.order.form.event.event_type()}
                 name="event.eventType"
                 onBlur={this.handleTextFieldChange}
