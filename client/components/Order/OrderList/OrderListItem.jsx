@@ -16,6 +16,7 @@ OrderListItem = React.createClass({
         order.contact = order.contact || {}
         order.status = order.status || []
         order.price = order.price || {}
+        order.payment = order.payment || {}
         var date = order.event.fromDate ? moment(order.event.fromDate).format("dd D. MMMM") : null
 
         var className = ""
@@ -27,7 +28,7 @@ OrderListItem = React.createClass({
         return(<div className={"mdl-grid paper padding clickable " + className}
             onClick={this.goOrder}>
                 <div className="mdl-cell mdl-cell--3-col">
-                    {order.payment.organization || order.contact.organization || order.contact.name}
+                    {order.payment.name || order.contact.organization || order.contact.name}
                 </div>
                 <div className="mdl-cell mdl-cell--3-col">
                     {order.event.eventType || order.event.eventName}
