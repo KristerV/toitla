@@ -4,10 +4,6 @@ OrderEventForm = React.createClass({
         this.props.order.handleTextFieldChange(e)
     },
 
-    handlePeopleCountChange(e) {
-        this.props.order.handleTextFieldChange(e)
-    },
-
     handleFromDateChange(nill, date) {
         this.props.order.updateField('event.fromDate', date)
     },
@@ -17,15 +13,17 @@ OrderEventForm = React.createClass({
     },
 
     render() {
-        if (!this.props.order)
-            return(<Loader/>)
-        var order = this.props.order
-        order.event = order.event || {}
-        order.errors = order.errors || {}
-        order.errors.event = order.errors.event || {}
+        if (!this.props.order) {
+            return(<Loader/>);
+        }
+
+        var order = this.props.order;
+        order.event = order.event || {};
+        order.errors = order.errors || {};
+        order.errors.event = order.errors.event || {};
 
         // Delay between today and possible to order
-        var minimumDate = Roles.isManager() ? new Date(0) : moment().add(Settings.minimum_days_notice, 'days').toDate()
+        var minimumDate = Roles.isManager() ? new Date(0) : moment().add(Settings.minimum_days_notice, 'days').toDate();
 
         return(<div className="paper margin padding">
             <Loader ifNot={order.event}/>
@@ -38,10 +36,10 @@ OrderEventForm = React.createClass({
             <TextInput
                 label={T.order.form.event.nrPeople()}
                 name="event.peopleCount"
-                onBlur={this.handlePeopleCountChange}
+                onBlur={this.handleTextFieldChange}
                 value={order.event.peopleCount}
                 patternTemplate="float"
-                patternError={T.order.form.event.nrPeople_patternError()}
+                patternError={T.order.form.event.numberPatternError()}
                 errorMsg={order.errors.event.peopleCount} />
             <TextInput
                 label={T.order.form.event.location()}
@@ -63,7 +61,14 @@ OrderEventForm = React.createClass({
                 value={order.event.fromTime}
                 name="event.fromTime"
                 errorMsg={order.errors.event.fromTime} />
-
+            <TextInput
+                label={T.order.form.event.duration()}
+                name="event.duration"
+                onBlur={this.handleTextFieldChange}
+                value={order.event.duration}
+                patternTemplate="float"
+                patternError={T.order.form.event.numberPatternError()}
+                errorMsg={order.errors.event.duration} />
         </div>)
     }
-})
+});
