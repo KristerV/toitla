@@ -5,13 +5,19 @@ UserListItem = React.createClass({
         FlowRouter.go('profile', {userId: this.props.user._id})
     },
 
-    makeManager: function(e) {
-        var userId = this.props.user._id
-        var count = this.state[userId]
-        if (!count) count = 0
-        this.setState({[userId]: ++count})
-        if (count === 9) {
-            this.props.user.makeManager()
+    makeManager: function() {
+        let userId = this.props.user._id;
+
+        if (this.state == undefined) {
+            this.setState({[userId]: 1});
+            return;
+        }
+
+        let count = this.state[userId];
+        this.setState({[userId]: ++count});
+
+        if (count == 9) {
+            this.props.user.makeManager();
         }
     },
 
