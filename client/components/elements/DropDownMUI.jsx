@@ -42,7 +42,6 @@ DropDownMUI = React.createClass({
             <div style={divStyle} className={divClass}>
             <DropDownMenu
                 autoWidth={this.props.autoWidth}
-                menuItemStyle={this.props.menuItemStyle}
                 underlineStyle={underlineStyle}
                 iconStyle={iconStyle}
                 labelStyle={{paddingLeft: "2px", color: "black"}}

@@ -38,7 +38,7 @@ OrderManagerChef = React.createClass({
             {order.showMenuToChef() ?
                 <div className="mdl-cell--5-col margin">
                     {/*only one chefs item is published*/}
-                    <ChefConfirm chef={order.chefs[0]} orderId={order._id}/>
+                    <ChefConfirm chef={order.chefs[0]} order={order}/>
                 </div>
             : null}
         </div>)

@@ -17,7 +17,7 @@ OrderListItem = React.createClass({
         order.status = order.status || []
         order.price = order.price || {}
         order.payment = order.payment || {}
-        var date = order.event.fromDate ? moment(order.event.fromDate).format("dd D. MMMM") : null
+        var date = order.event.fromDate ? moment(order.event.fromDate).tz("Europe/Tallinn").format("dd D. MMMM") : null
 
         var className = ""
         if (order.highlightForChef(Meteor.userId())) className += "bg-yellow"
