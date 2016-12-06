@@ -46,10 +46,10 @@ Layout = React.createClass({
                     </div>
                 </header>
                 <div className={"mdl-tabs mdl-js-tabs mdl-js-ripple-effect " + (this.props.tabs ? "mdl-layout__header" : "")} style={{minHeight: '0px'}}>
-                    <div className="mdl-tabs__tab-bar" style={{height: "auto", borderBottom: "none"}}>
+                    <div className="mdl-layout__tab-bar" style={{height: "auto", borderBottom: "none", justifyContent: "center", paddingLeft: "140px", width: "calc(100% - 140px)"}}>
                         {_.map(this.props.tabs, function(tab, i){
-                            var newPath = currentPath.replace(this.props.activeTab, tab.route)
-                            var isActive = tab.route === this.props.activeTab ? 'is-active' : ""
+                            var newPath = currentPath.replace(this.props.activeTab, tab.route);
+                            var isActive = tab.route === this.props.activeTab ? 'is-active' : "";
                             return <a key={i} href={newPath} className={"mdl-layout__tab "+isActive}>{tab.label}</a>
                         }.bind(this))}
                     </div>
