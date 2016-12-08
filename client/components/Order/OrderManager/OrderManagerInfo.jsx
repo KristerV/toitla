@@ -9,13 +9,13 @@ OrderManagerInfo = React.createClass({
                 <OrderContactForm order={order}/>
             </div>
             <div className="mdl-cell mdl-cell--4-col">
-                <OrderEventForm order={order}/>
+                <OrderPaymentForm order={order}/>
             </div>
             <div className="mdl-cell mdl-cell--4-col">
                 <OrderAllergiesForm order={order}/>
             </div>
             <div className="mdl-cell mdl-cell--4-col">
-                <OrderPaymentForm order={order}/>
+                <OrderEventForm order={order}/>
             </div>
             <div className="mdl-cell mdl-cell--8-col">
                 <OrderGeneralInputForm
