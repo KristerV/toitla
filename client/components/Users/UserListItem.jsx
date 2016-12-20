@@ -49,7 +49,9 @@ UserListItem = React.createClass({
             <td className="mdl-data-table__cell--non-numeric" onClick={this.makeManager}>
                 {profile.name}
             </td>
-            <td>{user.getEmail()}</td>
+            <td className="mdl-data-table__cell--non-numeric">
+                {user.getEmail()}
+            </td>
             <td>
                 <button
                     className={"mdl-button mdl-js-button mdl-button--raised "+(user.eligible ? "mdl-button--colored" : null)}
@@ -66,7 +68,9 @@ UserListItem = React.createClass({
                     menu - {user.menuCount || 0}
                 </button>
             </td>
-            <td>{lastLogin}</td>
+            <td className="mdl-data-table__cell--non-numeric">
+                {lastLogin}
+            </td>
             <td>
                 <button
                     className="mdl-button mdl-js-button mdl-button--icon"

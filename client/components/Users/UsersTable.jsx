@@ -21,11 +21,10 @@ UsersTable = React.createClass({
                 <table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp w100">
                   <thead>
                     <tr>
+                      <th></th>
                       <th className="mdl-data-table__cell--non-numeric">Nimi</th>
-                      <th>E-mail</th>
-                      <th></th>
-                      <th></th>
-                      <th>Viimati online</th>
+                      <th className="mdl-data-table__cell--non-numeric" colSpan="3">E-mail</th>
+                      <th className="mdl-data-table__cell--non-numeric" colSpan="2">Viimati online</th>
                     </tr>
                   </thead>
                   <tbody>
