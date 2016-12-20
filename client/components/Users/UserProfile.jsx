@@ -11,6 +11,10 @@ UserProfile = React.createClass({
         this.props.user.changeEmail(e.target.value)
     },
 
+    changeCommissionFee(e) {
+        this.props.user.changeCommissionFee(e.target.value)
+    },
+
     newLocation() {
         Meteor.call('User--newLocation', this.props.user._id)
     },
@@ -34,11 +38,12 @@ UserProfile = React.createClass({
     },
 
     render() {
-        var isManager = Roles.userIsInRole(Meteor.userId(), 'manager')
-        if (!isManager && this.props.user._id !== Meteor.userId())
-            return <div>Not allowed</div>
-        var user = this.props.user || {}
-        var profile = user.profile || {}
+        let isManager = Roles.userIsInRole(Meteor.userId(), 'manager');
+        if (!isManager && this.props.user._id !== Meteor.userId()) {
+            return <div>Not allowed</div>;
+        }
+        let user = this.props.user || {};
+        let profile = user.profile || {};
 
         return (
             <div className="mdl-grid">
@@ -70,6 +75,13 @@ UserProfile = React.createClass({
                         onBlur={user.handleTextFieldChange.bind(user)}
                         name="profile.homepage"
                         value={profile.homepage}/>
+                    <TextInput
+                        label="Vahendustasu määr (%)"
+                        onBlur={this.changeCommissionFee}
+                        value={user.commissionFee}
+                        disabled={!isManager}
+                        patternTemplate="float"
+                        patternError="Palun sisesta üks arv"/>
                 </div>
                 <div className="paper padding mdl-cell mdl-cell--4-col">
                     <TextInput
