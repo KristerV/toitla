@@ -100,7 +100,7 @@ UserProfile = React.createClass({
                         name="profile.vet"
                         defaultChecked={profile.vet}/>
                     <br/>
-                    <sub>Ilma etteovõtte või Vet-ametiga kooskõlastamiseta me kahjuks koostööd teha ei saa. Need
+                    <sub>Ilma ettevõtte või Vet-ametiga kooskõlastamiseta me kahjuks koostööd teha ei saa. Need
                         protsessid ei ole aga üldse keerulised. Õpetuse kallal veel nokitseme, aga võta ühendust
                         info@toitla.com ja me juhendame su mõnusalt läbi.</sub>
                 </div>
