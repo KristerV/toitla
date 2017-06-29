@@ -102,7 +102,7 @@ UserProfile = React.createClass({
                     <br/>
                     <sub>Ilma ettevõtte või Vet-ametiga kooskõlastamiseta me kahjuks koostööd teha ei saa. Need
                         protsessid ei ole aga üldse keerulised. Õpetuse kallal veel nokitseme, aga võta ühendust
-                        info@toitla.com ja me juhendame su mõnusalt läbi.</sub>
+                        kati@toitla.com ja me juhendame su mõnusalt läbi.</sub>
                 </div>
                 {_.map(profile.locations, (loc, i) => {
                     i++
@@ -120,7 +120,7 @@ UserProfile = React.createClass({
                                 name="latlong"
                                 onBlur={this.updateLocationField}
                                 value={loc.latlong}
-                            /> 
+                            />
                             : null
                         }
                         <TextInput

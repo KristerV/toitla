@@ -18,7 +18,7 @@ MenuitemInGridChef = React.createClass({
                 <button className="mdl-cell mdl-cell--6-col mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Teen ära</button>
             </div>
             <h4 style={{textAlign: "center"}}>Tellimus on vastu võetud.</h4>
-            <p className="light-text"><i>Kui nüüd soovid ära öelda, pead Toitla meeskonnaga ühendust võtma: appi@toitla.com või 5216686.</i></p>
+            <p className="light-text"><i>Kui nüüd soovid ära öelda, pead Toitla meeskonnaga ühendust võtma: kati@toitla.com või 5144544.</i></p>
         </section>)
     }
 })
