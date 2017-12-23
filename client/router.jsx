@@ -15,6 +15,7 @@ FlowRouter.route('/', {
     action: function (params) {
         // Don't show landing, go straight to new order
         Order.createOrder()
+        return
 
         // Old logic continues
         if (!Meteor.userId())
