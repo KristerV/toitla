@@ -168,6 +168,13 @@ FlowRouter.route('/scraper/', {
     }
 });
 
+FlowRouter.route('/neworder', {
+    name: "neworder-noid",
+    action: function (params) {
+        Order.createOrder()
+    }
+});
+
 FlowRouter.route('/neworder/:orderId', {
     name: "neworder",
     action: function (params) {
