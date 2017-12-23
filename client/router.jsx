@@ -13,6 +13,10 @@ FlowRouter.goSilent = function (a, b) {
 
 FlowRouter.route('/', {
     action: function (params) {
+        // Don't show landing, go straight to new order
+        Order.createOrder()
+
+        // Old logic continues
         if (!Meteor.userId())
             mount(Landing, params.query);
         else {
